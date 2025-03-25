@@ -29,7 +29,7 @@ repo_path = "C:/Users/silve/Practicas_Empresa_CSIC/data/processed/"
 os.makedirs(repo_path, exist_ok=True)  # Crea la carpeta si no existe
 
 # Guardar el NetCDF en la carpeta del repositorio
-output_path = os.path.join(repo_path, "temperatura_brillo.nc")
+output_path = os.path.join(repo_path, "brightness_temperature.nc")
 ds.to_netcdf(output_path)
 
 print(f"✅ Cálculo completado. Archivo guardado en: {output_path}")
