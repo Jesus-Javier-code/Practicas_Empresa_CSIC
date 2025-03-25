@@ -1,30 +1,60 @@
 import os
 import pandas as pd
 
-# Definir rutas
-data_path = "data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
-output_dir = "data/processed//"
+# 1. Obtener la ruta CORRECTA al archivo
+# (Modificado para tu estructura específica)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+repo_root = os.path.abspath(os.path.join(script_dir, '..'))  # Sube un nivel desde processing
 
-# Crear la carpeta de salida si no existe
-os.makedirs(output_dir, exist_ok=True)
+# Ruta ABSOLUTA y CORRECTA para tus datos
+data_path = os.path.join(repo_root, 'Practicas_Empresa_CSIC', 'data', 'raw', 'TIRVolcH_La_Palma_Dataset.xlsx')
 
-# Cargar el archivo Excel
-df = pd.read_excel(data_path)
+# 2. Verificación EXTENDIDA (para diagnóstico)
+print("\n=== DEBUGGING INFORMATION ===")
+print(f"Directorio del script: {script_dir}")
+print(f"Raíz del repositorio: {repo_root}")
+print(f"Ruta completa al archivo: {data_path}")
+print(f"¿Existe el archivo?: {'SÍ' if os.path.exists(data_path) else 'NO'}")
 
-# Asegurar que la columna de fecha está en formato datetime
-df["Date"] = pd.to_datetime(df["Date"], dayfirst=True)
+# Verificar directorio raw
+raw_dir = os.path.join(repo_root, 'Practicas_Empresa_CSIC', 'data', 'raw')
+print(f"\nContenido de {raw_dir}:")
+try:
+    print(os.listdir(raw_dir))
+except FileNotFoundError:
+    print("¡El directorio no existe!")
 
-# Extraer año y mes
-df["Year"] = df["Date"].dt.year
-df["Month"] = df["Date"].dt.month
+# 3. Carga del archivo con manejo de errores
+if not os.path.exists(data_path):
+    raise FileNotFoundError(
+        f"\nERROR: No se encuentra el archivo Excel.\n"
+        f"Ruta esperada: {data_path}\n"
+        f"Por favor verifica:\n"
+        f"1. Que el archivo existe exactamente con ese nombre\n"
+        f"2. Que está en la carpeta correcta\n"
+        f"3. Directorio actual: {os.getcwd()}\n"
+    )
 
-# Filtrar solo la columna de interés y la fecha
-df_filtered = df[["Date", "Weekly_Max_VRP_TIR (MW)", "Year", "Month"]]
+try:
+    print("\nCargando archivo Excel...")
+    df = pd.read_excel(data_path)
+    print("¡Archivo cargado correctamente!")
+    
+    # 4. Procesamiento (ejemplo básico)
+    df["Date"] = pd.to_datetime(df["Date"], dayfirst=True)
+    df["Year"] = df["Date"].dt.year
+    df["Month"] = df["Date"].dt.month
+    
+    # 5. Guardar resultados
+    output_dir = os.path.join(repo_root, 'Practicas_Empresa_CSIC', 'data', 'processed')
+    os.makedirs(output_dir, exist_ok=True)
+    
+    for (year, month), group in df.groupby(["Year", "Month"]):
+        output_path = os.path.join(output_dir, f"radiance_{year}-{month:02d}.csv")
+        group.to_csv(output_path, index=False)
+        print(f"Guardado: {output_path}")
+    
+    print("\n¡Proceso completado con éxito!")
 
-# Agrupar y guardar los archivos por mes y año
-for (year, month), group in df_filtered.groupby(["Year", "Month"]):
-    filename = f"radiance_{year}-{month:02d}.csv"
-    output_path = os.path.join(output_dir, filename)
-    group.drop(columns=["Year", "Month"], inplace=True)
-    group.to_csv(output_path, index=False)
-    print(f"✅ Archivo guardado: {output_path}")
+except Exception as e:
+    print(f"\nERROR durante el procesamiento: {str(e)}")
