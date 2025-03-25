@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 # Definir rutas
-data_path = "Practicas_Empresa_CSIC/data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
-output_dir = "Practicas_Empresa_CSIC/data/processed//"
+data_path = "data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
+output_dir = "data/processed//"
 
 # Crear la carpeta de salida si no existe
 os.makedirs(output_dir, exist_ok=True)

@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 
 # Definir rutas
-data_path = "Practica_Empresa_CSIC/data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
-output_dir = "Practica_Empresa_CSIC/data/processed/radiance_by_month/"
+data_path = "data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
+output_dir = "data/processed/radiance_by_month/"
 
 # Crear la carpeta de salida si no existe
 os.makedirs(output_dir, exist_ok=True)
@@ -21,14 +21,25 @@ def radiance_to_brightness_temperature(L_lambda, wavelength):
 # Cargar el archivo Excel
 df = pd.read_excel(data_path)
 
+# Verificar que las columnas son correctas
+print("Columnas disponibles:", df.columns)
+
 # Asegurar que la columna de fecha está en formato datetime
 df["Date"] = pd.to_datetime(df["Date"], dayfirst=True)
+
+# Convertir la columna 'Weekly_Max_VRP_TIR (MW)' a valores numéricos
+df["Weekly_Max_VRP_TIR (MW)"] = pd.to_numeric(df["Weekly_Max_VRP_TIR (MW)"], errors='coerce')
+
+# Verificar si hay valores NaN y mostrarlos
+if df["Weekly_Max_VRP_TIR (MW)"].isnull().any():
+    print("Hay valores NaN en 'Weekly_Max_VRP_TIR (MW)', verificando filas con NaN:")
+    print(df[df["Weekly_Max_VRP_TIR (MW)"].isnull()])
 
 # Extraer año y mes
 df["Year"] = df["Date"].dt.year
 df["Month"] = df["Date"].dt.month
 
-# Filtrar solo la columna de interés y la fecha
+# Filtrar solo las columnas de interés
 df_filtered = df[["Date", "Weekly_Max_VRP_TIR (MW)", "Year", "Month"]]
 
 # Convertir radiancia a temperatura de brillo
