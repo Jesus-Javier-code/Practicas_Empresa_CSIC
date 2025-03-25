@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 
 # Definir rutas
-data_path = "data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
-output_dir = "data/processed/radiance_by_month/"
+data_path = "Practica_Empresa_CSIC/data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
+output_dir = "Practica_Empresa_CSIC/data/processed/radiance_by_month/"
 
 # Crear la carpeta de salida si no existe
 os.makedirs(output_dir, exist_ok=True)
