@@ -1,6 +1,13 @@
 import os
 import numpy as np
-import xarray as xr
+import pandas as pd
+
+# Definir rutas
+data_path = "data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
+output_dir = "data/processed/radiance_by_month/"
+
+# Crear la carpeta de salida si no existe
+os.makedirs(output_dir, exist_ok=True)
 
 # Constantes de Planck
 C1 = 3.7418e-16  # W·m^2
@@ -23,6 +30,9 @@ df["Month"] = df["Date"].dt.month
 
 # Filtrar solo la columna de interés y la fecha
 df_filtered = df[["Date", "Weekly_Max_VRP_TIR (MW)", "Year", "Month"]]
+
+# Convertir radiancia a temperatura de brillo
+df_filtered["Brightness_Temperature (K)"] = df_filtered["Weekly_Max_VRP_TIR (MW)"].apply(lambda L: radiance_to_brightness_temperature(L, lambda_viirs))
 
 # Agrupar y guardar los archivos por mes y año
 for (year, month), group in df_filtered.groupby(["Year", "Month"]):
