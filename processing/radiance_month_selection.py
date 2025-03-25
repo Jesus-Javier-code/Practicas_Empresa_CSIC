@@ -1,15 +1,12 @@
 import os
-import numpy as np
-import xarray as xr
+import pandas as pd
 
-# Constantes de Planck
-C1 = 3.7418e-16  # W·m^2
-C2 = 1.4388e-2   # m·K
-lambda_viirs = 11.45e-6  # Longitud de onda en metros
+# Definir rutas
+data_path = "Practicas_Empresa_CSIC/data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
+output_dir = "Practicas_Empresa_CSIC/data/processed//"
 
-# Función para calcular temperatura de brillo (TB)
-def radiance_to_brightness_temperature(L_lambda, wavelength):
-    return C2 / (wavelength * np.log((C1 / (wavelength**5 * L_lambda)) + 1))
+# Crear la carpeta de salida si no existe
+os.makedirs(output_dir, exist_ok=True)
 
 # Cargar el archivo Excel
 df = pd.read_excel(data_path)
