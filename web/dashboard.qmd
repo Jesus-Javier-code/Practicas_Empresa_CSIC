@@ -1,4 +1,5 @@
 ---
+
 title: "Brightness Temperature Analysis"
 format: 
   dashboard:
@@ -18,78 +19,9 @@ import great_tables as gt
 import pandas as pd
 import glob
 ```
-
 ```{python}
-#| label: load-data
-
-# Ruta donde están los archivos
-path = "data/processed/brightness_temperature_by_Year_Month/"
-
-# Buscar todos los archivos CSV en la carpeta
-csv_files = glob.glob(path + "brightness_temperature_radiance_????-??.csv")
-
-
-# Cargar y combinar todos los archivos en un solo DataFrame
-bt_data = pd.concat([pd.read_csv(f) for f in csv_files], ignore_index=True)
-
+#| label: show-image
+from IPython.display import Image
+Image(filename="web/images/graficamala.png", width=800)
 ```
-
-```{python}
-#| label: prep-data
-
-# Asegurar que la columna de fecha está en formato datetime si existe
-if 'date' in bt_data.columns:
-    bt_data['date'] = pd.to_datetime(bt_data['date'])
-
-# Si hay una columna de temperatura, ordenamos por fecha
-if 'brightness_temperature' in bt_data.columns:
-    bt_data = bt_data.sort_values(by='date')
-
-```
-
-## Column - Brightness Temperature by region and month
-
-### Row - Brightness Temperature Distribution {height="60%"}
-
-```{python}
-#| label: bt-distribution
-#| title: Brightness Temperature Distribution
-
-(
-    ggplot(bt_data, aes(x="brightness_temperature")) +
-    geom_histogram(binwidth=1, fill="blue", alpha=0.7) +
-    labs(x="Brightness Temperature (K)", y="Frequency") +
-    theme_minimal()
-)
-
-```
-
-### Row - Brightness Temperature by Month {height="40%"}
-
-```{python}
-#| label: bt-time-series
-#| title: Brightness Temperature Over Time
-
-(
-    ggplot(bt_data, aes(x="date", y="brightness_temperature")) +
-    geom_line(color="red") +
-    labs(x="Date", y="Brightness Temperature (K)") +
-    theme_minimal()
-)
-
-```
-
-## Column - Summary Statistics
-
-```{python}
-#| label: bt-summary
-#| title: Summary Statistics
-
-# Resumen de estadísticas de la temperatura de brillo
-summary_stats = bt_data['brightness_temperature'].describe().reset_index()
-summary_stats.columns = ["Statistic", "Value"]
-
-(
-    gt.GT(summary_stats)
-)
 
