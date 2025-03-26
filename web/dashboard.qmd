@@ -13,18 +13,38 @@ logo-alt: "CSIC logo."
 
 ```{python}
 #| label: load-packages
+#| label: load-packages
 from plotnine import *
 import great_tables as gt
 import pandas as pd
 import glob
 from IPython.display import Image
+import os
 ```
 # 🏝️ LA PALMA
 ```{python}
 #| label: palma-image
 #| fig-cap: "Análisis de Potencia Radiativa - La Palma"
-display(Image(filename="images/graficamala.png", width=800))  # Asegúrate de tener esta imagen
+display(Image(filename="images/graficamala.png", width=800))
 ```
+```{python}
+#| label: load-palma-data
+# Cargar todos los archivos CSV de la carpeta
+folder_path = "../data/processed/brightness_temperature_by_Year_Month"
+csv_files = glob.glob(os.path.join(folder_path, "brightness_temperature_radiance_*.csv"))
+
+# Leer y combinar todos los archivos
+all_data = pd.concat([pd.read_csv(f) for f in csv_files])
+
+# Mostrar tabla con great_tables
+(
+    gt.GT(all_data.head(20))  # Muestra las primeras 20 filas
+    .tab_header(title="Datos de Radiancia y Brillo")
+    .fmt_number(columns=["Radiancia", "Brillo"], decimals=2)  # Ajusta nombres de columnas según tus datos
+    .opt_interactive(use_headers=True, page_size=10)
+)
+```
+
 # 🌋 EL TEIDE
 ```{python}
 #| label: teide-image
