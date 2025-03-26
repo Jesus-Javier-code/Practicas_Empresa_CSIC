@@ -1,5 +1,5 @@
 ---
-title: "Brightness Temperature Analysis"
+title: "Prácticas CSIC"
 format: 
   dashboard:
     orientation: columns
@@ -19,15 +19,15 @@ import pandas as pd
 import glob
 from IPython.display import Image
 ```
-#🏝️ LA PALMA
+# 🏝️ LA PALMA
 ```{python}
 #| label: palma-image
 #| fig-cap: "Análisis de Potencia Radiativa - La Palma"
-display(Image(filename="images/graficamala.png", width=800))
+display(Image(filename="images/graficamala.png", width=800))  # Asegúrate de tener esta imagen
 ```
-#🌋 EL TEIDE
+# 🌋 EL TEIDE
 ```{python}
 #| label: teide-image
 #| fig-cap: "Análisis de Potencia Radiativa - El Teide"
-display(Image(filename="images/graficamala.png", width=800))  # Misma imagen por ahora
+display(Image(filename="images/graficamala.png", width=800))  # Asegúrate de tener esta imagen
 ```
