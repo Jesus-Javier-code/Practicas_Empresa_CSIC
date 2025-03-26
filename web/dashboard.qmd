@@ -13,7 +13,6 @@ logo-alt: "CSIC logo."
 
 ```{python}
 #| label: load-packages
-#| label: load-packages
 from plotnine import *
 import great_tables as gt
 import pandas as pd
