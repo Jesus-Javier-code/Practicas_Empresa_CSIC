@@ -1,3 +1,8 @@
 import matplotlib 
 import datetime
-pero si estoy añadiendo líneas, por qué no ve que hay cambio?
+
+
+def funcion(t):
+    return 3+t
+
+print(funcion(2))
