@@ -2,9 +2,9 @@ import os
 import numpy as np
 import pandas as pd
 
-# Definir rutas
-data_path = "data/raw/TIRVolcH_La_Palma_Dataset.xlsx"
-output_dir = "data/processed/radiance_by_month/"
+# Definir rutas relativas
+data_path = os.path.join(os.getcwd(), 'data', 'processed', 'radiance_by_Year_Month')
+output_dir = os.path.join(os.getcwd(), 'data', 'processed', 'brightness_temperature_by_Year_Month')
 
 # Crear la carpeta de salida si no existe
 os.makedirs(output_dir, exist_ok=True)
@@ -18,37 +18,23 @@ lambda_viirs = 11.45e-6  # Longitud de onda en metros
 def radiance_to_brightness_temperature(L_lambda, wavelength):
     return C2 / (wavelength * np.log((C1 / (wavelength**5 * L_lambda)) + 1))
 
-# Cargar el archivo Excel
-df = pd.read_excel(data_path)
+# Listar todos los archivos CSV en el directorio
+files = [f for f in os.listdir(data_path) if f.endswith('.csv')]
 
-# Verificar que las columnas son correctas
-print("Columnas disponibles:", df.columns)
+# Procesar cada archivo CSV
+for file in files:
+    file_path = os.path.join(data_path, file)
+    df = pd.read_csv(file_path)
 
-# Asegurar que la columna de fecha está en formato datetime
-df["Date"] = pd.to_datetime(df["Date"], dayfirst=True)
+    # Asegurarse de que las columnas existen y se cargan correctamente
+    if 'Weekly_Max_VRP_TIR (MW)' not in df.columns:
+        print(f"⚠️ La columna 'Weekly_Max_VRP_TIR (MW)' no está en el archivo {file}")
+        continue
 
-# Convertir la columna 'Weekly_Max_VRP_TIR (MW)' a valores numéricos
-df["Weekly_Max_VRP_TIR (MW)"] = pd.to_numeric(df["Weekly_Max_VRP_TIR (MW)"], errors='coerce')
+    # Convertir radiancia a temperatura de brillo
+    df["Brightness_Temperature (K)"] = df["Weekly_Max_VRP_TIR (MW)"].apply(lambda L: radiance_to_brightness_temperature(L, lambda_viirs))
 
-# Verificar si hay valores NaN y mostrarlos
-if df["Weekly_Max_VRP_TIR (MW)"].isnull().any():
-    print("Hay valores NaN en 'Weekly_Max_VRP_TIR (MW)', verificando filas con NaN:")
-    print(df[df["Weekly_Max_VRP_TIR (MW)"].isnull()])
-
-# Extraer año y mes
-df["Year"] = df["Date"].dt.year
-df["Month"] = df["Date"].dt.month
-
-# Filtrar solo las columnas de interés
-df_filtered = df[["Date", "Weekly_Max_VRP_TIR (MW)", "Year", "Month"]]
-
-# Convertir radiancia a temperatura de brillo
-df_filtered["Brightness_Temperature (K)"] = df_filtered["Weekly_Max_VRP_TIR (MW)"].apply(lambda L: radiance_to_brightness_temperature(L, lambda_viirs))
-
-# Agrupar y guardar los archivos por mes y año
-for (year, month), group in df_filtered.groupby(["Year", "Month"]):
-    filename = f"radiance_{year}-{month:02d}.csv"
-    output_path = os.path.join(output_dir, filename)
-    group.drop(columns=["Year", "Month"], inplace=True)
-    group.to_csv(output_path, index=False)
+    # Guardar el archivo procesado
+    output_path = os.path.join(output_dir, file)
+    df.to_csv(output_path, index=False)
     print(f"✅ Archivo guardado: {output_path}")
