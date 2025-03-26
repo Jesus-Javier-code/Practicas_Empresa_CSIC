@@ -39,4 +39,3 @@ for file in files:
     output_path = os.path.join(output_dir, f"brightness_temperature_{file}")
     df.to_csv(output_path, columns=['Weekly_Max_VRP_TIR (MW)', 'Brightness_Temperature (K)'], index=False)
     print(f"✅ Archivo guardado: {output_path}")
-
