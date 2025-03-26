@@ -10,6 +10,8 @@ df = pd.read_excel(file_path, sheet_name="LaPalma_TIRVolcH_Filtered_Data")
 
 import os
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Obtener la ruta absoluta de este script
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -19,7 +21,7 @@ repo_root = os.path.abspath(os.path.join(script_dir, ".."))  # Esto sube un nive
 
 # Ruta correcta del archivo
 data_path = os.path.join(repo_root, "data", "raw", "TIRVolcH_La_Palma_Dataset.xlsx")
-
+c = 2 +2 
 # Debugging
 print("\n=== DEBUGGING INFORMATION ===")
 print(f"Directorio del script: {script_dir}")
@@ -44,11 +46,12 @@ if not os.path.exists(data_path):
         "2. Que está en la carpeta correcta\n"
         f"3. Directorio actual: {script_dir}"
     )
-
+'''
 # Directorio de salida
 # Directorio de salida en data/raw/radiance_by_Year_Month_
 output_dir = os.path.join(repo_root, "data", "processed", "radiance_by_Year_Month_")
-os.makedirs(output_dir, exist_ok=True)  # Crear si no existe
+os.makedirs(output_dir, exist_ok=True)  # Crear si no existe'
+'''
 
 
 # Leer el archivo Excel y procesar
@@ -98,7 +101,7 @@ output_folder = "web/images"
 os.makedirs(output_folder, exist_ok=True)
 
 # Guardar la gráfica en la carpeta `web/images/`
-output_path = os.path.join(output_folder, "VRP_TIR_Comparison.png")
+output_path = os.path.join(output_folder, "Graphic_Power_Rad.png")
 plt.savefig(output_path, dpi=300)
 plt.close()
 
