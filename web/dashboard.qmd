@@ -7,7 +7,7 @@ format:
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
-logo: web/images/Logotipo_del_CSIC.png
+logo: images/Logotipo_del_CSIC.png
 logo-alt: "CSIC logo."
 ---
 
