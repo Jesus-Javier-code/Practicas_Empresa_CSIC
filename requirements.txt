@@ -1,4 +1,0 @@
-matplotlib==3.10.1
-numpy==2.2.0
-usgs-libcomcat==2.1.6
-DateTime==5.5
