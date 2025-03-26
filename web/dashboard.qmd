@@ -24,4 +24,3 @@ import glob
 from IPython.display import Image
 display(Image(filename="images/graficamala.png", width=800))
 ```
-
