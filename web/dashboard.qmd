@@ -4,7 +4,7 @@ format:
   dashboard:
     orientation: columns
     nav-buttons: [github]
-    github: https://github.com/posit-conf-2024/brightness-temperature
+    github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
 logo: web/images/Logotipo_del_CSIC.png
@@ -26,7 +26,8 @@ import glob
 path = "data/processed/brightness_temperature_by_Year_Month/"
 
 # Buscar todos los archivos CSV en la carpeta
-csv_files = glob.glob(path + "brightness_temperature_radiance_*.csv")
+csv_files = glob.glob(path + "brightness_temperature_radiance_????-??.csv")
+
 
 # Cargar y combinar todos los archivos en un solo DataFrame
 bt_data = pd.concat([pd.read_csv(f) for f in csv_files], ignore_index=True)
