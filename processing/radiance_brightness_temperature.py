@@ -2,9 +2,9 @@ import os
 import numpy as np
 import pandas as pd
 
-# Definir rutas
-data_path = "data/processed/radiance_by_Year_Month"
-output_dir = "data/processed/brightness_temperature_by_Year_Month"
+# Definir rutas relativas
+data_path = os.path.join(os.getcwd(), 'data', 'processed', 'radiance_by_Year_Month')
+output_dir = os.path.join(os.getcwd(), 'data', 'processed', 'brightness_temperature_by_Year_Month')
 
 # Crear la carpeta de salida si no existe
 os.makedirs(output_dir, exist_ok=True)
