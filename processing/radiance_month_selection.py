@@ -4,35 +4,42 @@ import pandas as pd
 # Obtener la ruta absoluta de este script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Subir un nivel para encontrar la raíz del repositorio
-repo_root = os.path.abspath(os.path.join(script_dir, ".."))
+# Ajuste importante: la raíz del repo debe ser el nombre correcto
+repo_root = os.path.abspath(os.path.join(script_dir, ".."))  # Esto sube un nivel correctamente
 
-# Ruta correcta del archivo de datos
+# Ruta correcta del archivo
 data_path = os.path.join(repo_root, "data", "raw", "TIRVolcH_La_Palma_Dataset.xlsx")
 
-# Comprobaciones antes de continuar
-print("\n=== COMPROBACIÓN DE RUTAS ===")
-print(f"📂 Directorio del script: {script_dir}")
-print(f"📂 Raíz del repositorio: {repo_root}")
-print(f"📄 Ruta del archivo: {data_path}")
-print(f"❓ ¿El archivo existe? {'SÍ' if os.path.exists(data_path) else 'NO'}")
+# Debugging
+print("\n=== DEBUGGING INFORMATION ===")
+print(f"Directorio del script: {script_dir}")
+print(f"Raíz del repositorio: {repo_root}")
+print(f"Ruta completa al archivo: {data_path}")
+print(f"¿Existe el archivo?: {'SÍ' if os.path.exists(data_path) else 'NO'}")
 
+# Verificar si el archivo existe
 if not os.path.exists(data_path):
-    print("\n🚨 ERROR: El archivo no se encuentra en la ruta esperada.")
-    print("📂 Contenido real de la carpeta data/raw:")
-    
     raw_dir = os.path.join(repo_root, "data", "raw")
+    print(f"\nContenido de {raw_dir}:")
     if os.path.exists(raw_dir):
-        print(os.listdir(raw_dir))  # Mostrar lo que hay en data/raw
+        print(os.listdir(raw_dir))  # Mostrar lo que hay en la carpeta
     else:
-        print(f"🚨 La carpeta {raw_dir} NO EXISTE.")
+        print(f"¡El directorio {raw_dir} no existe!")
     
-    raise FileNotFoundError("⚠️ Mueve el archivo a la carpeta correcta y vuelve a ejecutar el script.")
+    raise FileNotFoundError(
+        f"\nERROR: No se encuentra el archivo Excel.\n"
+        f"Ruta esperada: {data_path}\n"
+        "Por favor verifica:\n"
+        "1. Que el archivo existe exactamente con ese nombre\n"
+        "2. Que está en la carpeta correcta\n"
+        f"3. Directorio actual: {script_dir}"
+    )
 
 # Directorio de salida
 output_dir = os.path.join(repo_root, "data", "processed")
 os.makedirs(output_dir, exist_ok=True)
 
+# Leer el archivo Excel y procesar
 try:
     print("\n📥 Cargando archivo...")
     df = pd.read_excel(data_path)
