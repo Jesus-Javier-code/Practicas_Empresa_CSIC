@@ -1,5 +1,4 @@
 ---
-
 title: "Brightness Temperature Analysis"
 format: 
   dashboard:
@@ -21,7 +20,8 @@ import glob
 ```
 ```{python}
 #| label: show-image
+#| fig-cap: "Power Radiation Graphic"
 from IPython.display import Image
-Image(filename="web/images/graficamala.png", width=800)
+display(Image(filename="web/images/graficamala.png", width=800))
 ```
 
