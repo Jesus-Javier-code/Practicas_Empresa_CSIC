@@ -32,10 +32,11 @@ for file in files:
         print(f"⚠️ La columna 'Weekly_Max_VRP_TIR (MW)' no está en el archivo {file}")
         continue
 
-    # Convertir la radiancia a temperatura de brillo (K)
+    # Seleccionar solo la columna de radiancia 'Weekly_Max_VRP_TIR (MW)' y calcular la temperatura de brillo
     df['Brightness_Temperature (K)'] = df['Weekly_Max_VRP_TIR (MW)'].apply(lambda L: radiance_to_brightness_temperature(L, lambda_viirs))
 
     # Guardar el archivo procesado
     output_path = os.path.join(output_dir, f"brightness_temperature_{file}")
-    df.to_csv(output_path, index=False)
+    df.to_csv(output_path, columns=['Weekly_Max_VRP_TIR (MW)', 'Brightness_Temperature (K)'], index=False)
     print(f"✅ Archivo guardado: {output_path}")
+
