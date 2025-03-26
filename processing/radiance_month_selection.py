@@ -36,8 +36,10 @@ if not os.path.exists(data_path):
     )
 
 # Directorio de salida
-output_dir = os.path.join(repo_root, "data", "processed")
-os.makedirs(output_dir, exist_ok=True)
+# Directorio de salida en data/raw/radiance_by_Year_Month_
+output_dir = os.path.join(repo_root, "data", "processed", "radiance_by_Year_Month_")
+os.makedirs(output_dir, exist_ok=True)  # Crear si no existe
+
 
 # Leer el archivo Excel y procesar
 try:
