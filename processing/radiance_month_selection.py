@@ -51,9 +51,13 @@ try:
 
     # Guardar por año/mes
     for (year, month), group in df.groupby(["Year", "Month"]):
-        output_path = os.path.join(output_dir, f"radiance_{year}-{month:02d}.csv")
+        year = int(year)  # Convertir a entero
+        month = int(month)  # Convertir a entero
+        filename = f"radiance_{year}-{month:02d}.csv"
+        output_path = os.path.join(output_dir, filename)
         group.to_csv(output_path, index=False)
         print(f"✅ Guardado: {output_path}")
+
 
     print("\n🎉 ¡Proceso completado con éxito!")
 
