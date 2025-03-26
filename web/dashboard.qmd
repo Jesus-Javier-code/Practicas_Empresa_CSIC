@@ -22,6 +22,6 @@ import glob
 #| label: show-image
 #| fig-cap: "Power Radiation Graphic"
 from IPython.display import Image
-display(Image(filename="web/images/graficamala.png", width=800))
+display(Image(filename="images/graficamala.png", width=800))
 ```
 
