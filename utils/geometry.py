@@ -52,9 +52,7 @@ def geo_map(pos1, pos2, zone):
     fig.update_layout(
         map_style="carto-positron", 
         map_bounds={"west":lon_min, "east":lon_max, "north":lat_max, "south":lat_min},
-        dragmode=False, 
-        scrollZoom = False, 
-        touchmode = False
+        dragmode=False
         )
 
     # To show the area delimitation
@@ -68,23 +66,18 @@ def geo_map(pos1, pos2, zone):
     ))
 
     grid(fig, lat_min, lat_max, lon_min, lon_max)
-
     fig.show()
 
 # Coordenadas del volcán de Tajogaite: 28.61357798637031, -17.865478560801982
-# Región alrededor:
-
 pos1_la_palma = np.array([28.601109109131052, -17.929768956228138])
 pos2_la_palma =  np.array([28.62514776637218, -17.872144640744164])
 
+# Región alrededor:
+pos3_la_palma = np.array([28.3, -18.2])
+pos4_la_palma =  np.array([28.8, -17.9])
 
 geo_map(pos1_la_palma, pos2_la_palma, "Volcan de Tajogaite")
-
-
-
-
-
-
+geo_map(pos3_la_palma, pos4_la_palma, "Volcan de Tajogaite")
 
 
 
