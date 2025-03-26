@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import pandas as pd
+from sklearn.metrics import r2_score
 
 # Definir rutas
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Carpeta raíz del proyecto
@@ -18,6 +19,10 @@ bt_images = []
 
 # Comprobar la forma de la primera imagen para asegurar que todas sean iguales
 first_shape = None
+
+# Función para calcular el coeficiente de determinación (R2)
+def calculate_r2(reference, image):
+    return r2_score(reference.flatten(), image.flatten())
 
 # Procesar cada archivo CSV
 for file in files:
@@ -49,7 +54,22 @@ bt_stack = np.stack(bt_images)
 # Calcular la imagen de referencia promediada (promedio mensual)
 average_bt = np.mean(bt_stack, axis=0)
 
-# Guardar la imagen promedio de BT como referencia mensual
+# Comparar cada escena con la referencia y calcular R2
+valid_images = []
+for i, bt_image in enumerate(bt_images):
+    r2 = calculate_r2(average_bt, bt_image)
+    if r2 >= 0.5:
+        valid_images.append(bt_image)
+    else:
+        print(f"⚠️ Imagen {files[i]} descartada con R2 = {r2}")
+
+# Apilar las imágenes válidas para una nueva referencia
+valid_bt_stack = np.stack(valid_images)
+
+# Calcular la nueva referencia promediada (promedio mensual)
+new_average_bt = np.mean(valid_bt_stack, axis=0)
+
+# Guardar la nueva imagen de referencia mensual
 output_path = os.path.join(output_dir, 'monthly_reference_brightness_temperature.csv')
-pd.DataFrame(average_bt).to_csv(output_path, index=False)
+pd.DataFrame(new_average_bt).to_csv(output_path, index=False)
 print(f"✅ Imagen de referencia mensual guardada en: {output_path}")
