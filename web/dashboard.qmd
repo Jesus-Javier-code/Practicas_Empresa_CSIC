@@ -1,0 +1,100 @@
+---
+title: "Brightness Temperature Analysis"
+format: 
+  dashboard:
+    orientation: columns
+    nav-buttons: [github]
+    github: https://github.com/posit-conf-2024/brightness-temperature
+    theme:
+      - flatly
+logo: web/images/Logotipo_del_CSIC.png
+logo-alt: "CSIC logo."
+---
+
+```{python}
+#| label: load-packages
+from plotnine import *
+import great_tables as gt
+import pandas as pd
+```
+
+```{python}
+#| label: load-data
+bt_data = pd.read_csv("data/processed/brightness_temperature.csv", low_memory=False)
+```
+
+```{python}
+#| label: prep-data
+
+# Convertir la columna de fecha a tipo datetime
+bt_data["date"] = pd.to_datetime(bt_data["date"])
+
+# Extraer el año y el mes
+bt_data["year_month"] = bt_data["date"].dt.to_period("M")
+```
+
+## Column - Brightness Temperature by region and month
+
+### Row - Brightness Temperature Distribution {height="60%"}
+
+```{python}
+#| label: bt-distribution
+#| title: Brightness Temperature Distribution
+
+(
+    ggplot(bt_data, aes(x="region", y="brightness_temperature", fill="region")) +
+    geom_boxplot() +
+    labs(
+        x="Region",
+        y="Brightness Temperature (K)",
+        title="Distribution of Brightness Temperature by Region"
+    ) +
+    theme_minimal() +
+    theme(figure_size=(10, 6))
+)
+```
+
+### Row - Brightness Temperature by Month {height="40%"}
+
+```{python}
+#| label: bt-by-month
+#| title: Brightness Temperature by Month
+
+# Agrupar por mes y calcular el promedio de temperatura de brillo
+bt_monthly = bt_data.groupby("year_month")["brightness_temperature"].mean().reset_index()
+
+# Convertir year_month a string para evitar problemas con gráficos
+bt_monthly["year_month"] = bt_monthly["year_month"].astype(str)
+
+(
+    ggplot(bt_monthly, aes(x="year_month", y="brightness_temperature")) +
+    geom_line(color="blue") +
+    geom_point() +
+    labs(
+        x="Month",
+        y="Brightness Temperature (K)",
+        title="Monthly Brightness Temperature Trend"
+    ) +
+    theme_minimal() +
+    theme(
+        axis_text_x=element_text(rotation=45, hjust=1),
+        figure_size=(10, 4)
+    )
+)
+```
+
+## Column - Summary Statistics
+
+```{python}
+#| label: bt-summary
+#| title: Summary of Brightness Temperature
+
+# Agrupar por región y calcular estadísticas
+bt_summary = bt_data.groupby("region")["brightness_temperature"].agg(["mean", "min", "max"]).reset_index()
+
+# Renombrar columnas
+bt_summary.columns = ["Region", "Mean BT", "Min BT", "Max BT"]
+
+(
+    gt.GT(bt_summary)
+)
