@@ -16,6 +16,9 @@ files = [f for f in os.listdir(data_path) if f.endswith('.csv')]
 # Lista para almacenar las imágenes de BT
 bt_images = []
 
+# Comprobar la forma de la primera imagen para asegurar que todas sean iguales
+first_shape = None
+
 # Procesar cada archivo CSV
 for file in files:
     file_path = os.path.join(data_path, file)
@@ -26,8 +29,19 @@ for file in files:
         print(f"⚠️ La columna 'Brightness_Temperature (K)' no está en el archivo {file}")
         continue
 
-    # Almacenar los valores de BT en la lista
-    bt_images.append(df['Brightness_Temperature (K)'].values)
+    # Extraer los valores de BT
+    bt_values = df['Brightness_Temperature (K)'].values
+
+    # Verificar la forma de la imagen
+    if first_shape is None:
+        first_shape = bt_values.shape
+    elif bt_values.shape != first_shape:
+        print(f"⚠️ La imagen {file} tiene una forma diferente: {bt_values.shape}. Se ajustará al tamaño de la primera imagen.")
+        # Rellenar o recortar la imagen para que tenga el mismo tamaño
+        bt_values = np.resize(bt_values, first_shape)
+    
+    # Almacenar los valores de BT
+    bt_images.append(bt_values)
 
 # Apilar las imágenes de BT para crear la matriz cúbica
 bt_stack = np.stack(bt_images)
