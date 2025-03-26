@@ -209,6 +209,8 @@ os.makedirs(output_folder, exist_ok=True)
 
 # 📷 Guardar la gráfica en la carpeta `web/images/`
 output_path = os.path.join(output_folder, "Graphic_Power_Rad.png")
+print(f"Intentando guardar la imagen en: {output_path}")
+
 plt.savefig(output_path, dpi=300, format="png")
 plt.close()
 
