@@ -1,17 +1,14 @@
-#Medir areas de una celda en funcion del display del mapa
-
 import numpy as np
 import matplotlib as plt
 import pandas as pd
 import plotly.express as px
-
+import plotly.graph_objects as go
 
 # Creating a function to show a grid in function of the zoomlevel
-def grid(figure, lat_min, lat_max, lon_min, lon_max, zoom_lvl):
+def grid(fig, lat_min, lat_max, lon_min, lon_max):
     # The number of cells can be changed here by changing the number
-    n_rows = max(zoom_lvl , 5)
-    n_columns = max(zoom_lvl , 5)
-
+    n_rows = 10
+    n_columns = 10
     # Distance between cells
     lat_step = (lat_max - lat_min) / n_rows
     lon_step = (lon_max - lon_min) / n_columns
@@ -23,37 +20,71 @@ def grid(figure, lat_min, lat_max, lon_min, lon_max, zoom_lvl):
             lon1 = lon_min + j * lon_step
             lon2 = lon_min + (j + 1) * lon_step
 
-            figure.add_shape(
+            fig.add_shape(
                 type="rect",
                 x0 = lon1, x1 = lon2,
                 y0 = lat1, y1 = lat2,
                 line=dict(color="black", width=2), 
                 fillcolor="rgba(0, 0, 0, 1)"
             )
-    figure.show()
 
-def geo_map(lati, long, zoom_lvl):
+# pos1 and pos2 are the positions of the area you would like to see
+def geo_map(pos1, pos2, zone):
 
-    # AQUÍ SE PODRÍA PREGUNTAR TAMBIÉN CON BOTONES QUE DATOS SON LOS QUE QUIERE PONER EL USUARIO
-    lat_min = lati - 0.05
-    lat_max = lati + 0.05
-    lon_min = long - 0.05
-    lon_max = long + 0.05
+    lat_min = min(pos1[0], pos2[0])
+    lat_max = max(pos1[0], pos2[0])
+    lon_min = min(pos1[1], pos2[1])
+    lon_max = max(pos1[1], pos2[1])
 
-    data = [
-        [lati, long] # Desired point (Just to show in the map the introduced coordinates)
-    ]
-    # Data is turned into a pandas dataframe
-    df = pd.DataFrame(data, columns=["lat", "lon"]) 
+    lati = (lat_max + lat_min) / 2
+    long = (lon_max + lon_min) / 2
 
+    df = pd.DataFrame({
+        "lat": [lati],
+        "lon": [long],
+        "description": [zone]
+        })
+    
     # Creating the map
-    fig = px.scatter_map(df, lat="lat", lon="lon", center={"lat": lati, "lon": long}, zoom = zoom_lvl) 
+    fig = go.Figure()
 
     # Configurar el mapa base (puedes usar varios estilos como 'stamen-terrain', 'carto-positron', 'open-street-map', etc.)
-    fig.update_layout(map_style="open-street-map")
+    fig.update_layout(
+        map_style="carto-positron", 
+        map_bounds={"west":lon_min, "east":lon_max, "north":lat_max, "south":lat_min},
+        dragmode=False, 
+        scrollZoom = False, 
+        touchmode = False
+        )
 
-    grid(fig, lat_min, lat_max, lon_min, lon_max, zoom_lvl)
+    # To show the area delimitation
+    fig.add_trace(go.Scattermap(
+    mode="lines",
+        lon=[lon_min, lon_max, lon_max, lon_min, lon_min],
+        lat=[lat_min, lat_min, lat_max, lat_max, lat_min],
+        marker={"size": 10, "color": "black"},
+        line={"width": 2, "color": "black"},
+        name="Desired region"
+    ))
+
+    grid(fig, lat_min, lat_max, lon_min, lon_max)
+
     fig.show()
 
+# Coordenadas del volcán de Tajogaite: 28.61357798637031, -17.865478560801982
+# Región alrededor:
 
-geo_map(28.614099067906647, -17.86711684652606, 11)
+pos1_la_palma = np.array([28.601109109131052, -17.929768956228138])
+pos2_la_palma =  np.array([28.62514776637218, -17.872144640744164])
+
+
+geo_map(pos1_la_palma, pos2_la_palma, "Volcan de Tajogaite")
+
+
+
+
+
+
+
+
+
