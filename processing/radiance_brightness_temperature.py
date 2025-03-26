@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 
 # Definir rutas
-data_path = "data/processed/radiance_by_Year_Month"  # Asegúrate de que esta ruta contenga los archivos correctos
-output_dir = "data/processed/brightness_temperature_Year_Month"  # Carpeta de salida para las temperaturas de brillo
+data_path = "data/processed/radiance_by_Year_Month"  # Ruta de los archivos CSV con los datos de radiancia
+output_dir = "data/processed/brightness_temperature_by_Year_Month"  # Carpeta de salida para las temperaturas de brillo
 
 # Crear la carpeta de salida si no existe
 os.makedirs(output_dir, exist_ok=True)
@@ -32,8 +32,8 @@ else:
 
 # Función para procesar cada archivo
 def process_file(file_path):
-    # Cargar el archivo Excel
-    df = pd.read_excel(file_path)
+    # Cargar el archivo CSV
+    df = pd.read_csv(file_path)
 
     # Verificar que las columnas son correctas
     print("Columnas disponibles:", df.columns)
@@ -69,7 +69,8 @@ def process_file(file_path):
 
 # Procesar cada archivo en la carpeta de radiancia
 for file in files:
-    file_path = os.path.join(data_path, file)
-    process_file(file_path)
+    if file.endswith('.csv'):  # Asegurarse de que solo se procesen archivos CSV
+        file_path = os.path.join(data_path, file)
+        process_file(file_path)
 
 print("🎉 ¡Proceso completado con éxito!")
