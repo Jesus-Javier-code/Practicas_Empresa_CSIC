@@ -16,21 +16,34 @@ logo-alt: "CSIC logo."
 from plotnine import *
 import great_tables as gt
 import pandas as pd
+import glob
 ```
 
 ```{python}
 #| label: load-data
-bt_data = pd.read_csv("data/processed/brightness_temperature.csv", low_memory=False)
+
+# Ruta donde están los archivos
+path = "data/processed/brightness_temperature_by_Year_Month/"
+
+# Buscar todos los archivos CSV en la carpeta
+csv_files = glob.glob(path + "brightness_temperature_radiance_*.csv")
+
+# Cargar y combinar todos los archivos en un solo DataFrame
+bt_data = pd.concat([pd.read_csv(f) for f in csv_files], ignore_index=True)
+
 ```
 
 ```{python}
 #| label: prep-data
 
-# Convertir la columna de fecha a tipo datetime
-bt_data["date"] = pd.to_datetime(bt_data["date"])
+# Asegurar que la columna de fecha está en formato datetime si existe
+if 'date' in bt_data.columns:
+    bt_data['date'] = pd.to_datetime(bt_data['date'])
 
-# Extraer el año y el mes
-bt_data["year_month"] = bt_data["date"].dt.to_period("M")
+# Si hay una columna de temperatura, ordenamos por fecha
+if 'brightness_temperature' in bt_data.columns:
+    bt_data = bt_data.sort_values(by='date')
+
 ```
 
 ## Column - Brightness Temperature by region and month
@@ -42,59 +55,40 @@ bt_data["year_month"] = bt_data["date"].dt.to_period("M")
 #| title: Brightness Temperature Distribution
 
 (
-    ggplot(bt_data, aes(x="region", y="brightness_temperature", fill="region")) +
-    geom_boxplot() +
-    labs(
-        x="Region",
-        y="Brightness Temperature (K)",
-        title="Distribution of Brightness Temperature by Region"
-    ) +
-    theme_minimal() +
-    theme(figure_size=(10, 6))
+    ggplot(bt_data, aes(x="brightness_temperature")) +
+    geom_histogram(binwidth=1, fill="blue", alpha=0.7) +
+    labs(x="Brightness Temperature (K)", y="Frequency") +
+    theme_minimal()
 )
+
 ```
 
 ### Row - Brightness Temperature by Month {height="40%"}
 
 ```{python}
-#| label: bt-by-month
-#| title: Brightness Temperature by Month
-
-# Agrupar por mes y calcular el promedio de temperatura de brillo
-bt_monthly = bt_data.groupby("year_month")["brightness_temperature"].mean().reset_index()
-
-# Convertir year_month a string para evitar problemas con gráficos
-bt_monthly["year_month"] = bt_monthly["year_month"].astype(str)
+#| label: bt-time-series
+#| title: Brightness Temperature Over Time
 
 (
-    ggplot(bt_monthly, aes(x="year_month", y="brightness_temperature")) +
-    geom_line(color="blue") +
-    geom_point() +
-    labs(
-        x="Month",
-        y="Brightness Temperature (K)",
-        title="Monthly Brightness Temperature Trend"
-    ) +
-    theme_minimal() +
-    theme(
-        axis_text_x=element_text(rotation=45, hjust=1),
-        figure_size=(10, 4)
-    )
+    ggplot(bt_data, aes(x="date", y="brightness_temperature")) +
+    geom_line(color="red") +
+    labs(x="Date", y="Brightness Temperature (K)") +
+    theme_minimal()
 )
+
 ```
 
 ## Column - Summary Statistics
 
 ```{python}
 #| label: bt-summary
-#| title: Summary of Brightness Temperature
+#| title: Summary Statistics
 
-# Agrupar por región y calcular estadísticas
-bt_summary = bt_data.groupby("region")["brightness_temperature"].agg(["mean", "min", "max"]).reset_index()
-
-# Renombrar columnas
-bt_summary.columns = ["Region", "Mean BT", "Min BT", "Max BT"]
+# Resumen de estadísticas de la temperatura de brillo
+summary_stats = bt_data['brightness_temperature'].describe().reset_index()
+summary_stats.columns = ["Statistic", "Value"]
 
 (
-    gt.GT(bt_summary)
+    gt.GT(summary_stats)
 )
+
