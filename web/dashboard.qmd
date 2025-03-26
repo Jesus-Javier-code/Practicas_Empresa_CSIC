@@ -17,10 +17,17 @@ from plotnine import *
 import great_tables as gt
 import pandas as pd
 import glob
-```
-```{python}
-#| label: show-image
-#| fig-cap: "Power Radiation Graphic"
 from IPython.display import Image
+```
+#🏝️ LA PALMA
+```{python}
+#| label: palma-image
+#| fig-cap: "Análisis de Potencia Radiativa - La Palma"
 display(Image(filename="images/graficamala.png", width=800))
+```
+#🌋 EL TEIDE
+```{python}
+#| label: teide-image
+#| fig-cap: "Análisis de Potencia Radiativa - El Teide"
+display(Image(filename="images/graficamala.png", width=800))  # Misma imagen por ahora
 ```
