@@ -39,9 +39,18 @@ def best_fit(x_ax, y_ax, max_order, min_r2):
 
     return np.polyval(x_ax, fit(x_ax, y_ax, best_order)), best_r2 
 
+# Mean and coefficient of variation
+
+def mean_data(data):
+     m = np.mean(data)
+     std = 
+
+
+
+
+
 
 # Bicubic interpolation
-
 def bcb_interp(x_ax, y_ax, z_ax):
     
     # Crear interpolador bicúbico
