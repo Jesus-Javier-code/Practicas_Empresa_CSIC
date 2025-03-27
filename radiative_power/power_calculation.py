@@ -159,3 +159,4 @@ if __name__ == "__main__":
     print(df_resultado.head())
     df_resultado.to_csv("resultado_potencia.csv", index=False)'
     '''
+

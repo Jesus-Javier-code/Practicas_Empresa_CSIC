@@ -215,4 +215,3 @@ plt.savefig(output_path, dpi=300, format="png")
 plt.close()
 
 print(f"✅ Gráfica guardada en: {output_path}")
-
