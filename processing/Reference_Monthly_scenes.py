@@ -66,6 +66,7 @@ for i, bt_image in enumerate(bt_images):
 # Apilar las imágenes válidas para una nueva referencia
 valid_bt_stack = np.stack(valid_images)
 
+
 # Calcular la nueva referencia promediada (promedio mensual)
 new_average_bt = np.mean(valid_bt_stack, axis=0)
 
