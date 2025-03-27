@@ -9,3 +9,6 @@ Then, to create the enviorment you have to execute:
 Where venv will be the name of the folder where the info of the enviorment is saved. 
 
 In order to complete the instalation, you need to run "pip install -r requirments.txt". This will install the libraries in the correct version to use the program. 
+
+(Una pruebita para ver si me actualiza elvs code)
+Pruebo yo también a ver si esto me lo pilla bien

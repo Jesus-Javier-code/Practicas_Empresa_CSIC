@@ -1,0 +1,20 @@
+import os
+import glob
+
+# Ruta donde están los archivos
+path = "data/processed/brightness_temperature_by_Year_Month/"
+
+# Mostrar contenido de la carpeta
+print("Archivos en la carpeta:")
+print(os.listdir(path))  # Esto te dirá qué archivos están realmente ahí
+
+# Buscar archivos CSV en la carpeta
+csv_files = glob.glob(path + "brightness_temperature_radiance_*.csv")
+
+# Mostrar qué archivos se encontraron
+print("Archivos CSV encontrados:")
+print(csv_files)
+
+# Si no hay archivos, lanzar un error claro
+if not csv_files:
+    raise FileNotFoundError(f"No se encontraron archivos CSV en {path}. Verifica la ruta.")
