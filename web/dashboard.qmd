@@ -20,28 +20,33 @@ import glob
 from IPython.display import Image
 import os
 ```
+
 # 🏝️ LA PALMA
+
 ```{python}
-#| label: palma-image
+#| label: palma-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - La Palma"
 display(Image(filename="images/graficamala.png", width=800))
 ```
 
 ```{python}
-#| label: palma-image2
+#| label: palma-topography
 #| fig-cap: "Topografía de La Palma"
 display(Image(filename="images/topografia_palma.png", width=800))
 ```
 
 # 🌋 EL TEIDE
+
 ```{python}
-#| label: teide-image
+#| label: teide-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - El Teide"
 display(Image(filename="images/graficamala.png", width=800))  # Asegúrate de tener esta imagen
 ```
 
-# 🕳️​ TERREMOTO
+# 🕳️ TERREMOTO
+
 ```{python}
-#| label: teide-image
-#| fig-cap: "Análisis de Potencia Radiativa - El Teide"
-display(Image(filename="images/thomas_paper.png", width=800))  # Asegúrate de ten
+#| label: earthquake-analysis
+#| fig-cap: "Análisis de Potencia Radiativa - Terremoto"
+display(Image(filename="images/thomas_paper.png", width=800))  # Asegúrate de tener esta imagen
+```
