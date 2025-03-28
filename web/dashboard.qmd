@@ -40,13 +40,13 @@ display(Image(filename="images/topografia_palma.png", width=800))
 ```{python}
 #| label: teide-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - El Teide"
-display(Image(filename="images/graficamala.png", width=800))  # Asegúrate de tener esta imagen
+display(Image(filename="images/graficamala.png", width=800))
 ```
 
 # 🕳️ TERREMOTO
 
 ```{python}
 #| label: earthquake-analysis
-#| fig-cap: "Análisis de Potencia Radiativa - Terremoto"
-display(Image(filename="images/thomas_paper.png", width=800))  # Asegúrate de tener esta imagen
+#| fig-cap: "Trigger Index - Terremoto"
+display(Image(filename="images/thomas_paper.png", width=800))
 ```
