@@ -60,3 +60,8 @@ print("Columnas disponibles:", all_data.columns.tolist())
 display(Image(filename="images/graficamala.png", width=800))  # Asegúrate de tener esta imagen
 ```
 
+# 🕳️​ TERREMOTO
+```{python}
+#| label: teide-image
+#| fig-cap: "Análisis de Potencia Radiativa - El Teide"
+display(Image(filename="images/graficamala.png", width=800))  # Asegúrate de ten
