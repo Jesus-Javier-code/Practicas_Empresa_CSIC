@@ -1,10 +1,10 @@
 import os
 import numpy as np
-import pandas as pd
 import xarray as xr
 
-# Definir rutas
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Carpeta raíz del proyecto
+# Definir la ruta absoluta del archivo de entrada y salida
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # Ir 3 niveles arriba
+
 data_path = os.path.join(base_dir, '00_data', 'processed', 'BT_by_Year_Month_Day', 'TB_By_Year_Month_Day.nc')
 output_dir = os.path.join(base_dir, '00_data', 'processed', 'Radiative_Power')
 os.makedirs(output_dir, exist_ok=True)
@@ -18,6 +18,10 @@ pixel_area = 140.625  # Área en km²
 # Función para calcular radiancia a partir de Temperatura de Brillo (TB)
 def brightness_temperature_to_radiance(TB, wavelength):
     return (C1 / (wavelength**5)) / (np.exp(C2 / (wavelength * TB)) - 1)
+
+# Verificar que el archivo existe
+if not os.path.exists(data_path):
+    raise FileNotFoundError(f"⚠️ No se encontró el archivo NetCDF en: {data_path}")
 
 # Leer el archivo NetCDF
 dataset = xr.open_dataset(data_path)
