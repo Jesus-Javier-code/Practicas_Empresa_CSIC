@@ -1,9 +1,8 @@
 import numpy as np
-import matplotlib as plt
 import plotly.io as pio
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
+import os
 
 # Creating a function to show a grid in function of the zoomlevel
 def grid(fig, lat_min, lat_max, lon_min, lon_max):
@@ -23,15 +22,14 @@ def grid(fig, lat_min, lat_max, lon_min, lon_max):
 
             fig.add_shape(
                 type="rect",
-                x0 = lon1, x1 = lon2,
-                y0 = lat1, y1 = lat2,
+                x0=lon1, x1=lon2,
+                y0=lat1, y1=lat2,
                 line=dict(color="black", width=2), 
                 fillcolor="rgba(0, 0, 0, 1)"
             )
 
 # pos1 and pos2 are the positions of the area you would like to see
 def geo_map(pos1, pos2, zone):
-
     lat_min = min(pos1[0], pos2[0])
     lat_max = max(pos1[0], pos2[0])
     lon_min = min(pos1[1], pos2[1])
@@ -44,7 +42,7 @@ def geo_map(pos1, pos2, zone):
         "lat": [lati],
         "lon": [long],
         "description": [zone]
-        })
+    })
     
     # Creating the map
     fig = go.Figure()
@@ -52,13 +50,13 @@ def geo_map(pos1, pos2, zone):
     # Configurar el mapa base (puedes usar varios estilos como 'stamen-terrain', 'carto-positron', 'open-street-map', etc.)
     fig.update_layout(
         map_style="carto-positron", 
-        map_bounds={"west":lon_min, "east":lon_max, "north":lat_max, "south":lat_min},
+        map_bounds={"west": lon_min, "east": lon_max, "north": lat_max, "south": lat_min},
         dragmode=False
-        )
+    )
 
     # To show the area delimitation
     fig.add_trace(go.Scattermap(
-    mode="lines",
+        mode="lines",
         lon=[lon_min, lon_max, lon_max, lon_min, lon_min],
         lat=[lat_min, lat_min, lat_max, lat_max, lat_min],
         marker={"size": 10, "color": "black"},
@@ -67,18 +65,25 @@ def geo_map(pos1, pos2, zone):
     ))
 
     grid(fig, lat_min, lat_max, lon_min, lon_max)
-    pio.write_html(fig, "04_web/mapa_tajogaite.html", full_html=False)
+    
+    # Crear la ruta completa para el archivo HTML
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../04_web")
+    os.makedirs(output_dir, exist_ok=True)  # Crear la carpeta si no existe
+    output_path = os.path.join(output_dir, "mapa_tajogaite.html")
+    
+    # Guardar la gráfica interactiva en el archivo HTML
+    pio.write_html(fig, output_path, full_html=True)
+    print(f"Mapa guardado en: {output_path}")
 
 # Coordenadas del volcán de Tajogaite: 28.61357798637031, -17.865478560801982
 pos1_la_palma = np.array([28.601109109131052, -17.929768956228138])
-pos2_la_palma =  np.array([28.62514776637218, -17.872144640744164])
+pos2_la_palma = np.array([28.62514776637218, -17.872144640744164])
 
 # Región alrededor:
 pos3_la_palma = np.array([28.3, -18.2])
-pos4_la_palma =  np.array([28.8, -17.9])
+pos4_la_palma = np.array([28.8, -17.9])
 
 geo_map(pos1_la_palma, pos2_la_palma, "Volcan de Tajogaite")
 geo_map(pos3_la_palma, pos4_la_palma, "Volcan de Tajogaite")
-
 
 
