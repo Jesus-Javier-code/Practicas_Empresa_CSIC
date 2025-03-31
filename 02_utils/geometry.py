@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib as plt
+import plotly.io as pio
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -66,7 +67,7 @@ def geo_map(pos1, pos2, zone):
     ))
 
     grid(fig, lat_min, lat_max, lon_min, lon_max)
-    fig.show()
+    pio.write_html(fig, "04_web/mapa_tajogaite.html", full_html=False)
 
 # Coordenadas del volcán de Tajogaite: 28.61357798637031, -17.865478560801982
 pos1_la_palma = np.array([28.601109109131052, -17.929768956228138])

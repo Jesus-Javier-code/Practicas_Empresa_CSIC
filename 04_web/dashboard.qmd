@@ -30,6 +30,13 @@ display(Image(filename="images/graficamala.png", width=800))
 ```
 
 ```{python}
+from IPython.display import IFrame
+
+# Mostrar la gráfica interactiva
+IFrame("mapa_tajogaite.html", width="100%", height="600px")
+```
+
+```{python}
 #| label: palma-topography
 #| fig-cap: "Topografía de La Palma"
 display(Image(filename="images/topografia_palma.png", width=800))
