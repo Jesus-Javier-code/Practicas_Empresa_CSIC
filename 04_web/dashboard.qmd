@@ -35,12 +35,12 @@ display(Image(filename="images/graficamala.png", width=800))
 ```{python}
 # Mostrar la gráfica interactiva de La Palma
 # Muestra el mapa interactivo en la misma página
-IFrame("04_web/mapa_tajogaite.html", width="100%", height="600px")
+IFrame("images/mapa_tajogaite.html", width="100%", height="600px")
 ```
 ```{python}
 # Mostrar el segundo mapa interactivo de La Palma
 # Muestra el segundo mapa interactivo alrededor del Volcán de Tajogaite
-IFrame("04_web/mapa_tajogaite_alrededor.html", width="100%", height="600px")
+IFrame("images/mapa_tajogaite_alrededor.html", width="100%", height="600px")
 ```
 
 ```{python}
