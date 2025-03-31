@@ -104,9 +104,6 @@ df = pd.DataFrame({
     'Potencia_Radiativa': potencia_radiativa
 })
 
-csv_path = 'actividad_volcanica_potencia.csv'
-df.to_csv(csv_path, index=False)
-
 # Paso 2: Crear la aplicación Dash
 app = dash.Dash(__name__)
 
@@ -144,19 +141,28 @@ def actualizar_grafico(start_date, end_date):
 # Paso 3: Guardar la figura como un archivo HTML estático
 
 def save_html_static():
-    # Carpeta donde se guardará el archivo HTML
-    carpeta_salida = 'C:\Users\laura\Desktop\Practicas_Empresa_CSIC\04_web\images'
-    os.makedirs(carpeta_salida, exist_ok=True)
+    try:
+        # Carpeta donde se guardará el archivo HTML
+        carpeta_salida = os.path.join(os.getcwd(), 'repositorio', 'resultado')
+        os.makedirs(carpeta_salida, exist_ok=True)  # Crea la carpeta si no existe
 
-    # Guardar el gráfico como HTML
-    pio.write_html(fig, file=os.path.join(carpeta_salida, 'grafico_potencia_radiativa.html'), auto_open=False)
-    print(f"Archivo HTML guardado en {os.path.join(carpeta_salida, 'grafico_potencia_radiativa.html')}")
+        # Ruta del archivo HTML
+        html_path = os.path.join(carpeta_salida, 'grafico_potencia_radiativa.html')
 
-# Llamar a la función para guardar el archivo HTML estático antes de ejecutar la aplicación
+        # Guardar el gráfico como HTML
+        pio.write_html(fig, file=html_path, auto_open=False)
+
+        # Mostrar confirmación en la terminal
+        print(f"✅ Archivo HTML guardado correctamente en: {html_path}")
+
+    except Exception as e:
+        print(f"❌ Error al guardar el archivo HTML: {e}")
+
+# Llamar a la función para guardar el archivo HTML antes de iniciar el servidor Dash
 save_html_static()
 
 # Paso 4: Iniciar la aplicación Dash
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False)  # Ejecuta el servidor Dash
+    app.run_server(debug=True, use_reloader=False)  # Ejecuta el servidor Dash
 
     
