@@ -43,7 +43,7 @@ display(Image(filename="images/topografia_palma.png", width=800))
 display(Image(filename="images/graficamala.png", width=800))
 ```
 
-# 🕳️ TERREMOTO
+# 🕳️ TERREMOTOS
 
 ```{python}
 #| label: earthquake-analysis
