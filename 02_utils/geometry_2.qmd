@@ -56,8 +56,8 @@ def update_map(selected_cities):
                             zoom=2, mapbox_style="open-street-map")
     return fig
 
-# Ruta de la carpeta "images" dentro del directorio actual
-output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images')
+# Ruta de la carpeta "images" dentro del directorio Practicas_Empresa_CSIC/04_web
+output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Practicas_Empresa_CSIC', '04_web', 'images')
 os.makedirs(output_dir, exist_ok=True)  # Crear la carpeta "images" si no existe
 
 # Guardar el archivo HTML dentro de "images"
@@ -72,4 +72,5 @@ if __name__ == '__main__':
     with open(output_path, "w") as f:
         f.write(app.index_string)  # Guardar el HTML generado
     print(f"Mapa interactivo guardado en: {output_path}")
+
 ```
