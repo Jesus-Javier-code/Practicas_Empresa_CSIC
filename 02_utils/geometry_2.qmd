@@ -5,7 +5,7 @@ execute:
   echo: true
   result: "show"
 ---
-
+  
 ```{python}
 # Importar librerías necesarias
 import dash
@@ -13,6 +13,7 @@ from dash import dcc, html
 import plotly.express as px
 import pandas as pd
 import webbrowser
+import os
 
 # Datos de ejemplo
 df = pd.DataFrame({
@@ -55,8 +56,20 @@ def update_map(selected_cities):
                             zoom=2, mapbox_style="open-street-map")
     return fig
 
+# Ruta de la carpeta "images" dentro del directorio actual
+output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images')
+os.makedirs(output_dir, exist_ok=True)  # Crear la carpeta "images" si no existe
+
+# Guardar el archivo HTML dentro de "images"
+output_path = os.path.join(output_dir, "dash_map_interactivo.html")
+
 # Abrir automáticamente el navegador
 if __name__ == '__main__':
-    webbrowser.open("http://127.0.0.1:8050/")  # Abre automáticamente el navegador
-    app.run_server(debug=True, use_reloader=False)  # Ejecuta el servidor Dash
+    app.run_server(debug=True, use_reloader=False, port=8050)  # Ejecuta el servidor Dash
+
+    # Guardar el HTML en la carpeta "images"
+    app.index_string = f"<html><body>{app.index_string}</body></html>"
+    with open(output_path, "w") as f:
+        f.write(app.index_string)  # Guardar el HTML generado
+    print(f"Mapa interactivo guardado en: {output_path}")
 ```
