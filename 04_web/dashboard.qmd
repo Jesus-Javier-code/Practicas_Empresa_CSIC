@@ -1,0 +1,64 @@
+---
+title: "Prácticas CSIC"
+format: 
+  dashboard:
+    orientation: columns
+    nav-buttons: [github]
+    github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
+    theme:
+      - flatly
+logo: images/Logotipo_del_CSIC.png
+logo-alt: "CSIC logo."
+---
+
+```{python}
+#| label: load-packages
+from plotnine import *
+import great_tables as gt
+import pandas as pd
+import glob
+from IPython.display import Image
+import os
+import plotly.io as pio
+from IPython.display import IFrame
+```
+
+# 🏝️ LA PALMA
+## Column - Plots
+### Gráfica curva de enfriamiento
+```{python}
+#| label: palma-analysis
+#| fig-cap: "Análisis de Potencia Radiativa - La Palma"
+display(Image(filename="images/graficamala.png", width=800))
+
+```
+### Mapa interactivo Tajogaite
+```{python}
+#| label: mapa-tajogaite
+#| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
+IFrame("images/mapa_tajogaite.html", width="100%", height="600px")
+
+```
+
+## Mapa interactivo los alrededores
+```{python}
+# Mostrar el segundo mapa interactivo de La Palma
+# Muestra el segundo mapa interactivo alrededor del Volcán de Tajogaite
+IFrame("images/mapa_region_alrededor.html", width="100%", height="600px")
+```
+
+# 🌋 EL TEIDE
+
+```{python}
+#| label: teide-analysis
+#| fig-cap: "Análisis de Potencia Radiativa - El Teide"
+display(Image(filename="images/graficamala.png", width=800))
+```
+
+# 🕳️ TERREMOTOS
+
+```{python}
+#| label: earthquake-analysis
+#| fig-cap: "Trigger Index - Terremoto"
+display(Image(filename="images/thomas_paper.png", width=800))
+```

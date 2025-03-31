@@ -1,0 +1,79 @@
+---
+title: "Dashboard de Mapa Interactivo"
+format: html
+execute: 
+  echo: true
+  result: "show"
+---
+  
+```{python}
+import dash
+from dash import dcc, html
+import plotly.express as px
+import pandas as pd
+import webbrowser
+import os
+
+# Datos de ejemplo
+df = pd.DataFrame({
+    'lat': [40.4168, 41.3851, 37.7749],
+    'lon': [-3.7038, 2.1734, -122.4194],
+    'ciudad': ['Madrid', 'Barcelona', 'San Francisco'],
+    'tipo': ['Capital', 'Capital', 'Ciudad']
+})
+
+# Inicializar la app Dash
+app = dash.Dash(__name__)
+
+# Crear el mapa interactivo con Plotly
+fig = px.scatter_mapbox(df, lat="lat", lon="lon", hover_name="ciudad", color="tipo",
+                        zoom=2, mapbox_style="open-street-map")
+
+# Layout de la app
+app.layout = html.Div([
+    dcc.Dropdown(
+        id='city-dropdown',
+        options=[{'label': ciudad, 'value': ciudad} for ciudad in df['ciudad'].unique()],
+        value=df['ciudad'].unique().tolist(),
+        multi=True,
+        style={'width': '50%'}
+    ),
+    dcc.Graph(
+        id='map-graph',
+        figure=fig
+    )
+])
+
+# Callback para actualizar el mapa según el filtro de ciudades
+@app.callback(
+    dash.dependencies.Output('map-graph', 'figure'),
+    [dash.dependencies.Input('city-dropdown', 'value')]
+)
+def update_map(selected_cities):
+    filtered_df = df[df['ciudad'].isin(selected_cities)]
+    fig = px.scatter_mapbox(filtered_df, lat="lat", lon="lon", hover_name="ciudad", color="tipo",
+                            zoom=2, mapbox_style="open-street-map")
+    return fig
+
+# Ruta de la carpeta "images" dentro del repositorio
+# Suponiendo que el directorio actual es el que contiene el script
+repo_dir = os.getcwd()  # Obtiene el directorio de trabajo actual
+output_dir = os.path.join(repo_dir, 'Practicas_Empresa_CSIC', '04_web', 'images')
+
+# Si la carpeta no existe, crearla
+os.makedirs(output_dir, exist_ok=True)
+
+# Guardar el archivo HTML dentro de "images"
+output_path = os.path.join(output_dir, "dash_map_interactivo.html")
+
+# Abrir automáticamente el navegador
+if __name__ == '__main__':
+    app.run_server(debug=True, use_reloader=False, port=8050)  # Ejecuta el servidor Dash
+
+    # Guardar el HTML en la carpeta "images"
+    app.index_string = f"<html><body>{app.index_string}</body></html>"
+    with open(output_path, "w") as f:
+        f.write(app.index_string)  # Guardar el HTML generado
+    print(f"Mapa interactivo guardado en: {output_path}")
+
+```
