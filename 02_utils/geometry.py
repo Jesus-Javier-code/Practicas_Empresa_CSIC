@@ -51,7 +51,7 @@ def geo_map(pos1, pos2, zone, output_file):
 
     # Configurar el mapa base (puedes usar varios estilos como 'stamen-terrain', 'carto-positron', 'open-street-map', etc.)
     fig.update_layout(
-        map_style="carto-positron", 
+        map_style="open-street-map", 
         map_bounds={"west": lon_min, "east": lon_max, "north": lat_max, "south": lat_min},
         dragmode=False
     )
