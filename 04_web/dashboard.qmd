@@ -19,6 +19,8 @@ import pandas as pd
 import glob
 from IPython.display import Image
 import os
+import plotly.io as pio
+from IPython.display import IFrame
 ```
 
 # 🏝️ LA PALMA
@@ -27,19 +29,25 @@ import os
 #| label: palma-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - La Palma"
 display(Image(filename="images/graficamala.png", width=800))
+
 ```
 
 ```{python}
-from IPython.display import IFrame
-
-# Mostrar la gráfica interactiva
-IFrame("mapa_tajogaite.html", width="100%", height="600px")
+# Mostrar la gráfica interactiva de La Palma
+# Muestra el mapa interactivo en la misma página
+IFrame("04_web/mapa_tajogaite.html", width="100%", height="600px")
+```
+```{python}
+# Mostrar el segundo mapa interactivo de La Palma
+# Muestra el segundo mapa interactivo alrededor del Volcán de Tajogaite
+IFrame("04_web/mapa_tajogaite_alrededor.html", width="100%", height="600px")
 ```
 
 ```{python}
 #| label: palma-topography
 #| fig-cap: "Topografía de La Palma"
 display(Image(filename="images/topografia_palma.png", width=800))
+
 ```
 
 # 🌋 EL TEIDE
