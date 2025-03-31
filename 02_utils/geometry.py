@@ -3,6 +3,8 @@ import plotly.io as pio
 import pandas as pd
 import plotly.graph_objects as go
 import os
+import numpy as np
+import plotly.io as pio
 
 # Crear una función para mostrar una cuadrícula según el nivel de zoom
 def grid(fig, lat_min, lat_max, lon_min, lon_max):
@@ -66,9 +68,9 @@ def geo_map(pos1, pos2, zone, output_file):
 
     grid(fig, lat_min, lat_max, lon_min, lon_max)
     
-    # Crear la ruta completa para el archivo HTML
-    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../04_web")
-    os.makedirs(output_dir, exist_ok=True)  # Crear la carpeta si no existe
+    # Crear la ruta completa para el archivo HTML en la carpeta 'images' dentro de '04_web'
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../04_web/images")
+    os.makedirs(output_dir, exist_ok=True)  # Crear la carpeta 'images' si no existe
     output_path = os.path.join(output_dir, output_file)
     
     # Guardar la gráfica interactiva en el archivo HTML
