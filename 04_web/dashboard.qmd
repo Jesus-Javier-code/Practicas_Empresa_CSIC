@@ -11,44 +11,36 @@ logo: images/Banner_Volcana.png
 logo-alt: "CSIC logo."
 ---
 
-```{css}
-/*| label: custom-styles
-/*| include: true */
-
-/* ==== ESTILOS PRINCIPALES ==== */
-body .navbar {
-  background: rgb(251,235,207) !important;
-  border-bottom: 3px solid #413224 !important;
+<style>
+/* ==== ESTILOS DEL BANNER ==== */
+.navbar {
+  background: rgb(251,235,207) !important; /* Color crema */
+  border-bottom: 3px solid #413224 !important; /* Borde marrón */
 }
 
-body .navbar .navbar-brand {
-  color: #413224 !important;
-  font-weight: 700;
-  font-size: 1.3rem;
-  padding: 0.5rem 1rem;
+.navbar-brand {
+  color: #413224 !important; /* Texto marrón */
+  font-weight: bold;
+  padding-left: 15px;
 }
 
-body .navbar .nav-link {
-  color: #413224 !important;
+.navbar-nav .nav-link {
+  color: #413224 !important; /* Texto marrón */
+  margin: 0 10px;
   font-weight: 500;
-  margin: 0 0.3rem;
 }
 
-body .navbar .nav-link:hover {
-  background-color: rgba(65,50,36,0.15) !important;
+.navbar-nav .nav-link:hover {
+  background-color: rgba(65,50,36,0.1) !important;
   border-radius: 4px;
 }
+</style>
 
-/* Efecto para el logo */
-body .navbar-brand img {
-  height: 40px;
-  margin-right: 10px;
-  transition: transform 0.3s;
-}
-
-body .navbar-brand:hover img {
-  transform: scale(1.05);
-}
+```{python}
+#| label: setup-script
+#| include: false
+import subprocess
+subprocess.run(["python", "../02_utils/geometry.py"], check=True)
 ```
 
 ```{python}
