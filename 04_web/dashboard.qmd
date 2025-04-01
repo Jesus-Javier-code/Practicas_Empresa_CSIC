@@ -10,7 +10,64 @@ format:
 logo: images/Banner_Volcana.png
 logo-alt: "CSIC logo."
 ---
+---
+title: "Volcana"
+format: 
+  dashboard:
+    orientation: columns
+    nav-buttons: [github]
+    github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
+    theme:
+      - flatly
+logo: images/Banner_Volcana.png
+logo-alt: "CSIC logo."
+---
 
+```{css}
+/*| label: custom-css
+/*| include: false */
+/* ===== ELIGE TU COLOR ===== */
+/* Colores predefinidos (cambia el comentario para activar) */
+:root {
+  --main-color:rgb(251,235,207);       /* Rojo volcánico (default) */
+  /* --main-color: #FF4500;    /* Naranja lava */
+  /* --main-color: #1E3A8A;    /* Azul profundo */
+  /* --main-color: #4B5320;    /* Verde militar */
+  /* --main-color: #5D3A1E;    /* Marrón terroso */
+  
+  --accent-color: #413224;     /* Naranja brillante (puedes cambiarlo) */
+}
+
+/* ===== ESTILOS DEL BANNER ===== */
+.navbar {
+  background-color: var(--main-color) !important;
+  border-bottom: 3px solid var(--accent-color) !important;
+  transition: all 0.3s ease;
+}
+
+.navbar:hover {
+  box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  padding: 0.5rem 1rem;
+  margin: 0 2px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
 ```{python}
 #| label: setup
 #| include: false
