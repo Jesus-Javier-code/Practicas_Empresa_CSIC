@@ -37,7 +37,7 @@ def upload_to_zenodo(file_path, zenodo_token):
     }
     response = requests.post(url, headers=headers, json=deposit_data)
     if response.status_code == 201:
-        deposit_id = response.json()['15119738']
+        deposit_id = response.json()['id']
         print(f"Depósito creado con ID: {deposit_id}")
     else:
         print("Error al crear depósito en Zenodo")
@@ -45,8 +45,9 @@ def upload_to_zenodo(file_path, zenodo_token):
         return
 
     # Ahora, subimos el archivo al depósito
-    upload_url = f"https://zenodo.org/api/deposit/depositions/{deposit_id}/uploads"
-    files = {'file': open(file_path, 'rb')}
+    upload_url = f"https://zenodo.org/api/deposit/depositions/{deposit_id}/files"
+    files = {'file': (file_path, open(file_path, 'rb'))}
+    #files = {'file': open(file_path, 'rb')}
     response = requests.post(upload_url, headers=headers, files=files)
     if response.status_code == 201:
         print(f"Archivo subido correctamente: {file_path}")
