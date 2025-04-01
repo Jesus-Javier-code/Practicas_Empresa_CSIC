@@ -10,18 +10,7 @@ format:
 logo: images/Banner_Volcana.png
 logo-alt: "CSIC logo."
 ---
----
-title: "Volcana"
-format: 
-  dashboard:
-    orientation: columns
-    nav-buttons: [github]
-    github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
-    theme:
-      - flatly
-logo: images/Banner_Volcana.png
-logo-alt: "CSIC logo."
----
+
 
 ```{css}
 /*| label: custom-css
@@ -68,6 +57,7 @@ logo-alt: "CSIC logo."
   background-color: rgba(255,255,255,0.2);
   transform: translateY(-2px);
 }
+```
 ```{python}
 #| label: setup
 #| include: false
