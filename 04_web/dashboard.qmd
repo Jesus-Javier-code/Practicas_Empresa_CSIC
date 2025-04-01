@@ -11,19 +11,22 @@ logo: images/Logo_Volcana.jpeg
 logo-alt: "CSIC logo."
 ---
 
-```{html}
 <style>
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 
-/* ==== ESTILOS DEL TÍTULO ==== */
-.custom-title {
+/* ==== REEMPLAZO DEL TÍTULO ==== */
+.navbar-brand::after {
+  content: "VOLCANA";
   font-family: 'Hippo Letto', sans-serif;
-  color: #413224 !important;
-  font-size: 1.8rem !important;
+  color: #413224;
+  font-size: 1.8rem;
   letter-spacing: 1px;
-  margin-left: 15px;
-  display: inline-block;
-  vertical-align: middle;
+  margin-left: 10px;
+}
+
+/* Ocultamos el título vacío */
+.navbar-brand:not(:after) {
+  display: none;
 }
 
 /* ==== ESTILOS DEL BANNER ==== */
@@ -31,26 +34,6 @@ logo-alt: "CSIC logo."
   background: rgb(251,235,207) !important;
   border-bottom: 3px solid #413224 !important;
 }
-
-/* Resto de tus estilos... */
-</style>
-
-<script>
-// Espera a que cargue el DOM
-document.addEventListener('DOMContentLoaded', function() {
-  // Crea el elemento del título
-  const title = document.createElement('span');
-  title.className = 'custom-title';
-  title.textContent = 'VOLCANA';
-  
-  // Inserta el título junto al logo
-  const navbarBrand = document.querySelector('.navbar-brand');
-  if(navbarBrand) {
-    navbarBrand.appendChild(title);
-    navbarBrand.style.display = 'flex';
-    navbarBrand.style.alignItems = 'center';
-  }
-});
 
 /* ==== ESTILOS PRINCIPALES ==== */
 /* Banner superior */
