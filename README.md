@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  Academic internship project for the Physics Degree at University of La Laguna,<br>
+  Academic internship project for the Physics Degree at <a href="https://www.ull.es/University "><strong> University of La Laguna</strong></a>,<br>
   conducted at the <a href="https://www.csic.es"><strong>Spanish National Research Council (CSIC)</strong></a>
 </p>
 
