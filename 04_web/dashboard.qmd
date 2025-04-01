@@ -1,5 +1,5 @@
 ---
-title: " "  <!-- Dejamos vacío el título -->
+title: " " 
 format: 
   dashboard:
     orientation: columns
