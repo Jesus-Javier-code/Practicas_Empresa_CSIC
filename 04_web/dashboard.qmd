@@ -10,7 +10,25 @@ format:
 logo: images/Logotipo_del_CSIC.png
 logo-alt: "CSIC logo."
 ---
+title: "Prácticas CSIC"
+format: 
+  dashboard:
+    orientation: columns
+    nav-buttons: [github]
+    github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
+    theme:
+      - flatly
+logo: images/Logotipo_del_CSIC.png
+logo-alt: "CSIC logo."
+---
 
+```{python}
+#| label: setup
+#| include: false
+# Primero ejecutamos el script geometry.py
+import subprocess
+subprocess.run(["python", "../02_utils/geometry.py"], check=True)
+```
 ```{python}
 #| label: load-packages
 from plotnine import *

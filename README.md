@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  Academic internship project for the Physics Degree at <a href="https://www.ull.es"><strong> University of La Laguna</strong></a>,<br>
+  Academic internship project for the Physics Degree at <a href="https://www.ull.es/University "><strong> University of La Laguna</strong></a>,<br>
   conducted at the <a href="https://www.csic.es"><strong>Spanish National Research Council (CSIC)</strong></a>
 </p>
 
@@ -33,9 +33,8 @@
 ## 🔥 About
 **Volcana-CSIC** is a research project analyzing volcanic activity in the Canary Islands through satellite remote sensing and geospatial analysis. The project focuses on:
 
-- Thermal monitoring of Teide and Cumbre Vieja (La Palma) volcanoes
+- Thermal monitoring of Teide and Tajogaite (La Palma) volcanoes
 - Multi-sensor satellite data processing (MODIS, VIIRS, Sentinel)
-- Machine learning applications for eruption forecasting
 
 ## 🎯 Project Goals
 
@@ -59,6 +58,3 @@
 - Copernicus Open Access Hub (Sentinel)
 - USGS Volcano Hazards Program
 - IGN Spain (Instituto Geográfico Nacional)
-
-
-
