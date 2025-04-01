@@ -21,6 +21,11 @@
   <a href="https://github.com/yourusername/yourrepository"><img src="https://img.shields.io/github/stars/yourusername/yourrepository?style=social" alt="GitHub stars"></a>
   <a href="https://pypi.org/project/yourpackage/"><img src="https://img.shields.io/pypi/v/yourpackage" alt="PyPI version"></a>
 </p>
+<p align="center">
+  <a href="https://doi.org/10.1016/j.rse.2024.114388"><img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-blue" alt="Paper DOI"></a>
+  <a href="https://github.com/yourusername/yourrepository"><img src="https://img.shields.io/github/stars/yourusername/yourrepository?style=social" alt="GitHub stars"></a>
+  <a href="https://pypi.org/project/yourpackage/"><img src="https://img.shields.io/pypi/v/yourpackage" alt="PyPI version"></a>
+</p>
 
 ## About
 **Practicas_Empresa_CSIC** is a project focused on analyzing volcanic data, including brightness temperature, radiance, and vegetation indices for Canary Islands, specifically the Teide and La Palma volcanoes. The project uses satellite data and geospatial analysis tools to study volcanic behavior and environmental factors.
