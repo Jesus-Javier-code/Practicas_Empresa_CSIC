@@ -37,7 +37,7 @@ def upload_to_zenodo(file_path, zenodo_token):
     }
     response = requests.post(url, headers=headers, json=deposit_data)
     if response.status_code == 201:
-        deposit_id = response.json()['id']
+        deposit_id = response.json()['15119738']
         print(f"Depósito creado con ID: {deposit_id}")
     else:
         print("Error al crear depósito en Zenodo")
