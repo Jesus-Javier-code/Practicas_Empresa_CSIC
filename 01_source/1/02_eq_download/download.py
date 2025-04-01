@@ -1,12 +1,16 @@
-from libcomcat.search import count, get_event_by_id, search
+from libcomcat.search import search, get_event_by_id
+from libcomcat.dataframes import get_summary_data_frame, get_detail_data_frame
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+import io
+from IPython.display import display, HTML
 import pandas as pd
+from libcomcat.bin.getcsv import main
+
+R_earth = 6357.5 # km | mean between equatorial and polar radius
 
 def limit_region_coords(lat_cent, lon_cent, region_rad):
-    
-    R_earth = 6357.5 # km | mean between equatorial and polar radius
 
     #Differential of the angle and then the lat and long
     d_theta = region_rad / R_earth
@@ -26,10 +30,49 @@ def date_format(date):
     date = date.replace("-", ",")
     date = date.replace(" ", ",")
     date = date.replace(":", ",")
+    date = date.replace("/", ",")
     
     return date
 
-def download(date_i, date_f, min_mag, center_coords, reg_rad):
+def download_all(date_i, date_f, min_mag, center_coords, reg_rad):
+
+    lat_cent, lon_cent = center_coords
+    lat_min, lat_max, lon_min, lon_max = limit_region_coords(lat_cent, lon_cent, reg_rad)
+
+    date_i = datetime.strptime(date_format(date_i), "%Y,%m,%d,%H,%M")
+    date_f = datetime.strptime(date_format(date_f), "%Y,%m,%d,%H,%M")
+
+    events = search(
+        starttime= date_i,
+        endtime= date_f,
+        minlatitude= lat_min,
+        maxlatitude= lat_max,
+        minlongitude= lon_min,
+        maxlongitude= lon_max,
+        minmagnitude= min_mag,
+        eventtype= "earthquake",
+        orderby= "time"
+    )
+
+    summary_events_df = get_summary_data_frame(events)
+    detail_events_df = get_detail_data_frame(events)
+
+    display(summary_events_df)
+    display(detail_events_df)
+    
+    all_data = pd.merge(summary_events_df, detail_events_df, left_on="id", right_on="id", how="right")
+
+
+    #all_data = all_data.drop("url_x", axis= "columns")
+    #events_df = events_df.drop("alert", axis="columns")
+    #events_df = events_df.drop("eventtype", axis="columns")
+    #events_df = events_df.drop("significance", axis="columns")
+    #events_df = events_df.drop("location", axis="columns")
+
+    all_data.to_csv("Jesus-Javier-code/Practicas_Empresa_CSIC/01_source/1/02_eq_download/datos_ejemplo.csv")
+    return all_data
+
+def download_by_mag_time(date_i, date_f, min_mag, center_coords, reg_rad):
 
     lat_cent, lon_cent = center_coords
     lat_min, lat_max, lon_min, lon_max = limit_region_coords(lat_cent, lon_cent, reg_rad)
@@ -86,8 +129,8 @@ def download(date_i, date_f, min_mag, center_coords, reg_rad):
         ])
 
     df = pd.DataFrame(all_eq_data)
-    
+
     return df
 
-download("2025-01-01 00:00", "2025-03-30 00:00", 6, (32.62691152238639, -116.34553204019909), 5000)
+download_all("2025-01-01 00:00", "2025-03-30 00:00", 6, (32.62691152238639, -116.34553204019909), 5000)
 
