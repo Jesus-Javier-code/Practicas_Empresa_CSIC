@@ -1,5 +1,5 @@
 ---
-title: "Prácticas CSIC"
+title: " " 
 format: 
   dashboard:
     orientation: columns
@@ -7,9 +7,72 @@ format:
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
-logo: images/Logotipo_del_CSIC.png
+logo: images/Logo_Volcana.jpeg
 logo-alt: "CSIC logo."
 ---
+
+<style>
+@import url('https://fonts.cdnfonts.com/css/hippo-lettro');
+
+/* ==== REEMPLAZO DEL TÍTULO ==== */
+.navbar-brand::after {
+  content: "VOLCANA";
+  font-family: 'Hippo Letto', sans-serif;
+  color: #413224;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin-left: 10px;
+}
+
+/* Ocultamos el título vacío */
+.navbar-brand:not(:after) {
+  display: none;
+}
+
+/* ==== ESTILOS DEL BANNER ==== */
+.navbar {
+  background: rgb(251,235,207) !important;
+  border-bottom: 3px solid #413224 !important;
+}
+
+/* ==== ESTILOS PRINCIPALES ==== */
+/* Banner superior */
+.navbar {
+  background: rgb(251,235,207) !important;
+  border-bottom: 3px solid #413224 !important;
+}
+
+/* Texto del título */
+.navbar-brand {
+  color: #413224 !important;
+  font-weight: bold;
+}
+
+/* Pestañas normales */
+.navbar-nav .nav-link {
+  color: #413224 !important;
+  margin: 0 10px;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Pestaña ACTIVA (seleccionada) */
+.navbar-nav .nav-link.active {
+  background-color: #413224 !important;
+  color: white !important;
+}
+
+/* Pestaña al pasar el ratón */
+.navbar-nav .nav-link:hover:not(.active) {
+  background-color: rgba(65,50,36,0.1) !important;
+}
+</style>
+
+```{python}
+#| label: setup-script
+#| include: false
+import subprocess
+subprocess.run(["python", "../02_utils/geometry.py"], check=True)
+```
 
 ```{python}
 #| label: load-packages
@@ -23,27 +86,26 @@ import plotly.io as pio
 from IPython.display import IFrame
 ```
 
+
 # 🏝️ LA PALMA
 ## Column - Plots
 ### Gráfica curva de enfriamiento
 ```{python}
-#| label: palma-analysis
+#| label: palma-cooling-curve
 #| fig-cap: "Análisis de Potencia Radiativa - La Palma"
 display(Image(filename="images/graficamala.png", width=800))
-
 ```
 ### Mapa interactivo Tajogaite
 ```{python}
-#| label: mapa-tajogaite
+#| label: mapa-tajogaite-main
 #| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
 IFrame("images/mapa_tajogaite.html", width="100%", height="600px")
-
 ```
 
 ## Mapa interactivo los alrededores
 ```{python}
-# Mostrar el segundo mapa interactivo de La Palma
-# Muestra el segundo mapa interactivo alrededor del Volcán de Tajogaite
+#| label: mapa-tajogaite-surroundings
+#| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
 IFrame("images/mapa_region_alrededor.html", width="100%", height="600px")
 ```
 
@@ -58,7 +120,7 @@ display(Image(filename="images/graficamala.png", width=800))
 # 🕳️ TERREMOTOS
 
 ```{python}
-#| label: earthquake-analysis
+#| label: earthquake-trigger-index
 #| fig-cap: "Trigger Index - Terremoto"
 display(Image(filename="images/thomas_paper.png", width=800))
 ```

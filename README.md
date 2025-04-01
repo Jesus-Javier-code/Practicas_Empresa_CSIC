@@ -1,14 +1,62 @@
-# Practicas_Empresa_CSIC
-Repositorio para la creación de la Web para las prácticas de empresa
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Jesus-Javier-code/Practicas_Empresa_CSIC/main/04_web/images/Banner_Volcana.png" alt="Volcano Banner" width="800">
+</p>
 
-It is recquired to create a virtual enviorment. To do this, in the terminal (VS Code or Powershell) make sure you are in the folder where the clone of the repository:
-"cd (Path to your copy)"
+<h1 align="center">Volcanic Data Analysis for Canary Islands</h1>
 
-Then, to create the enviorment you have to execute:
-"python -m venv env" 
-Where venv will be the name of the folder where the info of the enviorment is saved. 
+<p align="center">
+  <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC"><strong>📚 Documentation</strong></a> •
+  <a href="https://ladsweb.modaps.eosdis.nasa.gov/"><strong>🛰 NASA LAADS DAAC</strong></a> •
+  <a href="https://www.usgs.gov/"><strong>🌋 USGS Data</strong></a> •
+  <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC/discussions"><strong>💬 Discussions</strong></a>
+</p>
 
-In order to complete the instalation, you need to run "pip install -r requirments.txt". This will install the libraries in the correct version to use the program. 
+<p align="center">
+  Academic internship project for the Physics Degree at <a href="https://www.ull.es/University "><strong> University of La Laguna</strong></a>,<br>
+  conducted at the <a href="https://www.csic.es"><strong>Spanish National Research Council (CSIC)</strong></a>
+</p>
 
-(Una pruebita para ver si me actualiza elvs code)
-Pruebo yo también a ver si esto me lo pilla bien
+<p align="center">
+  <a href="https://doi.org/10.1016/j.rse.2024.114388">
+    <img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-blue" alt="Paper DOI1">
+  </a>
+  <a href="https://doi.org/10.1007/s00445-022-01584-2">
+    <img src="https://link.springer.com/article/10.1007/s00445-022-01584-2" alt="Paper DOI2">
+  </a>
+  <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC">
+    <img src="https://img.shields.io/github/stars/Jesus-Javier-code/Practicas_Empresa_CSIC?style=social" alt="GitHub stars">
+  </a>
+  <a href="https://pypi.org/project/volcana-csic/">
+    <img src="https://img.shields.io/pypi/v/volcana-csic" alt="PyPI version">
+  </a>
+</p>
+
+---
+
+## 🔥 About
+**Volcana-CSIC** is a research project analyzing volcanic activity in the Canary Islands through satellite remote sensing and geospatial analysis. The project focuses on:
+
+- Thermal monitoring of Teide and Tajogaite (La Palma) volcanoes
+- Multi-sensor satellite data processing (MODIS, VIIRS, Sentinel)
+
+## 🎯 Project Goals
+
+### 🌋 Volcanic Monitoring
+- Analyze brightness temperature and radiance patterns
+- Model post-eruption lava cooling curves (2021 La Palma eruption)
+- Monitor Teide's fumarole fields using thermal infrared data
+
+### ⚡ Seismic-Volcanic Relationships
+- Global analysis of earthquake-eruption correlations
+- Statistical modeling of eruption triggers
+- Case studies of notable eruption sequences
+
+### 🛠 Technical Development
+- Python tools for satellite data processing
+- Automated visualization pipelines
+- ML models for eruption prediction
+
+## 📊 Data Sources
+- NASA LAADS DAAC (MODIS/VIIRS)
+- Copernicus Open Access Hub (Sentinel)
+- USGS Volcano Hazards Program
