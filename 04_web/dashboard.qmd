@@ -12,27 +12,35 @@ logo-alt: "CSIC logo."
 ---
 
 <style>
-/* ==== ESTILOS DEL BANNER ==== */
+/* ==== ESTILOS PRINCIPALES ==== */
+/* Banner superior */
 .navbar {
-  background: rgb(251,235,207) !important; /* Color crema */
-  border-bottom: 3px solid #413224 !important; /* Borde marrón */
+  background: rgb(251,235,207) !important;
+  border-bottom: 3px solid #413224 !important;
 }
 
+/* Texto del título */
 .navbar-brand {
-  color: #413224 !important; /* Texto marrón */
+  color: #413224 !important;
   font-weight: bold;
-  padding-left: 15px;
 }
 
+/* Pestañas normales */
 .navbar-nav .nav-link {
-  color: #413224 !important; /* Texto marrón */
+  color: #413224 !important;
   margin: 0 10px;
-  font-weight: 500;
+  border-radius: 4px 4px 0 0;
 }
 
-.navbar-nav .nav-link:hover {
+/* Pestaña ACTIVA (seleccionada) */
+.navbar-nav .nav-link.active {
+  background-color: #413224 !important;
+  color: white !important;
+}
+
+/* Pestaña al pasar el ratón */
+.navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
-  border-radius: 4px;
 }
 </style>
 
