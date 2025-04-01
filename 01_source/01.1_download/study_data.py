@@ -2,7 +2,7 @@ import netCDF4 as nc
 from netCDF4 import num2date
 import os
 
-file = '00_data/processed/BT_by_Year_Month_Day/TB_By_Year_Month_Day.nc'
+file = 'Jesus-Javier-code/Practicas_Empresa_CSIC/00_data/processed/BT_by_Year_Month_Day/TB_By_Year_Month_Day.nc'
 
 if os.path.exists(file):
     with nc.Dataset(file, 'r') as dataset:
@@ -25,4 +25,4 @@ if os.path.exists(file):
         else:
             print("No se encontraron las variables esperadas en el archivo.")
 else:
-    print(f"El archivo {file} no existe.")
+    print(f"El archivo {file} no existe.")  
