@@ -18,7 +18,10 @@
 
 <p align="center">
   <a href="https://doi.org/10.1016/j.rse.2024.114388">
-    <img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-blue" alt="Paper DOI">
+    <img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-blue" alt="Paper DOI1">
+  </a>
+  <a href="https://doi.org/10.1007/s00445-022-01584-2">
+    <img src="https://link.springer.com/article/10.1007/s00445-022-01584-2" alt="Paper DOI2">
   </a>
   <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC">
     <img src="https://img.shields.io/github/stars/Jesus-Javier-code/Practicas_Empresa_CSIC?style=social" alt="GitHub stars">
@@ -57,4 +60,3 @@
 - NASA LAADS DAAC (MODIS/VIIRS)
 - Copernicus Open Access Hub (Sentinel)
 - USGS Volcano Hazards Program
-- IGN Spain (Instituto Geográfico Nacional)
