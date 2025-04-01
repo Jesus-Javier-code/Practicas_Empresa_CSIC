@@ -17,15 +17,13 @@
 </p>
 
 <p align="center">
-  <a href="https://doi.org/10.1016/j.rse.2024.114388"><img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-blue" alt="Paper DOI"></a>
-  <a href="https://github.com/yourusername/yourrepository"><img src="https://img.shields.io/github/stars/yourusername/yourrepository?style=social" alt="GitHub stars"></a>
-  <a href="https://pypi.org/project/yourpackage/"><img src="https://img.shields.io/pypi/v/yourpackage" alt="PyPI version"></a>
+  <a href="https://pypi.python.org/pypi/Practicas_Empresa_CSIC"><img src="http://img.shields.io/pypi/v/Practicas_Empresa_CSIC.svg?style=flat-square" alt="Latest version on PyPI"></a>
+  <a href="https://github.com/conda-forge/Practicas_Empresa_CSIC-feedstock"><img src="https://img.shields.io/conda/vn/conda-forge/Practicas_Empresa_CSIC.svg?style=flat-square" alt="Latest version on conda-forge"></a>
+  <a href="https://codecov.io/gh/Jesus-Javier-code/Practicas_Empresa_CSIC"><img src="https://img.shields.io/codecov/c/github/Jesus-Javier-code/Practicas_Empresa_CSIC/main.svg?style=flat-square" alt="Test coverage status"></a>
+  <a href="https://pypi.python.org/pypi/Practicas_Empresa_CSIC"><img src="https://img.shields.io/pypi/pyversions/Practicas_Empresa_CSIC.svg?style=flat-square" alt="Compatible Python versions."></a>
+  <a href="https://doi.org/10.5281/zenodo.7851747"><img src="https://img.shields.io/badge/doi-10.5281%2Fzenodo.7851747-blue?style=flat-square" alt="DOI"></a>
 </p>
-<p align="center">
-  <a href="https://doi.org/10.1016/j.rse.2024.114388"><img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-blue" alt="Paper DOI"></a>
-  <a href="https://github.com/yourusername/yourrepository"><img src="https://img.shields.io/github/stars/yourusername/yourrepository?style=social" alt="GitHub stars"></a>
-  <a href="https://pypi.org/project/yourpackage/"><img src="https://img.shields.io/pypi/v/yourpackage" alt="PyPI version"></a>
-</p>
+
 
 ## About
 **Practicas_Empresa_CSIC** is a project focused on analyzing volcanic data, including brightness temperature, radiance, and vegetation indices for Canary Islands, specifically the Teide and La Palma volcanoes. The project uses satellite data and geospatial analysis tools to study volcanic behavior and environmental factors.
