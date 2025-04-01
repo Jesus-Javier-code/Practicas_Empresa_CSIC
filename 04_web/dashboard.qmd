@@ -44,12 +44,6 @@ subprocess.run(["python", "../02_utils/geometry.py"], check=True)
 ```
 
 ```{python}
-#| label: setup-script
-#| include: false
-import subprocess
-subprocess.run(["python", "../02_utils/geometry.py"], check=True)
-```
-```{python}
 #| label: load-packages
 from plotnine import *
 import great_tables as gt
