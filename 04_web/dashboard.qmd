@@ -2,12 +2,12 @@
 title: " " 
 format: 
   dashboard:
-    orientation: columns
+    orientation: rows
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
-logo: images/Banner_Volcana.png
+logo: images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 
@@ -112,7 +112,7 @@ from IPython.display import IFrame
 
 
 # 🏝️ LA PALMA
-## Column - Plots
+## Row - Plots
 
 
 ### Mapa interactivo Tajogaite
