@@ -78,7 +78,7 @@ from IPython.display import IFrame
 ```{python}
 #| label: palma-cooling-curve
 #| fig-cap: "Análisis de Potencia Radiativa - La Palma"
-display(Image(filename="images/graficamala.png", width=800)))
+display(Image(filename="images/graficamala.png", width=800))
 ```
 ### Mapa interactivo Tajogaite
 ```{python}
