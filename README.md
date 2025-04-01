@@ -13,7 +13,7 @@
 
 <p align="center">
   Academic internship project for the Physics Degree at University of La Laguna,<br>
-  conducted at the <a href="https://www.csic.es"><strong>Spanish National Research Council (CSIC)</strong></a>
+  conducted at the <a href="https://www.csic.es"><strong>Consejo Superior de Investigaciones Científicas (CSIC)</strong></a>
 </p>
 
 <p align="center">
