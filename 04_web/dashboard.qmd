@@ -7,18 +7,25 @@ format:
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
-    # Añadir estas opciones para maximizar espacio
     fillable: true
     scroll: false
     full-width: true
-logo: images/Banner_Volcana.png
+    # Añadir esto para eliminar bordes
+    body-border: 0
+    header-border: 0
+logo: images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 
 <style>
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 
-/* ==== REEMPLAZO DEL TÍTULO ==== */
+/* ==== ESTILOS GENERALES ==== */
+body {
+  background-color: #f8f9fa !important;
+}
+
+/* ==== BARRA SUPERIOR ==== */
 .navbar-brand::after {
   content: "VOLCANA";
   font-family: 'Hippo Letto', sans-serif;
@@ -32,54 +39,55 @@ logo-alt: "CSIC logo."
   display: none;
 }
 
-/* ==== ESTILOS PRINCIPALES ==== */
 .navbar {
   background: rgb(251,235,207) !important;
   border-bottom: 3px solid #413224 !important;
 }
 
-.navbar-brand {
-  color: #413224 !important;
-  font-weight: bold;
+/* ==== ELIMINAR TODOS LOS BORDES Y SOMBRAS ==== */
+.card {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
 
-.navbar-nav .nav-link {
-  color: #413224 !important;
-  margin: 0 10px;
-  border-radius: 4px 4px 0 0;
-}
-
-.navbar-nav .nav-link.active {
-  background-color: #413224 !important;
-  color: white !important;
-}
-
-.navbar-nav .nav-link:hover:not(.active) {
-  background-color: rgba(65,50,36,0.1) !important;
-}
-
-/* ==== ESTILOS PARA LAS CELDAS ==== */
-/* Eliminar scroll y maximizar espacio */
 .cell {
   padding: 0 !important;
   margin: 0 !important;
-  overflow: visible !important;
+  border: none !important;
+  background-color: transparent !important;
 }
 
-/* Ajustar iframes para ocupar todo el espacio */
-iframe {
-  width: 100% !important;
-  height: 650px !important;
-  border: none;
+.cell-output {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
 }
 
-/* Ajustar imágenes */
+/* ==== AJUSTES PARA IMÁGENES ==== */
 .cell-output-display img {
   width: 100% !important;
   height: auto !important;
-  max-width: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 10px 0 !important;
+}
+
+/* ==== AJUSTES PARA IFRAMES ==== */
+iframe {
+  width: 100% !important;
+  height: 650px !important;
+  border: none !important;
+  margin: 10px 0 !important;
+}
+
+/* ==== TÍTULOS ==== */
+h1, h2, h3 {
+  color: #413224 !important;
+  margin-top: 20px !important;
 }
 </style>
+
 
 ```{python}
 #| label: setup-script
