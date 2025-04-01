@@ -5,9 +5,10 @@
 <h2 align="center">Volcanic Data Analysis for Canary Islands</h2>
 
 <p align="center">
-  <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC"><strong>Documentation</strong> (latest)</a> •
-  <a href="https://www.fatiando.org/contact/"><strong>Contact</strong></a> •
-  <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC/discussions"><strong>Ask a question</strong></a>
+  <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC"><strong>Documentation</strong></a> •
+  <a href="https://ladsweb.modaps.eosdis.nasa.gov/"><strong>NASA LAADS DAAC</strong></a> •
+  <a href="https://www.usgs.gov/"><strong>USGS Data</strong></a> •
+  <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC/discussions"><strong>Questions</strong></a>
 </p>
 
 <p align="center">
@@ -27,11 +28,21 @@
 **Practicas_Empresa_CSIC** is a project focused on analyzing volcanic data, including brightness temperature, radiance, and vegetation indices for Canary Islands, specifically the Teide and La Palma volcanoes. The project uses satellite data and geospatial analysis tools to study volcanic behavior and environmental factors.
 
 ## Project goals
-- Analyze volcanic behavior in the Canary Islands using satellite data.
-- Provide insights into volcanic activity and heat distribution.
-- Generate Python-based tools for processing and visualizing volcanic data.
-- Use geospatial analysis (QGIS, SNAP) to build interactive dashboards.
+- **Volcanic Monitoring in Canary Islands**:
+  - Analyze volcanic behavior using satellite data (brightness temperature, radiance)
+  - Study heat distribution patterns at La Palma (2021 eruption) and Teide fumaroles
+  - Model cooling curves of La Palma's lava flows post-eruption
+  - Monitor thermal activity at Teide's fumarole fields
 
-## Project status
-**Active and under development.** Regular updates are made as new data becomes available.
+- **Seismic-Volcanic Relationships**:
+  - Investigate global earthquake patterns and their potential impact on volcanic eruptions
+  - Develop statistical models correlating seismic activity with eruption triggers
+  - Create case studies of notable eruption-earthquake sequences
+
+- **Technical Development**:
+  - Build Python-based tools for processing satellite data (MODIS, Sentinel)
+  - Develop automated visualization pipelines for thermal and seismic data
+  - Implement machine learning approaches for eruption prediction
+
+
 
