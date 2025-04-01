@@ -65,6 +65,30 @@ logo-alt: "CSIC logo."
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
 }
+/* ==== NUEVOS ESTILOS PARA LOS MAPAS ==== */
+/* Eliminar márgenes y bordes de los iframes */
+iframe {
+  width: 100% !important;
+  height: 650px !important;
+  border: none !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* Eliminar el fondo blanco del contenedor */
+.html-widget {
+  background: transparent !important;
+}
+
+/* Asegurar que el mapa ocupe todo el espacio */
+.plot-container {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 </style>
 
 ```{python}
