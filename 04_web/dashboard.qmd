@@ -84,14 +84,14 @@ display(Image(filename="images/graficamala.png", width=800))
 ```{python}
 #| label: mapa-tajogaite
 #| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="600px"))
+IFrame("images/mapa_tajogaite.html", width="100%", height="600px")
 ```
 
 ## Mapa interactivo los alrededores
 ```{python}
 #| label: mapa-tajogaite
 #| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="600px"))
+IFrame("images/mapa_tajogaite.html", width="100%", height="600px")
 ```
 
 # 🌋 EL TEIDE
