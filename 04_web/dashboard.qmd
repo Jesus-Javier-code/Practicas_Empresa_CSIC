@@ -2,9 +2,7 @@
 title: " " 
 format: 
   dashboard:
-    orientation: rows
-    scroll: true
-    fillable: true
+    orientation: columns
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
@@ -67,40 +65,7 @@ logo-alt: "CSIC logo."
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
 }
-
-/* === ESTILOS PARA ELIMINAR SCROLL INTERNO === */
-/* Deshabilita scroll en celdas */
-.cell {
-  overflow: visible !important;
-  height: auto !important;
-}
-
-/* Asegura que el contenido ocupe todo el espacio */
-.cell-output-display {
-  max-height: none !important;
-  overflow: visible !important;
-}
-
-/* Ajustes específicos para contenedores */
-.dashboard .grid {
-  display: block !important;
-}
-
-/* Contenedor principal con scroll vertical */
-.dashboard {
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-}
-
-/* Ajustes para imágenes/mapas */
-.cell-output-display img,
-.cell-output-display iframe {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block;
-  margin: 0 auto;
-}
-<style>
+</style>
 
 ```{python}
 #| label: setup-script
