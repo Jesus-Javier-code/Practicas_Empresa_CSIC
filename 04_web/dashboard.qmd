@@ -2,9 +2,9 @@
 title: " " 
 format: 
   dashboard:
-    orientation: rows  # Cambiamos a filas en lugar de columnas
-    scroll: true      # Habilitamos scroll vertical
-    fillable: false   # Evitamos que las celdas se ajusten al contenido
+    orientation: rows
+    scroll: true
+    fillable: true
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
@@ -68,38 +68,39 @@ logo-alt: "CSIC logo."
   background-color: rgba(65,50,36,0.1) !important;
 }
 
-.navbar {
-  background: rgb(251,235,207) !important;
-  border-bottom: 3px solid #413224 !important;
-}
-
-/* Añadimos estos nuevos estilos para las celdas */
+/* === ESTILOS PARA ELIMINAR SCROLL INTERNO === */
+/* Deshabilita scroll en celdas */
 .cell {
   overflow: visible !important;
-  padding: 20px 0 !important;
+  height: auto !important;
 }
 
+/* Asegura que el contenido ocupe todo el espacio */
 .cell-output-display {
-  max-width: 100% !important;
+  max-height: none !important;
   overflow: visible !important;
 }
 
-/* Ajustes específicos para las imágenes */
-.cell-output-display img {
-  max-width: 100%;
-  height: auto;
+/* Ajustes específicos para contenedores */
+.dashboard .grid {
+  display: block !important;
+}
+
+/* Contenedor principal con scroll vertical */
+.dashboard {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Ajustes para imágenes/mapas */
+.cell-output-display img,
+.cell-output-display iframe {
+  max-width: 100% !important;
+  height: auto !important;
   display: block;
   margin: 0 auto;
 }
-
-/* Ajustes para los iframes */
-.cell-output-display iframe {
-  width: 100% !important;
-  min-height: 600px; /* Altura mínima */
-  border: none;
-}
-</style>
-
+<style>
 
 ```{python}
 #| label: setup-script
