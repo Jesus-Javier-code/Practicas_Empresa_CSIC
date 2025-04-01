@@ -11,20 +11,14 @@ logo: images/Banner_Volcana.png
 logo-alt: "CSIC logo."
 ---
 
-
 ```{css}
 /*| label: custom-css
 /*| include: false */
 /* ===== ELIGE TU COLOR ===== */
-/* Colores predefinidos (cambia el comentario para activar) */
 :root {
-  --main-color:rgb(251,235,207);       /* Rojo volcánico (default) */
-  /* --main-color: #FF4500;    /* Naranja lava */
-  /* --main-color: #1E3A8A;    /* Azul profundo */
-  /* --main-color: #4B5320;    /* Verde militar */
-  /* --main-color: #5D3A1E;    /* Marrón terroso */
-  
-  --accent-color: #413224;     /* Naranja brillante (puedes cambiarlo) */
+  --main-color: rgb(251,235,207);  /* Color crema claro */
+  --accent-color: #413224;         /* Marrón oscuro */
+  --text-color: #413224;           /* Color del texto */
 }
 
 /* ===== ESTILOS DEL BANNER ===== */
@@ -39,14 +33,13 @@ logo-alt: "CSIC logo."
 }
 
 .navbar-brand {
-  color: white !important;
+  color: var(--text-color) !important;
   font-weight: bold;
   font-size: 1.2em;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .navbar-nav .nav-link {
-  color: white !important;
+  color: var(--text-color) !important;
   padding: 0.5rem 1rem;
   margin: 0 2px;
   border-radius: 4px;
@@ -54,10 +47,11 @@ logo-alt: "CSIC logo."
 }
 
 .navbar-nav .nav-link:hover {
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(65,50,36,0.1);
   transform: translateY(-2px);
 }
 ```
+
 ```{python}
 #| label: setup
 #| include: false
@@ -77,6 +71,7 @@ import plotly.io as pio
 from IPython.display import IFrame
 ```
 
+
 # 🏝️ LA PALMA
 ## Column - Plots
 ### Gráfica curva de enfriamiento
@@ -84,21 +79,19 @@ from IPython.display import IFrame
 #| label: palma-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - La Palma"
 display(Image(filename="images/graficamala.png", width=800))
-
 ```
 ### Mapa interactivo Tajogaite
 ```{python}
 #| label: mapa-tajogaite
 #| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="600px")
-
+IFrame("images/mapa_tajogaite.html", width="100%", height="600px"))
 ```
 
 ## Mapa interactivo los alrededores
 ```{python}
-# Mostrar el segundo mapa interactivo de La Palma
-# Muestra el segundo mapa interactivo alrededor del Volcán de Tajogaite
-IFrame("images/mapa_region_alrededor.html", width="100%", height="600px")
+#| label: mapa-tajogaite
+#| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
+IFrame("images/mapa_tajogaite.html", width="100%", height="600px"))
 ```
 
 # 🌋 EL TEIDE
