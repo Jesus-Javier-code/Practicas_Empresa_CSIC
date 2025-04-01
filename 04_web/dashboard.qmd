@@ -1,7 +1,5 @@
 ---
-title: |
-  ```{=html}
-  <span style="color: #413224; font-family: 'Hippo Letto', sans-serif;">VOLCANA</span>
+title: " "  <!-- Dejamos vacío el título -->
 format: 
   dashboard:
     orientation: columns
@@ -14,6 +12,29 @@ logo-alt: "CSIC logo."
 ---
 
 <style>
+@import url('https://fonts.cdnfonts.com/css/hippo-lettro');
+
+/* ==== REEMPLAZO DEL TÍTULO ==== */
+.navbar-brand::after {
+  content: "VOLCANA";
+  font-family: 'Hippo Letto', sans-serif;
+  color: #413224;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin-left: 10px;
+}
+
+/* Ocultamos el título vacío */
+.navbar-brand:not(:after) {
+  display: none;
+}
+
+/* ==== ESTILOS DEL BANNER ==== */
+.navbar {
+  background: rgb(251,235,207) !important;
+  border-bottom: 3px solid #413224 !important;
+}
+
 /* ==== ESTILOS PRINCIPALES ==== */
 /* Banner superior */
 .navbar {
