@@ -11,7 +11,8 @@
 </p>
 
 <p align="center">
-  Part of the <a href="https://www.fatiando.org"><strong>Fatiando a Terra</strong></a> project, built in collaboration with <a href="https://simpeg.xyz"><strong>SimPEG</strong></a>
+  Academic internship project for the Physics Degree at University of La Laguna,<br>
+  conducted at the <a href="https://www.csic.es"><strong>Spanish National Research Council (CSIC)</strong></a>
 </p>
 
 <p align="center">
