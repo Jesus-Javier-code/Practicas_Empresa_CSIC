@@ -114,14 +114,7 @@ from IPython.display import IFrame
 # 🏝️ LA PALMA
 ## Column - Plots
 
-### Gráfica curva de enfriamiento
-```{python}
-'''
-#| label: palma-cooling-curve
-#| fig-cap: "Análisis de Potencia Radiativa - La Palma"
-display(Image(filename="images/graficamala.png", width=800))
-'''
-```
+
 ### Mapa interactivo Tajogaite
 ```{python}
 #| label: mapa-tajogaite-main
