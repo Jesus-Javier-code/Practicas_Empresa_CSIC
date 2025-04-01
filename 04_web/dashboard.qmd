@@ -1,8 +1,10 @@
 ---
-title: " " 
+title: " "
 format: 
   dashboard:
-    orientation: columns
+    orientation: rows  # Cambiado a filas para scroll vertical
+    scroll: true       # Scroll general de página
+    fillable: false    # Permite contenido de tamaño natural
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
@@ -11,7 +13,48 @@ logo: images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 
-<style>
+```{css}
+/* === ELIMINAR SCROLL INTERNO === */
+body {
+  overflow-x: hidden !important;
+}
+
+.dashboard .grid {
+  display: block !important;
+}
+
+.cell {
+  overflow: visible !important;
+  height: auto !important;
+  padding: 20px 0 !important;
+}
+
+.cell-output-display {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* === AJUSTES PARA IMÁGENES Y MAPAS === */
+.cell-output-display img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 15px auto;
+}
+
+.cell-output-display iframe {
+  width: 100% !important;
+  height: 700px !important;  /* Altura fija para los mapas */
+  border: none;
+  margin: 15px 0;
+}
+
+/* === ESTILOS EXISTENTES (se mantienen igual) === */
+.navbar {
+  background: rgb(251,235,207) !important;
+  border-bottom: 3px solid #413224 !important;
+}
+
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 
 /* ==== REEMPLAZO DEL TÍTULO ==== */
