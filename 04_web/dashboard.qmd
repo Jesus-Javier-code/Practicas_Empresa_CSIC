@@ -1,5 +1,7 @@
 ---
-title: "Volcana"
+title: |
+  ```{=html}
+  <span style="color: #413224; font-family: 'Hippo Letto', sans-serif;">VOLCANA</span>
 format: 
   dashboard:
     orientation: columns
