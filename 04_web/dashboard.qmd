@@ -7,7 +7,11 @@ format:
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
-logo: images/Banner_Volcana_Grande.png
+    # Añadir estas opciones para maximizar espacio
+    fillable: true
+    scroll: false
+    full-width: true
+logo: images/Banner_Volcana.png
 logo-alt: "CSIC logo."
 ---
 
@@ -24,46 +28,56 @@ logo-alt: "CSIC logo."
   margin-left: 10px;
 }
 
-/* Ocultamos el título vacío */
 .navbar-brand:not(:after) {
   display: none;
 }
 
-/* ==== ESTILOS DEL BANNER ==== */
-.navbar {
-  background: rgb(251,235,207) !important;
-  border-bottom: 3px solid #413224 !important;
-}
-
 /* ==== ESTILOS PRINCIPALES ==== */
-/* Banner superior */
 .navbar {
   background: rgb(251,235,207) !important;
   border-bottom: 3px solid #413224 !important;
 }
 
-/* Texto del título */
 .navbar-brand {
   color: #413224 !important;
   font-weight: bold;
 }
 
-/* Pestañas normales */
 .navbar-nav .nav-link {
   color: #413224 !important;
   margin: 0 10px;
   border-radius: 4px 4px 0 0;
 }
 
-/* Pestaña ACTIVA (seleccionada) */
 .navbar-nav .nav-link.active {
   background-color: #413224 !important;
   color: white !important;
 }
 
-/* Pestaña al pasar el ratón */
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
+}
+
+/* ==== ESTILOS PARA LAS CELDAS ==== */
+/* Eliminar scroll y maximizar espacio */
+.cell {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+/* Ajustar iframes para ocupar todo el espacio */
+iframe {
+  width: 100% !important;
+  height: 650px !important;
+  border: none;
+}
+
+/* Ajustar imágenes */
+.cell-output-display img {
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
 }
 </style>
 
