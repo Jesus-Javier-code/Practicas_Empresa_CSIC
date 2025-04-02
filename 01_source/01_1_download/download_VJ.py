@@ -281,7 +281,6 @@ for product in PRODUCTS:
 print("✅ Proceso completado.")
 '''
 
-
 import requests
 import datetime
 import netCDF4
@@ -289,8 +288,9 @@ import os
 import time
 
 # 🛠 CONFIGURACIÓN
-TOKEN_EARTHDATA = "tu_token_earthdata"  # Reemplaza con tu token real
-TOKEN_ZENODO = "tu_token_zenodo"        # Reemplaza con tu token real
+TOKEN_EARTHDATA = "eyJ0eXAiOiJKV1QiLCJvcmlnaW4iOiJFYXJ0aGRhdGEgTG9naW4iLCJzaWciOiJlZGxqd3RwdWJrZXlfb3BzIiwiYWxnIjoiUlMyNTYifQ.eyJ0eXBlIjoiVXNlciIsInVpZCI6Im1vbmljYW1hcmlucyIsImV4cCI6MTc0NzY0NTM3NCwiaWF0IjoxNzQyNDYxMzc0LCJpc3MiOiJodHRwczovL3Vycy5lYXJ0aGRhdGEubmFzYS5nb3YiLCJpZGVudGl0eV9wcm92aWRlciI6ImVkbF9vcHMiLCJhY3IiOiJlZGwiLCJhc3N1cmFuY2VfbGV2ZWwiOjN9.j63ZKbiDQ3j7C4bbRUJEQWCMnsC3SLesLvVQuJrudNHw69IoLvX-CW70BhHiQFYC8jVn0XPRKHptlgNp4yCBEwtLdXoTswsEDD9YhaCFOcZEyRA0nG-RXlYO6gcy8Gv9avn3qU6jb9-nUDN0HaWHJUW3tL0aBgTDaY0mkCbOWHxCmGl51aHR0icdAv_G4aJJ1bz5t0f4mactbJht-9t0b2HAZ0iR7T1KAY2ZaBChwwlLkWCKf5N6ffBSWBM9QB_fYQhnkXVnyTIRztx3Z2wZkDiGwQobOPTd3gryH0vx3-dxVV08tXz-PWftVmyRqfZz7smbnaznAlB1MGuo-zBH0A"  # Token de Earthdata para descargar los archivos
+  # Reemplaza con tu token real
+TOKEN_ZENODO = "tfQ7C71gC28lgZlAqRMVHkKF2svJluYA5VCq9231HLwtTRLVXcVlEPj6K9t0"        # Reemplaza con tu token real
 PRODUCTS = ["VJ102IMG", "VJ103IMG"]     # Lista de productos VIIRS
 COLLECTION = "5201"
 LAT_LA_PALMA_MIN = 28.601109109131052   # Latitud mínima de La Palma
@@ -344,6 +344,7 @@ def upload_to_zenodo(file_path, zenodo_token):
                 headers={"Authorization": f"Bearer {zenodo_token}"}
             )
         
+        # Zenodo puede devolver 200 OK o 201 Created para subidas exitosas
         if upload_response.status_code not in [200, 201]:
             print(f"❌ Error al subir archivo: {upload_response.status_code}")
             print(f"Respuesta: {upload_response.text}")
@@ -359,8 +360,8 @@ def upload_to_zenodo(file_path, zenodo_token):
                 "upload_type": "dataset",
                 "description": f"Datos de imágenes VIIRS para La Palma ({year}-{doy}). Filtrados por coordenadas y hora nocturna.",
                 "creators": [{"name": "Laura", "affiliation": "CSIC"}],
-                "keywords": ["VIIRS", "La Palma", "Remote Sensing", "Night Images"]
-                #"license": "cc-by"  # Añadir licencia Creative Commons
+                "keywords": ["VIIRS", "La Palma", "Remote Sensing", "Night Images"],
+                "license": "cc-by"  # Licencia Creative Commons
             }
         }
         
@@ -375,32 +376,20 @@ def upload_to_zenodo(file_path, zenodo_token):
             print(f"Respuesta: {update_response.text}")
         else:
             print("✅ Metadatos actualizados correctamente")
-
+        
         return {
             "deposit_id": deposit_id,
             "file_url": upload_response.json().get('links', {}).get('self'),
-            "html_url": deposit['links']['html']
+            "html_url": deposit['links']['html'],
+            "doi": deposit.get('doi', '')  # DOI si está disponible
         }
     
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error de conexión: {str(e)}")
+        return None
     except Exception as e:
         print(f"❌ Error inesperado: {str(e)}")
         return None
-        
-        # 4. Opcional: Publicar el depósito automáticamente
-        # publish_response = requests.post(
-        #     deposit['links']['publish'],
-        #     headers=headers
-        # )
-        # if publish_response.status_code == 202:
-        #     print("🎉 Depósito publicado correctamente")
-        # else:
-        #     print(f"⚠️ Error al publicar: {publish_response.text}")
-        
-      ##  return deposit['links']['html']  # Devuelve el enlace al depósito
-    
-  ##  except Exception as e:
-  ##      print(f"❌ Error inesperado: {str(e)}")
-   ##     return None
 
 def download_file(url, destination):
     """Descarga un archivo con manejo de errores y reintentos"""
@@ -502,9 +491,13 @@ def main():
                     print("🚀 Subiendo a Zenodo...")
                     
                     # Subir a Zenodo
-                    zenodo_link = upload_to_zenodo(temp_path, TOKEN_ZENODO)
-                    if zenodo_link:
-                        print(f"🌍 Enlace al depósito: {zenodo_link}")
+                    result = upload_to_zenodo(temp_path, TOKEN_ZENODO)
+                    if result:
+                        print(f"\n🌍 Depósito creado exitosamente!")
+                        print(f"📌 ID: {result['deposit_id']}")
+                        print(f"🔗 URL: {result['html_url']}")
+                        if result['doi']:
+                            print(f"📝 DOI: {result['doi']}")
                     
                     # Eliminar el archivo temporal después de subirlo
                     os.remove(temp_path)
@@ -530,4 +523,3 @@ if __name__ == "__main__":
     print("="*50)
     main()
     print("\n✅ Proceso completado")
-
