@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 matplotlib==3.10.1
 numpy==2.2.0
 usgs-libcomcat==2.1.6
@@ -8,4 +7,5 @@ statistics==3.4
 scipy==1.15.2
 plotly==6.0.1
 xarray==v2025.03.0
->>>>>>> a42b28cb74cefeda0939ea42b7c45750a70ab1cb
+dash==3.0.1
+
