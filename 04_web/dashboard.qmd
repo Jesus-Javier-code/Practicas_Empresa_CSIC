@@ -2,7 +2,7 @@
 title: " " 
 format: 
   dashboard:
-    orientation: columns
+    orientation: rows
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
