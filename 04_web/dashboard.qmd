@@ -3,7 +3,7 @@ title: " "
 format: 
   dashboard:
     orientation: rows
-    scroll: false
+    scroll: false  # Desactivamos el scroll global
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
@@ -13,56 +13,47 @@ logo-alt: "CSIC logo."
 ---
 
 <style>
-/* --- RESET COMPLETO --- */
-body, html, .dashboard, .dashboard-page {
-  margin: 0 !important;
-  padding: 0 !important;
+/* RESET GENERAL */
+body, html, .dashboard {
   overflow: visible !important;
+  height: auto !important;
 }
 
-/* --- ELIMINAR BORDES Y ESPACIOS --- */
-.panel-card, .cell, .panel-card-body {
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  background: transparent !important;
+/* ELIMINAR TODOS LOS SCROLLS */
+.panel-card, .cell-output, .cell, .panel-card-body {
+  overflow: visible !important;
+  height: auto !important;
 }
 
-/* --- MAPAS AL 100% SIN ESPACIOS --- */
-.columns {
-  display: flex;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  gap: 0 !important;
-}
-
-.column {
-  flex: 1;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* --- IFRAMES COMPACTOS Y SIN BORDES --- */
+/* IFRAMES COMPACTOS */
 iframe {
   width: 100% !important;
-  height: 500px !important;
+  height: 400px !important;  /* Altura más pequeña */
   border: none !important;
   margin: 0 !important;
   padding: 0 !important;
   display: block !important;
 }
 
-/* --- IMÁGENES RESPONSIVAS --- */
+/* IMÁGENES RESPONSIVAS */
 img {
-  max-width: 80% !important;
+  max-width: 100% !important;
   height: auto !important;
   display: block !important;
   margin: 0 auto !important;
 }
 
-/* --- ESTILOS DEL HEADER --- */
+/* COLUMNAS IGUALES */
+.columns {
+  display: flex;
+  gap: 15px;
+}
+
+.column {
+  flex: 1;
+}
+
+/* ESTILOS DEL HEADER (igual que antes) */
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 .navbar-brand::after {
   content: "VOLCANA";
@@ -109,7 +100,7 @@ import glob
 from IPython.display import Image
 import os
 import plotly.io as pio
-from IPython.display import IFrame  # Corregido el typo aquí
+from IPython.display import IFrame
 ```
 
 
@@ -127,7 +118,7 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 ```{python}
 #| label: display-potencia
 #| fig-cap: "Potencia Radiativa vs Tiempo"
-IFrame("images/potencia_radiativa.html", width="100%", height="500px")
+IFrame("images/potencia_radiativa.html", width="100%", height="400px")
 ```
 
 ## Mapas {.columns}
@@ -135,13 +126,13 @@ IFrame("images/potencia_radiativa.html", width="100%", height="500px")
 ```{python}
 #| label: mapa-tajogaite-main
 #| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="500px")
+IFrame("images/mapa_tajogaite.html", width="100%", height="400px")
 ```
 ### Mapa interactivo los alrededores {.column}
 ```{python}
 #| label: mapa-tajogaite-surroundings
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
-IFrame("images/mapa_region_alrededor.html", width="100%", height="500px")
+IFrame("images/mapa_region_alrededor.html", width="100%", height="400px")
 ```
 
 # 🌋 EL TEIDE
