@@ -46,7 +46,9 @@ def upload_to_zenodo(file_path, zenodo_token):
 
     # Ahora, subimos el archivo al depósito
     upload_url = f"https://zenodo.org/api/deposit/depositions/{deposit_id}/files"
-    files = {'file': (file_path, open(file_path, 'rb'))}
+    with open(file_path, 'rb') as f:
+    files = {'file': f}
+    ##files = {'file': (file_path, open(file_path, 'rb'))}
     #files = {'file': open(file_path, 'rb')}
     response = requests.post(upload_url, headers=headers, files=files)
     if response.status_code == 201:
