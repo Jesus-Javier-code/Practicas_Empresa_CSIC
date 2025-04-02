@@ -28,7 +28,7 @@ def main():
 
         # Crear gráfica
         fig = px.line(df, x='Fecha_Hora', y='Potencia_Radiativa',
-                     title=f'Potencia Radiativa (Últimos {dias} días)',
+                     title=f'Radiative Power (Últimos {dias} días)',
                      template='plotly_white')
         
         fig.update_layout(
