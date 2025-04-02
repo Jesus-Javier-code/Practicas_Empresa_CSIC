@@ -1,4 +1,4 @@
-# geometry_2.py - Versión con puntos en lugar de líneas
+# geometry_2.py - Version with points instead of lines
 import pandas as pd
 import plotly.express as px
 import os
@@ -7,69 +7,69 @@ from datetime import datetime
 
 def main():
     try:
-        # Configurar rutas
+        # Configure paths
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         data_path = os.path.join(base_dir, "00_data", "raw", "TIRVolcH_La_Palma_Dataset.xlsx")
-        carpeta_imagenes = os.path.join(base_dir, "04_web", "images")
-        os.makedirs(carpeta_imagenes, exist_ok=True)
-        archivo_salida = os.path.join(carpeta_imagenes, "potencia_radiativa.html")
+        images_folder = os.path.join(base_dir, "04_web", "images")
+        os.makedirs(images_folder, exist_ok=True)
+        output_file = os.path.join(images_folder, "radiative_power.html")
 
-        # Leer datos del Excel
+        # Read data from Excel
         df = pd.read_excel(data_path, sheet_name='LaPalma_TIRVolcH_Filtered_Data')
         
-        # Limpiar y preparar datos
+        # Clean and prepare data
         df = df[['Date', 'Weekly_Max_VRP_TIR (MW)']].dropna()
         df = df.rename(columns={
-            'Date': 'Fecha_Hora',
-            'Weekly_Max_VRP_TIR (MW)': 'Potencia_Radiativa'
+            'Date': 'DateTime',
+            'Weekly_Max_VRP_TIR (MW)': 'Radiative_Power'
         })
         
-        # Convertir a datetime y ordenar
-        df['Fecha_Hora'] = pd.to_datetime(df['Fecha_Hora'])
-        df = df.sort_values('Fecha_Hora')
+        # Convert to datetime and sort
+        df['DateTime'] = pd.to_datetime(df['DateTime'])
+        df = df.sort_values('DateTime')
 
-        # Crear gráfica de puntos (scatter plot)
+        # Create scatter plot
         fig = px.scatter(df, 
-                        x='Fecha_Hora', 
-                        y='Potencia_Radiativa',
-                        title='<b>Potencia Radiativa Máxima Semanal</b><br><sup>Volcán de La Palma (2021-2024) - Datos Puntuales</sup>',
+                        x='DateTime', 
+                        y='Radiative_Power',
+                        title='<b>Weekly Maximum Radiative Power</b><br><sup>La Palma Volcano (2021-2024) - Point Data</sup>',
                         template='plotly_white',
                         labels={
-                            'Fecha_Hora': 'Fecha',
-                            'Potencia_Radiativa': 'Potencia Radiativa (MW)'
+                            'DateTime': 'Date',
+                            'Radiative_Power': 'Radiative Power (MW)'
                         },
-                        hover_data={'Fecha_Hora': '|%B %d, %Y'},
+                        hover_data={'DateTime': '|%B %d, %Y'},
                         opacity=0.7,
                         size_max=10)
         
-        # Personalizar marcadores
+        # Customize markers
         fig.update_traces(
             marker=dict(
                 size=6,
-                color='#413224',  
+                color='#413224',  # Dark brown color
                 line=dict(width=1, color='DarkSlateGrey')
             ),
             selector=dict(mode='markers')
         )
 
-        # Personalizar diseño
+        # Customize layout
         fig.update_layout(
             xaxis=dict(
                 rangeselector=dict(
                     buttons=list([
-                        dict(count=1, label="1 mes", step="month", stepmode="backward"),
-                        dict(count=6, label="6 meses", step="month", stepmode="backward"),
-                        dict(count=1, label="1 año", step="year", stepmode="backward"),
-                        dict(step="all", label="Todo")
+                        dict(count=1, label="1 month", step="month", stepmode="backward"),
+                        dict(count=6, label="6 months", step="month", stepmode="backward"),
+                        dict(count=1, label="1 year", step="year", stepmode="backward"),
+                        dict(step="all", label="All")
                     ]),
                     bgcolor='#f7f7f7'
                 ),
                 rangeslider=dict(visible=True),
                 type="date",
-                title_text='Fecha'
+                title_text='Date'
             ),
             yaxis=dict(
-                title_text='Potencia Radiativa (MW)',
+                title_text='Radiative Power (MW)',
                 gridcolor='#f0f0f0'
             ),
             hovermode="x unified",
@@ -79,13 +79,13 @@ def main():
             title_font=dict(size=20)
         )
 
-        # Añadir anotación con valor máximo
-        max_potencia = df['Potencia_Radiativa'].max()
-        max_fecha = df.loc[df['Potencia_Radiativa'].idxmax(), 'Fecha_Hora']
+        # Add maximum value annotation
+        max_power = df['Radiative_Power'].max()
+        max_date = df.loc[df['Radiative_Power'].idxmax(), 'DateTime']
         fig.add_annotation(
-            x=max_fecha,
-            y=max_potencia,
-            text=f"Máximo: {max_potencia:.0f} MW",
+            x=max_date,
+            y=max_power,
+            text=f"Maximum: {max_power:.0f} MW",
             showarrow=True,
             arrowhead=1,
             ax=-50,
@@ -93,9 +93,9 @@ def main():
             font=dict(size=12, color="#E74C3C")
         )
 
-        # Guardar gráfica
-        fig.write_html(archivo_salida, include_plotlyjs='cdn')
-        print(f"Gráfica generada en: {archivo_salida}")
+        # Save plot
+        fig.write_html(output_file, include_plotlyjs='cdn')
+        print(f"Plot generated at: {output_file}")
         return True
         
     except Exception as e:
