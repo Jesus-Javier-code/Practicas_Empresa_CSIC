@@ -58,31 +58,16 @@ def search_params(date_i, date_f, min_mag, center_coords, reg_rad):
     detail_events_df = get_detail_data_frame(events, get_all_magnitudes= True)
 
     all_data = pd.merge(summary_events_df, detail_events_df, left_on="id", right_on="id", how="right")
-
-
-    repo_path = "00_data/eq_raw/dataframe.csv"
-
-    os.makedirs(repo_path, exist_ok=True)
-
-
-    file_path = os.path.join(repo_path, "dataframe.csv")
-
-
-    all_data.to_csv(file_path, header=True, index=False)
-
-    print(f"Archivo guardado en: {file_path}")
-
-
-    #all_data.to_csv(path_or_buf= "Practicas_Empresa_CSIC/00_data/eq_raw/dataframe.csv", header=True, index=False) [1]
     
-    
-    
-    
-    #all_data = all_data.drop("url_x", axis= "columns")
+    #PATH CORRECTO C:\Users\joel6\Practicas_Empresa_CSIC\00_data\eq_raw
+
+    output_path = r"C:\Users\joel6\Practicas_Empresa_CSIC\00_data\eq_raw\dataframe.csv"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    all_data.to_csv(output_path, index= False)
+
+    print("The data has been saved in the following path: %s" %output_path)
 
     return all_data
-
-
 
 def download_by_mag_time(date_i, date_f, min_mag, center_coords, reg_rad):
 
