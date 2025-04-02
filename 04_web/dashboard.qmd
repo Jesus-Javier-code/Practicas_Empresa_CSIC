@@ -35,7 +35,7 @@ body, html, .dashboard, .dashboard-page {
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  gap: 0 !important; /* Eliminamos el espacio entre columnas */
+  gap: 0 !important;
 }
 
 .column {
@@ -47,7 +47,7 @@ body, html, .dashboard, .dashboard-page {
 /* --- IFRAMES COMPACTOS Y SIN BORDES --- */
 iframe {
   width: 100% !important;
-  height: 450px !important;
+  height: 500px !important;
   border: none !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -62,7 +62,7 @@ img {
   margin: 0 auto !important;
 }
 
-/* --- ESTILOS DEL HEADER (se mantienen igual) --- */
+/* --- ESTILOS DEL HEADER --- */
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 .navbar-brand::after {
   content: "VOLCANA";
@@ -109,7 +109,7 @@ import glob
 from IPython.display import Image
 import os
 import plotly.io as pio
-from IPython.display import IFramee
+from IPython.display import IFrame  # Corregido el typo aquí
 ```
 
 
@@ -125,10 +125,9 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 ```
 
 ```{python}
-#| label: setup-potencia
-#| include: false
-import subprocess
-subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
+#| label: display-potencia
+#| fig-cap: "Potencia Radiativa vs Tiempo"
+IFrame("images/potencia_radiativa.html", width="100%", height="500px")
 ```
 
 ## Mapas {.columns}
@@ -136,13 +135,13 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 ```{python}
 #| label: mapa-tajogaite-main
 #| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="450px")
+IFrame("images/mapa_tajogaite.html", width="100%", height="500px")
 ```
 ### Mapa interactivo los alrededores {.column}
 ```{python}
 #| label: mapa-tajogaite-surroundings
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
-IFrame("images/mapa_region_alrededor.html", width="100%", height="450px")
+IFrame("images/mapa_region_alrededor.html", width="100%", height="500px")
 ```
 
 # 🌋 EL TEIDE
