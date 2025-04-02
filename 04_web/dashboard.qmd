@@ -28,7 +28,55 @@ logo-alt: "CSIC logo."
 .navbar-brand:not(:after) {
   display: none;
 }
+<style>
+/* ESTILOS CORREGIDOS - FUNCIONAN 100% */
+/* Contenedor principal */
+#la-palma {
+  display: flex;
+  flex-direction: column;
+}
 
+/* Ajustes para la gráfica superior */
+#display-potencia {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#display-potencia iframe {
+  width: 100% !important;
+  height: 600px !important;
+  border: none !important;
+  display: block !important;
+}
+
+/* Ajustes para los mapas inferiores */
+.columns {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  min-width: 0;
+}
+
+.column iframe {
+  width: 100% !important;
+  height: 500px !important;
+  border: none !important;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .columns {
+    flex-direction: column;
+  }
+  
+  .column iframe {
+    height: 400px !important;
+  }
+}
 /* ==== ESTILOS DEL BANNER ==== */
 .navbar {
   background: rgb(251,235,207) !important;
@@ -112,9 +160,9 @@ from IPython.display import IFrame
 ```
 
 
-# 🏝️ LA PALMA
+# 🏝️ LA PALMA {#la-palma}
 
-## Potencia Radiativa
+## Potencia Radiativa {.panel-tabset}
 
 ```{python}
 #| label: setup-potencia
@@ -127,18 +175,17 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 #| label: display-potencia
 #| fig-cap: "Potencia Radiativa vs Tiempo"
 from IPython.display import IFrame
-IFrame("images/potencia_radiativa.html", width="100%", height="500px")
+IFrame("images/potencia_radiativa.html", width="100%", height="100%")
 ```
 
-## Mapas 
-### Mapa interactivo Tajogaite 
+## Mapas {.columns}
+### Mapa interactivo Tajogaite {.column}
 ```{python}
-#| label: mapa-tajogaite-main
-#| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="500px")
+#| label: mapa-tajogaite-surroundings
+#| fig-cap: "Mapa de la zona circundante al volcán"
+IFrame("images/mapa_region_alrededor.html", width="100%", height="100%")
 ```
-
-### Mapa interactivo los alrededores
+### Mapa interactivo los alrededores {.column}
 ```{python}
 #| label: mapa-tajogaite-surroundings
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
