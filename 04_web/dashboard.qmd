@@ -3,7 +3,7 @@ title: " "
 format: 
   dashboard:
     orientation: rows
-    scroll: true 
+    scroll: false  # Desactivamos el scroll global
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
@@ -13,52 +13,48 @@ logo-alt: "CSIC logo."
 ---
 
 <style>
-/* 1. Eliminar scroll en todas las celdas */
-.panel-card, .cell-output, .cell {
+/* RESET GENERAL */
+body, html, .dashboard {
   overflow: visible !important;
   height: auto !important;
-  max-height: none !important;
 }
 
-/* 2. Configuración para iframes - ocupar todo el espacio */
+/* ELIMINAR TODOS LOS SCROLLS */
+.panel-card, .cell-output, .cell, .panel-card-body {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* IFRAMES COMPACTOS */
 iframe {
   width: 100% !important;
-  height: 100vh !important;  /* Usar viewport height */
-  min-height: 650px;
+  height: 400px !important;  /* Altura más pequeña */
   border: none !important;
   margin: 0 !important;
   padding: 0 !important;
   display: block !important;
 }
 
-/* 3. Hacer que los contenedores principales ocupen todo el espacio */
-.dashboard, .dashboard-page, .quarto-dashboard-content {
-  height: 100vh !important;
-  overflow-y: auto !important;  /* Scroll solo en la página completa */
+/* IMÁGENES RESPONSIVAS */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
 
-/* 4. Ajustar el layout de las columnas */
+/* COLUMNAS IGUALES */
 .columns {
   display: flex;
-  flex: 1;
-  min-height: 80vh;  /* Altura mínima para las columnas */
+  gap: 15px;
 }
 
 .column {
   flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
-/* 5. Eliminar márgenes innecesarios */
-.panel-card-body, .cell-output-display {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-/* ==== ESTILOS DEL TÍTULO Y NAVBAR ==== */
+/* ESTILOS DEL HEADER (igual que antes) */
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
-
 .navbar-brand::after {
   content: "VOLCANA";
   font-family: 'Hippo Letto', sans-serif;
@@ -67,50 +63,23 @@ iframe {
   letter-spacing: 1px;
   margin-left: 10px;
 }
-
-.navbar-brand:not(:after) {
-  display: none;
-}
-
+.navbar-brand:not(:after) { display: none; }
 .navbar {
   background: rgb(251,235,207) !important;
   border-bottom: 3px solid #413224 !important;
 }
-
-.navbar-brand {
-  color: #413224 !important;
-  font-weight: bold;
-}
-
+.navbar-brand { color: #413224 !important; }
 .navbar-nav .nav-link {
   color: #413224 !important;
   margin: 0 10px;
   border-radius: 4px 4px 0 0;
 }
-
 .navbar-nav .nav-link.active {
   background-color: #413224 !important;
   color: white !important;
 }
-
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
-}
-
-/* ==== ESTILOS PARA LOS MAPAS ==== */
-.html-widget {
-  background: transparent !important;
-  flex: 1;  /* Hace que los widgets ocupen todo el espacio disponible */
-  display: flex;
-  flex-direction: column;
-}
-
-.plot-container {
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  flex: 1;
 }
 </style>
 
@@ -149,8 +118,7 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 ```{python}
 #| label: display-potencia
 #| fig-cap: "Potencia Radiativa vs Tiempo"
-from IPython.display import IFrame
-IFrame("images/potencia_radiativa.html", width="100%", height="650px")
+IFrame("images/potencia_radiativa.html", width="100%", height="400px")
 ```
 
 ## Mapas {.columns}
@@ -158,13 +126,13 @@ IFrame("images/potencia_radiativa.html", width="100%", height="650px")
 ```{python}
 #| label: mapa-tajogaite-main
 #| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="650px")
+IFrame("images/mapa_tajogaite.html", width="100%", height="400px")
 ```
 ### Mapa interactivo los alrededores {.column}
 ```{python}
 #| label: mapa-tajogaite-surroundings
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
-IFrame("images/mapa_region_alrededor.html", width="100%", height="650px")
+IFrame("images/mapa_region_alrededor.html", width="100%", height="400px")
 ```
 
 # 🌋 EL TEIDE
@@ -172,7 +140,7 @@ IFrame("images/mapa_region_alrededor.html", width="100%", height="650px")
 ```{python}
 #| label: teide-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - El Teide"
-display(Image(filename="images/graficamala.png", width=800))
+display(Image(filename="images/graficamala.png", width="80%"))
 ```
 
 # 🕳️ TERREMOTOS
@@ -180,5 +148,5 @@ display(Image(filename="images/graficamala.png", width=800))
 ```{python}
 #| label: earthquake-trigger-index
 #| fig-cap: "Trigger Index - Terremoto"
-display(Image(filename="images/thomas_paper.png", width=800))
+display(Image(filename="images/thomas_paper.png", width="80%"))
 ```
