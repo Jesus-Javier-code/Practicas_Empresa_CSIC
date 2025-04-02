@@ -18,16 +18,13 @@
 
 <p align="center">
   <a href="https://doi.org/10.1016/j.rse.2024.114388">
-    <img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-blue" alt="Paper DOI1">
+    <img src="https://img.shields.io/badge/DOI-10.1016%2Fj.rse.2024.114388-9cf" alt="Remote Sensing Paper">
   </a>
   <a href="https://doi.org/10.1007/s00445-022-01584-2">
-    <img src="https://link.springer.com/article/10.1007/s00445-022-01584-2" alt="Paper DOI2">
+    <img src="https://img.shields.io/badge/DOI-10.1007%2Fs00445--022--01584--2-orange" alt="Bulletin of Volcanology Paper">
   </a>
   <a href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC">
     <img src="https://img.shields.io/github/stars/Jesus-Javier-code/Practicas_Empresa_CSIC?style=social" alt="GitHub stars">
-  </a>
-  <a href="https://pypi.org/project/volcana-csic/">
-    <img src="https://img.shields.io/pypi/v/volcana-csic" alt="PyPI version">
   </a>
 </p>
 

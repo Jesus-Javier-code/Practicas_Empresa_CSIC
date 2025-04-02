@@ -2,19 +2,59 @@
 title: " " 
 format: 
   dashboard:
-    orientation: columns
+    orientation: rows
+    scroll: false  # Desactivamos el scroll global
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
-logo: images/Logo_Volcana.jpeg
+logo: images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 
 <style>
-@import url('https://fonts.cdnfonts.com/css/hippo-lettro');
+/* RESET GENERAL */
+body, html, .dashboard {
+  overflow: visible !important;
+  height: auto !important;
+}
 
-/* ==== REEMPLAZO DEL TÍTULO ==== */
+/* ELIMINAR TODOS LOS SCROLLS */
+.panel-card, .cell-output, .cell, .panel-card-body {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* IFRAMES COMPACTOS */
+iframe {
+  width: 100% !important;
+  height: 400px !important;  /* Altura más pequeña */
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* IMÁGENES RESPONSIVAS */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* COLUMNAS IGUALES */
+.columns {
+  display: flex;
+  gap: 15px;
+}
+
+.column {
+  flex: 1;
+}
+
+/* ESTILOS DEL HEADER (igual que antes) */
+@import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 .navbar-brand::after {
   content: "VOLCANA";
   font-family: 'Hippo Letto', sans-serif;
@@ -23,45 +63,21 @@ logo-alt: "CSIC logo."
   letter-spacing: 1px;
   margin-left: 10px;
 }
-
-/* Ocultamos el título vacío */
-.navbar-brand:not(:after) {
-  display: none;
-}
-
-/* ==== ESTILOS DEL BANNER ==== */
+.navbar-brand:not(:after) { display: none; }
 .navbar {
   background: rgb(251,235,207) !important;
   border-bottom: 3px solid #413224 !important;
 }
-
-/* ==== ESTILOS PRINCIPALES ==== */
-/* Banner superior */
-.navbar {
-  background: rgb(251,235,207) !important;
-  border-bottom: 3px solid #413224 !important;
-}
-
-/* Texto del título */
-.navbar-brand {
-  color: #413224 !important;
-  font-weight: bold;
-}
-
-/* Pestañas normales */
+.navbar-brand { color: #413224 !important; }
 .navbar-nav .nav-link {
   color: #413224 !important;
   margin: 0 10px;
   border-radius: 4px 4px 0 0;
 }
-
-/* Pestaña ACTIVA (seleccionada) */
 .navbar-nav .nav-link.active {
   background-color: #413224 !important;
   color: white !important;
 }
-
-/* Pestaña al pasar el ratón */
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
 }
@@ -73,6 +89,7 @@ logo-alt: "CSIC logo."
 import subprocess
 subprocess.run(["python", "../02_utils/geometry.py"], check=True)
 ```
+
 
 ```{python}
 #| label: load-packages
@@ -87,26 +104,35 @@ from IPython.display import IFrame
 ```
 
 
-# 🏝️ LA PALMA
-## Column - Plots
-### Gráfica curva de enfriamiento
+# 🏝️ LA PALMA {#la-palma}
+
+## Potencia Radiativa {.panel-tabset}
+
 ```{python}
-#| label: palma-cooling-curve
-#| fig-cap: "Análisis de Potencia Radiativa - La Palma"
-display(Image(filename="images/graficamala.png", width=800))
-```
-### Mapa interactivo Tajogaite
-```{python}
-#| label: mapa-tajogaite-main
-#| fig-cap: "Mapa interactivo de La Palma - Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="600px")
+#| label: setup-potencia
+#| include: false
+import subprocess
+subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 ```
 
-## Mapa interactivo los alrededores
+```{python}
+#| label: display-potencia
+#| fig-cap: "Potencia Radiativa vs Tiempo"
+IFrame("images/radiative_power.html", width="100%", height="400px")
+```
+
+## Mapas 
+### Mapa interactivo Tajogaite 
+```{python}
+#| label: mapa-tajogaite-main
+#| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
+IFrame("images/mapa_tajogaite.html", width="100%", height="400px")
+```
+### Mapa interactivo los alrededores 
 ```{python}
 #| label: mapa-tajogaite-surroundings
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
-IFrame("images/mapa_region_alrededor.html", width="100%", height="600px")
+IFrame("images/mapa_region_alrededor.html", width="100%", height="400px")
 ```
 
 # 🌋 EL TEIDE
@@ -114,7 +140,7 @@ IFrame("images/mapa_region_alrededor.html", width="100%", height="600px")
 ```{python}
 #| label: teide-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - El Teide"
-display(Image(filename="images/graficamala.png", width=800))
+display(Image(filename="images/graficamala.png", width="80%"))
 ```
 
 # 🕳️ TERREMOTOS
@@ -122,5 +148,5 @@ display(Image(filename="images/graficamala.png", width=800))
 ```{python}
 #| label: earthquake-trigger-index
 #| fig-cap: "Trigger Index - Terremoto"
-display(Image(filename="images/thomas_paper.png", width=800))
+display(Image(filename="images/thomas_paper.png", width="80%"))
 ```
