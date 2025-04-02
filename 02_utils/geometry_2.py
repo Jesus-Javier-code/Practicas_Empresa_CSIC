@@ -30,7 +30,7 @@ def crear_grafica_interactiva(df, dias):
                  title=f'Potencia Radiativa vs Tiempo (Últimos {dias} días)',
                  template='plotly_white')
     
-    # Controles interactivos
+    # Configuración del layout
     fig.update_layout(
         xaxis=dict(
             rangeselector=dict(
@@ -52,7 +52,15 @@ def crear_grafica_interactiva(df, dias):
         height=600
     )
     
-    # Botón para descargar la imagen
+    # Configuración de la barra de herramientas (CORRECCIÓN: fuera de update_layout)
+    fig.update_layout(
+        modebar=dict(
+            orientation='v',
+            bgcolor='rgba(255,255,255,0.7)'
+        )
+    )
+    
+    # Configuración adicional para los botones de la barra de herramientas
     fig.update_layout(
         config={
             'modeBarButtonsToAdd': [
@@ -79,6 +87,5 @@ if __name__ == "__main__":
     datos = generar_datos(args.dias)
     fig = crear_grafica_interactiva(datos, args.dias)
     
-    fig.write_html(archivo_salida, include_plotlyjs='cdn')
+    fig.write_html(archivo_salida, include_plotlyjs='cdn', config={'responsive': True})
     print(f"Gráfica interactiva guardada en: {archivo_salida}")
-    print("¡Ahora incluye controles para cambiar el rango de fechas!")
