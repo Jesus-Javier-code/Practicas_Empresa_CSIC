@@ -45,7 +45,8 @@ def upload_to_zenodo(file_path, zenodo_token):
         return
 
     # Ahora, subimos el archivo al depósito
-    upload_url = f"https://zenodo.org/api/deposit/depositions/{deposit_id}/files"
+    upload_url = f"https://zenodo.org/uploads/{deposit_id}"
+    #upload_url = f"https://zenodo.org/api/deposit/depositions/{deposit_id}/files"
     with open(file_path, 'rb') as f:
     files = {'file': f}
     ##files = {'file': (file_path, open(file_path, 'rb'))}
