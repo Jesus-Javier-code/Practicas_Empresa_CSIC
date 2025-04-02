@@ -1,25 +1,20 @@
-import xarray as xr
+import datetime
 
-def check_day_night(file_path):
-    try:
-        # Abrir el archivo NetCDF
-        ds = xr.open_dataset(file_path, decode_times=False)
-        
-        # Acceder al atributo DayNightFlag
-        day_night_flag = ds.attrs.get('DayNightFlag', None)
-        
-        if day_night_flag is not None:
-            print(f"El archivo tiene el atributo DayNightFlag: {day_night_flag}")
-            # Comprobamos si el valor de DayNightFlag es 'Night' o 'Day' como texto
-            if day_night_flag == 'Night':
-                print("Es de noche.")
-            elif day_night_flag == 'Day':
-                print("Es de día.")
-            else:
-                print(f"Valor desconocido para DayNightFlag: {day_night_flag}")
-        else:
-            print("El archivo no contiene el atributo DayNightFlag.")
-    
-    except Exception as e:
-        print(f"Error al procesar el archivo: {e}")
+LAT_LA_PALMA_MIN = 28.601109109131052
+LAT_LA_PALMA_MAX = 28.62514776637218
+LON_LA_PALMA_MIN = -17.929768956228138
+LON_LA_PALMA_MAX = -17.872144640744164
 
+def obtener_fecha_ayer():
+    ayer = datetime.datetime.now() - datetime.timedelta(1)
+    return ayer.strftime("%Y"), ayer.strftime("%j")
+
+def generar_url_api(product, year, doy, collection):
+    return f"https://ladsweb.modaps.eosdis.nasa.gov/api/v2/content/details/allData/{collection}/{product}/{year}/{doy}"
+
+def esta_en_la_palma(sur, norte, este, oeste):
+    return (sur <= LAT_LA_PALMA_MAX and norte >= LAT_LA_PALMA_MIN and
+            oeste <= LON_LA_PALMA_MAX and este >= LON_LA_PALMA_MIN)
+
+def es_de_noche(day_night_flag):
+    return day_night_flag.lower() == 'night'
