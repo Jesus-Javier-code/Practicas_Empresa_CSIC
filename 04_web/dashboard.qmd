@@ -118,7 +118,7 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 ```{python}
 #| label: display-potencia
 #| fig-cap: "Potencia Radiativa vs Tiempo"
-IFrame("images/potencia_radiativa.html", width="100%", height="400px")
+IFrame("images/radiative_power.html", width="100%", height="400px")
 ```
 
 ## Mapas {.columns}
