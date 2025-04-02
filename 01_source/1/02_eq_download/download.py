@@ -1,5 +1,5 @@
 from libcomcat.search import search, get_event_by_id
-from libcomcat.dataframes import get_summary_data_frame, get_detail_data_frame
+from libcomcat.dataframes import get_summary_data_frame, get_magnitude_data_frame, get_detail_data_frame
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
@@ -34,7 +34,7 @@ def date_format(date):
     
     return date
 
-def download_all(date_i, date_f, min_mag, center_coords, reg_rad):
+def search_params(date_i, date_f, min_mag, center_coords, reg_rad):
 
     lat_cent, lon_cent = center_coords
     lat_min, lat_max, lon_min, lon_max = limit_region_coords(lat_cent, lon_cent, reg_rad)
@@ -55,22 +55,22 @@ def download_all(date_i, date_f, min_mag, center_coords, reg_rad):
     )
 
     summary_events_df = get_summary_data_frame(events)
-    detail_events_df = get_detail_data_frame(events)
 
-    display(summary_events_df)
-    display(detail_events_df)
-    
+    detail_events_df = get_detail_data_frame(events, get_all_magnitudes= True)
+
     all_data = pd.merge(summary_events_df, detail_events_df, left_on="id", right_on="id", how="right")
 
-
+    all_data.to_csv(path_or_buf= "Practicas_Empresa_CSIC/00_data/eq_raw/dataframe.csv", header=True, index=False) [1]
     #all_data = all_data.drop("url_x", axis= "columns")
     #events_df = events_df.drop("alert", axis="columns")
     #events_df = events_df.drop("eventtype", axis="columns")
     #events_df = events_df.drop("significance", axis="columns")
     #events_df = events_df.drop("location", axis="columns")
 
-    all_data.to_csv("Jesus-Javier-code/Practicas_Empresa_CSIC/01_source/1/02_eq_download/datos_ejemplo.csv")
+    #all_data.to_csv("Jesus-Javier-code/Practicas_Empresa_CSIC/01_source/1/02_eq_download/datos_ejemplo.csv")
     return all_data
+
+
 
 def download_by_mag_time(date_i, date_f, min_mag, center_coords, reg_rad):
 
@@ -132,5 +132,6 @@ def download_by_mag_time(date_i, date_f, min_mag, center_coords, reg_rad):
 
     return df
 
-download_all("2025-01-01 00:00", "2025-03-30 00:00", 6, (32.62691152238639, -116.34553204019909), 5000)
 
+
+search_params("2025-01-01 00:00", "2025-03-30 00:00", 6, (32.62691152238639, -116.34553204019909), 5000)
