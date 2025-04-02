@@ -121,14 +121,14 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 IFrame("images/radiative_power.html", width="100%", height="400px")
 ```
 
-## Mapas {.columns}
-### Mapa interactivo Tajogaite {.column}
+## Mapas 
+### Mapa interactivo Tajogaite 
 ```{python}
 #| label: mapa-tajogaite-main
 #| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
 IFrame("images/mapa_tajogaite.html", width="100%", height="400px")
 ```
-### Mapa interactivo los alrededores {.column}
+### Mapa interactivo los alrededores 
 ```{python}
 #| label: mapa-tajogaite-surroundings
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
