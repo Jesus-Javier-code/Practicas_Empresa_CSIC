@@ -13,16 +13,17 @@ logo-alt: "CSIC logo."
 ---
 
 <style>
-/* 1. Deshabilita scroll en paneles */
+/* 1. Eliminar scroll en paneles y permitir expansión */
 .panel-card {
   overflow: visible !important;
   height: auto !important;
+  min-height: 100% !important;
 }
 
-/* 2. Configuración fija para iframes */
+/* 2. Configuración para iframes - ocupar todo el espacio */
 iframe {
   width: 100% !important;
-  height: 650px !important;
+  height: 100% !important;
   min-height: 650px;
   border: none !important;
   margin: 0 !important;
@@ -30,15 +31,30 @@ iframe {
   display: block !important;
 }
 
-/* 3. Habilita scroll global (opcional) */
+/* 3. Habilita scroll solo a nivel de página */
 .dashboard {
   overflow-y: auto !important;
+}
+
+/* 4. Asegurar que las columnas ocupen todo el espacio */
+.column {
+  height: 100% !important;
+}
+
+/* 5. Eliminar márgenes innecesarios */
+.panel-tabset, .panel-grid {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 6. Ajustar altura de las secciones */
+.panel-page {
+  min-height: 100vh !important;
 }
 
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 
 /* ==== REEMPLAZO DEL TÍTULO ==== */
-
 .navbar-brand::after {
   content: "VOLCANA";
   font-family: 'Hippo Letto', sans-serif;
@@ -60,12 +76,6 @@ iframe {
 }
 
 /* ==== ESTILOS PRINCIPALES ==== */
-/* Banner superior */
-.navbar {
-  background: rgb(251,235,207) !important;
-  border-bottom: 3px solid #413224 !important;
-}
-
 /* Texto del título */
 .navbar-brand {
   color: #413224 !important;
@@ -89,21 +99,11 @@ iframe {
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
 }
-/* ==== NUEVOS ESTILOS PARA LOS MAPAS ==== */
-/* Eliminar márgenes y bordes de los iframes */
-iframe {
-  width: 100% !important;
-  height: 650px !important;
-  border: none !important;
-  background: transparent !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-}
 
-/* Eliminar el fondo blanco del contenedor */
+/* ==== ESTILOS PARA LOS MAPAS ==== */
 .html-widget {
   background: transparent !important;
+  height: 100% !important;
 }
 
 /* Asegurar que el mapa ocupe todo el espacio */
@@ -151,21 +151,21 @@ subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
 #| label: display-potencia
 #| fig-cap: "Potencia Radiativa vs Tiempo"
 from IPython.display import IFrame
-IFrame("images/potencia_radiativa.html", width="100%", height="100%")
+IFrame("images/potencia_radiativa.html", width="100%", height="650px")
 ```
 
-## Mapas {.columns}
-### Mapa interactivo Tajogaite {.column}
+## Mapas {.columns .panel-grid} 
+### Mapa interactivo Tajogaite {.column .panel-card}
 ```{python}
 #| label: mapa-tajogaite-main
 #| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="100%")
+IFrame("images/mapa_tajogaite.html", width="100%", height="650px")
 ```
-### Mapa interactivo los alrededores {.column}
+### Mapa interactivo los alrededores {.column .panel-card}
 ```{python}
 #| label: mapa-tajogaite-surroundings
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
-IFrame("images/mapa_region_alrededor.html", width="100%", height="500px")
+IFrame("images/mapa_region_alrededor.html", width="100%", height="650px")
 ```
 
 # 🌋 EL TEIDE
