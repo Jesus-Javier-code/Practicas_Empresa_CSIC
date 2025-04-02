@@ -45,7 +45,7 @@ def main():
         # Personalizar marcadores
         fig.update_traces(
             marker=dict(
-                size=8,
+                size=6,
                 color='#E74C3C',  # Rojo volcánico
                 line=dict(width=1, color='DarkSlateGrey')
             ),
