@@ -284,150 +284,235 @@ import requests
 import datetime
 import netCDF4
 import os
+import time
 
-# Configuración
-TOKEN_EARTHDATA = "tu_token_earthdata"
-TOKEN_ZENODO = "tu_token_zenodo"  # Necesitas un token con permisos de escritura
-PRODUCTS = ["VJ102IMG", "VJ103IMG"]
+# 🛠 CONFIGURACIÓN
+TOKEN_EARTHDATA = "tu_token_earthdata"  # Reemplaza con tu token real
+TOKEN_ZENODO = "tu_token_zenodo"        # Reemplaza con tu token real
+PRODUCTS = ["VJ102IMG", "VJ103IMG"]     # Lista de productos VIIRS
 COLLECTION = "5201"
-LAT_LA_PALMA_MIN = 28.601109109131052
-LAT_LA_PALMA_MAX = 28.62514776637218
-LON_LA_PALMA_MIN = -17.929768956228138
-LON_LA_PALMA_MAX = -17.872144640744164
+LAT_LA_PALMA_MIN = 28.601109109131052   # Latitud mínima de La Palma
+LAT_LA_PALMA_MAX = 28.62514776637218    # Latitud máxima de La Palma
+LON_LA_PALMA_MIN = -17.929768956228138  # Longitud mínima de La Palma
+LON_LA_PALMA_MAX = -17.872144640744164  # Longitud máxima de La Palma
 
-# Obtener fecha de ayer
+# 📅 Obtener la fecha de ayer
 ayer = datetime.datetime.now() - datetime.timedelta(1)
 year = ayer.strftime("%Y")
 doy = ayer.strftime("%j")  # Día juliano
 
 def upload_to_zenodo(file_path, zenodo_token):
-    # Paso 1: Crear un nuevo depósito
+    """
+    Sube un archivo a Zenodo siguiendo la API oficial
+    """
+    # 1. Crear un nuevo depósito
     headers = {
         "Authorization": f"Bearer {zenodo_token}",
         "Content-Type": "application/json"
     }
     
-    # Datos del depósito
-    deposit_data = {
-        "metadata": {
-            "title": f"Datos VIIRS {year}-{doy}",
-            "upload_type": "dataset",
-            "description": "Datos de imágenes VIIRS filtrados para La Palma.",
-            "creators": [{"name": "Laura", "affiliation": "CSIC"}]
-        }
-    }
-    
-    # Crear el depósito
-    r = requests.post(
-        "https://zenodo.org/api/deposit/depositions",
-        json={},  # Depósito vacío inicialmente
-        headers=headers
-    )
-    
-    if r.status_code != 201:
-        print(f"Error al crear depósito: {r.status_code} - {r.text}")
-        return
-    
-    deposit = r.json()
-    deposit_id = deposit['id']
-    print(f"Depósito creado con ID: {deposit_id}")
-    
-    # Paso 2: Obtener URL para subir el archivo
-    bucket_url = deposit['links']['bucket']
-    filename = os.path.basename(file_path)
-    
-    # Paso 3: Subir el archivo
-    with open(file_path, 'rb') as fp:
-        r = requests.put(
-            f"{bucket_url}/{filename}",
-            data=fp,
+    try:
+        # Crear depósito vacío
+        response = requests.post(
+            "https://zenodo.org/api/deposit/depositions",
+            json={},  # Depósito vacío inicialmente
             headers=headers
         )
+        
+        if response.status_code != 201:
+            print(f"❌ Error al crear depósito: {response.status_code}")
+            print(f"Respuesta del servidor: {response.text}")
+            return None
+        
+        deposit = response.json()
+        deposit_id = deposit['id']
+        print(f"✅ Depósito creado con ID: {deposit_id}")
+        
+        # 2. Subir el archivo al bucket
+        bucket_url = deposit['links']['bucket']
+        filename = os.path.basename(file_path)
+        
+        print(f"⬆️ Subiendo archivo {filename}...")
+        
+        # Leer y subir el archivo en chunks para manejar archivos grandes
+        with open(file_path, 'rb') as file_obj:
+            upload_response = requests.put(
+                f"{bucket_url}/{filename}",
+                data=file_obj,
+                headers={"Authorization": f"Bearer {zenodo_token}"}
+            )
+        
+        if upload_response.status_code != 200:
+            print(f"❌ Error al subir archivo: {upload_response.status_code}")
+            print(f"Respuesta: {upload_response.text}")
+            return None
+        
+        print(f"✅ Archivo {filename} subido correctamente")
+        
+        # 3. Actualizar metadatos
+        metadata = {
+            "metadata": {
+                "title": f"Datos VIIRS {year}-{doy}",
+                "upload_type": "dataset",
+                "description": f"Datos de imágenes VIIRS para La Palma ({year}-{doy}). Filtrados por coordenadas y hora nocturna.",
+                "creators": [{"name": "Laura", "affiliation": "CSIC"}],
+                "keywords": ["VIIRS", "La Palma", "Remote Sensing", "Night Images"]
+            }
+        }
+        
+        update_response = requests.put(
+            deposit['links']['self'],
+            json=metadata,
+            headers=headers
+        )
+        
+        if update_response.status_code != 200:
+            print(f"⚠️ Error al actualizar metadatos: {update_response.status_code}")
+            print(f"Respuesta: {update_response.text}")
+        else:
+            print("✅ Metadatos actualizados correctamente")
+        
+        # 4. Opcional: Publicar el depósito automáticamente
+        # publish_response = requests.post(
+        #     deposit['links']['publish'],
+        #     headers=headers
+        # )
+        # if publish_response.status_code == 202:
+        #     print("🎉 Depósito publicado correctamente")
+        # else:
+        #     print(f"⚠️ Error al publicar: {publish_response.text}")
+        
+        return deposit['links']['html']  # Devuelve el enlace al depósito
     
-    if r.status_code != 200:
-        print(f"Error al subir archivo: {r.status_code} - {r.text}")
-        return
+    except Exception as e:
+        print(f"❌ Error inesperado: {str(e)}")
+        return None
+
+def download_file(url, destination):
+    """Descarga un archivo con manejo de errores y reintentos"""
+    max_retries = 3
+    retry_delay = 5  # segundos
     
-    print(f"Archivo {filename} subido correctamente")
-    
-    # Paso 4: Actualizar metadatos (opcional)
-    r = requests.put(
-        deposit['links']['self'],
-        json=deposit_data,
-        headers=headers
-    )
-    
-    if r.status_code != 200:
-        print(f"Error al actualizar metadatos: {r.status_code} - {r.text}")
-    
-    # Paso 5: Publicar (opcional)
-    # publish_url = deposit['links']['publish']
-    # r = requests.post(publish_url, headers=headers)
-    # if r.status_code == 202:
-    #     print("Depósito publicado correctamente")
-    # else:
-    #     print(f"Error al publicar: {r.status_code} - {r.text}")
-
-# Resto del código para descargar y procesar archivos (igual que antes)
-for product in PRODUCTS:
-    print(f"🔍 Buscando archivos de {product}...")
-
-    API_URL = f"https://ladsweb.modaps.eosdis.nasa.gov/api/v2/content/details/allData/{COLLECTION}/{product}/{year}/{doy}"
-    headers = {"Authorization": f"Bearer {TOKEN_EARTHDATA}"}
-    
-    try:
-        response = requests.get(API_URL, headers=headers)
-        response.raise_for_status()
-
-        file_list = response.json()
-        if not file_list['content']:
-            print(f"⚠️ No se encontraron archivos para {product} en {year}-{doy}")
-            continue
-
-        download_links = [file['downloadsLink'] for file in file_list['content']]
-
-        for link in download_links:
-            filename = link.split("/")[-1]
-            print(f"📥 Descargando {filename}...")
-
-            download_response = requests.get(link, headers={"Authorization": f"Bearer {TOKEN_EARTHDATA}"}, stream=True)
-            if download_response.status_code == 200:
-                temp_file_path = f"./{filename}"
-                with open(temp_file_path, "wb") as f:
-                    for chunk in download_response.iter_content(1024):
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(
+                url,
+                headers={"Authorization": f"Bearer {TOKEN_EARTHDATA}"},
+                stream=True
+            )
+            response.raise_for_status()
+            
+            with open(destination, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    if chunk:
                         f.write(chunk)
+            return True
+        
+        except requests.exceptions.RequestException as e:
+            print(f"⚠️ Intento {attempt + 1} fallido: {str(e)}")
+            if attempt < max_retries - 1:
+                print(f"Esperando {retry_delay} segundos antes de reintentar...")
+                time.sleep(retry_delay)
+    
+    return False
+
+def process_file(file_path):
+    """Procesa el archivo NetCDF y verifica las condiciones"""
+    try:
+        dataset = netCDF4.Dataset(file_path, 'r')
+        
+        # Obtener metadatos importantes
+        day_night_flag = dataset.getncattr('DayNightFlag')
+        south_bound = dataset.getncattr('SouthBoundingCoordinate')
+        north_bound = dataset.getncattr('NorthBoundingCoordinate')
+        west_bound = dataset.getncattr('WestBoundingCoordinate')
+        east_bound = dataset.getncattr('EastBoundingCoordinate')
+        
+        # Verificar condiciones
+        coordenadas_ok = (south_bound <= LAT_LA_PALMA_MAX and 
+                         north_bound >= LAT_LA_PALMA_MIN and
+                         west_bound <= LON_LA_PALMA_MAX and 
+                         east_bound >= LON_LA_PALMA_MIN)
+        
+        es_noche = day_night_flag == 'Night'
+        
+        dataset.close()
+        
+        return coordenadas_ok, es_noche
+    
+    except Exception as e:
+        print(f"❌ Error al procesar el archivo: {str(e)}")
+        return False, False
+
+def main():
+    print(f"🔍 Buscando datos VIIRS para {year}-{doy}")
+    
+    for product in PRODUCTS:
+        print(f"\n🛰 Procesando producto: {product}")
+        
+        # Obtener lista de archivos disponibles
+        api_url = f"https://ladsweb.modaps.eosdis.nasa.gov/api/v2/content/details/allData/{COLLECTION}/{product}/{year}/{doy}"
+        
+        try:
+            response = requests.get(
+                api_url,
+                headers={"Authorization": f"Bearer {TOKEN_EARTHDATA}"}
+            )
+            response.raise_for_status()
+            
+            file_list = response.json()
+            
+            if not file_list.get('content'):
+                print(f"⚠️ No se encontraron archivos para {product} en {year}-{doy}")
+                continue
+            
+            # Procesar cada archivo
+            for file_info in file_list['content']:
+                file_url = file_info['downloadsLink']
+                filename = file_url.split('/')[-1]
+                temp_path = os.path.join(".", filename)
                 
-                try:
-                    dataset = netCDF4.Dataset(temp_file_path, 'r')
-                    day_night_flag = dataset.getncattr('DayNightFlag')
-                    south_bound = dataset.getncattr('SouthBoundingCoordinate')
-                    north_bound = dataset.getncattr('NorthBoundingCoordinate')
-                    east_bound = dataset.getncattr('EastBoundingCoordinate')
-                    west_bound = dataset.getncattr('WestBoundingCoordinate')
+                print(f"\n📥 Descargando {filename}...")
+                
+                # Descargar el archivo
+                if not download_file(file_url, temp_path):
+                    print(f"❌ No se pudo descargar {filename}")
+                    continue
+                
+                # Procesar el archivo
+                print("🔍 Analizando archivo...")
+                coordenadas_ok, es_noche = process_file(temp_path)
+                
+                if coordenadas_ok and es_noche:
+                    print("✅ Cumple condiciones: Coordenadas OK y es de noche")
+                    print("🚀 Subiendo a Zenodo...")
+                    
+                    # Subir a Zenodo
+                    zenodo_link = upload_to_zenodo(temp_path, TOKEN_ZENODO)
+                    if zenodo_link:
+                        print(f"🌍 Enlace al depósito: {zenodo_link}")
+                    
+                    # Eliminar el archivo temporal después de subirlo
+                    os.remove(temp_path)
+                    break  # Solo subimos un archivo por producto
+                
+                else:
+                    print("❌ No cumple condiciones:")
+                    if not coordenadas_ok:
+                        print("- Fuera del área de La Palma")
+                    if not es_noche:
+                        print("- No es imagen nocturna")
+                    
+                    # Eliminar el archivo que no cumple las condiciones
+                    os.remove(temp_path)
+        
+        except requests.exceptions.RequestException as e:
+            print(f"❌ Error al obtener datos para {product}: {str(e)}")
+        except Exception as e:
+            print(f"❌ Error inesperado procesando {product}: {str(e)}")
 
-                    coordenadas_la_palma = (south_bound <= LAT_LA_PALMA_MAX and north_bound >= LAT_LA_PALMA_MIN and
-                                          west_bound <= LON_LA_PALMA_MAX and east_bound >= LON_LA_PALMA_MIN)
-                    es_noche = day_night_flag == 'Night'
-
-                    if coordenadas_la_palma and es_noche:
-                        print("✔️ El archivo cumple con las condiciones")
-                        upload_to_zenodo(temp_file_path, TOKEN_ZENODO)
-                        break
-                    else:
-                        if not coordenadas_la_palma:
-                            print("⚠️ Las coordenadas no están dentro de La Palma")
-                        if not es_noche:
-                            print("⚠️ El archivo no es de noche")
-                        os.remove(temp_file_path)
-
-                except Exception as e:
-                    print(f"⚠️ Error al procesar el archivo: {e}")
-                    os.remove(temp_file_path)
-
-            else:
-                print(f"⚠️ Error al descargar el archivo: {download_response.status_code}")
-
-    except requests.exceptions.RequestException as e:
-        print(f"⚠️ Error al obtener datos: {e}")
-
-print("✅ Proceso completado.")
+if __name__ == "__main__":
+    print("Iniciando proceso de descarga y subida a Zenodo")
+    print("="*50)
+    main()
+    print("\n✅ Proceso completado")
