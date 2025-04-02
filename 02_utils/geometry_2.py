@@ -1,40 +1,52 @@
 import pandas as pd
-import numpy as np
 import plotly.express as px
-import panel as pn
-import datetime
 import os
+from datetime import datetime, timedelta
+import numpy as np
 
-# Crear datos aleatorios de potencia radiativa
-np.random.seed(42)
-num_datos = 100
-fechas = pd.date_range(start='2024-01-01', periods=num_datos, freq='D')
-potencia_radiativa = np.random.uniform(10, 100, num_datos)
-df = pd.DataFrame({'Fecha': fechas, 'Potencia Radiativa': potencia_radiativa})
+# Configuración de paths
+CARPETA_IMAGENES = "Practicas_Empresa_CSIC/04_web/images"
+if not os.path.exists(CARPETA_IMAGENES):
+    os.makedirs(CARPETA_IMAGENES)
 
-# Widget para seleccionar el rango de fechas
-date_picker = pn.widgets.DateRangeSlider(
-    name='Selecciona el rango de fechas',
-    start=df['Fecha'].min(),
-    end=df['Fecha'].max(),
-    value=(df['Fecha'].min(), df['Fecha'].max())
-)
+ARCHIVO_SALIDA = os.path.join(CARPETA_IMAGENES, "potencia_radiativa.html")
 
-def actualizar_grafico(rango):
-    fecha_inicio, fecha_fin = rango
-    df_filtrado = df[(df['Fecha'] >= fecha_inicio) & (df['Fecha'] <= fecha_fin)]
-    fig = px.line(df_filtrado, x='Fecha', y='Potencia Radiativa', title='Potencia Radiativa vs. Tiempo')
-    return fig
+def generar_datos_aleatorios(dias=7):
+    """Genera datos aleatorios de ejemplo (serán reemplazados por tus datos reales)"""
+    fecha_inicio = datetime.now() - timedelta(days=dias)
+    timestamps = pd.date_range(fecha_inicio, periods=dias*24, freq='H')
+    potencia = np.random.uniform(50, 200, size=len(timestamps)) * \
+               (1 + 0.1 * np.sin(np.linspace(0, dias*np.pi, len(timestamps))))
+    
+    return pd.DataFrame({
+        'Fecha_Hora': timestamps,
+        'Potencia_Radiativa': potencia
+    })
 
-# Panel interactivo
-grafico = pn.bind(actualizar_grafico, date_picker)
-layout = pn.Column(date_picker, pn.panel(grafico))
+def crear_grafica_interactiva(df, dias):
+    """Crea y guarda la gráfica interactiva"""
+    fig = px.line(df, x='Fecha_Hora', y='Potencia_Radiativa',
+                  title=f'Potencia Radiativa vs Tiempo (Últimos {dias} días)',
+                  labels={'Potencia_Radiativa': 'Potencia (W/m²)', 'Fecha_Hora': 'Tiempo'},
+                  template='plotly_white')
+    
+    fig.update_layout(
+        hovermode="x unified",
+        xaxis_title="Fecha y Hora",
+        yaxis_title="Potencia Radiativa (W/m²)",
+        showlegend=False
+    )
+    
+    # Guardar como HTML interactivo
+    fig.write_html(ARCHIVO_SALIDA)
+    print(f"Gráfica guardada en: {ARCHIVO_SALIDA}")
 
-# Guardar HTML en carpeta específica
-output_folder = "Practicas_Empresa_CSIC/04_web/images"
-os.makedirs(output_folder, exist_ok=True)
-output_path = os.path.join(output_folder, "grafica_potencia.html")
-layout.save(output_path)
-
-print(f"Gráfica guardada en {output_path}")
-
+if __name__ == "__main__":
+    # Parámetro configurable - número de días a visualizar
+    DIAS_A_MOSTRAR = 7  # Puedes cambiar esto o hacerlo un parámetro de entrada
+    
+    # Generar datos (reemplazar con tus datos reales)
+    datos = generar_datos_aleatorios(DIAS_A_MOSTRAR)
+    
+    # Crear y guardar gráfica
+    crear_grafica_interactiva(datos, DIAS_A_MOSTRAR)
