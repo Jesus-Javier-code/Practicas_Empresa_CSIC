@@ -31,9 +31,10 @@ grafico = pn.bind(actualizar_grafico, date_picker)
 layout = pn.Column(date_picker, pn.panel(grafico))
 
 # Guardar HTML en carpeta específica
-output_folder = "graficas_generadas"
+output_folder = "Practicas_Empresa_CSIC/04_web/images"
 os.makedirs(output_folder, exist_ok=True)
 output_path = os.path.join(output_folder, "grafica_potencia.html")
 layout.save(output_path)
 
 print(f"Gráfica guardada en {output_path}")
+
