@@ -1,60 +1,59 @@
 ---
-title: " " 
+title: " "
 format: 
   dashboard:
     orientation: rows
-    scroll: true 
+    scroll: true
+    fillable: true
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
-    theme:
-      - flatly
+    theme: flatly
 logo: images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 
 <style>
-/* 1. Eliminar scroll en paneles y permitir expansión */
-.panel-card {
+/* RESET COMPLETO DE ESTILOS INTERFERENTES */
+.panel-card, .panel-tabset, .panel-grid, .panel-page {
   overflow: visible !important;
   height: auto !important;
-  min-height: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* 2. Configuración para iframes - ocupar todo el espacio */
+/* CONTENEDOR PRINCIPAL SIN RESTRICCIONES */
+.dashboard {
+  overflow-y: auto !important;
+  height: 100vh !important;
+}
+
+/* ESTILOS PARA IFRAMES (OCUPAN TODO EL ESPACIO) */
 iframe {
   width: 100% !important;
-  height: 100% !important;
-  min-height: 650px;
+  height: 70vh !important;
+  min-height: 600px;
   border: none !important;
   margin: 0 !important;
   padding: 0 !important;
   display: block !important;
 }
 
-/* 3. Habilita scroll solo a nivel de página */
-.dashboard {
-  overflow-y: auto !important;
-}
-
-/* 4. Asegurar que las columnas ocupen todo el espacio */
+/* COLUMNAS CON ALTURA COMPLETA */
 .column {
   height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-/* 5. Eliminar márgenes innecesarios */
-.panel-tabset, .panel-grid {
-  margin: 0 !important;
-  padding: 0 !important;
+/* ESTILOS ESPECÍFICOS PARA LA SECCIÓN DE MAPAS */
+.panel-tabset .columns {
+  height: 70vh !important;
+  min-height: 600px;
 }
 
-/* 6. Ajustar altura de las secciones */
-.panel-page {
-  min-height: 100vh !important;
-}
-
+/* ESTILOS DEL NAVBAR */
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
-
-/* ==== REEMPLAZO DEL TÍTULO ==== */
 .navbar-brand::after {
   content: "VOLCANA";
   font-family: 'Hippo Letto', sans-serif;
@@ -63,55 +62,19 @@ iframe {
   letter-spacing: 1px;
   margin-left: 10px;
 }
-
-/* Ocultamos el título vacío */
-.navbar-brand:not(:after) {
-  display: none;
-}
-
-/* ==== ESTILOS DEL BANNER ==== */
+.navbar-brand:not(:after) { display: none; }
 .navbar {
   background: rgb(251,235,207) !important;
   border-bottom: 3px solid #413224 !important;
 }
-
-/* ==== ESTILOS PRINCIPALES ==== */
-/* Texto del título */
-.navbar-brand {
-  color: #413224 !important;
-  font-weight: bold;
-}
-
-/* Pestañas normales */
-.navbar-nav .nav-link {
-  color: #413224 !important;
-  margin: 0 10px;
-  border-radius: 4px 4px 0 0;
-}
-
-/* Pestaña ACTIVA (seleccionada) */
+.navbar-brand { color: #413224 !important; font-weight: bold; }
+.navbar-nav .nav-link { color: #413224 !important; margin: 0 10px; border-radius: 4px 4px 0 0; }
 .navbar-nav .nav-link.active {
   background-color: #413224 !important;
   color: white !important;
 }
-
-/* Pestaña al pasar el ratón */
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
-}
-
-/* ==== ESTILOS PARA LOS MAPAS ==== */
-.html-widget {
-  background: transparent !important;
-  height: 100% !important;
-}
-
-/* Asegurar que el mapa ocupe todo el espacio */
-.plot-container {
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 </style>
 
@@ -122,58 +85,12 @@ import subprocess
 subprocess.run(["python", "../02_utils/geometry.py"], check=True)
 ```
 
-
-```{python}
-#| label: load-packages
-from plotnine import *
-import great_tables as gt
-import pandas as pd
-import glob
-from IPython.display import Image
-import os
-import plotly.io as pio
-from IPython.display import IFrame
-```
-
-
-# 🏝️ LA PALMA {#la-palma}
-
-## Potencia Radiativa {.panel-tabset}
-
-```{python}
-#| label: setup-potencia
-#| include: false
-import subprocess
-subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
-```
-
-```{python}
-#| label: display-potencia
-#| fig-cap: "Potencia Radiativa vs Tiempo"
-from IPython.display import IFrame
-IFrame("images/potencia_radiativa.html", width="100%", height="650px")
-```
-
-## Mapas {.columns .panel-grid} 
-### Mapa interactivo Tajogaite {.column .panel-card}
-```{python}
-#| label: mapa-tajogaite-main
-#| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
-IFrame("images/mapa_tajogaite.html", width="100%", height="650px")
-```
-### Mapa interactivo los alrededores {.column .panel-card}
-```{python}
-#| label: mapa-tajogaite-surroundings
-#| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
-IFrame("images/mapa_region_alrededor.html", width="100%", height="650px")
-```
-
 # 🌋 EL TEIDE
 
 ```{python}
 #| label: teide-analysis
 #| fig-cap: "Análisis de Potencia Radiativa - El Teide"
-display(Image(filename="images/graficamala.png", width=800))
+display(Image(filename="images/graficamala.png", width="100%"))
 ```
 
 # 🕳️ TERREMOTOS
@@ -181,5 +98,5 @@ display(Image(filename="images/graficamala.png", width=800))
 ```{python}
 #| label: earthquake-trigger-index
 #| fig-cap: "Trigger Index - Terremoto"
-display(Image(filename="images/thomas_paper.png", width=800))
+display(Image(filename="images/thomas_paper.png", width="100%"))
 ```
