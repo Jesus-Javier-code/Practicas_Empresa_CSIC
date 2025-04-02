@@ -3,7 +3,7 @@ from libcomcat.dataframes import get_summary_data_frame, get_magnitude_data_fram
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
-import io
+import os
 from IPython.display import display, HTML
 import pandas as pd
 from libcomcat.bin.getcsv import main
@@ -55,19 +55,31 @@ def search_params(date_i, date_f, min_mag, center_coords, reg_rad):
     )
 
     summary_events_df = get_summary_data_frame(events)
-
     detail_events_df = get_detail_data_frame(events, get_all_magnitudes= True)
 
     all_data = pd.merge(summary_events_df, detail_events_df, left_on="id", right_on="id", how="right")
 
-    all_data.to_csv(path_or_buf= "Practicas_Empresa_CSIC/00_data/eq_raw/dataframe.csv", header=True, index=False) [1]
-    #all_data = all_data.drop("url_x", axis= "columns")
-    #events_df = events_df.drop("alert", axis="columns")
-    #events_df = events_df.drop("eventtype", axis="columns")
-    #events_df = events_df.drop("significance", axis="columns")
-    #events_df = events_df.drop("location", axis="columns")
 
-    #all_data.to_csv("Jesus-Javier-code/Practicas_Empresa_CSIC/01_source/1/02_eq_download/datos_ejemplo.csv")
+    repo_path = "00_data/eq_raw/dataframe.csv"
+
+    os.makedirs(repo_path, exist_ok=True)
+
+
+    file_path = os.path.join(repo_path, "dataframe.csv")
+
+
+    all_data.to_csv(file_path, header=True, index=False)
+
+    print(f"Archivo guardado en: {file_path}")
+
+
+    #all_data.to_csv(path_or_buf= "Practicas_Empresa_CSIC/00_data/eq_raw/dataframe.csv", header=True, index=False) [1]
+    
+    
+    
+    
+    #all_data = all_data.drop("url_x", axis= "columns")
+
     return all_data
 
 
