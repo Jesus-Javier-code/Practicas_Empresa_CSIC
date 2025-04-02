@@ -1,4 +1,4 @@
-# geometry_2.py - Versión específica para TIRVolcH_La_Palma_Dataset.xlsx
+# geometry_2.py - Versión con puntos en lugar de líneas
 import pandas as pd
 import plotly.express as px
 import os
@@ -14,7 +14,7 @@ def main():
         os.makedirs(carpeta_imagenes, exist_ok=True)
         archivo_salida = os.path.join(carpeta_imagenes, "potencia_radiativa.html")
 
-        # Leer datos del Excel (hoja 'LaPalma_TIRVolcH_Filtered_Data')
+        # Leer datos del Excel
         df = pd.read_excel(data_path, sheet_name='LaPalma_TIRVolcH_Filtered_Data')
         
         # Limpiar y preparar datos
@@ -28,18 +28,30 @@ def main():
         df['Fecha_Hora'] = pd.to_datetime(df['Fecha_Hora'])
         df = df.sort_values('Fecha_Hora')
 
-        # Crear gráfica interactiva
-        fig = px.line(df, 
-                     x='Fecha_Hora', 
-                     y='Potencia_Radiativa',
-                     title='<b>Evolución Semanal de la Potencia Radiativa Máxima</b><br><sup>Volcán de La Palma (2021-2024)</sup>',
-                     template='plotly_white',
-                     labels={
-                         'Fecha_Hora': 'Fecha',
-                         'Potencia_Radiativa': 'Potencia Radiativa (MW)'
-                     },
-                     hover_data={'Fecha_Hora': '|%B %d, %Y'})
+        # Crear gráfica de puntos (scatter plot)
+        fig = px.scatter(df, 
+                        x='Fecha_Hora', 
+                        y='Potencia_Radiativa',
+                        title='<b>Potencia Radiativa Máxima Semanal</b><br><sup>Volcán de La Palma (2021-2024) - Datos Puntuales</sup>',
+                        template='plotly_white',
+                        labels={
+                            'Fecha_Hora': 'Fecha',
+                            'Potencia_Radiativa': 'Potencia Radiativa (MW)'
+                        },
+                        hover_data={'Fecha_Hora': '|%B %d, %Y'},
+                        opacity=0.7,
+                        size_max=10)
         
+        # Personalizar marcadores
+        fig.update_traces(
+            marker=dict(
+                size=8,
+                color='#E74C3C',  # Rojo volcánico
+                line=dict(width=1, color='DarkSlateGrey')
+            ),
+            selector=dict(mode='markers')
+        )
+
         # Personalizar diseño
         fig.update_layout(
             xaxis=dict(
@@ -77,7 +89,8 @@ def main():
             showarrow=True,
             arrowhead=1,
             ax=-50,
-            ay=-40
+            ay=-40,
+            font=dict(size=12, color="#E74C3C")
         )
 
         # Guardar gráfica
