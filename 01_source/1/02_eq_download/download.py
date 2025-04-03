@@ -36,6 +36,7 @@ def date_format(date):
 
 def search_params(date_i, date_f, min_mag, center_coords, reg_rad):
 
+    # Center coordinates must be given as (latitude, longitude) format
     lat_cent, lon_cent = center_coords
     lat_min, lat_max, lon_min, lon_max = limit_region_coords(lat_cent, lon_cent, reg_rad)
 
@@ -59,15 +60,27 @@ def search_params(date_i, date_f, min_mag, center_coords, reg_rad):
 
     all_data = pd.merge(summary_events_df, detail_events_df, left_on="id", right_on="id", how="right")
     
-    #PATH CORRECTO C:\Users\joel6\Practicas_Empresa_CSIC\00_data\eq_raw
+    # Absolute path of the current script
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    
+    # Relative path to the output directory
+    output_dir = os.path.join(base_path, "00_data", "eq_raw")
+    output_path = os.path.join(output_dir, "dataframe.csv")
 
-    output_path = r"C:\Users\joel6\Practicas_Empresa_CSIC\00_data\eq_raw\dataframe.csv"
+# NO HA FUNCIONADO REVISAR
+
+    # In case the directory does not exist, create it
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     all_data.to_csv(output_path, index= False)
 
+    df = pd.read_csv(output_path)
+
     print("The data has been saved in the following path: %s" %output_path)
 
-    return all_data
+    return df
+
+
+
 
 def download_by_mag_time(date_i, date_f, min_mag, center_coords, reg_rad):
 
@@ -131,4 +144,4 @@ def download_by_mag_time(date_i, date_f, min_mag, center_coords, reg_rad):
 
 
 
-search_params("2025-01-01 00:00", "2025-03-30 00:00", 6, (32.62691152238639, -116.34553204019909), 5000)
+search_params("2024-01-01 00:00", "2025-03-30 00:00", 6, (32.62691152238639, -116.34553204019909), 5000)
