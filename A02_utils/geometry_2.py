@@ -208,7 +208,7 @@ def main():
     try:
         # Configure paths
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        data_path = os.path.join(base_dir, "00_data", "raw", "TIRVolcH_La_Palma_Dataset.xlsx")
+        data_path = os.path.join(base_dir, "A00_data", "B_raw", "TIRVolcH_La_Palma_Dataset.xlsx")
         images_folder = os.path.join(base_dir, "A04_web", "B_images")
         os.makedirs(images_folder, exist_ok=True)
         
