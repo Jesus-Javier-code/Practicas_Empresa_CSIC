@@ -2,7 +2,6 @@ import os
 import requests
 import netCDF4
 from datetime import datetime, timedelta
-import time
 import logging
 
 # Configuración de logging
@@ -145,7 +144,7 @@ def descargar_y_validar_archivos(productos, collection, prefijo, year, doy):
                 filename = file_url.split('/')[-1]
                 filepath = os.path.join(output_dir, filename)
                 
-                logger.info(f"Descargando {filename}...")
+                logger.info(f"Descargandoo {filename}...")
                 
                 # Descargar archivo
                 download_response = requests.get(
@@ -231,3 +230,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
