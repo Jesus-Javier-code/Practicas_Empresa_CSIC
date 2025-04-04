@@ -244,3 +244,11 @@
 2025-04-04 12:19:11,749 - INFO - Procesando datos para 2025-04-03
 2025-04-04 12:19:12,106 - ERROR - Error al crear depósito: 403 - {"status": 403, "message": "Permission denied."}
 2025-04-04 12:19:12,108 - ERROR - No se pudo crear el depósito en Zenodo. Abortando...
+2025-04-04 12:19:42,355 - INFO - === Inicio del proceso ===
+2025-04-04 12:19:42,356 - INFO - Procesando datos para 2025-04-03
+2025-04-04 12:19:42,693 - ERROR - Error al crear depósito: 403 - {"status": 403, "message": "Permission denied."}
+2025-04-04 12:19:42,693 - ERROR - No se pudo crear el depósito en Zenodo. Abortando...
+2025-04-04 12:20:31,709 - INFO - === Inicio del proceso ===
+2025-04-04 12:20:31,711 - INFO - Procesando datos para 2025-04-03
+2025-04-04 12:20:32,108 - ERROR - Error al crear depósito: 403 - {"status": 403, "message": "Permission denied."}
+2025-04-04 12:20:32,110 - ERROR - No se pudo crear el depósito en Zenodo. Abortando...
