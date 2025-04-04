@@ -258,8 +258,8 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 # Configuración - REEMPLAZA CON TUS TOKENS REALES
-TOKEN_EARTHDATA = "tu_token_earthdata"  # Token de NASA Earthdata
-TOKEN_ZENODO = "tu_token_zenodo"        # Token de Zenodo
+TOKEN_EARTHDATA = "eyJ0eXAiOiJKV1QiLCJvcmlnaW4iOiJFYXJ0aGRhdGEgTG9naW4iLCJzaWciOiJlZGxqd3RwdWJrZXlfb3BzIiwiYWxnIjoiUlMyNTYifQ.eyJ0eXBlIjoiVXNlciIsInVpZCI6Im1vbmljYW1hcmlucyIsImV4cCI6MTc0NzY0NTM3NCwiaWF0IjoxNzQyNDYxMzc0LCJpc3MiOiJodHRwczovL3Vycy5lYXJ0aGRhdGEubmFzYS5nb3YiLCJpZGVudGl0eV9wcm92aWRlciI6ImVkbF9vcHMiLCJhY3IiOiJlZGwiLCJhc3N1cmFuY2VfbGV2ZWwiOjN9.j63ZKbiDQ3j7C4bbRUJEQWCMnsC3SLesLvVQuJrudNHw69IoLvX-CW70BhHiQFYC8jVn0XPRKHptlgNp4yCBEwtLdXoTswsEDD9YhaCFOcZEyRA0nG-RXlYO6gcy8Gv9avn3qU6jb9-nUDN0HaWHJUW3tL0aBgTDaY0mkCbOWHxCmGl51aHR0icdAv_G4aJJ1bz5t0f4mactbJht-9t0b2HAZ0iR7T1KAY2ZaBChwwlLkWCKf5N6ffBSWBM9QB_fYQhnkXVnyTIRztx3Z2wZkDiGwQobOPTd3gryH0vx3-dxVV08tXz-PWftVmyRqfZz7smbnaznAlB1MGuo-zBH0A"  # Token de NASA Earthdata
+TOKEN_ZENODO = "v6TqZXbwEaV7Gb8ObiHvNz2YSpqKpnuCcy75TlFwVl9wmaCxH4YdJLq8omAj"        # Token de Zenodo
 
 # Productos VIIRS
 PRODUCTS_VJ = ["VJ102IMG", "VJ103IMG"]
