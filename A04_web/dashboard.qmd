@@ -134,7 +134,11 @@ IFrame("images/mapa_tajogaite.html", width="100%", height="400px")
 #| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
 IFrame("images/mapa_region_alrededor.html", width="100%", height="400px")
 ```
-
+```{python}
+#| label: topografia-3d
+#| fig-cap: "Modelo 3D simplificado del Volcán Tajogaite"
+IFrame("images/volcano_3d_model.html", width="100%", height="550px")
+```
 # 🌋 EL TEIDE
 
 ```{python}
