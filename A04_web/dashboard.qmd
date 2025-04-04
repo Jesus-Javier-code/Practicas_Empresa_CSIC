@@ -87,7 +87,7 @@ img {
 #| label: setup-script
 #| include: false
 import subprocess
-subprocess.run(["python", "../02_utils/geometry.py"], check=True)
+subprocess.run(["python", "../A02_utils/geometry.py"], check=True)
 ```
 
 
@@ -112,7 +112,7 @@ from IPython.display import IFrame
 #| label: setup-potencia
 #| include: false
 import subprocess
-subprocess.run(["python", "../02_utils/geometry_2.py"], check=True)
+subprocess.run(["python", "../A02_utils/geometry_2.py"], check=True)
 ```
 
 ```{python}
