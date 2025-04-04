@@ -1,4 +1,6 @@
-# geometry_2.py - Versión con datos topográficos reales
+
+# geometry_2.py - Versión con colada real de 2021
+import json
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -6,7 +8,112 @@ import numpy as np
 import os
 import sys
 from datetime import datetime
+from shapely.geometry import Polygon
+from shapely.geometry import Point
 
+# Configuración de la colada
+LAVA_THICKNESS = 30  # Espesor promedio en metros
+LAVA_COLORSCALE = [[0, 'rgb(180,40,30)'], [1, 'rgb(100,20,10)']]  # Color lava
+
+def load_lava_perimeter():
+    """Cargar el perímetro de la colada desde el GeoJSON"""
+    try:
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        geojson_path = os.path.join(base_dir, "A00_data", "B_raw", "perimetro_dron_211123.geojson")
+        
+        with open(geojson_path) as f:
+            data = json.load(f)
+        
+        # Extraer coordenadas del polígono principal
+        coordinates = data['features'][0]['geometry']['coordinates'][0]
+        return np.array(coordinates)
+    
+    except Exception as e:
+        print(f"Error cargando GeoJSON: {str(e)}")
+        return None
+
+def create_lava_mask(lon_grid, lat_grid, dem_transform=None):
+    """Crear máscara para la colada de lava"""
+    lava_coords = load_lava_perimeter()
+    if lava_coords is None:
+        return None
+    
+    # Crear polígono Shapely
+    polygon = Polygon(lava_coords)
+    
+    # Convertir coordenadas a puntos en la rejilla
+    mask = np.zeros_like(lon_grid, dtype=bool)
+    
+    # Ajustar según si es DEM real o simulado
+    if dem_transform is None:  # Datos simulados
+        lon_min, lon_max = -18.10, -17.60
+        lat_min, lat_max = 28.40, 28.90
+    else:  # Datos reales
+        lon_min, lat_min = dem_transform * (0, 0)
+        lon_max, lat_max = dem_transform * (lon_grid.shape[1], lon_grid.shape[0])
+    
+    # Generar máscara
+    for i in range(lon_grid.shape[0]):
+        for j in range(lon_grid.shape[1]):
+            point = (lon_grid[i,j], lat_grid[i,j])
+            if polygon.contains(Point(point)):
+                mask[i,j] = True
+                
+    return mask
+
+def generate_3d_la_palma_model(output_file):
+    """Generate 3D model with real lava flow"""
+    lon_grid, lat_grid, z_real = load_real_dem_data()
+    dem_transform = None
+    
+    if z_real is None:
+        # Crear datos simulados
+        lat = np.linspace(28.40, 28.90, 300)
+        lon = np.linspace(-18.10, -17.60, 300)
+        lon_grid, lat_grid = np.meshgrid(lon, lat)
+        
+        # ... [resto de la simulación topográfica existente] ...
+    
+    # Crear máscara de la colada
+    lava_mask = create_lava_mask(lon_grid, lat_grid, dem_transform)
+    
+    # Aplicar espesor de lava
+    if lava_mask is not None:
+        lava_flow = np.where(lava_mask, z_real + LAVA_THICKNESS if z_real is not None else z + LAVA_THICKNESS, np.nan)
+    else:
+        lava_flow = np.full_like(z_real if z_real is not None else z, np.nan)
+    
+    # ... [resto del código de visualización existente] ...
+    
+    # Modificar el trace de la lava
+    if np.any(~np.isnan(lava_flow)):
+        fig.add_trace(go.Surface(
+            z=lava_flow,
+            x=lon_grid,
+            y=lat_grid,
+            colorscale=LAVA_COLORSCALE,
+            name='Colada 2021',
+            showscale=False,
+            opacity=0.95,
+            surfacecolor=np.ones_like(lava_flow),
+            lighting=dict(
+                ambient=0.7,
+                diffuse=0.5,
+                roughness=0.9,
+                specular=0.1
+            ),
+            contours_z=dict(
+                show=True, 
+                width=2, 
+                color='rgb(80,20,10)',
+                highlightcolor="rgb(200,50,30)",
+                highlightwidth=3
+            )
+        ))
+
+    # ... [resto del layout] ...
+
+# ... [resto del código main() sin cambios] ...
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot"""
     fig = px.scatter(df, 
