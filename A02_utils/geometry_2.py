@@ -1,4 +1,3 @@
-
 # geometry_2.py - Versión con colada real de 2021
 import json
 import pandas as pd
@@ -72,20 +71,56 @@ def generate_3d_la_palma_model(output_file):
         lon = np.linspace(-18.10, -17.60, 300)
         lon_grid, lat_grid = np.meshgrid(lon, lat)
         
-        # ... [resto de la simulación topográfica existente] ...
+        # Base elevation (sea level)
+        base_elev = 0
+        
+        # Simulate the whole island topography with improved accuracy
+        # 1. Main ridge (Cumbre Vieja + Cumbre Nueva)
+        ridge_dist = np.sqrt((lat_grid-28.58)**2 + (lon_grid+17.85)**2)
+        z_ridge = 2400 * np.exp(-ridge_dist/0.035)  # Más realista
+        
+        # 2. Caldera de Taburiente (more accurate shape)
+        caldera_dist = np.sqrt((lat_grid-28.73)**2 + (lon_grid+17.88)**2)
+        z_caldera = np.where(caldera_dist < 0.025, 
+                            -900 * (1 - caldera_dist/0.025)**2,  # Forma más real
+                            0)
+        
+        # 3. Tajogaite volcano (2021 eruption) - more accurate cone
+        volcano_dist = np.sqrt((lat_grid-28.66)**2 + (lon_grid+17.81)**2)
+        z_volcano = np.where(volcano_dist < 0.02, 
+                            1000 * (1 - volcano_dist/0.02)**2,  # Forma real
+                            0)
+        
+        # Combining the different terrain features
+        z = base_elev + z_ridge + z_caldera + z_volcano
+    else:
+        # Use real DEM data if available
+        z = z_real
     
     # Crear máscara de la colada
     lava_mask = create_lava_mask(lon_grid, lat_grid, dem_transform)
     
     # Aplicar espesor de lava
     if lava_mask is not None:
-        lava_flow = np.where(lava_mask, z_real + LAVA_THICKNESS if z_real is not None else z + LAVA_THICKNESS, np.nan)
+        lava_flow = np.where(lava_mask, z + LAVA_THICKNESS, np.nan)
     else:
-        lava_flow = np.full_like(z_real if z_real is not None else z, np.nan)
+        lava_flow = np.full_like(z, np.nan)
     
-    # ... [resto del código de visualización existente] ...
-    
-    # Modificar el trace de la lava
+    # Visualización 3D de La Palma
+    fig = go.Figure()
+
+    # Agregar la superficie de la isla
+    fig.add_trace(go.Surface(
+        z=z,
+        x=lon_grid,
+        y=lat_grid,
+        colorscale='Viridis',
+        opacity=0.7,
+        surfacecolor=z,
+        name='Topografía'
+    ))
+
+    # Agregar la superficie de la lava
     if np.any(~np.isnan(lava_flow)):
         fig.add_trace(go.Surface(
             z=lava_flow,
@@ -111,9 +146,20 @@ def generate_3d_la_palma_model(output_file):
             )
         ))
 
-    # ... [resto del layout] ...
+    fig.update_layout(
+        scene=dict(
+            xaxis=dict(title='Longitud'),
+            yaxis=dict(title='Latitud'),
+            zaxis=dict(title='Elevación'),
+            aspectmode='cube'
+        ),
+        title='Modelo 3D de La Palma',
+        margin=dict(l=0, r=0, b=0, t=40),
+        showlegend=True
+    )
 
-# ... [resto del código main() sin cambios] ...
+    fig.write_html(output_file)
+
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot"""
     fig = px.scatter(df, 
@@ -217,212 +263,14 @@ def load_real_dem_data():
     
     return None, None, None
 
-def generate_3d_la_palma_model(output_file):
-    """Generate 3D model of La Palma island with real or simulated data"""
-    # Try to load real DEM data first
-    lon_grid, lat_grid, z_real = load_real_dem_data()
-    
-    if z_real is None:
-        # Create simulated data if real DEM not available
-        print("Generando modelo con datos topográficos simulados...")
-        
-        # Coordinates for La Palma island (whole island)
-        lat = np.linspace(28.40, 28.90, 300)  # Alta resolución
-        lon = np.linspace(-18.10, -17.60, 300)
-        lon_grid, lat_grid = np.meshgrid(lon, lat)
-        
-        # Base elevation (sea level)
-        base_elev = 0
-        
-        # Simulate the whole island topography with improved accuracy
-        # 1. Main ridge (Cumbre Vieja + Cumbre Nueva)
-        ridge_dist = np.sqrt((lat_grid-28.58)**2 + (lon_grid+17.85)**2)
-        z_ridge = 2400 * np.exp(-ridge_dist/0.035)  # Más realista
-        
-        # 2. Caldera de Taburiente (more accurate shape)
-        caldera_dist = np.sqrt((lat_grid-28.73)**2 + (lon_grid+17.88)**2)
-        z_caldera = np.where(caldera_dist < 0.025, 
-                            -900 * (1 - caldera_dist/0.025)**2,  # Forma más real
-                            0)
-        
-        # 3. Tajogaite volcano (2021 eruption) - more accurate cone
-        volcano_dist = np.sqrt((lat_grid-28.613)**2 + (lon_grid+17.873)**2)
-        z_volcano = 500 * np.exp(-volcano_dist/0.0025)  # Cono más pronunciado
-        
-        # 4. Add secondary peaks
-        roque_dist = np.sqrt((lat_grid-28.75)**2 + (lon_grid+17.89)**2)
-        z_roque = 600 * np.exp(-roque_dist/0.01)  # Roque de los Muchachos
-        
-        # Combine all elements with weighted contributions
-        z = base_elev + z_ridge*0.7 + z_volcano + z_caldera + z_roque*0.5
-        
-        # Add realistic terrain noise
-        z += 100 * (np.sin(lon_grid*15) * np.cos(lat_grid*15))
-        
-        # Ensure sea level at 0
-        z = np.maximum(z, 0)
-    else:
-        print("Usando datos DEM reales para el modelo 3D")
-        z = z_real
-    
-    # Lava flows simulation (2021 eruption) - georeferenced
-    lava_mask = ((lat_grid > 28.60) & (lat_grid < 28.63) & 
-                (lon_grid > -17.88) & (lon_grid < -17.82))
-    lava_flow = np.where(lava_mask, z + 5 + 3*np.random.rand(*z.shape), np.nan)  # 5-8m thick
-
-    fig = go.Figure()
-    
-    # Custom colorscale based on real elevation colors
-    colorscale = [
-        [0.00, 'rgb(12,51,131)'],    # Mar profundo
-        [0.01, 'rgb(57,144,218)'],   # Mar costero
-        [0.02, 'rgb(234,236,198)'],  # Playa
-        [0.05, 'rgb(169,204,153)'],  # Vegetación baja
-        [0.15, 'rgb(88,161,75)'],    # Zonas medias
-        [0.30, 'rgb(35,89,44)'],     # Montaña
-        [0.60, 'rgb(102,60,20)'],    # Alta montaña 
-        [1.00, 'rgb(150,150,150)']   # Cumbres
-    ]
-    
-    # Island terrain
-    fig.add_trace(go.Surface(
-        z=z,
-        x=lon_grid,
-        y=lat_grid,
-        colorscale=colorscale,
-        name='Relieve',
-        showscale=True,
-        opacity=1,
-        contours_z=dict(
-            show=True, 
-            width=3, 
-            color='#413224',
-            highlightcolor="#E74C3C",
-            highlightwidth=5
-        ),
-        lighting=dict(
-            ambient=0.8,
-            diffuse=0.6,
-            fresnel=0.2,
-            roughness=0.8,
-            specular=0.2
-        )
-    ))
-    
-    # Lava flows with realistic texture
-    if np.any(~np.isnan(lava_flow)):
-        fig.add_trace(go.Surface(
-            z=lava_flow,
-            x=lon_grid,
-            y=lat_grid,
-            colorscale=[[0, 'rgb(200,50,30)'], [1, 'rgb(100,20,10)']],
-            name='Coladas 2021',
-            showscale=False,
-            opacity=0.9,
-            surfacecolor=np.ones_like(lava_flow),
-            lighting=dict(
-                ambient=0.7,
-                diffuse=0.7,
-                roughness=0.9,
-                specular=0.1
-            )
-        ))
-
-    # Layout configuration
-    fig.update_layout(
-        title='<b>Modelo 3D Topográfico de La Palma</b><br>'
-              '<sup>Datos del IGN y simulaciones de la erupción</sup>',
-        scene=dict(
-            xaxis_title='Longitud Oeste',
-            yaxis_title='Latitud Norte',
-            zaxis_title='Altitud (msnm)',
-            aspectratio=dict(x=1.8, y=1, z=0.3),
-            camera=dict(
-                eye=dict(x=1.5, y=-1.8, z=0.6),  # Vista desde el SW
-                up=dict(x=0, y=0, z=1),
-                center=dict(x=0, y=0, z=-0.2)
-            ),
-            zaxis=dict(
-                range=[-1000 if z_real is None else np.nanmin(z), 
-                      2500 if z_real is None else np.nanmax(z)],
-                nticks=10,
-                backgroundcolor='rgb(200,230,255)'
-            ),
-            xaxis=dict(
-                gridcolor='rgba(100,100,100,0.2)',
-                showspikes=False
-            ),
-            yaxis=dict(
-                gridcolor='rgba(100,100,100,0.2)',
-                showspikes=False
-            )
-        ),
-        margin=dict(l=0, r=0, b=0, t=50),
-        legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1,
-            bgcolor='rgba(255,255,255,0.7)'
-        ),
-        coloraxis_colorbar=dict(
-            title='Altitud (m)',
-            thickness=25,
-            len=0.6,
-            yanchor='top',
-            y=0.8,
-            xanchor='left',
-            x=1.05
-        )
-    )
-    
-    fig.write_html(output_file, include_plotlyjs='cdn')
-
-def main():
-    try:
-        # Configure paths
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        data_path = os.path.join(base_dir, "A00_data", "B_raw", "TIRVolcH_La_Palma_Dataset.xlsx")
-        images_folder = os.path.join(base_dir, "A04_web", "B_images")
-        os.makedirs(images_folder, exist_ok=True)
-        
-        # 1. Generate radiative power plot
-        df = pd.read_excel(data_path, sheet_name='LaPalma_TIRVolcH_Filtered_Data')
-        df = df[['Date', 'Weekly_Max_VRP_TIR (MW)']].dropna()
-        df = df.rename(columns={
-            'Date': 'DateTime',
-            'Weekly_Max_VRP_TIR (MW)': 'Radiative_Power'
-        })
-        df['DateTime'] = pd.to_datetime(df['DateTime'])
-        df = df.sort_values('DateTime')
-        
-        generate_radiative_power_plot(
-            df, 
-            os.path.join(images_folder, "potencia_radiativa.html")
-        )
-        
-        # 2. Generate 3D model (will use real DEM if available)
-        generate_3d_la_palma_model(
-            os.path.join(images_folder, "la_palma_3d.html")
-        )
-        
-        print(f"\nVisualizaciones generadas en: {images_folder}")
-        print(f"- Gráfico de potencia radiativa: potencia_radiativa.html")
-        print(f"- Modelo 3D de La Palma: la_palma_3d.html\n")
-        
-        # Instructions if DEM file not found
-        if not os.path.exists(os.path.join(base_dir, "A00_data", "B_raw", "DEM_LaPalma.tif")):
-            print("Para mayor precisión, descargue datos DEM del IGN y guárdelos como:")
-            print("A00_data/B_raw/DEM_LaPalma.tif")
-            print("Enlace recomendado: https://www.ign.es/web/ign/portal/descargas-territorio")
-        
-        return True
-        
-    except Exception as e:
-        print(f"Error: {str(e)}", file=sys.stderr)
-        return False
-
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+    # Generación del modelo 3D
+    output_file = "output/la_palma_3d_model.html"
+    generate_3d_la_palma_model(output_file)
+    print(f"Modelo 3D generado y guardado en {output_file}")
+    
+    # Generación de gráfico de potencia radiativa
+    data = pd.read_csv('radiative_power_data.csv')
+    radiative_power_file = "output/radiative_power_plot.html"
+    generate_radiative_power_plot(data, radiative_power_file)
+    print(f"Gráfico de potencia radiativa guardado en {radiative_power_file}")
