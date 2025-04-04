@@ -12,13 +12,13 @@ def generate_radiative_power_plot(df, output_file):
     fig = px.scatter(df, 
                     x='DateTime', 
                     y='Radiative_Power',
-                    title='<b>Weekly Maximum Radiative Power</b><br><sup>La Palma Volcano (2021-2024) - Point Data</sup>',
+                    title='<b>Potencia Radiativa Semanal Máxima</b><br><sup>Volcán de La Palma (2021-2024)</sup>',
                     template='plotly_white',
                     labels={
-                        'DateTime': 'Date',
-                        'Radiative_Power': 'Radiative Power (MW)'
+                        'DateTime': 'Fecha',
+                        'Radiative_Power': 'Potencia Radiativa (MW)'
                     },
-                    hover_data={'DateTime': '|%B %d, %Y'},
+                    hover_data={'DateTime': '|%d/%m/%Y'},
                     opacity=0.7,
                     size_max=10)
     
@@ -26,8 +26,8 @@ def generate_radiative_power_plot(df, output_file):
     fig.update_traces(
         marker=dict(
             size=6,
-            color='#413224',
-            line=dict(width=1, color='DarkSlateGrey')
+            color='#E74C3C',  # Rojo volcánico
+            line=dict(width=1, color='#413224')  # Borde marrón
         ),
         selector=dict(mode='markers')
     )
@@ -37,26 +37,31 @@ def generate_radiative_power_plot(df, output_file):
         xaxis=dict(
             rangeselector=dict(
                 buttons=list([
-                    dict(count=1, label="1 month", step="month", stepmode="backward"),
-                    dict(count=6, label="6 months", step="month", stepmode="backward"),
-                    dict(count=1, label="1 year", step="year", stepmode="backward"),
-                    dict(step="all", label="All")
+                    dict(count=1, label="1 mes", step="month", stepmode="backward"),
+                    dict(count=6, label="6 meses", step="month", stepmode="backward"),
+                    dict(count=1, label="1 año", step="year", stepmode="backward"),
+                    dict(step="all", label="Todo")
                 ]),
                 bgcolor='#f7f7f7'
             ),
             rangeslider=dict(visible=True),
             type="date",
-            title_text='Date'
+            title_text='Fecha'
         ),
         yaxis=dict(
-            title_text='Radiative Power (MW)',
+            title_text='Potencia Radiativa (MW)',
             gridcolor='#f0f0f0'
         ),
         hovermode="x unified",
         plot_bgcolor='white',
         margin=dict(l=50, r=50, b=80, t=100),
         title_x=0.5,
-        title_font=dict(size=20)
+        title_font=dict(size=20),
+        hoverlabel=dict(
+            bgcolor="white",
+            font_size=12,
+            font_family="Arial"
+        )
     )
 
     # Add maximum value annotation
@@ -65,96 +70,135 @@ def generate_radiative_power_plot(df, output_file):
     fig.add_annotation(
         x=max_date,
         y=max_power,
-        text=f"Maximum: {max_power:.0f} MW",
+        text=f"Máximo: {max_power:.0f} MW",
         showarrow=True,
         arrowhead=1,
         ax=-50,
         ay=-40,
-        font=dict(size=12, color="#E74C3C")
+        font=dict(size=12, color="#E74C3C"),
+        bordercolor="#413224",
+        borderwidth=1,
+        borderpad=4,
+        bgcolor="white"
     )
 
     fig.write_html(output_file, include_plotlyjs='cdn')
 
-def generate_3d_volcano_model(output_file):
-    """Generate simplified 3D volcano model"""
-    # Coordinates around Tajogaite volcano (approximate)
-    lat = np.linspace(28.55, 28.65, 100)
-    lon = np.linspace(-17.9, -17.8, 100)
+def generate_3d_la_palma_model(output_file):
+    """Generate 3D model of La Palma island"""
+    # Coordinates for La Palma island (whole island)
+    lat = np.linspace(28.40, 28.90, 200)  # Mayor resolución
+    lon = np.linspace(-18.10, -17.60, 200)
     lon_grid, lat_grid = np.meshgrid(lon, lat)
     
-    # Base elevation (meters)
-    base_elev = 700
+    # Base elevation (sea level)
+    base_elev = 0
     
-    # Volcano cone simulation (Gaussian shape)
-    distance = np.sqrt((lat_grid-28.613)**2 + (lon_grid+17.873)**2)
-    z = base_elev + 400 * np.exp(-distance/0.01)
+    # Simulate the whole island topography
+    # 1. Main ridge (Cumbre Vieja + Cumbre Nueva)
+    ridge_dist = np.sqrt((lat_grid-28.58)**2 + (lon_grid+17.85)**2)
+    z_ridge = 2400 * np.exp(-ridge_dist/0.04)  # Más alto y estrecho
     
-    # Simulate lava flows (adjust these parameters as needed)
-    lava1 = np.where((lat_grid > 28.60) & (lat_grid < 28.62) & (lon_grid > -17.88),
-                    z - 50 + 20*np.random.rand(*z.shape), np.nan)
+    # 2. Caldera de Taburiente
+    caldera_dist = np.sqrt((lat_grid-28.73)**2 + (lon_grid+17.88)**2)
+    z_caldera = np.where(caldera_dist < 0.025, 
+                        -800 * (1 - caldera_dist/0.025),  # Más profunda
+                        0)
     
-    lava2 = np.where((lat_grid > 28.59) & (lat_grid < 28.61) & (lon_grid > -17.87),
-                    z - 30 + 15*np.random.rand(*z.shape), np.nan)
+    # 3. Tajogaite volcano (2021 eruption)
+    volcano_dist = np.sqrt((lat_grid-28.613)**2 + (lon_grid+17.873)**2)
+    z_volcano = 600 * np.exp(-volcano_dist/0.003)  # Más pronunciado
+    
+    # Combine all elements
+    z = base_elev + z_ridge + z_volcano + z_caldera
+    
+    # Lava flows simulation (2021 eruption) - Más precisión geográfica
+    lava_mask = ((lat_grid > 28.60) & (lat_grid < 28.63) & 
+                (lon_grid > -17.88) & (lon_grid < -17.82))
+    lava_flow = np.where(lava_mask, z - 30 + 10*np.random.rand(*z.shape), np.nan)
 
     fig = go.Figure()
     
-    # Terrain surface
+    # Island terrain with custom colorscale
     fig.add_trace(go.Surface(
         z=z,
         x=lon_grid,
         y=lat_grid,
-        colorscale='Viridis',
-        name='Terrain',
-        showscale=False,
-        opacity=0.9,
-        contours_z=dict(show=True, width=5)
+        colorscale=[
+            [0, 'rgb(12,51,131)'],    # Mar profundo
+            [0.01, 'rgb(75,154,212)'], # Mar costero
+            [0.02, 'rgb(237,248,217)'], # Playa
+            [0.1, 'rgb(166,219,160)'],  # Vegetación baja
+            [0.3, 'rgb(26,152,80)'],    # Vegetación media
+            [0.6, 'rgb(102,60,20)'],    # Montaña baja
+            [1.0, 'rgb(60,30,10)']      # Montaña alta
+        ],
+        name='Relieve',
+        showscale=True,
+        opacity=1,
+        contours_z=dict(
+            show=True, 
+            width=3, 
+            color='#413224',  # Color marrón
+            highlightcolor="#E74C3C"  # Color rojo para resaltar
+        )
     ))
     
-    # Lava flows
-    fig.add_trace(go.Surface(
-        z=lava1,
-        x=lon_grid,
-        y=lat_grid,
-        colorscale='OrRd',
-        name='Sep-Oct 2021 Flow',
-        showscale=False,
-        opacity=0.7
-    ))
-    
-    fig.add_trace(go.Surface(
-        z=lava2,
-        x=lon_grid,
-        y=lat_grid,
-        colorscale='OrRd',
-        name='Nov-Dec 2021 Flow',
-        showscale=False,
-        opacity=0.7
-    ))
+    # Lava flows with better visualization
+    if np.any(~np.isnan(lava_flow)):
+        fig.add_trace(go.Surface(
+            z=lava_flow,
+            x=lon_grid,
+            y=lat_grid,
+            colorscale=[
+                [0, 'rgb(250,50,10)'],  # Rojo intenso
+                [1, 'rgb(150,20,5)']    # Rojo oscuro
+            ],
+            name='Coladas 2021',
+            showscale=False,
+            opacity=0.85,
+            surfacecolor=np.ones_like(lava_flow)  # Color uniforme
+        ))
 
     # Layout configuration
     fig.update_layout(
-        title='<b>3D Simplified Model: Tajogaite Volcano</b><br>'
-              '<sup>Approximate topography with simulated lava flows</sup>',
+        title='<b>Modelo 3D de La Palma</b><br>'
+              '<sup>Topografía completa con la erupción del Tajogaite</sup>',
         scene=dict(
-            xaxis_title='Longitude',
-            yaxis_title='Latitude',
-            zaxis_title='Elevation (m)',
-            aspectratio=dict(x=1.5, y=1, z=0.3),
+            xaxis_title='Longitud Oeste',
+            yaxis_title='Latitud Norte',
+            zaxis_title='Elevación (m)',
+            aspectratio=dict(x=1.8, y=1, z=0.25),  # Formato más panorámico
             camera=dict(
-                eye=dict(x=1.5, y=1.5, z=0.8),
-                up=dict(x=0, y=0, z=1)
+                eye=dict(x=1.8, y=1.8, z=0.7),  # Vista más aérea
+                up=dict(x=0, y=0, z=1),
+                center=dict(x=0, y=0, z=-0.1)
             ),
-            xaxis=dict(gridcolor='rgba(0,0,0,0)'),
-            yaxis=dict(gridcolor='rgba(0,0,0,0)'),
-            zaxis=dict(gridcolor='rgba(0,0,0,0)')
+            zaxis=dict(
+                range=[-1000, 2500],  # Incluye la caldera
+                nticks=10,
+                backgroundcolor='rgb(200,230,255)'
+            ),
+            xaxis=dict(gridcolor='rgba(0,0,0,0.1)'),
+            yaxis=dict(gridcolor='rgba(0,0,0,0.1)')
         ),
-        margin=dict(l=0, r=0, b=0, t=40),
+        margin=dict(l=0, r=0, b=0, t=50),
         legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=1.02,
+            y=1.05,
             xanchor="right",
-            x=1
+            x=1,
+            bgcolor='rgba(255,255,255,0.7)'
+        ),
+        coloraxis_colorbar=dict(
+            title='Altitud (m)',
+            thickness=25,
+            len=0.6,
+            yanchor='top',
+            y=0.8,
+            xanchor='left',
+            x=1.05
         )
     )
     
@@ -162,10 +206,10 @@ def generate_3d_volcano_model(output_file):
 
 def main():
     try:
-        # Configure paths - MODIFIED FOR NEW FOLDER STRUCTURE
+        # Configure paths
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        data_path = os.path.join(base_dir, "A00_data", "B_raw", "TIRVolcH_La_Palma_Dataset.xlsx")
-        images_folder = os.path.join(base_dir, "A04_web", "B_images")  # Changed path
+        data_path = os.path.join(base_dir, "00_data", "raw", "TIRVolcH_La_Palma_Dataset.xlsx")
+        images_folder = os.path.join(base_dir, "A04_web", "B_images")
         os.makedirs(images_folder, exist_ok=True)
         
         # 1. Generate radiative power plot
@@ -180,17 +224,17 @@ def main():
         
         generate_radiative_power_plot(
             df, 
-            os.path.join(images_folder, "radiative_power.html")
+            os.path.join(images_folder, "potencia_radiativa.html")
         )
         
-        # 2. Generate simplified 3D model
-        generate_3d_volcano_model(
-            os.path.join(images_folder, "volcano_3d_model.html")
+        # 2. Generate 3D model
+        generate_3d_la_palma_model(
+            os.path.join(images_folder, "la_palma_3d.html")
         )
         
-        print(f"Visualizations generated in: {images_folder}")
-        print(f"- Radiative power plot: radiative_power.html")
-        print(f"- 3D volcano model: volcano_3d_model.html")
+        print(f"Visualizaciones generadas en: {images_folder}")
+        print(f"- Gráfico de potencia radiativa: potencia_radiativa.html")
+        print(f"- Modelo 3D de La Palma: la_palma_3d.html")
         return True
         
     except Exception as e:

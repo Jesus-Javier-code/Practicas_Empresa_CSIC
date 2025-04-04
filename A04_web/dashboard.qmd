@@ -8,7 +8,7 @@ format:
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
       - flatly
-logo: images/Banner_Volcana_Grande.png
+logo: B_images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 
