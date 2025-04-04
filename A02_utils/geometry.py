@@ -70,7 +70,7 @@ def geo_map(pos1, pos2, zone, output_file):
     grid(fig, lat_min, lat_max, lon_min, lon_max)
     
     # Guardar el mapa
-    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../04_web/images")
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../A04_web/B_images")
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, output_file)
     

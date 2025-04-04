@@ -162,10 +162,10 @@ def generate_3d_volcano_model(output_file):
 
 def main():
     try:
-        # Configure paths
+        # Configure paths - MODIFIED FOR NEW FOLDER STRUCTURE
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        data_path = os.path.join(base_dir, "00_data", "raw", "TIRVolcH_La_Palma_Dataset.xlsx")
-        images_folder = os.path.join(base_dir, "04_web", "images")
+        data_path = os.path.join(base_dir, "A00_data", "B_raw", "TIRVolcH_La_Palma_Dataset.xlsx")
+        images_folder = os.path.join(base_dir, "A04_web", "B_images")  # Changed path
         os.makedirs(images_folder, exist_ok=True)
         
         # 1. Generate radiative power plot
