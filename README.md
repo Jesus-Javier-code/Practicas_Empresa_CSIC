@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Jesus-Javier-code/Practicas_Empresa_CSIC/main/04_web/images/Banner_Volcana.png" alt="Volcano Banner" width="800">
+  <img src="https://raw.githubusercontent.com/Jesus-Javier-code/Practicas_Empresa_CSIC/main/A04_web/B_images/Banner_Volcana.png" alt="Volcano Banner" width="800">
 </p>
 
 <h1 align="center">Volcanic Data Analysis for Canary Islands</h1>
