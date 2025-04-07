@@ -1,0 +1,265 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \" \" \n",
+        "format: \n",
+        "  dashboard:\n",
+        "    orientation: rows\n",
+        "    scroll: false  # Desactivamos el scroll global\n",
+        "    nav-buttons: [github]\n",
+        "    github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git\n",
+        "    theme:\n",
+        "      - flatly\n",
+        "logo: images/Banner_Volcana_Grande.png\n",
+        "logo-alt: \"CSIC logo.\"\n",
+        "---\n",
+        "\n",
+        "\n",
+        "<style>\n",
+        "/* RESET GENERAL */\n",
+        "body, html, .dashboard {\n",
+        "  overflow: visible !important;\n",
+        "  height: auto !important;\n",
+        "}\n",
+        "\n",
+        "/* ELIMINAR TODOS LOS SCROLLS */\n",
+        ".panel-card, .cell-output, .cell, .panel-card-body {\n",
+        "  overflow: visible !important;\n",
+        "  height: auto !important;\n",
+        "}\n",
+        "\n",
+        "/* IFRAMES COMPACTOS */\n",
+        "iframe {\n",
+        "  width: 100% !important;\n",
+        "  height: 400px !important;  /* Altura más pequeña */\n",
+        "  border: none !important;\n",
+        "  margin: 0 !important;\n",
+        "  padding: 0 !important;\n",
+        "  display: block !important;\n",
+        "}\n",
+        "\n",
+        "/* IMÁGENES RESPONSIVAS */\n",
+        "img {\n",
+        "  max-width: 100% !important;\n",
+        "  height: auto !important;\n",
+        "  display: block !important;\n",
+        "  margin: 0 auto !important;\n",
+        "}\n",
+        "\n",
+        "/* COLUMNAS IGUALES */\n",
+        ".columns {\n",
+        "  display: flex;\n",
+        "  gap: 15px;\n",
+        "}\n",
+        "\n",
+        ".column {\n",
+        "  flex: 1;\n",
+        "}\n",
+        "\n",
+        "/* ESTILOS DEL HEADER (igual que antes) */\n",
+        "@import url('https://fonts.cdnfonts.com/css/hippo-lettro');\n",
+        ".navbar-brand::after {\n",
+        "  content: \"VOLCANA\";\n",
+        "  font-family: 'Hippo Letto', sans-serif;\n",
+        "  color: #413224;\n",
+        "  font-size: 1.8rem;\n",
+        "  letter-spacing: 1px;\n",
+        "  margin-left: 10px;\n",
+        "}\n",
+        ".navbar-brand:not(:after) { display: none; }\n",
+        ".navbar {\n",
+        "  background: rgb(251,235,207) !important;\n",
+        "  border-bottom: 3px solid #413224 !important;\n",
+        "}\n",
+        ".navbar-brand { color: #413224 !important; }\n",
+        ".navbar-nav .nav-link {\n",
+        "  color: #413224 !important;\n",
+        "  margin: 0 10px;\n",
+        "  border-radius: 4px 4px 0 0;\n",
+        "}\n",
+        ".navbar-nav .nav-link.active {\n",
+        "  background-color: #413224 !important;\n",
+        "  color: white !important;\n",
+        "}\n",
+        ".navbar-nav .nav-link:hover:not(.active) {\n",
+        "  background-color: rgba(65,50,36,0.1) !important;\n",
+        "}\n",
+        "</style>\n"
+      ],
+      "id": "40d752f3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: setup-script\n",
+        "#| include: false\n",
+        "import subprocess\n",
+        "subprocess.run([\"python\", \"../A02_utils/geometry.py\"], check=True)"
+      ],
+      "id": "setup-script",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: load-packages\n",
+        "from plotnine import *\n",
+        "import great_tables as gt\n",
+        "import pandas as pd\n",
+        "import glob\n",
+        "from IPython.display import Image\n",
+        "import os\n",
+        "import plotly.io as pio\n",
+        "from IPython.display import IFrame"
+      ],
+      "id": "load-packages",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 🏝️ LA PALMA {#la-palma}\n",
+        "\n",
+        "## Potencia Radiativa {.panel-tabset}\n"
+      ],
+      "id": "b376a85a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: setup-potencia\n",
+        "#| include: false\n",
+        "import subprocess\n",
+        "subprocess.run([\"python\", \"../A02_utils/geometry_2.py\"], check=True)"
+      ],
+      "id": "setup-potencia",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: display-potencia\n",
+        "#| fig-cap: Potencia Radiativa vs Tiempo\n",
+        "IFrame(\"images/radiative_power.html\", width=\"100%\", height=\"400px\")"
+      ],
+      "id": "display-potencia",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Mapas \n",
+        "### Mapa interactivo Tajogaite "
+      ],
+      "id": "9c6c11a9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: mapa-tajogaite-main\n",
+        "#| fig-cap: Mapa interactivo del Volcán de Tajogaite\n",
+        "IFrame(\"images/mapa_tajogaite.html\", width=\"100%\", height=\"400px\")"
+      ],
+      "id": "mapa-tajogaite-main",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Mapa interactivo los alrededores "
+      ],
+      "id": "1e6d661d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: mapa-tajogaite-surroundings\n",
+        "#| fig-cap: Mapa interactivo de los alrededores del Volcán de Tajogaite\n",
+        "IFrame(\"images/mapa_region_alrededor.html\", width=\"100%\", height=\"400px\")"
+      ],
+      "id": "mapa-tajogaite-surroundings",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: topografia-3d\n",
+        "#| fig-cap: Modelo 3D simplificado del Volcán Tajogaite\n",
+        "IFrame(\"images/volcano_3d_model.html\", width=\"100%\", height=\"500px\")"
+      ],
+      "id": "topografia-3d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 🌋 EL TEIDE\n"
+      ],
+      "id": "f2370bfe"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: teide-analysis\n",
+        "#| fig-cap: Análisis de Potencia Radiativa - El Teide\n",
+        "display(Image(filename=\"images/graficamala.png\", width=\"80%\"))"
+      ],
+      "id": "teide-analysis",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 🕳️ TERREMOTOS\n"
+      ],
+      "id": "803d051f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| label: earthquake-trigger-index\n",
+        "#| fig-cap: Trigger Index - Terremoto\n",
+        "display(Image(filename=\"images/thomas_paper.png\", width=\"80%\"))"
+      ],
+      "id": "earthquake-trigger-index",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Users\\joel6\\AppData\\Local\\Programs\\Python\\Python313\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
