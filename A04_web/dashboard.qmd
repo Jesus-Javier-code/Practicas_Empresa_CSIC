@@ -101,67 +101,59 @@ img {
   min-height: calc(100vh - 120px);
 }
 
+/* LOGO HOMEPAGE */
+/* LOGO HOMEPAGE */
+.homepage-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 .homepage-logo {
-  width: 100px !important; /* Tamaño reducido */
-  height: 100px !important;
-  margin: 0.5rem auto 1rem !important;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 0.5rem;
   object-fit: contain;
   border-radius: 50%;
 }
 
-.homepage-title {
-  font-family: 'Hippo Letto', sans-serif;
-  color: #413224;
-  font-size: 2rem;
+.volcana-title {
+  height: 50px; /* Ajusta según necesidad */
   margin-bottom: 1rem;
 }
 
-.homepage-subtitle {
-  color: #5D4037;
-  font-size: 1.1rem;
-  max-width: 800px;
-  margin: 0 auto 2rem;
-}
-
-.homepage-section {
-  background-color: rgba(255,255,255,0.7);
-  border-radius: 12px !important; /* Esquinas más redondeadas */
-  padding: 1.5rem;
-  margin: 1.5rem auto;
-  max-width: 800px;
-}
-
-.homepage-text {
-  color: #5D4037;
-  line-height: 1.6;
-  text-align: left;
-  font-size: 0.95rem;
-}
-
-/* LOGOS INSTITUCIONALES */
+/* LOGOS INSTITUCIONALES - FLEX FIXED */
 .institutional-logos {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
   margin: 2rem auto;
-  flex-wrap: wrap;
+  padding: 15px 0;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  width: 90%;
   max-width: 800px;
 }
 
 .institutional-logo {
-  height: 60px;
+  height: 50px;
   width: auto;
-  opacity: 0.8;
-  transition: opacity 0.3s;
+  max-width: 120px;
+  object-fit: contain;
+  transition: transform 0.3s;
 }
 
 .institutional-logo:hover {
-  opacity: 1;
+  transform: scale(1.05);
 }
 
-/* ELIMINAR PESTAÑA HOME DEL NAV */
-.navbar-nav li:first-child {
-  display: none;
+/* FORZAR DISPOSICIÓN HORIZONTAL */
+.institutional-logos-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 </style>
 
@@ -189,13 +181,12 @@ from IPython.display import IFrame, HTML
 ```{python}
 #| label: homepage-content
 #| echo: false
-#| label: homepage-content
-#| echo: false
 HTML(f"""
 <div class="homepage">
-  <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
-  <h1 class="homepage-title">VOLCANA</h1>
-  <p class="homepage-subtitle">CSIC Volcanic Monitoring System</p>
+  <div class="homepage-header">
+    <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
+    <img src="B_images/Volcana_letras.png" alt="VOLCANA" class="volcana-title">
+  </div>
   
   <div class="homepage-section">
     <h2>About the Project</h2>
@@ -237,10 +228,12 @@ HTML(f"""
     </p>
   </div>
   
-  <div class="institutional-logos">
-    <img src="B_images/Logotipo_del_CSIC.png" alt="CSIC Logo" class="institutional-logo">
-    <img src="B_images/Logo-Ipna-Secic.png" alt="IPNA-CSIC Logo" class="institutional-logo">
-    <img src="B_images/logo-ull.png" alt="ULL Logo" class="institutional-logo">
+  <div class="institutional-logos-container">
+    <div class="institutional-logos">
+      <img src="B_images/Logotipo_del_CSIC.png" alt="CSIC Logo" class="institutional-logo">
+      <img src="B_images/Logo-Ipna-Secic.png" alt="IPNA-CSIC Logo" class="institutional-logo">
+      <img src="B_images/logo-ull.png" alt="ULL Logo" class="institutional-logo">
+    </div>
   </div>
 </div>
 """)
