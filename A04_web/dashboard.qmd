@@ -102,8 +102,10 @@ img {
 }
 
 .homepage-logo {
-  max-width: 150px; /* Tamaño reducido */
-  margin: 1rem auto;
+  width: 100px !important; /* Tamaño reducido */
+  height: 100px !important;
+  margin: 0.5rem auto 1rem !important;
+  object-fit: contain;
   border-radius: 50%;
 }
 
@@ -123,7 +125,7 @@ img {
 
 .homepage-section {
   background-color: rgba(255,255,255,0.7);
-  border-radius: 8px;
+  border-radius: 12px !important; /* Esquinas más redondeadas */
   padding: 1.5rem;
   margin: 1.5rem auto;
   max-width: 800px;
@@ -134,6 +136,27 @@ img {
   line-height: 1.6;
   text-align: left;
   font-size: 0.95rem;
+}
+
+/* LOGOS INSTITUCIONALES */
+.institutional-logos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+.institutional-logo {
+  height: 60px;
+  width: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.institutional-logo:hover {
+  opacity: 1;
 }
 
 /* ELIMINAR PESTAÑA HOME DEL NAV */
@@ -163,42 +186,65 @@ from IPython.display import IFrame, HTML
 ```
 
 # 🏝️ HOMEPAGE {.homepage}
-
 ```{python}
+#| label: homepage-content
+#| echo: false
 #| label: homepage-content
 #| echo: false
 HTML(f"""
 <div class="homepage">
-  <img src="B_images/Logo_Volcana.jpeg" alt="VolCana Logo" class="homepage-logo">
+  <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
   <h1 class="homepage-title">VOLCANA</h1>
   <p class="homepage-subtitle">CSIC Volcanic Monitoring System</p>
   
   <div class="homepage-section">
     <h2>About the Project</h2>
     <p class="homepage-text">
-      This CSIC research project aims to monitor and analyze volcanic activity in the Canary Islands, 
-      with special focus on the Tajogaite volcano eruption in La Palma (2021) and Teide volcano surveillance in Tenerife.
+      This research project, developed by the CSIC, focuses on the monitoring and analysis of volcanic activity in the Canary Islands. 
+      The project particularly investigates the Tajogaite volcano eruption in La Palma in 2021, as well as continuous monitoring of the Teide volcano in Tenerife.
     </p>
     <p class="homepage-text">
-      Our multidisciplinary team combines remote sensing techniques, data analysis and scientific visualization 
-      to better understand volcanic processes and improve early warning systems.
+      Our team, in collaboration with the <a href="https://www.csic.es/es" target="_blank">CSIC</a> and the <a href="https://www.ull.es/" target="_blank">University of La Laguna</a>, combines various techniques such as remote sensing, data analysis, 
+      and scientific visualization to better understand volcanic processes and improve early warning systems.
     </p>
   </div>
   
   <div class="homepage-section">
-    <h2>Scientific Content</h2>
+    <h2>Project Goals</h2>
     <p class="homepage-text">
-      <strong>La Palma:</strong> Radiative power data, interactive maps and eruption evolution.
+      <strong>Volcanic Monitoring:</strong> We aim to analyze brightness temperature and radiance patterns, 
+      model post-eruption lava cooling curves (from the 2021 La Palma eruption), and monitor the fumarole fields of Teide volcano using thermal infrared data.
     </p>
     <p class="homepage-text">
-      <strong>El Teide:</strong> Activity analysis and monitoring parameters.
+      <strong>Seismic-Volcanic Relationships:</strong> We focus on the global analysis of earthquake-eruption correlations, 
+      statistical modeling of eruption triggers, and case studies of notable volcanic eruption sequences.
     </p>
     <p class="homepage-text">
-      <strong>Earthquakes:</strong> Seismic monitoring related to volcanic activity.
+      <strong>Technical Development:</strong> We are developing Python-based tools for satellite data processing, automated visualization pipelines, 
+      and machine learning models to aid in eruption prediction and risk assessment.
     </p>
+  </div>
+  
+  <div class="homepage-section">
+    <h2>Data Sources</h2>
+    <p class="homepage-text">
+      The primary data sources for this project include:
+      <ul>
+        <li><strong>NASA LAADS DAAC</strong> (MODIS/VIIRS data)</li>
+        <li><strong>Copernicus Open Access Hub</strong> (Sentinel satellite data)</li>
+        <li><strong>USGS Volcano Hazards Program</strong> (Seismic and volcanic data)</li>
+      </ul>
+    </p>
+  </div>
+  
+  <div class="institutional-logos">
+    <img src="B_images/Logotipo_del_CSIC.png" alt="CSIC Logo" class="institutional-logo">
+    <img src="B_images/Logo-Ipna-Secic.png" alt="IPNA-CSIC Logo" class="institutional-logo">
+    <img src="B_images/logo-ull.png" alt="ULL Logo" class="institutional-logo">
   </div>
 </div>
 """)
+
 ```
 
 # 🏝️ LA PALMA {#la-palma}
