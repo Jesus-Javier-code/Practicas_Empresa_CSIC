@@ -11,8 +11,11 @@ format:
 logo: B_images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
-
 <style>
+/* SOLUCIÓN: OCULTAR SOLO LA PESTAÑA HOMEPAGE */
+.navbar-nav li:has(a[href="#homepage"]) {
+  display: none !important;
+}
 /* RESET GENERAL */
 body, html, .dashboard {
   overflow: visible !important;
@@ -101,59 +104,66 @@ img {
   min-height: calc(100vh - 120px);
 }
 
-/* LOGO HOMEPAGE */
-/* LOGO HOMEPAGE */
-.homepage-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
 
+
+
+/* LOGO HOMEPAGE */
 .homepage-logo {
-  width: 140px;
-  height: 140px;
-  margin-bottom: 0.5rem;
-  object-fit: contain;
-  border-radius: 50%;
+  width: 250px !important;
+  height: 250px !important;
+  margin: 0.5rem auto 0.5rem !important;
+  border-radius: 50% !important; /* Hace el logo redondeado */
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Añade transición suave */
 }
 
 .volcana-title {
-  height: 50px; /* Ajusta según necesidad */
-  margin-bottom: 1rem;
+  height: 120px !important;  /* Más pequeño */
+  margin-bottom: 1.5rem !important;
 }
 
-/* LOGOS INSTITUCIONALES - FLEX FIXED */
+/* RESTAURAR RECUADROS BLANCOS */
+.homepage-section {
+  background-color: rgba(255,255,255,0.7) !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  margin: 1.5rem auto !important;
+  max-width: 800px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+/* LOGOS INSTITUCIONALES - SIN FONDO */
 .institutional-logos {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 10px 0 !important;
+}
+
+/* FORZAR ALINEACIÓN HORIZONTAL */
+.institutional-logos-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
+}
+
+.institutional-logos {
+  display: inline-flex !important;
+  flex-wrap: nowrap !important;
   gap: 30px;
-  margin: 2rem auto;
-  padding: 15px 0;
-  background-color: rgba(255,255,255,0.7);
-  border-radius: 12px;
-  width: 90%;
-  max-width: 800px;
+  margin: 1rem auto;
+  padding: 0 !important;
 }
 
 .institutional-logo {
-  height: 50px;
+  height: 45px !important;
   width: auto;
-  max-width: 120px;
-  object-fit: contain;
-  transition: transform 0.3s;
+  max-width: 100px;
+  transition: all 0.3s ease; /* Transición para animación */
+  filter: grayscale(30%); /* Efecto inicial */
 }
 
 .institutional-logo:hover {
-  transform: scale(1.05);
-}
-
-/* FORZAR DISPOSICIÓN HORIZONTAL */
-.institutional-logos-container {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  transform: scale(1.1) translateY(-5px); /* Efecto de levitación */
+  filter: grayscale(0%) drop-shadow(0 5px 5px rgba(0,0,0,0.2)); /* Más color y sombra */
 }
 </style>
 
@@ -187,12 +197,16 @@ HTML(f"""
     <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
     <img src="B_images/Volcana_letras.png" alt="VOLCANA" class="volcana-title">
   </div>
-  
+
   <div class="homepage-section">
     <h2>About the Project</h2>
     <p class="homepage-text">
       This research project, developed by the CSIC, focuses on the monitoring and analysis of volcanic activity in the Canary Islands. 
       The project particularly investigates the Tajogaite volcano eruption in La Palma in 2021, as well as continuous monitoring of the Teide volcano in Tenerife.
+    </p>
+    <p class="homepage-text">
+      <strong>We are Physics students from the University of La Laguna</strong>, currently undertaking our <strong>company internship program (Prácticas de Empresa)</strong>. 
+      This project is part of our training and academic development.
     </p>
     <p class="homepage-text">
       Our team, in collaboration with the <a href="https://www.csic.es/es" target="_blank">CSIC</a> and the <a href="https://www.ull.es/" target="_blank">University of La Laguna</a>, combines various techniques such as remote sensing, data analysis, 
@@ -209,6 +223,10 @@ HTML(f"""
     <p class="homepage-text">
       <strong>Seismic-Volcanic Relationships:</strong> We focus on the global analysis of earthquake-eruption correlations, 
       statistical modeling of eruption triggers, and case studies of notable volcanic eruption sequences.
+    </p>
+    <p class="homepage-text">
+      <strong>Seismic Filtering for Volcanic Activation:</strong> Part of our work involves filtering and analyzing seismic data 
+      to identify earthquake patterns that could potentially lead to volcanic activation, helping to assess early warning signs.
     </p>
     <p class="homepage-text">
       <strong>Technical Development:</strong> We are developing Python-based tools for satellite data processing, automated visualization pipelines, 
@@ -230,13 +248,20 @@ HTML(f"""
   
   <div class="institutional-logos-container">
     <div class="institutional-logos">
-      <img src="B_images/Logotipo_del_CSIC.png" alt="CSIC Logo" class="institutional-logo">
-      <img src="B_images/Logo-Ipna-Secic.png" alt="IPNA-CSIC Logo" class="institutional-logo">
-      <img src="B_images/logo-ull.png" alt="ULL Logo" class="institutional-logo">
+      <a href="https://www.csic.es/es" target="_blank" class="institutional-logo-link">
+        <img src="B_images/Logotipo_del_CSIC.png" alt="CSIC Logo" class="institutional-logo">
+      </a>
+      <a href="https://www.ipna.csic.es/" target="_blank" class="institutional-logo-link">
+        <img src="B_images/Logo-Ipna-Secic.png" alt="IPNA-CSIC Logo" class="institutional-logo">
+      </a>
+      <a href="https://www.ull.es/" target="_blank" class="institutional-logo-link">
+        <img src="B_images/logo-ull.png" alt="ULL Logo" class="institutional-logo">
+      </a>
     </div>
   </div>
 </div>
 """)
+
 
 ```
 
