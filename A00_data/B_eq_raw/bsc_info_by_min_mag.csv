@@ -1,0 +1,279 @@
+id,time,location,latitude,longitude,depth,magnitude,alert,url,eventtype,significance
+us7000pnj1,2025-03-29 04:53:59.357000+00:00,"27 km SSW of Blowing Point Village, Anguilla",17.9374,-63.1482,98.021,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pnj1,earthquake,307
+us7000pnbl,2025-03-28 10:35:10.664000+00:00,northern East Pacific Rise,10.0431,-103.7767,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pnbl,earthquake,354
+us7000pn6k,2025-03-27 22:42:43.910000+00:00,"13 km NE of Coyuquilla Norte, Mexico",17.4564,-100.9598,63.044,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pn6k,earthquake,312
+us7000pmzs,2025-03-27 06:57:16.277000+00:00,"52 km NNW of Sandy Ground Village, Anguilla",18.6221,-63.3266,50.36,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pmzs,earthquake,279
+us7000pmup,2025-03-26 17:15:21.007000+00:00,"3 km WSW of Aratoca, Colombia",6.6852,-73.0502,164.935,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pmup,earthquake,284
+us7000pmr4,2025-03-26 13:28:02.815000+00:00,"54 km ENE of Navarro, Peru",-6.1416,-75.2971,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pmr4,earthquake,326
+us6000q3rc,2025-03-25 22:08:06.919000+00:00,"46 km W of Mosquera, Colombia",2.5577,-78.8646,10.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000q3rc,earthquake,312
+ak0253v98jlf,2025-03-25 20:31:36.209000+00:00,"74 km WNW of Petersville, Alaska",62.6823,-152.1637,3.1,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0253v98jlf,earthquake,259
+us6000q3pn,2025-03-24 21:43:45.964000+00:00,"4 km NW of Aratoca, Colombia",6.7294,-73.0444,163.299,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000q3pn,earthquake,298
+us7000pm6s,2025-03-24 08:05:25.033000+00:00,"14 km WSW of San Agustín, El Salvador",13.3929,-88.732,165.709,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pm6s,earthquake,271
+us7000pm64,2025-03-24 05:46:51.845000+00:00,"190 km S of Burica, Panama",6.3398,-82.5454,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pm64,earthquake,298
+us7000pm52,2025-03-24 03:16:13.272000+00:00,"199 km SSE of Burica, Panama",6.266,-82.5083,10.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pm52,earthquake,369
+at00sthakw,2025-03-21 14:50:56+00:00,"111 km SE of Burica, Panama",7.2,-82.3,10.0,6.5,,https://earthquake.usgs.gov/earthquakes/eventpage/at00sthakw,earthquake,650
+us7000pllt,2025-03-21 14:50:51.098000+00:00,"120 km SSE of Burica, Panama",7.0486,-82.3966,10.0,6.2,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pllt,earthquake,641
+us7000plhg,2025-03-21 02:36:42.667000+00:00,"96 km SE of False Pass, Alaska",54.1413,-162.5548,35.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000plhg,earthquake,259
+pr2025079006,2025-03-20 22:45:34.100000+00:00,"143 km NNE of Vieques, Puerto Rico",19.6356,-65.347,64.0,4.05,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025079006,earthquake,252
+us7000ple0,2025-03-20 18:14:47.329000+00:00,"114 km S of Burica, Panama",7.0073,-82.7554,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000ple0,earthquake,355
+pr2025079004,2025-03-20 09:06:24.370000+00:00,"1 km ESE of Indios, Puerto Rico",17.992,-66.809,13.0,4.4,green,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025079004,earthquake,349
+us6000pzy8,2025-03-20 08:15:17.239000+00:00,"50 km SW of Puerto El Triunfo, El Salvador",12.9316,-88.8536,55.725,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pzy8,earthquake,386
+pr2025078002,2025-03-19 18:50:25.130000+00:00,"6 km W of San Rafael del Yuma, Dominican Republic",18.4413,-68.7381,116.0,4.15,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025078002,earthquake,265
+us7000pn4a,2025-03-19 16:52:35.070000+00:00,"0 km WNW of La Uvilla, Dominican Republic",18.3643,-71.218,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pn4a,earthquake,284
+us6000pzpr,2025-03-19 05:04:25.114000+00:00,off the coast of Ecuador,1.1313,-85.2599,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pzpr,earthquake,354
+us6000pzpd,2025-03-19 02:47:45.620000+00:00,"2 km S of Soyapango, El Salvador",13.6904,-89.1411,150.798,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pzpd,earthquake,355
+us6000pzn9,2025-03-18 22:10:21.205000+00:00,"98 km SW of Jiquilillo, Nicaragua",12.1716,-88.1442,35.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pzn9,earthquake,326
+us6000pzjv,2025-03-18 10:50:37.874000+00:00,"68 km WNW of San Alejandro, Peru",-8.6587,-75.8152,108.853,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pzjv,earthquake,271
+us6000pzam,2025-03-17 09:50:25.992000+00:00,Revilla Gigedo Islands region,19.58,-108.9472,10.0,5.5,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pzam,earthquake,466
+us6000pza2,2025-03-17 07:40:29.519000+00:00,Revilla Gigedo Islands region,19.698,-109.0009,10.0,5.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pza2,earthquake,400
+ak0253hrz0l8,2025-03-17 05:25:54.142000+00:00,"31 km SSW of Kaktovik, Alaska",69.8577,-143.8404,14.9,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0253hrz0l8,earthquake,259
+nc75149826,2025-03-17 02:13:44.980000+00:00,"9 km NNE of Lake Pillsbury, CA",39.4915,-122.948333333333,10.63,4.18,green,https://earthquake.usgs.gov/earthquakes/eventpage/nc75149826,earthquake,312
+us6000pz8x,2025-03-17 02:00:41.534000+00:00,"148 km SW of Jiquilillo, Nicaragua",11.8426,-88.4581,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pz8x,earthquake,271
+ak0253g7eroz,2025-03-16 10:25:21.907000+00:00,"90 km SSE of Perryville, Alaska",55.1198,-158.8421,14.8,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0253g7eroz,earthquake,312
+us6000pz2y,2025-03-15 21:00:24.682000+00:00,"53 km SW of Champerico, Guatemala",13.9004,-92.1936,30.168,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pz2y,earthquake,284
+us6000pz0x,2025-03-15 11:38:52.572000+00:00,"44 km S of El Rosario, El Salvador",13.1054,-89.0989,62.907,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pz0x,earthquake,246
+us6000pz0i,2025-03-15 09:19:12.076000+00:00,"4 km NE of Villanueva, Colombia",6.6997,-73.1497,160.676,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pz0i,earthquake,312
+us6000pyzt,2025-03-15 05:11:13.818000+00:00,"50 km NNE of Savannah Bight, Honduras",16.8832,-85.7152,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pyzt,earthquake,355
+hv74634117,2025-03-15 03:25:19.800000+00:00,"53 km W of Hawaiian Ocean View, Hawaii",19.056,-156.269333333333,38.76,4.41,green,https://earthquake.usgs.gov/earthquakes/eventpage/hv74634117,earthquake,351
+us6000pyyq,2025-03-15 03:19:27.376000+00:00,"5 km ESE of San Miguel Achiutla, Mexico",17.2871,-97.44,63.551,5.6,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pyyq,earthquake,504
+us6000pyuq,2025-03-14 15:05:41.043000+00:00,"2 km WNW of Nuevo Progreso, Guatemala",14.7958,-91.9391,94.373,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pyuq,earthquake,298
+ak0253bfth7a,2025-03-13 22:04:45.475000+00:00,"89 km NNE of Ambler, Alaska",67.8308,-157.0621,9.8,5.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0253bfth7a,earthquake,400
+ak0253b89ez8,2025-03-13 09:34:09.207000+00:00,"55 km E of Teller, Alaska",65.2098,-165.179,12.4,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0253b89ez8,earthquake,248
+us6000pyjd,2025-03-13 09:07:49.078000+00:00,"89 km SW of Corinto, Nicaragua",11.9506,-87.7905,55.067,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pyjd,earthquake,298
+us6000pyfy,2025-03-12 19:36:44.712000+00:00,"41 km SW of Puerto El Triunfo, El Salvador",13.0264,-88.8295,59.335,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pyfy,earthquake,259
+us6000pyfk,2025-03-12 19:00:33.793000+00:00,"209 km SW of George Town, Cayman Islands",17.7756,-82.5673,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pyfk,earthquake,286
+ak02539pgcbe,2025-03-12 17:29:50.597000+00:00,"56 km WSW of Point Hope, Alaska",68.213,-168.0594,38.5,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ak02539pgcbe,earthquake,385
+us6000pybx,2025-03-12 15:14:24.793000+00:00,"60 km E of San Fernando, Peru",-8.3635,-73.9883,183.395,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pybx,earthquake,312
+us6000py8v,2025-03-12 03:58:56.028000+00:00,"15 km SW of Santa Teresa, Nicaragua",11.6499,-86.3175,127.781,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000py8v,earthquake,285
+us6000py4z,2025-03-11 14:36:22.068000+00:00,"11 km NW of Honoria, Peru",-8.7089,-74.798,142.795,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000py4z,earthquake,284
+us6000py4l,2025-03-11 14:08:08.434000+00:00,"126 km WNW of Iñapari, Peru",-10.479,-70.6352,648.298,5.6,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000py4l,earthquake,482
+us6000py3p,2025-03-11 08:32:13.466000+00:00,Western Caribbean Sea,11.4145,-81.6185,10.0,5.4,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000py3p,earthquake,450
+us6000pxx4,2025-03-10 07:57:09.421000+00:00,"11 km SSE of Sipí, Colombia",4.5564,-76.6012,122.305,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pxx4,earthquake,312
+ci41075584,2025-03-09 20:03:20.340000+00:00,"10 km NW of Malibu, CA",34.0681667,-118.8945,11.38,4.06,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci41075584,earthquake,654
+pr2025068000,2025-03-09 13:47:51.530000+00:00,"5 km SSE of Boca de Yuma, Dominican Republic",18.3311,-68.589,109.0,4.32,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025068000,earthquake,287
+us6000pxm0,2025-03-08 09:30:16.921000+00:00,off the coast of Central America,2.8487,-84.2982,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pxm0,earthquake,284
+us6000pxlb,2025-03-08 05:37:41.913000+00:00,"48 km SE of Tena, Ecuador",-1.3443,-77.5464,191.941,5.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pxlb,earthquake,433
+us6000pxkc,2025-03-08 01:35:55.489000+00:00,"74 km S of Intipucá, El Salvador",12.5274,-88.151,62.302,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pxkc,earthquake,259
+us6000pxi9,2025-03-07 21:47:21.509000+00:00,"112 km SW of Manuel Ávila Camacho (Ponte Duro), Mexico",14.9941,-94.2107,35.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pxi9,earthquake,284
+ak0252zva6il,2025-03-06 22:42:40.510000+00:00,"62 km W of Anchor Point, Alaska",59.8141,-152.9437,104.3,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0252zva6il,earthquake,290
+us6000pxb4,2025-03-06 19:56:08.244000+00:00,"97 km WSW of Masachapa, Nicaragua",11.5055,-87.3594,28.947,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pxb4,earthquake,326
+us6000pxb7,2025-03-06 19:47:00.635000+00:00,"94 km WSW of Masachapa, Nicaragua",11.5583,-87.3472,32.908,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pxb7,earthquake,298
+us6000px57,2025-03-06 02:59:58.374000+00:00,central East Pacific Rise,-5.7903,-109.3245,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000px57,earthquake,340
+us6000px4q,2025-03-06 00:31:49.019000+00:00,"13 km SSW of Piedecuesta, Colombia",6.8782,-73.1015,151.019,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000px4q,earthquake,271
+us6000px3f,2025-03-05 20:13:08.429000+00:00,west of the Galapagos Islands,2.3317,-98.7959,10.0,5.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000px3f,earthquake,432
+us6000pymn,2025-03-05 15:51:02.696000+00:00,"205 km NNE of Barra Patuca, Honduras",17.3961,-83.2997,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pymn,earthquake,326
+us6000px0a,2025-03-05 09:43:15.354000+00:00,"56 km SSE of San Mateo del Mar, Mexico",15.7247,-94.8246,47.82,5.5,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000px0a,earthquake,467
+us6000pwzz,2025-03-05 07:36:37.411000+00:00,"50 km NNE of Pucallpa, Peru",-7.9498,-74.4115,153.628,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwzz,earthquake,312
+us6000pwz1,2025-03-05 04:53:57.671000+00:00,"6 km SSE of Playón Chico, Panama",9.2536,-78.2118,85.383,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwz1,earthquake,286
+us6000pwyn,2025-03-05 03:29:30.824000+00:00,"217 km NNE of Barra Patuca, Honduras",17.5814,-83.4287,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwyn,earthquake,284
+us6000pwrr,2025-03-04 08:26:54.258000+00:00,"53 km NW of Nelson Lagoon, Alaska",56.3176,-161.8466,195.705,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwrr,earthquake,259
+us6000pwrk,2025-03-04 07:40:24.287000+00:00,"114 km WSW of Norman Wells, Canada",64.8474,-129.0264,9.601,4.0,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwrk,earthquake,246
+us6000pwri,2025-03-04 07:29:51.086000+00:00,"33 km W of Golfito, Costa Rica",8.6615,-83.4131,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwri,earthquake,300
+us6000pwmg,2025-03-03 15:18:05.331000+00:00,"89 km SSW of Masachapa, Nicaragua",11.0977,-86.9358,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwmg,earthquake,326
+uw62078906,2025-03-03 13:02:37.850000+00:00,"2025 Orcas Island, Washington",48.61116666666667,-122.80516666666666,15.81,4.5,green,https://earthquake.usgs.gov/earthquakes/eventpage/uw62078906,earthquake,742
+us6000pwl7,2025-03-03 11:01:51.803000+00:00,"92 km SSW of Masachapa, Nicaragua",11.0844,-86.9761,10.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwl7,earthquake,369
+us6000pwju,2025-03-03 05:05:28.153000+00:00,"203 km SSW of George Town, Cayman Islands",17.6389,-82.236,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwju,earthquake,272
+tx2025ehit,2025-03-02 22:32:18.943000+00:00,"51 km S of Whites City, New Mexico",31.718,-104.273,6.9202,4.2,green,https://earthquake.usgs.gov/earthquakes/eventpage/tx2025ehit,earthquake,280
+pr2025061003,2025-03-02 13:06:54.810000+00:00,"100 km NNE of Punta Cana, Dominican Republic",19.3631,-67.9161,6.0,4.09,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025061003,earthquake,258
+pr2025061002,2025-03-02 12:40:21.670000+00:00,"110 km NNE of Punta Cana, Dominican Republic",19.4435,-67.869,7.0,4.52,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025061002,earthquake,317
+us6000pwe1,2025-03-02 03:45:44.281000+00:00,"20 km SSE of San Mateo del Mar, Mexico",16.0337,-94.9161,60.053,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwe1,earthquake,356
+pr2025060003,2025-03-01 12:58:05.750000+00:00,"144 km NNE of Vieques, Puerto Rico",19.6466,-65.3375,25.0,4.27,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025060003,earthquake,281
+us6000pw9c,2025-03-01 09:38:49.850000+00:00,"121 km WNW of Mosquera, Colombia",2.871,-79.4812,10.0,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pw9c,earthquake,385
+us6000pw7t,2025-03-01 04:01:11.728000+00:00,"54 km SW of Nueva Concepción, Guatemala",13.8224,-91.6235,60.167,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pw7t,earthquake,298
+us6000pw7c,2025-03-01 02:28:32.425000+00:00,"77 km S of Champerico, Guatemala",13.5984,-91.8421,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pw7c,earthquake,284
+us6000pw5z,2025-02-28 21:12:08.141000+00:00,"101 km S of Champerico, Guatemala",13.3818,-91.9797,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pw5z,earthquake,271
+us6000pw5b,2025-02-28 19:39:28.430000+00:00,"3 km NE of Pololcingo, Mexico",18.2972,-99.3687,65.162,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pw5b,earthquake,404
+tx2025edml,2025-02-28 19:33:24.297000+00:00,"26 km SW of Ackerly, Texas",32.37,-101.926,6.8115,4.8,green,https://earthquake.usgs.gov/earthquakes/eventpage/tx2025edml,earthquake,914
+us6000pw1b,2025-02-28 10:50:48.946000+00:00,"84 km SSW of Masachapa, Nicaragua",11.1182,-86.8799,35.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pw1b,earthquake,284
+pr2025059001,2025-02-28 07:34:53.040000+00:00,"91 km NE of Miches, Dominican Republic",19.5066,-68.3751,30.0,4.17,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025059001,earthquake,268
+us6000pw0c,2025-02-28 06:09:06.273000+00:00,"73 km SSW of Masachapa, Nicaragua",11.2017,-86.8388,43.509,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pw0c,earthquake,284
+us6000pww7,2025-02-27 11:57:28.491000+00:00,"6 km ESE of Poblado 10, Mexico",17.2619,-94.396,36.662,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pww7,earthquake,246
+us6000pvsq,2025-02-27 10:23:24.441000+00:00,"119 km SSW of La Libertad, El Salvador",12.5155,-89.7936,10.881,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pvsq,earthquake,312
+us6000pvpg,2025-02-26 21:12:41.833000+00:00,"33 km S of Iztapa, Guatemala",13.633,-90.6563,78.855,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pvpg,earthquake,271
+us6000pvlf,2025-02-26 13:48:21.302000+00:00,"50 km WNW of Nikolski, Alaska",53.1414,-169.527,103.976,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pvlf,earthquake,271
+us6000px9g,2025-02-26 04:29:04.149000+00:00,"75 km S of La Libertad, El Salvador",12.8058,-89.3785,35.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000px9g,earthquake,271
+us6000px81,2025-02-25 19:08:16.040000+00:00,"46 km SW of Jiquilillo, Nicaragua",12.4052,-87.7075,66.233,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000px81,earthquake,271
+us6000pvcz,2025-02-25 15:59:08.501000+00:00,"200 km S of Sand Point, Alaska",53.5605,-160.0214,6.609,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pvcz,earthquake,271
+us6000pvbp,2025-02-25 10:25:00.719000+00:00,"15 km NE of Satipo, Peru",-11.1402,-74.5607,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pvbp,earthquake,326
+pr2025056002,2025-02-25 05:48:55.100000+00:00,"102 km NNE of Punta Cana, Dominican Republic",19.4565,-68.0846,46.0,5.85,green,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025056002,earthquake,746
+us6000pvah,2025-02-25 05:41:00.002000+00:00,"87 km NNW of Salvación, Peru",-12.0643,-71.5358,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pvah,earthquake,326
+us6000pv9t,2025-02-25 05:37:28.702000+00:00,"210 km W of Port McNeill, Canada",50.4881,-130.0453,10.0,5.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pv9t,earthquake,426
+us6000pv78,2025-02-24 20:08:37.428000+00:00,"237 km SW of George Town, Cayman Islands",17.5702,-82.7176,10.0,5.4,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pv78,earthquake,451
+us7000pfpx,2025-02-24 00:30:05.710000+00:00,"239 km SW of George Town, Cayman Islands",17.9638,-83.1728,10.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pfpx,earthquake,370
+us7000pflk,2025-02-23 12:18:03.487000+00:00,"45 km WNW of Tamarindo, Costa Rica",10.4623,-86.2218,9.6,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pflk,earthquake,356
+us7000pfks,2025-02-23 07:25:17.202000+00:00,"35 km SE of Tena, Ecuador",-1.1862,-77.5594,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pfks,earthquake,363
+us6000pwmh,2025-02-22 20:31:32.447000+00:00,"200 km SSW of George Town, Cayman Islands",17.6863,-82.2717,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwmh,earthquake,284
+us6000pwmc,2025-02-22 19:13:55.327000+00:00,"8 km ENE of San Juan Mazatlán, Mexico",17.0543,-95.3725,10.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwmc,earthquake,259
+us7000pfdh,2025-02-22 01:06:51.034000+00:00,"12 km W of Cañaveral, Peru",-3.9494,-80.7627,41.517,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pfdh,earthquake,298
+us7000pfcg,2025-02-21 23:32:19.075000+00:00,"76 km SSW of La Gloria, Mexico",15.505,-94.3889,66.753,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pfcg,earthquake,326
+us7000pfcj,2025-02-21 22:36:43.505000+00:00,"34 km NW of Tamarindo, Costa Rica",10.4991,-86.0843,35.112,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pfcj,earthquake,298
+us7000pfbs,2025-02-21 21:26:32.781000+00:00,"28 km W of Squamish, Canada",49.6928,-123.5454,10.0,4.8,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pfbs,earthquake,804
+us7000pf7e,2025-02-21 10:30:26.203000+00:00,central East Pacific Rise,-1.4441,-103.2144,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pf7e,earthquake,326
+us7000peyt,2025-02-20 16:48:13.619000+00:00,"205 km S of Sand Point, Alaska",53.5143,-159.9696,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000peyt,earthquake,271
+us7000peye,2025-02-20 15:41:05.484000+00:00,"68 km NE of Grande Cache, Canada",54.3703,-118.4904,10.0,4.7,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000peye,earthquake,352
+us7000peqg,2025-02-19 12:15:47.989000+00:00,off the coast of Ecuador,1.9935,-84.6161,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000peqg,earthquake,284
+ak0252at3f6f,2025-02-19 07:09:50.044000+00:00,"11 km SSE of Ivanof Bay, Alaska",55.8018,-159.4164,74.4,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0252at3f6f,earthquake,350
+us7000pel7,2025-02-18 20:40:41.101000+00:00,"10 km W of Santa Cruz, Costa Rica",10.2469,-85.6806,32.248,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pel7,earthquake,292
+us7000pein,2025-02-18 17:00:49.043000+00:00,"9 km NW of Mariposa, Peru",-11.3467,-74.8175,103.39,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pein,earthquake,385
+tx2025dkql,2025-02-18 12:16:28.873000+00:00,"52 km SSW of Whites City, New Mexico",31.711,-104.502,3.8953,4.7,green,https://earthquake.usgs.gov/earthquakes/eventpage/tx2025dkql,earthquake,387
+us7000pegn,2025-02-18 09:08:47.148000+00:00,"4 km S of Andajes, Peru",-10.8343,-76.916,90.87,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pegn,earthquake,298
+us7000pecc,2025-02-17 21:30:31.284000+00:00,"42 km NW of Manta, Ecuador",-0.6894,-80.9834,10.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pecc,earthquake,246
+us7000pebq,2025-02-17 19:56:26.490000+00:00,"18 km S of Iztapa, Guatemala",13.7688,-90.7139,81.997,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pebq,earthquake,298
+us7000pe90,2025-02-17 15:48:20.623000+00:00,"6 km NNE of Villanueva, Colombia",6.7251,-73.1606,161.194,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe90,earthquake,326
+us6000pve9,2025-02-17 08:44:47.255000+00:00,"97 km SW of Puerto Madero, Mexico",14.0863,-93.0493,10.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pve9,earthquake,246
+us7000pe7f,2025-02-17 07:00:31.785000+00:00,"231 km NNE of Barra Patuca, Honduras",17.5842,-83.1525,10.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe7f,earthquake,246
+us7000pe75,2025-02-17 06:02:58.700000+00:00,"2 km SSW of Huamúchil, Mexico",16.354,-94.6789,74.412,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe75,earthquake,342
+us7000pe58,2025-02-16 20:47:26.890000+00:00,"74 km SW of Champerico, Guatemala",13.8119,-92.3969,10.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe58,earthquake,370
+us7000pe34,2025-02-16 08:22:44.761000+00:00,"100 km SSW of Puerto El Triunfo, El Salvador",12.4924,-89.0117,23.679,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe34,earthquake,271
+us7000pe2z,2025-02-16 08:11:34.928000+00:00,"92 km SSW of Puerto El Triunfo, El Salvador",12.5694,-88.9968,36.717,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe2z,earthquake,312
+pr2025047000,2025-02-16 06:55:57.450000+00:00,"39 km ESE of Boca de Yuma, Dominican Republic",18.2065,-68.2778,152.0,4.08,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025047000,earthquake,256
+ak02525rrdfc,2025-02-16 02:52:21.517000+00:00,"33 km SW of Wales, Alaska",65.3961,-168.5963,13.5,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/ak02525rrdfc,earthquake,326
+us7000pe1b,2025-02-16 00:13:39.252000+00:00,"104 km SSW of Puerto San José, Guatemala",13.038,-91.1419,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe1b,earthquake,340
+us6000pv5k,2025-02-16 00:05:11.224000+00:00,"119 km SW of Acajutla, El Salvador",12.8054,-90.5848,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pv5k,earthquake,284
+us7000pdyg,2025-02-15 11:13:15.517000+00:00,"57 km SW of Jiquilillo, Nicaragua",12.3167,-87.7459,62.129,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdyg,earthquake,259
+tx2025deqh,2025-02-15 05:23:21.429000+00:00,"53 km NW of Toyah, Texas",31.661,-104.18,6.0999,5.0,green,https://earthquake.usgs.gov/earthquakes/eventpage/tx2025deqh,earthquake,915
+us7000pdpc,2025-02-14 15:26:55.693000+00:00,"42 km SSW of Barra de Tecoanapa, Mexico",16.1458,-98.8656,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdpc,earthquake,341
+us7000pdp3,2025-02-14 14:21:16.016000+00:00,off the coast of Ecuador,0.92,-85.4487,10.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdp3,earthquake,369
+us7000pf94,2025-02-14 10:38:54.453000+00:00,"216 km NNE of Barra Patuca, Honduras",17.4764,-83.2319,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pf94,earthquake,298
+us7000pdkn,2025-02-14 07:26:23.748000+00:00,"214 km NNE of Barra Patuca, Honduras",17.4805,-83.29,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdkn,earthquake,340
+us7000pdkh,2025-02-14 06:39:49.652000+00:00,off the coast of Ecuador,1.0621,-85.2505,10.0,5.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdkh,earthquake,416
+us7000pdiz,2025-02-14 00:18:12.514000+00:00,"232 km SW of Burica, Panama",6.661,-84.4607,10.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdiz,earthquake,312
+nc75133062,2025-02-14 00:17:04.540000+00:00,"10 km NNW of Avenal, CA",36.0826666666667,-120.183833333333,11.92,4.25,green,https://earthquake.usgs.gov/earthquakes/eventpage/nc75133062,earthquake,295
+ak025215oy3m,2025-02-13 23:59:27.899000+00:00,"155 km SSW of Akhiok, Alaska",55.6151,-154.9176,13.3,5.7,green,https://earthquake.usgs.gov/earthquakes/eventpage/ak025215oy3m,earthquake,500
+us7000pd93,2025-02-12 22:10:36.272000+00:00,"211 km NNE of Barra Patuca, Honduras",17.5007,-83.3888,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pd93,earthquake,354
+us7000pd4n,2025-02-12 17:26:49.653000+00:00,"144 km W of Santa Genoveva de Docordó, Colombia",4.2294,-78.6675,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pd4n,earthquake,354
+us7000pd2h,2025-02-12 06:52:27.181000+00:00,"110 km NW of Fort St. John, Canada",57.0222,-121.9905,10.0,4.0,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pd2h,earthquake,246
+nc75132032,2025-02-12 04:32:40.380000+00:00,"69 km WNW of Petrolia, CA",40.372,-125.0955,10.0,4.46,green,https://earthquake.usgs.gov/earthquakes/eventpage/nc75132032,earthquake,386
+us7000pd1e,2025-02-12 00:58:54.797000+00:00,"117 km N of Alianza Cristiana, Peru",-2.4221,-76.5761,139.658,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pd1e,earthquake,259
+nc75131617,2025-02-11 08:13:16.240000+00:00,"26 km W of Petrolia, CA",40.2815,-124.583833333333,19.77,4.1,green,https://earthquake.usgs.gov/earthquakes/eventpage/nc75131617,earthquake,318
+us7000pcsr,2025-02-11 01:09:50.584000+00:00,"140 km SSE of King Cove, Alaska",53.8959,-161.4938,13.172,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcsr,earthquake,312
+us7000pcs6,2025-02-10 22:31:36.889000+00:00,"230 km NNE of Barra Patuca, Honduras",17.5527,-83.1104,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcs6,earthquake,284
+us7000pclr,2025-02-10 08:11:20.239000+00:00,"10 km SE of Iztapa, Guatemala",13.8792,-90.6251,99.064,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pclr,earthquake,312
+us7000pcjt,2025-02-09 23:56:10.717000+00:00,"16 km NNE of Potosí, Nicaragua",11.6428,-85.8248,11.494,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcjt,earthquake,259
+us7000pcjy,2025-02-09 23:46:17.328000+00:00,"218 km NNE of Barra Patuca, Honduras",17.5533,-83.338,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcjy,earthquake,271
+us7000pcgn,2025-02-09 09:14:08.197000+00:00,"243 km NE of Barra Patuca, Honduras",17.5509,-82.9082,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcgn,earthquake,355
+us7000pcgc,2025-02-09 08:21:29.176000+00:00,"233 km SW of George Town, Cayman Islands",17.6485,-82.7748,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcgc,earthquake,327
+us7000pce1,2025-02-09 00:23:06.371000+00:00,"234 km SW of George Town, Cayman Islands",17.7015,-82.852,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pce1,earthquake,271
+us7000pe9n,2025-02-09 00:22:20.481000+00:00,"172 km NNE of Barra Patuca, Honduras",17.2339,-83.638,10.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe9n,earthquake,246
+us7000pcdw,2025-02-09 00:16:33.170000+00:00,"177 km SSW of George Town, Cayman Islands",17.8181,-82.0498,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcdw,earthquake,284
+us7000pe9s,2025-02-09 00:06:55.116000+00:00,"236 km NE of Barra Patuca, Honduras",17.5202,-82.9683,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pe9s,earthquake,284
+us7000pcdu,2025-02-08 23:51:06.304000+00:00,"229 km NNE of Barra Patuca, Honduras",17.5799,-83.1814,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcdu,earthquake,356
+us7000pcdl,2025-02-08 23:23:14.282000+00:00,"208 km SSW of George Town, Cayman Islands",17.6903,-82.4151,10.0,7.6,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pcdl,earthquake,1181
+us7000pc8j,2025-02-08 02:22:56.665000+00:00,"66 km SW of George Town, Cayman Islands",18.8141,-81.7688,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pc8j,earthquake,288
+us6000pwvw,2025-02-07 21:20:38.790000+00:00,"19 km WSW of Cerro de Ortega, Mexico",18.6755,-103.8912,35.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pwvw,earthquake,246
+us7000pc67,2025-02-07 17:57:01.419000+00:00,"50 km ESE of Unalaska, Alaska",53.6679,-165.8515,60.166,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pc67,earthquake,259
+us7000pdqz,2025-02-07 16:14:58.887000+00:00,"Galapagos Islands, Ecuador region",-0.2025,-95.7538,10.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdqz,earthquake,312
+us7000pc38,2025-02-07 13:17:32.904000+00:00,off the coast of Ecuador,1.2858,-83.6611,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pc38,earthquake,326
+us7000pc16,2025-02-07 05:36:55.335000+00:00,"14 km S of San Miguel, El Salvador",13.3591,-88.1584,207.165,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pc16,earthquake,298
+us7000pdnl,2025-02-06 22:51:22.672000+00:00,"off the coast of Michoacan, Mexico",15.3422,-104.9674,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pdnl,earthquake,271
+us7000pbxz,2025-02-06 21:03:22.973000+00:00,"4 km E of Jordán, Colombia",6.7282,-73.0557,156.313,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbxz,earthquake,312
+us7000pbsu,2025-02-06 12:05:48.574000+00:00,"213 km W of Port McNeill, Canada",50.4946,-130.0892,10.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbsu,earthquake,246
+us7000pbqa,2025-02-06 02:33:26.624000+00:00,"46 km SSW of Nueva Concepción, Guatemala",13.8165,-91.4697,61.664,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbqa,earthquake,298
+us7000pbp2,2025-02-05 22:39:36.534000+00:00,"58 km SW of Nueva Concepción, Guatemala",13.8048,-91.6655,47.481,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbp2,earthquake,246
+us7000pbjy,2025-02-05 13:56:11.324000+00:00,"61 km SSE of Champerico, Guatemala",13.7812,-91.7001,48.698,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbjy,earthquake,272
+us7000pbgs,2025-02-05 08:57:53.698000+00:00,"280 km ENE of Abraham’s Bay, Bahamas",22.8907,-70.2974,10.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbgs,earthquake,259
+us7000pbgl,2025-02-05 08:21:34.425000+00:00,"26 km SW of Palora, Ecuador",-1.873,-78.1268,147.729,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbgl,earthquake,372
+ak0251no79w4,2025-02-05 08:15:45.809000+00:00,"134 km SSE of Perryville, Alaska",54.8291,-158.1972,11.8,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0251no79w4,earthquake,343
+ak0251no5hd4,2025-02-05 08:07:09.800000+00:00,"25 km SSW of Susitna, Alaska",61.3407,-150.7224,5.1,4.1,green,https://earthquake.usgs.gov/earthquakes/eventpage/ak0251no5hd4,earthquake,639
+us7000pbfs,2025-02-05 07:22:10.653000+00:00,"54 km SW of Nueva Concepción, Guatemala",13.7969,-91.5946,58.424,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbfs,earthquake,259
+us7000pbfb,2025-02-05 07:01:19.215000+00:00,"32 km SW of Nueva Concepción, Guatemala",13.9655,-91.4835,66.879,5.6,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbfb,earthquake,577
+us7000pbb1,2025-02-04 19:32:26.180000+00:00,"151 km SE of Akutan, Alaska",53.31,-163.9454,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbb1,earthquake,326
+us7000pbau,2025-02-04 19:27:46.561000+00:00,"151 km SE of Akutan, Alaska",53.316,-163.9373,10.0,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbau,earthquake,385
+us7000pb93,2025-02-04 16:31:24.878000+00:00,"145 km SE of Akutan, Alaska",53.3918,-163.9506,36.34,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pb93,earthquake,298
+us7000pb86,2025-02-04 14:01:05.485000+00:00,"26 km ESE of San Alejandro, Peru",-8.9558,-75.0072,124.248,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pb86,earthquake,298
+us7000pb7b,2025-02-04 08:56:24.630000+00:00,"286 km SW of La Cruz de Loreto, Mexico",18.5519,-107.7061,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pb7b,earthquake,271
+ak0251m0a5o8,2025-02-04 07:51:13.996000+00:00,"208 km SSW of Akhiok, Alaska",55.1327,-155.0395,27.6,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0251m0a5o8,earthquake,326
+us7000pb6s,2025-02-04 07:45:13.544000+00:00,"21 km S of Santa Rosa, Ecuador",-3.644,-79.9818,70.943,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pb6s,earthquake,326
+ak0251lyi1dl,2025-02-04 04:52:07.268000+00:00,"29 km SW of Wales, Alaska",65.3903,-168.4689,12.6,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0251lyi1dl,earthquake,247
+us7000pb0a,2025-02-03 11:48:13.638000+00:00,"5 km NW of Las Terrenas, Dominican Republic",19.3475,-69.5753,77.923,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pb0a,earthquake,271
+ak0251kc24k9,2025-02-03 06:36:08.672000+00:00,"26 km SSW of Wales, Alaska",65.3991,-168.3501,24.8,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0251kc24k9,earthquake,327
+us7000pax1,2025-02-03 00:25:36.347000+00:00,"286 km WNW of Port McNeill, Canada",51.5199,-130.8998,10.0,4.2,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pax1,earthquake,271
+us7000pate,2025-02-02 12:51:59.302000+00:00,"40 km S of Zacatecoluca, El Salvador",13.134,-88.9205,88.362,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pate,earthquake,259
+us7000papy,2025-02-01 23:44:54.638000+00:00,"105 km S of Nikolski, Alaska",52.0048,-168.5636,10.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000papy,earthquake,259
+pr2025032001,2025-02-01 18:16:25.540000+00:00,"142 km NE of Cruz Bay, U.S. Virgin Islands",19.3956,-64.0406,41.0,4.06,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025032001,earthquake,254
+us7000pann,2025-02-01 17:48:27.012000+00:00,"75 km NE of Savannah Bight, Honduras",17.0146,-85.4494,10.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pann,earthquake,369
+us7000pamb,2025-02-01 12:15:49.394000+00:00,"87 km SW of Unalaska, Alaska",53.315,-167.4574,75.307,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pamb,earthquake,298
+us7000pam3,2025-02-01 11:27:31.041000+00:00,"37 km WNW of Archidona, Ecuador",-0.8286,-78.1318,10.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pam3,earthquake,312
+us7000palx,2025-02-01 11:05:50.660000+00:00,"38 km WNW of Archidona, Ecuador",-0.8167,-78.1383,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000palx,earthquake,343
+us7000pak3,2025-02-01 02:40:01.944000+00:00,"49 km SW of Puerto Madero, Mexico",14.4104,-92.7523,35.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pak3,earthquake,312
+us7000pajt,2025-02-01 01:50:50.277000+00:00,"37 km W of Archidona, Ecuador",-0.8465,-78.1352,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pajt,earthquake,284
+us7000pahy,2025-01-31 23:02:28.845000+00:00,"32 km W of Archidona, Ecuador",-0.8609,-78.0956,8.0,5.5,green,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pahy,earthquake,484
+us7000pafh,2025-01-31 18:22:11.188000+00:00,"37 km SW of Masachapa, Nicaragua",11.5721,-86.7803,52.541,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pafh,earthquake,298
+us7000pbwp,2025-01-31 14:20:59.251000+00:00,"149 km SW of Emiliano Zapata, Mexico",18.4388,-105.9757,10.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbwp,earthquake,259
+us7000pa8c,2025-01-30 23:24:40.274000+00:00,northern East Pacific Rise,9.8536,-104.3665,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pa8c,earthquake,326
+us7000p9zc,2025-01-30 05:03:43.838000+00:00,"3 km S of Jordán, Colombia",6.6984,-73.0999,160.532,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000p9zc,earthquake,326
+ak0251doqqfp,2025-01-30 04:40:08.488000+00:00,"13 km WSW of Takotna, Alaska",62.9564,-156.323,10.4,5.2,,https://earthquake.usgs.gov/earthquakes/eventpage/ak0251doqqfp,earthquake,431
+tx2025cbgl,2025-01-30 03:26:38.932000+00:00,"19 km ENE of Falls City, Texas",29.078,-97.845,3.6865,4.5,green,https://earthquake.usgs.gov/earthquakes/eventpage/tx2025cbgl,earthquake,739
+us7000p9vt,2025-01-29 16:19:04.998000+00:00,"105 km S of False Pass, Alaska",53.9141,-163.2149,37.762,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000p9vt,earthquake,271
+us7000p9ue,2025-01-29 13:53:35.931000+00:00,"227 km SW of Tofino, Canada",47.8528,-128.2889,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000p9ue,earthquake,287
+us7000p9rj,2025-01-29 04:11:21.195000+00:00,"11 km NW of Mariposa, Peru",-11.3232,-74.8156,92.443,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000p9rj,earthquake,354
+us6000pmsg,2025-01-28 13:37:03.810000+00:00,"42 km WSW of Mountain, Colombia",13.1524,-81.6967,10.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pmsg,earthquake,370
+us6000pms4,2025-01-28 11:25:25.668000+00:00,"78 km SSW of Nikolski, Alaska",52.3354,-169.4488,35.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pms4,earthquake,271
+us6000pmr8,2025-01-28 07:57:41.923000+00:00,"8 km NNW of El Palmarcito, Mexico",15.5624,-93.2501,94.772,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pmr8,earthquake,326
+us6000pmkg,2025-01-27 16:32:14.552000+00:00,"26 km NW of Clayton, Idaho",44.4068,-114.6681,9.19,4.2,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pmkg,earthquake,449
+us6000pmh3,2025-01-26 23:26:40.518000+00:00,off the coast of Central America,2.8059,-84.1,10.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pmh3,earthquake,259
+us6000pmgt,2025-01-26 22:39:13.301000+00:00,"86 km SSW of Unalaska, Alaska",53.2062,-167.2003,59.0,5.6,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pmgt,earthquake,501
+us6000pmg0,2025-01-26 15:32:30.833000+00:00,"5 km ENE of Villanueva, Colombia",6.6868,-73.1248,162.148,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pmg0,earthquake,312
+nc75123321,2025-01-26 14:03:01.190000+00:00,"56 km WNW of Petrolia, CA",40.3348333333333,-124.942833333333,7.04,4.13,green,https://earthquake.usgs.gov/earthquakes/eventpage/nc75123321,earthquake,266
+us7000pb9e,2025-01-26 12:53:00.964000+00:00,west of the Galapagos Islands,1.1245,-97.466,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pb9e,earthquake,271
+pr2025026005,2025-01-26 10:49:05.400000+00:00,"114 km NE of Cruz Bay, U.S. Virgin Islands",19.1626,-64.1468,29.0,4.05,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025026005,earthquake,252
+pr2025025000,2025-01-25 06:30:58.860000+00:00,"17 km SSE of La Romana, Dominican Republic",18.2835,-68.8956,118.0,4.15,,https://earthquake.usgs.gov/earthquakes/eventpage/pr2025025000,earthquake,265
+us6000pm9b,2025-01-25 05:36:41.391000+00:00,"194 km W of Bandon, Oregon",43.3198,-126.786,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pm9b,earthquake,346
+us7000pbwi,2025-01-24 21:50:38.573000+00:00,"25 km S of Poblado 10, Mexico",17.0465,-94.4577,135.383,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pbwi,earthquake,259
+ci41034376,2025-01-23 18:08:47.730000+00:00,"18 km W of Delta, B.C., MX",32.3291667,-115.3858333,14.74,4.37,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci41034376,earthquake,332
+us6000plr3,2025-01-23 01:56:55.712000+00:00,"2 km WSW of Villa Canales, Guatemala",14.4711,-90.5525,188.477,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000plr3,earthquake,354
+us7000pac3,2025-01-22 06:01:44.938000+00:00,"6 km NW of Concepción de la Barranca, Honduras",15.2096,-88.7614,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pac3,earthquake,271
+us7000pac0,2025-01-22 05:26:16.069000+00:00,"63 km WSW of Tola, Nicaragua",11.1572,-86.45,35.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pac0,earthquake,271
+us6000plh3,2025-01-21 17:58:06.335000+00:00,"123 km S of Unalaska, Alaska",52.7623,-166.6538,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000plh3,earthquake,298
+us7000pa4p,2025-01-21 16:05:05.146000+00:00,"7 km ENE of La Unión, Mexico",18.0046,-101.7353,51.635,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pa4p,earthquake,271
+us6000plfb,2025-01-21 13:40:17.709000+00:00,"134 km ESE of La Rivera, Mexico",23.3555,-108.2944,10.0,5.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000plfb,earthquake,433
+us6000plew,2025-01-21 11:55:03.769000+00:00,"126 km S of Unalaska, Alaska",52.7426,-166.6507,10.0,5.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000plew,earthquake,417
+us7000pa4m,2025-01-21 11:29:45.534000+00:00,"17 km E of Playas, Ecuador",-2.6227,-80.2295,53.664,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pa4m,earthquake,271
+us6000pl25,2025-01-19 06:28:33.580000+00:00,"8 km ENE of Zaragoza, Colombia",7.5187,-74.7977,75.464,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pl25,earthquake,312
+us6000pl1r,2025-01-19 05:57:22.248000+00:00,"52 km SSW of Puerto El Triunfo, El Salvador",12.8287,-88.6863,66.106,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pl1r,earthquake,298
+us7000p9uv,2025-01-19 04:32:33.495000+00:00,"7 km E of Aquila, Mexico",18.5889,-103.4309,48.162,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000p9uv,earthquake,284
+us6000pl08,2025-01-18 23:11:52.999000+00:00,"126 km SSW of Nikolski, Alaska",51.9343,-169.7398,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pl08,earthquake,285
+us7000p9n1,2025-01-18 21:45:37.074000+00:00,"8 km NW of San Francisco Cozoaltepec, Mexico",15.8699,-96.7785,10.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000p9n1,earthquake,259
+us6000pmll,2025-01-17 23:44:39.322000+00:00,"156 km SSW of Puerto San José, Guatemala",12.5565,-91.1623,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pmll,earthquake,284
+us6000pksz,2025-01-17 18:40:21.534000+00:00,"44 km S of El Rosario, El Salvador",13.1026,-88.9825,65.62,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pksz,earthquake,246
+ak025sbi5dp,2025-01-17 12:37:55.655000+00:00,"165 km SE of Chignik, Alaska",55.1665,-156.6894,6.9,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/ak025sbi5dp,earthquake,284
+ak025qufoy6,2025-01-16 23:24:12.883000+00:00,"39 km NW of Valdez, Alaska",61.3327,-146.9596,7.5,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ak025qufoy6,earthquake,258
+us6000pk45,2025-01-15 08:11:23.208000+00:00,"2 km NNE of Aserrío de Gariché, Panama",8.503,-82.7797,47.602,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pk45,earthquake,284
+ak025ou0514,2025-01-15 01:58:33.351000+00:00,"91 km S of Port Alexander, Alaska",55.4373,-134.8284,24.4,4.4,green,https://earthquake.usgs.gov/earthquakes/eventpage/ak025ou0514,earthquake,304
+us6000pjxc,2025-01-14 15:52:33.789000+00:00,"12 km SW of Palora, Ecuador",-1.784,-78.0352,150.095,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjxc,earthquake,271
+us6000pm2q,2025-01-14 14:50:27.287000+00:00,central East Pacific Rise,-4.5561,-104.9824,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pm2q,earthquake,284
+us6000pjxz,2025-01-14 14:38:45.757000+00:00,"82 km SSW of Unalaska, Alaska",53.1535,-166.8539,42.704,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjxz,earthquake,271
+us6000pm2j,2025-01-14 14:36:14.022000+00:00,central East Pacific Rise,-4.3117,-105.9881,10.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pm2j,earthquake,284
+us6000pjx0,2025-01-14 14:09:23.297000+00:00,central East Pacific Rise,-4.5162,-104.9945,10.0,5.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjx0,earthquake,416
+us6000pjt7,2025-01-13 20:50:19.577000+00:00,"Devon Island, Nunavut, Canada",74.4924,-92.6823,10.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjt7,earthquake,312
+us6000pjm2,2025-01-13 02:20:54.549000+00:00,"16 km SE of Eloy Alfaro, Ecuador",-2.2781,-79.7517,90.55,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjm2,earthquake,411
+us6000plu2,2025-01-12 10:53:38.446000+00:00,"19 km SE of Aquila, Mexico",18.4658,-103.3885,35.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000plu2,earthquake,298
+us6000pjjf,2025-01-12 10:46:30.862000+00:00,"12 km SSE of Aquila, Mexico",18.5027,-103.4487,35.0,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjjf,earthquake,373
+us6000pjiy,2025-01-12 09:18:25.533000+00:00,"21 km ESE of Aquila, Mexico",18.4932,-103.3341,35.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjiy,earthquake,357
+us6000pjig,2025-01-12 08:32:49.944000+00:00,"18 km SE of Aquila, Mexico",18.5019,-103.3631,39.0,6.2,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjig,earthquake,1005
+us6000pjhp,2025-01-12 01:29:54.380000+00:00,"106 km SW of Puerto Madero, Mexico",14.1747,-93.2375,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjhp,earthquake,298
+us6000pjeu,2025-01-11 10:32:23.355000+00:00,"6 km S of Corredor, Costa Rica",8.5783,-82.9563,8.518,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjeu,earthquake,284
+us6000pjep,2025-01-11 09:51:24.706000+00:00,"34 km SW of Jiquilillo, Nicaragua",12.4939,-87.6391,73.864,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjep,earthquake,271
+us6000pje4,2025-01-11 06:49:29.708000+00:00,"5 km WNW of Donaji, Mexico",17.2425,-95.0981,123.752,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pje4,earthquake,284
+us6000pjd4,2025-01-11 03:33:38.566000+00:00,"8 km W of Pablo L. Sidar, Mexico",15.8447,-92.3541,199.678,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjd4,earthquake,371
+us6000pj4s,2025-01-10 08:14:32.949000+00:00,"31 km SSW of Bahía Solano, Colombia",5.9461,-77.4683,18.0,5.6,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pj4s,earthquake,483
+us6000pj1z,2025-01-09 23:09:44.363000+00:00,"11 km WSW of Pujilí, Ecuador",-0.9953,-78.7949,10.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pj1z,earthquake,246
+us6000pixh,2025-01-09 16:31:45.323000+00:00,"10 km E of Acajutla, El Salvador",13.599,-89.7339,95.0,5.8,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pixh,earthquake,545
+tx2025aoxt,2025-01-09 03:52:17.871000+00:00,"56 km S of Whites City, New Mexico",31.666,-104.357,5.946,4.2,green,https://earthquake.usgs.gov/earthquakes/eventpage/tx2025aoxt,earthquake,275
+us6000pisv,2025-01-09 03:33:41.557000+00:00,"13 km SE of Tona, Colombia",7.1274,-72.8631,176.94,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pisv,earthquake,284
+us6000piq7,2025-01-08 20:00:07.488000+00:00,"113 km SSW of Sechura, Peru",-6.4839,-81.2579,10.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000piq7,earthquake,312
+us6000pibx,2025-01-07 03:37:29.214000+00:00,"85 km ESE of Palora, Ecuador",-1.9216,-77.2282,161.491,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pibx,earthquake,340
+us6000pi8s,2025-01-06 21:18:56.009000+00:00,"138 km WSW of Chimbote, Peru",-9.7605,-79.6514,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pi8s,earthquake,326
+us6000pi5m,2025-01-06 13:07:01.973000+00:00,"69 km SSW of Masachapa, Nicaragua",11.2469,-86.8464,35.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pi5m,earthquake,298
+us6000pi45,2025-01-06 04:59:54.006000+00:00,"51 km S of El Rosario, El Salvador",13.034,-88.9844,57.839,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pi45,earthquake,246
+us6000pi4t,2025-01-06 03:24:58.390000+00:00,"26 km SSW of Emiliano Zapata, Mexico",19.1568,-105.0329,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pi4t,earthquake,340
+us6000pi14,2025-01-05 17:46:49.585000+00:00,"58 km SSW of El Rosario, El Salvador",12.9775,-89.1358,58.808,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pi14,earthquake,284
+us6000pi09,2025-01-05 17:18:45.784000+00:00,"56 km SSE of La Libertad, El Salvador",13.0007,-89.1775,46.0,6.2,green,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pi09,earthquake,662
+us6000phuu,2025-01-04 14:24:36.264000+00:00,"28 km SSE of La Libertad, El Salvador",13.2345,-89.261,74.061,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000phuu,earthquake,313
+us6000phtp,2025-01-04 08:17:24.376000+00:00,"9 km WNW of El Dovio, Colombia",4.5472,-76.3159,51.986,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000phtp,earthquake,341
+us6000phsz,2025-01-04 05:48:37.447000+00:00,"52 km S of Puerto El Triunfo, El Salvador",12.8056,-88.5668,64.868,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000phsz,earthquake,298
+us6000phax,2025-01-02 18:56:14.936000+00:00,"141 km S of False Pass, Alaska",53.584,-163.6096,35.0,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000phax,earthquake,246
+us6000pjzy,2025-01-02 15:46:30.445000+00:00,"8 km NNE of Jordán, Colombia",6.7993,-73.0647,155.659,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pjzy,earthquake,271
+us6000ph38,2025-01-02 12:21:04.451000+00:00,"16 km E of Cuauhtémoc, Mexico",17.1287,-94.7321,98.114,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000ph38,earthquake,271
+nc75111126,2025-01-02 02:34:04.660000+00:00,"4 km NW of Cobb, CA",38.8455,-122.756333333333,1.42,4.65,green,https://earthquake.usgs.gov/earthquakes/eventpage/nc75111126,earthquake,755
+us6000pgx9,2025-01-01 18:57:08.385000+00:00,"105 km SSW of Puerto San José, Guatemala",13.0073,-91.0687,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pgx9,earthquake,271
