@@ -55,7 +55,7 @@ def generate_eruption_map(output_file):
         marker=dict(
             size=12,
             color='red',
-            symbol='marker',  # Usa este o 'circle'
+            symbol='circle',  # Usa este o 'circle'
             opacity=0.8,
         ),
 
@@ -73,12 +73,12 @@ def generate_eruption_map(output_file):
         lon=[-17.873],
         lat=[28.613],
         marker=dict(
-            size=25,
+            size=15,
             color='red',
-            symbol='triangle',
+            symbol='circle',
             opacity=1.0,
         ),
-        text=["<b>Tajogaite Volcano</b>"],
+        text=["Tajogaite"],
         textposition="top right",
         hoverinfo="text",
         name="Volcano Location (detailed)",

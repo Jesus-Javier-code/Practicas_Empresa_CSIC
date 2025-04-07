@@ -1,9 +1,9 @@
 ---
-title: " " 
+title: " "
 format: 
   dashboard:
     orientation: rows
-    scroll: false  # Desactivamos el scroll global
+    scroll: false
     nav-buttons: [github]
     github: https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC.git
     theme:
@@ -17,6 +17,7 @@ logo-alt: "CSIC logo."
 body, html, .dashboard {
   overflow: visible !important;
   height: auto !important;
+  background-color: #FBEBE8; /* Fondo crema claro */
 }
 
 /* ELIMINAR TODOS LOS SCROLLS */
@@ -28,7 +29,7 @@ body, html, .dashboard {
 /* IFRAMES COMPACTOS */
 iframe {
   width: 100% !important;
-  height: 400px !important;  /* Altura más pequeña */
+  height: 400px !important;
   border: none !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -53,7 +54,7 @@ img {
   flex: 1;
 }
 
-/* ESTILOS DEL HEADER (igual que antes) */
+/* ESTILOS DEL HEADER */
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 .navbar-brand::after {
   content: "VOLCANA";
@@ -81,6 +82,51 @@ img {
 .navbar-nav .nav-link:hover:not(.active) {
   background-color: rgba(65,50,36,0.1) !important;
 }
+
+/* ESTILOS PÁGINA PRINCIPAL */
+.homepage {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #FBEBE8;
+  min-height: calc(100vh - 120px);
+}
+
+.homepage-logo {
+  max-width: 300px;
+  margin: 2rem auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.homepage-title {
+  font-family: 'Hippo Letto', sans-serif;
+  color: #413224;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.homepage-subtitle {
+  color: #5D4037;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.homepage-section {
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid #E0D6C2;
+}
+
+.homepage-text {
+  color: #5D4037;
+  line-height: 1.6;
+  text-align: left;
+}
 </style>
 
 ```{python}
@@ -103,8 +149,50 @@ import plotly.io as pio
 from IPython.display import IFrame
 ```
 
+# 🏝️ HOMEPAGE {.homepage}
 
-# 🏝️ LA PALMA {#la-palma}
+```{python}
+#| label: homepage-content
+#| echo: false
+from IPython.display import HTML
+
+HTML(f"""
+<div class="homepage">
+  <img src="B_images/Logo_Volcana.jpeg" alt="Logo VOLCANA" class="homepage-logo">
+  <h1 class="homepage-title">VOLCANA</h1>
+  <p class="homepage-subtitle">Sistema de Monitorización Volcánica del CSIC</p>
+  
+  <div class="homepage-section">
+    <h2>Sobre el Proyecto</h2>
+    <p class="homepage-text">
+      Este proyecto de investigación del CSIC tiene como objetivo monitorizar y analizar la actividad 
+      volcánica en las Islas Canarias, con especial atención a la erupción del volcán Tajogaite en La Palma (2021) 
+      y la vigilancia del Teide en Tenerife.
+    </p>
+    <p class="homepage-text">
+      Nuestro equipo multidisciplinar combina técnicas de teledetección, análisis de datos y visualización 
+      científica para comprender mejor los procesos volcánicos y mejorar los sistemas de alerta temprana.
+    </p>
+  </div>
+  
+  <div class="homepage-section">
+    <h2>Contenido Científico</h2>
+    <p class="homepage-text">
+      <strong>La Palma:</strong> Datos de potencia radiativa, mapas interactivos y evolución de la erupción.
+    </p>
+    <p class="homepage-text">
+      <strong>El Teide:</strong> Análisis de actividad y parámetros de vigilancia.
+    </p>
+    <p class="homepage-text">
+      <strong>Terremotos:</strong> Monitorización sísmica asociada a la actividad volcánica.
+    </p>
+  </div>
+</div>
+""")
+```
+
+# <img src="B_images/la_palma_contorno.png" alt="La Palma" style="height: 1.2em; vertical-align: middle;"> LA PALMA {#la-palma}
+
 
 ## Potencia Radiativa {.panel-tabset}
 
