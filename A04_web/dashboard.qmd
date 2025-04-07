@@ -104,21 +104,77 @@ img {
   min-height: calc(100vh - 120px);
 }
 
+/* NUEVOS ESTILOS PARA EL CARRUSEL */
+.homepage-header {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
+.carousel-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
 
-/* LOGO HOMEPAGE */
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.homepage-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+}
+
 .homepage-logo {
-  width: 250px !important;
-  height: 250px !important;
-  margin: 0.5rem auto 0.5rem !important;
-  border-radius: 50% !important; /* Hace el logo redondeado */
-  object-fit: cover;
-  transition: transform 0.3s ease; /* Añade transición suave */
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  border: 3px solid white !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
 }
 
 .volcana-title {
-  height: 120px !important;  /* Más pequeño */
+  height: 80px !important;
+  margin-top: 15px !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)) !important;
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  z-index: 5;
+}
+
+/* LOGO HOMEPAGE */
+.volcana-title {
+  height: 120px !important;
   margin-bottom: 1.5rem !important;
 }
 
@@ -131,6 +187,7 @@ img {
   max-width: 800px !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
 }
+
 /* LOGOS INSTITUCIONALES - SIN FONDO */
 .institutional-logos {
   background-color: transparent !important;
@@ -157,13 +214,13 @@ img {
   height: 45px !important;
   width: auto;
   max-width: 100px;
-  transition: all 0.3s ease; /* Transición para animación */
-  filter: grayscale(30%); /* Efecto inicial */
+  transition: all 0.3s ease;
+  filter: grayscale(30%);
 }
 
 .institutional-logo:hover {
-  transform: scale(1.1) translateY(-5px); /* Efecto de levitación */
-  filter: grayscale(0%) drop-shadow(0 5px 5px rgba(0,0,0,0.2)); /* Más color y sombra */
+  transform: scale(1.1) translateY(-5px);
+  filter: grayscale(0%) drop-shadow(0 5px 5px rgba(0,0,0,0.2));
 }
 </style>
 
@@ -193,9 +250,19 @@ from IPython.display import IFrame, HTML
 #| echo: false
 HTML(f"""
 <div class="homepage">
+  <!-- Sección del carrusel con logo -->
   <div class="homepage-header">
-    <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
-    <img src="B_images/Volcana_letras.png" alt="VOLCANA" class="volcana-title">
+    <div class="carousel-container">
+      <!-- Imágenes del carrusel (debes tener estas imágenes en tu carpeta B_images) -->
+      <div class="carousel-slide active" style="background-image: url('B_images/volcano1.jpg');"></div>
+      <div class="carousel-slide" style="background-image: url('B_images/volcano2.jpg');"></div>
+      <div class="carousel-slide" style="background-image: url('B_images/volcano3.jpg');"></div>
+      <div class="carousel-overlay"></div>
+      <div class="homepage-logo-container">
+        <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
+        <img src="B_images/Volcana_letras.png" alt="VOLCANA" class="volcana-title">
+      </div>
+    </div>
   </div>
 
   <div class="homepage-section">
@@ -260,9 +327,24 @@ HTML(f"""
     </div>
   </div>
 </div>
+
+<script>
+// Script para el carrusel automático
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  let currentSlide = 0;
+  
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }
+  
+  // Cambia de imagen cada 5 segundos
+  setInterval(nextSlide, 5000);
+});
+</script>
 """)
-
-
 ```
 
 # 🏝️ LA PALMA {#la-palma}
