@@ -9,7 +9,8 @@ from shapely.geometry import Polygon, Point
 from datetime import datetime
 
 # Configuration
-OUTLINE_COLOR = 'rgba(0, 0, 0, 1)'  # Pure black outline
+OUTLINE_COLOR = 'rgba(150, 0, 0, 1)'  # Dark red outline
+FILL_COLOR = 'rgba(255, 50, 50, 0.5)'  # Semi-transparent red for lava area
 MAPBOX_STYLE = "open-street-map"  # Base map style
 
 def load_lava_perimeter():
@@ -46,33 +47,57 @@ def generate_eruption_map(output_file):
     initial_zoom = 6
     initial_center = dict(lat=28.5, lon=-15.6)  # Centered on Canary Islands
     
-    # Volcano marker (always visible)
-    fig.add_trace(go.Scattermap(
+    # MAIN VOLCANO MARKER (visible in all zoom levels)
+    fig.add_trace(go.Scattermapbox(
         mode="markers+text",
         lon=[-17.873],
         lat=[28.613],
         marker=dict(
-            size=14,
+            size=12,
             color='red',
-            symbol='triangle',
-            opacity=0.8
+            symbol='marker',  # Usa este o 'circle'
+            opacity=0.8,
         ),
-        text=["Tajogaite Volcano"],
+
+
+        text=["Tajogaite"],
         textposition="top right",
         hoverinfo="text",
-        name="Volcano"
-    ))
+        name="Volcano Location",
+        textfont=dict(size=10, color='black')
+    ))  # <- Paréntesis cerrado correctamente aquí
     
-    # Lava perimeter trace (initially hidden)
-    fig.add_trace(go.Scattermap(
+    # DETAILED VOLCANO MARKER (only visible when zoomed in)
+    fig.add_trace(go.Scattermapbox(
+        mode="markers+text",
+        lon=[-17.873],
+        lat=[28.613],
+        marker=dict(
+            size=25,
+            color='red',
+            symbol='triangle',
+            opacity=1.0,
+        ),
+        text=["<b>Tajogaite Volcano</b>"],
+        textposition="top right",
+        hoverinfo="text",
+        name="Volcano Location (detailed)",
+        visible=False,
+        textfont=dict(size=14, color='black')
+    ))  # <- Paréntesis cerrado correctamente aquí
+    
+    # Lava perimeter trace with filled area (initially hidden)
+    fig.add_trace(go.Scattermapbox(
         mode="lines",
-        lon=lava_coords[:,0],
-        lat=lava_coords[:,1],
+        lon=np.append(lava_coords[:,0], lava_coords[0,0]),
+        lat=np.append(lava_coords[:,1], lava_coords[0,1]),
+        fill='toself',
+        fillcolor=FILL_COLOR,
         line=dict(color=OUTLINE_COLOR, width=2),
-        name="Lava Flow Perimeter",
+        name="Lava Flow Area",
         visible=False,
         hoverinfo="none"
-    ))
+    ))  # Este paréntesis cierra el add_trace
     
     # Map layout configuration
     fig.update_layout(
@@ -102,29 +127,30 @@ def generate_eruption_map(output_file):
                 showactive=True,
                 buttons=list([
                     dict(
-                        label="Hide Lava Perimeter",
+                        label="Hide Lava Area",
                         method="update",
-                        args=[{"visible": [True, False]},
-                              {"title": "La Palma - Normal View",
-                               "mapbox.center": initial_center,
-                               "mapbox.zoom": initial_zoom}]
+                        args=[{"visible": [True, False, False]},
+                             {"title": "La Palma - Normal View",
+                              "mapbox.center": initial_center,
+                              "mapbox.zoom": initial_zoom}]
                     ),
                     dict(
-                        label="Show Lava Perimeter",
+                        label="Show Lava Area",
                         method="update",
-                        args=[{"visible": [True, True]},
-                              {"title": "La Palma - Eruption Impact",
-                               "mapbox.center": dict(lat=28.613, lon=-17.873),
-                               "mapbox.zoom": 14}]
+                        args=[{"visible": [False, True, True]},
+                             {"title": "La Palma - Eruption Impact",
+                              "mapbox.center": dict(lat=28.613, lon=-17.873),
+                              "mapbox.zoom": 12}]
                     )
                 ])
             )
         ]
-    )
+    )  # Este paréntesis cierra update_layout
     
     # Save the file
     fig.write_html(output_file)
     print(f"Map generated successfully: {output_file}")
+
 
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot"""
