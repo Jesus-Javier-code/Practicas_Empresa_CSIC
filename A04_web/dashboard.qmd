@@ -275,18 +275,13 @@ img {
 </style>
 
 ```{python}
-#| label: setup-script
+#| label: setup-script1
 #| include: false
 import subprocess
 subprocess.run(["python", "../A02_utils/geometry.py"], check=True)
 ```
 
-```{python}
-#| label: setup-script
-#| include: false
-import subprocess
-subprocess.run(["python", "../A01_source/B01_4_eq_processing/process_eq_data.py"], check=True)
-```
+
 
 
 ```{python}
@@ -362,8 +357,13 @@ HTML(f"""
       model post-eruption lava cooling curves (from the 2021 La Palma eruption), and monitor the fumarole fields of Teide volcano using thermal infrared data.
     </p>
     <p class="homepage-text">
-      <strong>Seismic-Volcanic Relationships:</strong> We focus on the global analysis of earthquake-eruption correlations, 
-      statistical modeling of eruption triggers, and case studies of notable volcanic eruption sequences.
+      <strong>Seismic-Volcanic Relationships:</strong> We analyze the earthquake-eruption correlations, by describing a trigger index which takes into account the distance between the epicenter of the events and the volcano we are studying and the magnitude of these events.
+    </p>
+    <p class="homepage-text">
+      <strong>Seismic Filtering for Volcanic Activation:</strong> Because we are working with the USGS catalog, our goal is to make a data screening, showing the user only the earthquakes that have the potential to start an eruption period in the short-term (~5 years more or less).
+    </p>
+    <p class="homepage-text">
+      <strong>General Goals:</strong> The main objective is to simplify the data collection in order to enhance and speed up the process of studying active volcanic regions, with the aim of building a proper warning system that allows a well-elaborated risk minimization plan.
     </p>
     <p class="homepage-text">
       <strong>Seismic Filtering for Volcanic Activation:</strong> Part of our work involves filtering and analyzing seismic data 
@@ -402,7 +402,6 @@ HTML(f"""
   </div>
 </div>
   <!-- Nuevo footer de créditos -->
-<!-- Nuevo footer de créditos -->
   <div class="credits-footer">
     <p>Créditos fotográficos: 
       <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta de Salamanca</a>, 
@@ -413,7 +412,9 @@ HTML(f"""
   </div>
 </div>
 """)
+
 ```
+
 <script>
 // CARRUSEL OPTIMIZADO
 document.addEventListener('DOMContentLoaded', function() {
@@ -539,38 +540,3 @@ IFrame("B_images/la_palma_eruption_viewer.html", width="100%", height="550px")
 display(Image(filename="B_images/graficamala.png", width="80%"))
 ```
 # 🕳️ TERREMOTOS
-```{python}
-#| label: eq-map
-#| fig-cap: "Mapa de Terremotos"
-#| echo: false
-from IPython.display import HTML
-
-try:
-    display(HTML(open("../A00_data/B_images/eq_map.html", "r").read()))
-except Exception as e:
-    print(f"Error mostrando el mapa: {e}")
-
-```
-```{python}
-#| label: eq-table
-#| echo: false
-from IPython.display import HTML
-
-try:
-    display(HTML(open("../A00_data/B_images/eq_table.html", "r").read()))
-except Exception as e:
-    print(f"Error mostrando la tabla: {e}")
-
-```
-
-```{python}
-#| label: eq-hist
-#| fig-cap: "Histograma del Índice de Trigger"
-#| echo: false
-from IPython.display import Image, display
-
-try:
-    display(Image("../A00_data/B_images/trigger_index_histogram.png"))
-except Exception as e:
-    print(f"Error mostrando el histograma: {e}")
-```
