@@ -55,17 +55,16 @@ def generate_eruption_map(output_file):
         marker=dict(
             size=12,
             color='red',
-            symbol='circle',  # Usa este o 'circle'
+            symbol='circle',
             opacity=0.8,
+            # Para Scattermapbox, usamos 'color' para el relleno y ajustamos la opacidad
         ),
-
-
         text=["Tajogaite"],
         textposition="top right",
         hoverinfo="text",
         name="Volcano Location",
         textfont=dict(size=10, color='black')
-    ))  # <- Paréntesis cerrado correctamente aquí
+    ))
     
     # DETAILED VOLCANO MARKER (only visible when zoomed in)
     fig.add_trace(go.Scattermapbox(
@@ -84,7 +83,7 @@ def generate_eruption_map(output_file):
         name="Volcano Location (detailed)",
         visible=False,
         textfont=dict(size=14, color='black')
-    ))  # <- Paréntesis cerrado correctamente aquí
+    ))
     
     # Lava perimeter trace with filled area (initially hidden)
     fig.add_trace(go.Scattermapbox(
@@ -97,7 +96,7 @@ def generate_eruption_map(output_file):
         name="Lava Flow Area",
         visible=False,
         hoverinfo="none"
-    ))  # Este paréntesis cierra el add_trace
+    ))
     
     # Map layout configuration
     fig.update_layout(
@@ -145,12 +144,11 @@ def generate_eruption_map(output_file):
                 ])
             )
         ]
-    )  # Este paréntesis cierra update_layout
+    )
     
     # Save the file
     fig.write_html(output_file)
     print(f"Map generated successfully: {output_file}")
-
 
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot"""
@@ -167,12 +165,18 @@ def generate_radiative_power_plot(df, output_file):
                     opacity=0.7,
                     size_max=10)
     
-    # Customize markers
+    # Customize markers for smoother, rounded appearance
     fig.update_traces(
         marker=dict(
-            size=6,
+            size=8,  # Slightly larger for better visibility
             color='#E74C3C',  # Volcanic red
-            line=dict(width=1, color='#413224')  # Brown border
+            symbol='circle',  # Ensures perfectly round markers
+            line=dict(
+                width=1, 
+                color='#413224',  # Brown border
+            ),
+            opacity=0.8,
+            sizemode='diameter'
         ),
         selector=dict(mode='markers')
     )
@@ -276,8 +280,6 @@ def main():
     except Exception as e:
         print(f"\nError: {str(e)}")
         return False
-
-
 
 if __name__ == "__main__":
     success = main()

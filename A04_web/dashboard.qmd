@@ -12,6 +12,74 @@ logo: B_images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 <style>
+  /* ===== NUEVO ESTILO PARA NAVEGACIÓN CIRCULAR ===== */
+:root {
+  --volcano-color: #413224;
+  --earthquake-color: #413224;
+}
+
+/* Eliminar navbar original */
+.navbar {
+  display: none !important;
+}
+
+/* Contenedor de navegación circular */
+.circle-nav-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  gap: 15px;
+}
+
+.circle-nav-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  border: 2px solid white;
+  background-size: cover;
+  background-position: center;
+}
+
+.circle-nav-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+#homepage-btn {
+  background-color: var(--volcano-color);
+  background-image: url('B_images/Logo_Volcana_circular.png');
+}
+
+#la-palma-btn {
+  background-color: var(--volcano-color);
+  background-image: url('B_images/la_palma_contorno.png');
+}
+
+#earthquakes-btn {
+  background-color: var(--earthquake-color);
+  background-image: url('B_images/earthquake-icon.png');
+}
+
+/* Eliminar fondos de celdas */
+.panel-card, .cell-output, .cell, .panel-card-body, .panel-tabset {
+  background: transparent !important;
+}
+
+/* Ajustar iframes para que ocupen toda la celda */
+iframe {
+  background: transparent !important;
+}
+
+/* Resto de estilos existentes... (mantén todo lo anterior) */
+
 /* SOLUCIÓN: OCULTAR SOLO LA PESTAÑA HOMEPAGE */
 .navbar-nav li:has(a[href="#homepage"]) {
   display: none !important;
@@ -274,6 +342,7 @@ img {
 }
 </style>
 
+
 ```{python}
 #| label: setup-script1
 #| include: false
@@ -282,7 +351,34 @@ subprocess.run(["python", "../A02_utils/geometry.py"], check=True)
 ```
 
 
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Crear botones de navegación
+  const navContainer = document.createElement('div');
+  navContainer.className = 'circle-nav-container';
+  
+  navContainer.innerHTML = `
+    <div class="circle-nav-btn" id="homepage-btn" title="Home"></div>
+    <div class="circle-nav-btn" id="la-palma-btn" title="La Palma"></div>
+    <div class="circle-nav-btn" id="earthquakes-btn" title="Earthquakes"></div>
+  `;
+  
+  document.body.appendChild(navContainer);
+  
+  // Funcionalidad de los botones
+  document.getElementById('homepage-btn').addEventListener('click', () => {
+    window.location.hash = '#homepage';
+  });
+  
+  document.getElementById('la-palma-btn').addEventListener('click', () => {
+    window.location.hash = '#la-palma';
+  });
+  
+  document.getElementById('earthquakes-btn').addEventListener('click', () => {
+    window.location.hash = '#earthquakes';
+  });
+});
+</script>
 
 ```{python}
 #| label: load-packages
@@ -361,9 +457,6 @@ HTML(f"""
     </p>
     <p class="homepage-text">
       <strong>Seismic Filtering for Volcanic Activation:</strong> Because we are working with the USGS catalog, our goal is to make a data screening, showing the user only the earthquakes that have the potential to start an eruption period in the short-term (~5 years more or less).
-    </p>
-    <p class="homepage-text">
-      <strong>General Goals:</strong> The main objective is to simplify the data collection in order to enhance and speed up the process of studying active volcanic regions, with the aim of building a proper warning system that allows a well-elaborated risk minimization plan.
     </p>
     <p class="homepage-text">
       <strong>Seismic Filtering for Volcanic Activation:</strong> Part of our work involves filtering and analyzing seismic data 
@@ -499,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 # 🏝️ LA PALMA {#la-palma}
 
-## Potencia Radiativa {.panel-tabset}
+## Radiative Power {.panel-tabset}
 
 ```{python}
 #| label: setup-potencia
@@ -508,35 +601,45 @@ import subprocess
 subprocess.run(["python", "../A02_utils/geometry_2.py"], check=True)
 ```
 
+::: {.row}
+
 ```{python}
 #| label: display-potencia
-#| fig-cap: "Radiative Power vs Time"
-IFrame("B_images/radiative_power_plot.html", width="100%", height="400px")
+#| fig-cap: "Radiative Power vs Time (Tajogaite Volcano)"
+IFrame("B_images/radiative_power_plot.html", width="100%", height="500px")
 ```
+:::
 
-## Mapas 
-### Mapa interactivo Tajogaite 
-```{python}
-#| label: mapa-tajogaite-main
-#| fig-cap: "Mapa interactivo del Volcán de Tajogaite"
-IFrame("B_images/mapa_tajogaite.html", width="100%", height="400px")
-```
-### Mapa interactivo los alrededores 
-```{python}
-#| label: mapa-tajogaite-surroundings
-#| fig-cap: "Mapa interactivo de los alrededores del Volcán de Tajogaite"
-IFrame("B_images/mapa_region_alrededor.html", width="100%", height="400px")
-```
+::: {.row}
 ```{python}
 #| label: mapa-mundi
-#| fig-cap: "Mapa mundi simplificado con el Volcán Tajogaite"
-IFrame("B_images/la_palma_eruption_viewer.html", width="100%", height="550px")
+#| fig-cap: "Simplified world map showing Tajogaite Volcano"
+IFrame("B_images/la_palma_eruption_viewer.html", width="100%", height="500px")
 ```
-# 🌋 EL TEIDE
-
+:::
+:::{.row}
 ```{python}
-#| label: teide-analysis
-#| fig-cap: "Análisis de Potencia Radiativa - El Teide"
-display(Image(filename="B_images/graficamala.png", width="80%"))
+#| label: la-palma-video
+#| echo: false
+HTML("""
+<div style="width: 80%; margin: 0 auto; padding: 20px 0;">
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe 
+      src="https://www.youtube.com/embed/yDgV1YTPxok" 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+      frameborder="0" 
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p style="text-align: center; margin-top: 10px; color: #666;">
+    Tajogaite Volcano Eruption - La Palma 2021
+  </p>
+</div>
+""")
 ```
 # 🕳️ TERREMOTOS
+```{python}
+#| label: eq-map
+#| echo: false
+IFrame("B_images/eq_map.html", width="100%", height="600px")
+```
