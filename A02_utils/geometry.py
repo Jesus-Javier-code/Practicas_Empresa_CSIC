@@ -42,7 +42,6 @@ def geo_map(pos1, pos2, zone, output_file):
     
     fig = go.Figure()
 
-    # Configuración del mapa sin márgenes y fondo transparente
     fig.update_layout(
         mapbox_style="open-street-map",
         mapbox=dict(
@@ -57,7 +56,6 @@ def geo_map(pos1, pos2, zone, output_file):
         dragmode=False
     )
 
-    # Mostrar la delimitación del área
     fig.add_trace(go.Scattermapbox(
         mode="lines",
         lon=[lon_min, lon_max, lon_max, lon_min, lon_min],
@@ -69,7 +67,6 @@ def geo_map(pos1, pos2, zone, output_file):
 
     grid(fig, lat_min, lat_max, lon_min, lon_max)
     
-    # Guardar el mapa
     output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../A04_web/B_images")
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, output_file)
@@ -81,10 +78,55 @@ def geo_map(pos1, pos2, zone, output_file):
 pos1_la_palma = np.array([28.601109109131052, -17.929768956228138])
 pos2_la_palma = np.array([28.62514776637218, -17.872144640744164])
 
-# Región alrededor
 pos3_la_palma = np.array([28.3, -18.2])
 pos4_la_palma = np.array([28.8, -17.9])
 
-# Generar los mapas
 geo_map(pos1_la_palma, pos2_la_palma, "Volcán de Tajogaite", "mapa_tajogaite.html")
 geo_map(pos3_la_palma, pos4_la_palma, "Región alrededor", "mapa_region_alrededor.html")
+
+def plot_events_histogram(file = "bsc_events_info.csv"):
+    path = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(path, ".."))
+
+    file_path = os.path.join(project_root, f"A00_data/B_eq_raw/{file}")
+
+    df = pd.read_csv(file_path)
+
+    df["time"] = pd.to_datetime(df["time"], errors='coerce')
+
+    fig = go.Figure(data=[
+        go.Histogram(
+            x=df["time"],
+            nbinsx=30,  
+            marker_color="blue"
+        )
+    ])
+
+    fig.update_layout(
+        title="Histograma de Eventos Sísmicos",
+        xaxis_title="Fecha y Hora",
+        yaxis_title="Número de Eventos",
+        xaxis_tickformat="%Y-%m",  
+        xaxis_rangeslider_visible=True,  
+        barmode="overlay"
+    )
+    total_events = len(df)  # Contar el número total de eventos
+
+    fig.update_layout(
+        title=f"Histograma de Eventos Sísmicos (Total: {total_events})",  # Agregar el total al título
+        xaxis_title="Fecha",
+        yaxis_title="Número de Eventos",
+        xaxis_tickformat="%Y-%m",  # Formato de solo fecha en el eje x
+        xaxis_rangeslider_visible=True,  # Mostrar el rango deslizante
+        barmode="overlay"
+    )
+
+
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../A04_web/B_images")
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, "histograma_eventos.html")
+
+    pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
+    print(f"Histograma guardado en: {output_path}")
+
+plot_events_histogram("bsc_events_info.csv")
