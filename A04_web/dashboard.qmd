@@ -255,7 +255,7 @@ HTML(f"""
     <div class="carousel-container">
       <!-- Imágenes del carrusel (debes tener estas imágenes en tu carpeta B_images) -->
       <div class="carousel-slide active" style="background-image: url('B_images/volcano1.jpg');"></div>
-      <div class="carousel-slide" style="background-image: url('B_images/volcano2.jpeg');"></div>
+      <div class="carousel-slide" style="background-image: url('B_images/volcano4.jpeg');"></div>
       <div class="carousel-slide" style="background-image: url('B_images/volcano3.jpeg');"></div>
       <div class="carousel-overlay"></div>
       <div class="homepage-logo-container">
