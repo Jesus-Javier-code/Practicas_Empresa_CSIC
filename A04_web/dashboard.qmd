@@ -222,6 +222,56 @@ img {
   transform: scale(1.1) translateY(-5px);
   filter: grayscale(0%) drop-shadow(0 5px 5px rgba(0,0,0,0.2));
 }
+
+
+/* NUEVO ESTILO SIMPLIFICADO PARA CRÉDITOS */
+.photo-credits {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 20;
+  color: white;
+  font-size: 0.8rem;
+  font-family: Arial, sans-serif;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  transition: opacity 0.3s ease;
+  padding: 0;
+  background: transparent !important;
+}
+
+.photo-credits a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.photo-credits a:hover {
+  text-decoration: underline;
+}
+
+.photo-credits.hidden {
+  opacity: 0;
+}
+
+/* OPTIMIZACIÓN DEL CARRUSEL */
+.carousel-slide {
+  will-change: opacity; /* Mejora rendimiento */
+  backface-visibility: hidden; /* Elimina flickering */
+}
+
+/* Footer más discreto */
+.credits-footer {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  color: #666;
+  border-top: none;
+}
+
+.credits-footer a {
+  color: #413224;
+  margin: 0 3px;
+}
 </style>
 
 ```{python}
@@ -229,6 +279,13 @@ img {
 #| include: false
 import subprocess
 subprocess.run(["python", "../A02_utils/geometry.py"], check=True)
+```
+
+```{python}
+#| label: setup-script
+#| include: false
+import subprocess
+subprocess.run(["python", "../A01_source/B01_4_eq_processing/process_eq_data.py"], check=True)
 ```
 
 
@@ -250,13 +307,30 @@ from IPython.display import IFrame, HTML
 #| echo: false
 HTML(f"""
 <div class="homepage">
-  <!-- Sección del carrusel con logo -->
+  <!-- Carrusel optimizado -->
   <div class="homepage-header">
     <div class="carousel-container">
-      <!-- Imágenes del carrusel (debes tener estas imágenes en tu carpeta B_images) -->
-      <div class="carousel-slide active" style="background-image: url('B_images/volcano1.jpg');"></div>
-      <div class="carousel-slide" style="background-image: url('B_images/volcano4.jpeg');"></div>
-      <div class="carousel-slide" style="background-image: url('B_images/volcano3.jpeg');"></div>
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/volcano1.jpg');">
+        <div class="photo-credits">
+          © <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta</a>
+        </div>
+      </div>
+      
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background-image: url('B_images/volcano4.png');">
+        <div class="photo-credits hidden">
+          © <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">Turismo Lanzarote</a>
+        </div>
+      </div>
+      
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background-image: url('B_images/volcano3.jpeg');">
+        <div class="photo-credits hidden">
+          © <a href="https://www.nationalgeographic.com.es/fotografia/erupcion-palma-imagenes_17364" target="_blank">National Geographic</a>
+        </div>
+      </div>
+      
       <div class="carousel-overlay"></div>
       <div class="homepage-logo-container">
         <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
@@ -327,25 +401,99 @@ HTML(f"""
     </div>
   </div>
 </div>
+  <!-- Nuevo footer de créditos -->
+<!-- Nuevo footer de créditos -->
+  <div class="credits-footer">
+    <p>Créditos fotográficos: 
+      <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta de Salamanca</a>, 
+      <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">Turismo Lanzarote</a>, 
+      <a href="https://www.nationalgeographic.com.es/fotografia/erupcion-palma-imagenes_17364" target="_blank">National Geographic</a>.
+    </p>
+    <p>All images are used for educational and research purposes.</p>
+  </div>
+</div>
 """)
 ```
 <script>
-// Script para el carrusel automático
+// CARRUSEL OPTIMIZADO
 document.addEventListener('DOMContentLoaded', function() {
   const slides = document.querySelectorAll('.carousel-slide');
-  let currentSlide = 0;
-  
-  function nextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
+  const credits = document.querySelectorAll('.photo-credits');
+  let currentIndex = 0;
+  let isAnimating = false;
+  let intervalId;
+
+  function showNextSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    // Oculta slide actual
+    slides[currentIndex].classList.remove('active');
+    credits[currentIndex].classList.add('hidden');
+    
+    // Calcula nuevo índice
+    currentIndex = (currentIndex + 1) % slides.length;
+    
+    // Muestra nuevo slide
+    slides[currentIndex].classList.add('active');
+    credits[currentIndex].classList.remove('hidden');
+    
+    // Restablece bandera después de la transición
+    setTimeout(() => {
+      isAnimating = false;
+    }, 1500);
   }
-  
-  // Cambia de imagen cada 5 segundos
-  setInterval(nextSlide, 5000);
+
+  // Inicia el carrusel
+  function startCarousel() {
+    intervalId = setInterval(showNextSlide, 5000);
+  }
+
+  // Pausa al interactuar
+  const container = document.querySelector('.carousel-container');
+  container.addEventListener('mouseenter', () => clearInterval(intervalId));
+  container.addEventListener('mouseleave', startCarousel);
+
+  // Inicializa
+  startCarousel();
 });
 </script>
 
+<script>
+// Script mejorado para transiciones
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const credits = document.querySelectorAll('.photo-credits');
+  let currentSlide = 0;
+  
+  function nextSlide() {
+    // Oculta elemento actual
+    slides[currentSlide].classList.remove('active');
+    credits[currentSlide].classList.add('hidden');
+    
+    // Calcula siguiente slide
+    currentSlide = (currentSlide + 1) % slides.length;
+    
+    // Muestra nuevo elemento
+    slides[currentSlide].classList.add('active');
+    setTimeout(() => {
+      credits[currentSlide].classList.remove('hidden');
+    }, 50);
+  }
+  
+  // Inicia intervalo
+  let slideInterval = setInterval(nextSlide, 5000);
+  
+  // Pausa al interactuar
+  document.querySelector('.carousel-container').addEventListener('mouseenter', () => {
+    clearInterval(slideInterval);
+  });
+  
+  document.querySelector('.carousel-container').addEventListener('mouseleave', () => {
+    slideInterval = setInterval(nextSlide, 5000);
+  });
+});
+</script>
 
 
 # 🏝️ LA PALMA {#la-palma}
@@ -390,11 +538,39 @@ IFrame("B_images/la_palma_eruption_viewer.html", width="100%", height="550px")
 #| fig-cap: "Análisis de Potencia Radiativa - El Teide"
 display(Image(filename="B_images/graficamala.png", width="80%"))
 ```
-
 # 🕳️ TERREMOTOS
+```{python}
+#| label: eq-map
+#| fig-cap: "Mapa de Terremotos"
+#| echo: false
+from IPython.display import HTML
+
+try:
+    display(HTML(open("../A00_data/B_images/eq_map.html", "r").read()))
+except Exception as e:
+    print(f"Error mostrando el mapa: {e}")
+
+```
+```{python}
+#| label: eq-table
+#| echo: false
+from IPython.display import HTML
+
+try:
+    display(HTML(open("../A00_data/B_images/eq_table.html", "r").read()))
+except Exception as e:
+    print(f"Error mostrando la tabla: {e}")
+
+```
 
 ```{python}
-#| label: earthquake-trigger-index
-#| fig-cap: "Trigger Index - Terremoto"
-display(Image(filename="B_images/thomas_paper.png", width="80%"))
+#| label: eq-hist
+#| fig-cap: "Histograma del Índice de Trigger"
+#| echo: false
+from IPython.display import Image, display
+
+try:
+    display(Image("../A00_data/B_images/trigger_index_histogram.png"))
+except Exception as e:
+    print(f"Error mostrando el histograma: {e}")
 ```
