@@ -34,18 +34,20 @@ logo-alt: "CSIC logo."
 }
 
 .circle-nav-btn {
-  width: 60px;
-  height: 60px;
+  width: 80px;  /* Reducido de 60px */
+  height: 80px; /* Reducido de 60px */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Sombra más sutil */
+  transition: all 0.2s ease;
   border: 2px solid white;
-  background-size: cover;
+  background-size: 60%; /* Ajuste para que la imagen no salga de los bordes */
   background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,0.9); /* Fondo semitransparente */
 }
 
 .circle-nav-btn:hover {
@@ -55,17 +57,21 @@ logo-alt: "CSIC logo."
 
 #homepage-btn {
   background-color: var(--volcano-color);
-  background-image: url('B_images/Logo_Volcana_circular.png');
+  background-image: url('B_images/Logo_Volcana_circular.jpeg');
+  background-size: 70%; /* Logo un poco más grande */
 }
 
 #la-palma-btn {
   background-color: var(--volcano-color);
   background-image: url('B_images/la_palma_contorno.png');
+  background-size: 50%; /* Imagen más pequeña */
+  padding: 2px; /* Espacio extra para contorno */
 }
 
 #earthquakes-btn {
-  background-color: var(--earthquake-color);
+  background-color: var(--volcano-color);
   background-image: url('B_images/earthquake-icon.png');
+  background-size: 60%; /* Icono más pequeño */
 }
 
 /* Eliminar fondos de celdas */
