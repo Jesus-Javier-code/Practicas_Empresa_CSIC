@@ -934,6 +934,7 @@ HTML("""
 """)
 ```
 :::
+
 ```{python}
 #| label: la-palma-credits
 #| echo: false
