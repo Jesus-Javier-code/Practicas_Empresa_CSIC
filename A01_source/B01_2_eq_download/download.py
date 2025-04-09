@@ -11,7 +11,7 @@ from tqdm import tqdm
 #warnings.filterwarnings("ignore")
 
 # In case it is recquired to filter by minimum magnitude
-def search_params(date_i, date_f, min_mag, center_coords, reg_rad):
+def search_by_minimum_magnitude(date_i, date_f, min_mag, center_coords, reg_rad):
 
     # Center coordinates must be given as (latitude, longitude) form
     lat_cent, lon_cent = center_coords
@@ -98,7 +98,7 @@ def working_df(df1, df2):
     return merged_df
 
 # Example usage of the function
-# search_params("2025-01-01 00:00", "2025-03-30 00:00", 4, (32.62691152238639, -116.34553204019909), 5000)
+# search_by_minimum_magnitude("2025-01-01 00:00", "2025-03-30 00:00", 4, (32.62691152238639, -116.34553204019909), 500)
 
-ref = ("2025-01-01 00:00", "2025-03-30 00:00", (32.62691152238639, -116.34553204019909), 500)
+ref = ("2025-01-01 00:00", "2025-03-30 00:00", (32.62691152238639, -116.34553204019909), 200)
 download_all_by_region(*ref)

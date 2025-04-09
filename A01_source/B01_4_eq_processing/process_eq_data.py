@@ -4,6 +4,8 @@ import plotly.express as px
 from great_tables import GT, md
 import os
 import sys
+import dash
+from dash import dash_table, html
 
 def main():
     try:
@@ -11,7 +13,7 @@ def main():
         current_dir = os.path.dirname(os.path.abspath(__file__))
         base_dir = os.path.dirname(os.path.dirname(current_dir))
         
-        input_csv = os.path.join(base_dir, "A00_data", "B_eq_processed", "trigger_index.csv")
+        input_csv = os.path.join(base_dir, "A00_data", "B_eq_processed", "wrk_df.csv")
         output_folder = os.path.join(base_dir, "A04_web", "B_images")
         
         # Verify input file exists
@@ -39,18 +41,46 @@ def main():
 
 def generate_table(data, output_folder):
     try:
+        from dash import dash_table, html
+        import dash
+        import os
+
+        # Crear la tabla interactiva con Dash DataTable
         table_html_path = os.path.join(output_folder, "eq_table.html")
-        table = (
-            GT(data.head(100))
-            .fmt_number(columns=["latitude", "longitude"], decimals=4)
-            .fmt_number(columns=["distance"], decimals=2, pattern="{x} km")
-            .fmt_number(columns=["trigger_index"], decimals=2)
-            .tab_header(title=md("**Earthquake Trigger Index**"))
+        app = dash.Dash(__name__)
+
+        # Configurar la tabla interactiva
+        table = dash_table.DataTable(
+            id="eq-table",
+            columns=[
+                {"name": col, "id": col, "type": "numeric" if pd.api.types.is_numeric_dtype(data[col]) else "text"}
+                for col in data.columns
+            ],
+            data=data.head(100).to_dict("records"),  # Mostrar solo las primeras 100 filas
+            page_size=10,  # Número de filas por página
+            style_table={"overflowX": "auto"},
+            style_cell={"textAlign": "center", "padding": "5px"},
+            style_header={"backgroundColor": "rgb(230, 230, 230)", "fontWeight": "bold"},
+            filter_action="native",  # Permitir filtrado
+            sort_action="native",    # Permitir ordenamiento
+            row_selectable="multi",  # Permitir selección de filas
         )
-        
+
+        # Configurar el layout de la aplicación Dash
+        app.layout = html.Div(
+            [
+                html.H1("Earthquake Trigger Index Table", style={"textAlign": "center"}),
+                html.Div(table, style={"margin": "20px"}),
+            ]
+        )
+
+        # Guardar la tabla como un archivo HTML
         with open(table_html_path, "w", encoding="utf-8") as f:
-            f.write(str(table))
+            f.write(app.index_string)
         print(f"✅ Table saved to: {table_html_path}")
+        print(data.head(100).to_string(index=False))  # Print the first 100 rows of the table to console
+
+
     except Exception as e:
         print(f"❌ Error generating table: {str(e)}", file=sys.stderr)
         raise
