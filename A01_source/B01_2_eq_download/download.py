@@ -56,7 +56,7 @@ def download_all_by_region(date_i, date_f, center_coords, reg_rad):
         maxlatitude= lat_max,
         minlongitude= lon_min,
         maxlongitude= lon_max,
-        minmagnitude= 2,
+        minmagnitude= 1,
         eventtype= "earthquake"
     )
 
@@ -100,5 +100,11 @@ def working_df(df1, df2):
 # Example usage of the function
 # search_by_minimum_magnitude("2025-01-01 00:00", "2025-03-30 00:00", 4, (32.62691152238639, -116.34553204019909), 500)
 
+"""
+California
 ref = ("2025-01-01 00:00", "2025-03-30 00:00", (32.62691152238639, -116.34553204019909), 200)
+download_all_by_region(*ref)
+"""
+
+ref = ("2000-01-01 00:00", "2025-03-30 00:00", (28.61302051993363, -17.866746656292413), 500)
 download_all_by_region(*ref)

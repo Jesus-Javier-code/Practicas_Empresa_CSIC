@@ -1,173 +1,269 @@
 id,time,location,latitude,longitude,depth,magnitude,alert,url,eventtype,significance
-ci40831415,2025-01-01 14:07:45.770000+00:00,"27 km WSW of Dana Point, CA",33.3358333,-117.9433333,7.54,2.61,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831415,earthquake,105
-ci40831471,2025-01-01 15:19:34.050000+00:00,"7 km WSW of Holtville, CA",32.7781667,-115.4401667,12.79,2.57,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831471,earthquake,102
-ci40831495,2025-01-01 15:27:31.790000+00:00,"7 km SW of Holtville, CA",32.774,-115.4405,11.21,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831495,earthquake,89
-ci37697436,2025-01-01 15:27:34.010000+00:00,"9 km SSE of Holtville, CA",32.7381667,-115.3296667,14.15,2.41,,https://earthquake.usgs.gov/earthquakes/eventpage/ci37697436,earthquake,89
-ci40831535,2025-01-01 15:34:05.790000+00:00,"6 km WSW of Holtville, CA",32.7806667,-115.4391667,15.0,2.84,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831535,earthquake,124
-ci40831567,2025-01-01 15:40:13.140000+00:00,"7 km SW of Holtville, CA",32.771,-115.4335,12.01,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831567,earthquake,62
-ci40831583,2025-01-01 15:44:05.420000+00:00,"7 km SW of Holtville, CA",32.7673333,-115.4348333,11.99,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831583,earthquake,73
-ci40831679,2025-01-01 16:50:41.100000+00:00,"7 km SW of Holtville, CA",32.7685,-115.4326667,15.37,2.78,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831679,earthquake,119
-ci40831687,2025-01-01 17:28:13.820000+00:00,"12 km ESE of North Shore, CA",33.4825,-115.8233333,8.85,2.67,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831687,earthquake,110
-ci40831695,2025-01-01 17:35:21.930000+00:00,"7 km SW of Holtville, CA",32.7675,-115.4348333,12.88,2.53,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831695,earthquake,98
-ci40831703,2025-01-01 17:36:15.830000+00:00,"8 km SW of Holtville, CA",32.7563333,-115.4298333,8.94,2.08,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831703,earthquake,67
-ci40831847,2025-01-01 23:36:54.650000+00:00,"16 km NNW of Borrego Springs, CA",33.3891667,-116.4411667,11.83,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831847,earthquake,62
-ci40832031,2025-01-02 05:27:12.090000+00:00,"16 km ENE of Borrego Springs, CA",33.3081667,-116.2208333,5.41,2.14,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40832031,earthquake,70
-ci40832359,2025-01-02 16:37:32.940000+00:00,"14 km W of El Centro, CA",32.7721667,-115.7065,7.2,2.26,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40832359,earthquake,79
-ci40832759,2025-01-03 01:28:44.760000+00:00,"9 km NNW of Cabazon, CA",33.9951667,-116.8126667,11.56,2.64,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40832759,earthquake,109
-ci40833615,2025-01-04 05:36:15.690000+00:00,"2 km NW of Estacion Coahuila, B.C., MX",32.2061667,-115.0228333,15.53,2.06,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40833615,earthquake,65
-ci40833655,2025-01-04 07:29:14.560000+00:00,"30 km ENE of Ensenada, B.C., MX",31.9585,-116.3161667,23.23,2.61,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40833655,earthquake,105
-ci40833687,2025-01-04 09:27:37.300000+00:00,"11 km NNE of Cabazon, CA",34.0043333,-116.7391667,13.4,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40833687,earthquake,74
-ci40834055,2025-01-05 11:38:23.760000+00:00,"7 km E of Ocotillo, CA",32.726,-115.9231667,10.62,2.13,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40834055,earthquake,70
-ci40834559,2025-01-06 13:49:52.980000+00:00,"1 km ESE of El Centro, CA",32.7838333,-115.5435,15.78,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40834559,earthquake,169
-ci37694044,2025-01-07 05:54:51.240000+00:00,"26 km NE of Thermal, CA",33.7755,-115.9113333,0.05,2.37,,https://earthquake.usgs.gov/earthquakes/eventpage/ci37694044,earthquake,86
-ci40835879,2025-01-08 11:21:47.460000+00:00,"13 km E of Puebla, B.C., MX",32.5688333,-115.2183333,12.7,2.01,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40835879,earthquake,62
-ci40836207,2025-01-08 21:59:30.850000+00:00,"7 km SW of Holtville, CA",32.7738333,-115.4345,14.89,2.76,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836207,earthquake,119
-ci40836255,2025-01-08 23:18:37.780000+00:00,"8 km SW of Holtville, CA",32.7561667,-115.4283333,10.71,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836255,earthquake,73
-ci40836335,2025-01-09 02:59:54.730000+00:00,"7 km NE of Moreno Valley, CA",33.9626667,-117.1668333,14.71,2.01,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836335,earthquake,62
-ci40836479,2025-01-09 15:19:40.920000+00:00,"22 km NE of Pine Valley, CA",32.9428333,-116.3381667,4.51,2.09,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836479,earthquake,67
-ci40836791,2025-01-09 23:05:01.380000+00:00,"22 km ESE of Anza, CA",33.4821667,-116.4531667,12.9,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836791,earthquake,63
-ci40837151,2025-01-10 13:15:42.190000+00:00,"3 km SW of Culver City, CA",34.0021667,-118.4206667,10.73,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40837151,earthquake,66
-ci40837831,2025-01-11 08:14:47.790000+00:00,"16 km WSW of Delta, B.C., MX",32.3246667,-115.3585,19.43,2.77,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40837831,earthquake,118
-ci40837943,2025-01-11 15:38:09.280000+00:00,"12 km NNE of Cabazon, CA",34.0173333,-116.7326667,13.63,2.23,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40837943,earthquake,77
-ci40837959,2025-01-11 15:55:54.460000+00:00,"22 km NE of Thermal, CA",33.7626667,-115.9506667,1.17,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40837959,earthquake,62
-ci40838375,2025-01-12 17:20:05.900000+00:00,"22 km NE of Thermal, CA",33.7635,-115.9498333,1.97,2.09,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40838375,earthquake,67
-ci40838383,2025-01-12 17:20:47.080000+00:00,"22 km NE of Thermal, CA",33.7646667,-115.952,1.25,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40838383,earthquake,74
-ci40839055,2025-01-14 00:22:15.180000+00:00,"6 km WSW of Pine Valley, CA",32.7936667,-116.5838333,16.8,2.12,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40839055,earthquake,69
-ci40839295,2025-01-14 13:10:17.130000+00:00,"8 km E of Borrego Springs, CA",33.2441667,-116.288,11.78,2.77,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40839295,earthquake,119
-ci40839903,2025-01-15 05:09:51.410000+00:00,"9 km SSE of Lucerne Valley, CA",34.3718333,-116.9281667,7.46,2.68,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40839903,earthquake,112
-ci40840015,2025-01-15 14:03:58.880000+00:00,"9 km ENE of Ocotillo Wells, CA",33.1655,-116.0405,5.54,3.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40840015,earthquake,144
-us6000pk5q,2025-01-15 14:16:18.348000+00:00,"28 km SW of San Vicente, Mexico",31.1515,-116.4678,10.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pk5q,earthquake,96
-ci40840239,2025-01-15 18:18:11.070000+00:00,"15 km ESE of Puebla, B.C., MX",32.5193333,-115.2043333,23.33,2.05,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40840239,earthquake,65
-ci40840391,2025-01-15 20:05:10.640000+00:00,"9 km ENE of Ocotillo Wells, CA",33.168,-116.0368333,7.09,2.44,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40840391,earthquake,92
-ci40840711,2025-01-16 05:12:17.060000+00:00,"16 km NE of Coachella, CA",33.7861667,-116.0608333,5.18,2.38,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40840711,earthquake,87
-ci40840775,2025-01-16 08:08:39.040000+00:00,"3 km S of Mentone, CA",34.045,-117.1323333,7.6,2.75,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40840775,earthquake,160
-us6000pkdz,2025-01-16 11:43:34.284000+00:00,"58 km ENE of San Vicente, Mexico",31.4779,-115.6532,5.0,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pkdz,earthquake,68
-ci40841463,2025-01-16 23:28:49.500000+00:00,"9 km ENE of Ocotillo Wells, CA",33.1665,-116.036,6.73,2.22,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40841463,earthquake,76
-ci40841767,2025-01-17 13:02:01.070000+00:00,"21 km NW of Desert Center, CA",33.8656667,-115.5313333,0.23,2.43,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40841767,earthquake,91
-us6000pkmi,2025-01-17 13:27:02.364000+00:00,"62 km ENE of San Vicente, Mexico",31.4743,-115.6139,5.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pkmi,earthquake,121
-ci40842151,2025-01-17 22:05:58.190000+00:00,"9 km SW of Corona, CA",33.8083333,-117.6288333,4.34,2.01,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40842151,earthquake,62
-ci40842231,2025-01-18 01:15:30.880000+00:00,"20 km NW of Desert Center, CA",33.86,-115.5263333,0.99,2.07,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40842231,earthquake,66
-ci40842895,2025-01-18 22:46:29.170000+00:00,"19 km NE of Big Bear City, CA",34.3613333,-116.6766667,4.01,2.55,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40842895,earthquake,100
-ci40843455,2025-01-19 21:33:09.600000+00:00,"55 km S of Estacion Coahuila, B.C., MX",31.7058333,-115.0688333,4.15,2.96,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40843455,earthquake,135
-ci40843951,2025-01-20 18:21:03.020000+00:00,"16 km N of Cabazon, CA",34.0606667,-116.8003333,11.63,2.68,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40843951,earthquake,111
-ci40844079,2025-01-21 02:09:53.410000+00:00,"3 km S of Mentone, CA",34.0458333,-117.1296667,8.06,2.89,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40844079,earthquake,158
-ci40844087,2025-01-21 02:10:36.120000+00:00,"2 km S of Mentone, CA",34.0525,-117.137,7.24,2.04,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40844087,earthquake,64
-ci40844255,2025-01-21 07:55:23.730000+00:00,"10 km SW of Idyllwild, CA",33.6826667,-116.8023333,16.61,2.71,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40844255,earthquake,136
-ci40845015,2025-01-22 04:56:08.060000+00:00,"26 km NE of Thermal, CA",33.776,-115.9141667,-0.28,2.11,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40845015,earthquake,68
-ci41034048,2025-01-23 12:34:35.640000+00:00,"1 km E of Anza, CA",33.5563333,-116.6631667,11.72,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41034048,earthquake,63
-ci41034376,2025-01-23 18:08:47.730000+00:00,"18 km W of Delta, B.C., MX",32.3291667,-115.3858333,14.74,4.37,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci41034376,earthquake,332
-ci41034888,2025-01-24 04:58:38.810000+00:00,"16 km NE of Coachella, CA",33.7858333,-116.0628333,4.89,2.82,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41034888,earthquake,138
-ci41034936,2025-01-24 06:04:22.520000+00:00,"3 km S of Mentone, CA",34.0436667,-117.131,7.15,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41034936,earthquake,92
-ci40850775,2025-01-25 13:49:57.920000+00:00,"2 km SW of Baldwin Hills, CA",33.9888333,-118.3926667,9.4,2.33,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40850775,earthquake,87
-ci40850991,2025-01-25 15:01:59.460000+00:00,"11 km E of Desert Hot Springs, CA",33.9515,-116.3786667,8.29,2.81,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40850991,earthquake,149
-ci40851119,2025-01-25 16:30:54.920000+00:00,"6 km W of Morongo Valley, CA",34.0433333,-116.6415,11.71,2.27,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40851119,earthquake,79
-ci40851855,2025-01-26 16:30:08.630000+00:00,"5 km WNW of Delta, B.C., MX",32.3795,-115.239,10.27,2.75,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40851855,earthquake,116
-ci40852279,2025-01-27 02:43:50.090000+00:00,"20 km ENE of Thousand Palms, CA",33.9118333,-116.2105,7.68,2.91,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40852279,earthquake,133
-ci40852335,2025-01-27 04:01:37.880000+00:00,"19 km ENE of Thousand Palms, CA",33.9141667,-116.213,7.91,2.22,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40852335,earthquake,76
-ci40852607,2025-01-27 16:29:32.860000+00:00,"6 km WSW of Aguanga, CA",33.4163333,-116.9235,7.07,2.57,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40852607,earthquake,104
-ci40172042,2025-01-29 09:07:52.290000+00:00,"4 km NW of Aguanga, CA",33.4708333,-116.8958333,13.4,2.04,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40172042,earthquake,64
-ci40176202,2025-01-31 00:03:01.690000+00:00,"81 km SE of Estacion Coahuila, B.C., MX",31.6168333,-114.4765,9.98,3.41,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40176202,earthquake,179
-ci40176210,2025-01-31 00:08:55.410000+00:00,"77 km SE of Estacion Coahuila, B.C., MX",31.6548333,-114.4906667,6.3,3.39,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40176210,earthquake,177
-ci40177370,2025-02-01 09:06:25.660000+00:00,"9 km SSW of Idyllwild, CA",33.6596667,-116.7385,13.55,2.26,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40177370,earthquake,79
-ci40177482,2025-02-01 11:19:25.350000+00:00,"6 km W of Borrego Springs, CA",33.2601667,-116.4441667,1.97,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40177482,earthquake,63
-ci40178306,2025-02-02 09:59:22.060000+00:00,"57 km S of Estacion Coahuila, B.C., MX",31.6816667,-115.059,14.85,3.35,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40178306,earthquake,173
-ci40178666,2025-02-03 03:30:15.170000+00:00,"3 km W of Lake Henshaw, CA",33.2373333,-116.7906667,13.86,2.77,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40178666,earthquake,159
-us7000pb60,2025-02-04 04:56:48.406000+00:00,"54 km ENE of San Vicente, Mexico",31.4403,-115.6885,5.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pb60,earthquake,96
-ci40179938,2025-02-05 12:22:26.020000+00:00,"9 km SW of Corona, CA",33.8065,-117.6311667,4.79,2.75,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40179938,earthquake,137
-ci40179970,2025-02-05 13:55:12.960000+00:00,"9 km SW of Corona, CA",33.8065,-117.6308333,5.4,2.14,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40179970,earthquake,70
-ci40181154,2025-02-06 23:58:52.520000+00:00,"0 km N of Lennox, CA",33.9416667,-118.353,12.63,2.16,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40181154,earthquake,73
-ci40181210,2025-02-07 02:02:59.320000+00:00,"13 km NNE of Borrego Springs, CA",33.3648333,-116.3161667,11.79,2.32,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40181210,earthquake,83
-ci40182138,2025-02-08 12:25:52.140000+00:00,"15 km ESE of Julian, CA",33.048,-116.442,12.46,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40182138,earthquake,74
-ci40182738,2025-02-09 08:24:26.790000+00:00,"13 km NW of Progreso, B.C., MX",32.6663333,-115.6795,9.09,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40182738,earthquake,73
-ci40183218,2025-02-10 11:49:08.490000+00:00,"54 km S of Estacion Coahuila, B.C., MX",31.7108333,-115.047,-0.07,2.63,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40183218,earthquake,106
-ci40183482,2025-02-10 17:44:55.700000+00:00,"5 km NNE of San Bernardino, CA",34.1686667,-117.264,7.75,3.59,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40183482,earthquake,467
-ci40183490,2025-02-10 17:48:52.440000+00:00,"5 km NNE of San Bernardino, CA",34.1688333,-117.2633333,7.65,2.96,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40183490,earthquake,160
-ci40183738,2025-02-10 21:57:37.420000+00:00,"10 km NNE of Ocotillo Wells, CA",33.2211667,-116.085,11.54,2.67,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40183738,earthquake,110
-ci40184050,2025-02-11 04:55:01.420000+00:00,"26 km SSW of Newport Beach, CA",33.4133333,-118.0516667,2.72,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40184050,earthquake,81
-ci40184058,2025-02-11 05:58:54.290000+00:00,"5 km NNE of San Bernardino, CA",34.1708333,-117.2633333,7.83,3.39,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40184058,earthquake,376
-ci40184194,2025-02-11 13:31:42.980000+00:00,"12 km SSE of Anza, CA",33.4555,-116.624,9.96,2.23,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40184194,earthquake,77
-ci40184834,2025-02-12 15:15:38.480000+00:00,"5 km NNE of San Bernardino, CA",34.1701667,-117.2655,7.75,2.38,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40184834,earthquake,96
-ci40185978,2025-02-14 15:52:04.420000+00:00,"18 km SSW of Seal Beach, CA",33.5836667,-118.16,5.43,2.01,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40185978,earthquake,62
-ci40186370,2025-02-15 18:09:03.040000+00:00,"70 km WSW of Alberto Oviedo Mota, B.C., MX",31.9186667,-115.8136667,7.87,2.51,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40186370,earthquake,97
-ci40186482,2025-02-15 22:16:58.200000+00:00,"11 km S of Idyllwild, CA",33.6446667,-116.7413333,13.15,3.14,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40186482,earthquake,277
-ci40186658,2025-02-16 02:24:18.160000+00:00,"5 km NNE of San Bernardino, CA",34.1696667,-117.2645,7.9,2.69,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40186658,earthquake,147
-ci40186810,2025-02-16 07:40:08.720000+00:00,"55 km S of Estacion Coahuila, B.C., MX",31.7048333,-115.072,-0.01,2.63,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40186810,earthquake,106
-ci40187002,2025-02-16 15:48:17.090000+00:00,"14 km W of Progreso, B.C., MX",32.5991667,-115.731,8.09,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40187002,earthquake,68
-ci40187458,2025-02-17 07:01:30.820000+00:00,"5 km NNE of San Bernardino, CA",34.1705,-117.2688333,8.26,2.61,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40187458,earthquake,137
-ci40187722,2025-02-17 17:49:37.480000+00:00,"2 km SSE of Guadalupe Victoria, B.C., MX",32.267,-115.0941667,12.91,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40187722,earthquake,121
-ci40187986,2025-02-18 03:35:54.810000+00:00,"6 km SE of Ontario, CA",34.0141667,-117.5843333,4.96,2.04,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40187986,earthquake,71
-ci40188098,2025-02-18 12:56:43.370000+00:00,"58 km ESE of Maneadero, B.C., MX",31.6008333,-115.973,6.16,3.03,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40188098,earthquake,141
-ci40189546,2025-02-20 06:14:55.830000+00:00,"5 km ENE of San Joaquin Hills, CA",33.6225,-117.7855,15.01,2.15,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40189546,earthquake,72
-ci40190394,2025-02-21 09:45:44.900000+00:00,"81 km SE of Estacion Coahuila, B.C., MX",31.615,-114.4806667,14.98,3.6,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40190394,earthquake,199
-ci40190426,2025-02-21 10:29:57.650000+00:00,"80 km SE of Estacion Coahuila, B.C., MX",31.6205,-114.4846667,14.98,3.06,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40190426,earthquake,144
-ci40190434,2025-02-21 11:36:29.450000+00:00,"80 km SE of Estacion Coahuila, B.C., MX",31.6243333,-114.4836667,14.98,3.61,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40190434,earthquake,200
-ci40190450,2025-02-21 11:58:57.120000+00:00,"81 km SE of Estacion Coahuila, B.C., MX",31.6141667,-114.4816667,14.98,2.96,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40190450,earthquake,135
-ci40190570,2025-02-21 15:55:12.310000+00:00,"78 km SE of Estacion Coahuila, B.C., MX",31.636,-114.501,15.0,3.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40190570,earthquake,140
-ci40191618,2025-02-22 16:37:20.610000+00:00,"80 km SE of Estacion Coahuila, B.C., MX",31.6203333,-114.484,14.98,2.71,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40191618,earthquake,113
-ci40191850,2025-02-22 21:06:35.380000+00:00,"37 km SW of Rosarito, B.C., MX",32.1061667,-117.3163333,9.52,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40191850,earthquake,73
-ci40191930,2025-02-22 22:46:12.210000+00:00,"18 km N of Cabazon, CA",34.0803333,-116.7825,10.04,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40191930,earthquake,190
-ci40192026,2025-02-23 01:31:42.180000+00:00,"24 km SE of Campo, CA",32.4515,-116.2901667,17.12,2.27,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40192026,earthquake,79
-ci40192266,2025-02-23 14:37:18.350000+00:00,"7 km NNW of Anza, CA",33.6175,-116.6913333,13.53,2.07,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40192266,earthquake,66
-ci40192522,2025-02-23 22:24:02.830000+00:00,"3 km WNW of Palomar Observatory, CA",33.3693333,-116.8921667,5.76,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40192522,earthquake,74
-ci40192530,2025-02-23 22:25:33.340000+00:00,"3 km WNW of Palomar Observatory, CA",33.3681667,-116.891,5.72,2.41,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40192530,earthquake,90
-us6000pvvv,2025-02-24 02:21:24.420000+00:00,"50 km WSW of Rodolfo Sánchez Taboada, Mexico",31.4964,-117.036,14.928,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us6000pvvv,earthquake,81
-ci40194194,2025-02-25 19:38:44.610000+00:00,"1 km WSW of Brawley, CA",32.9748333,-115.5423333,10.98,2.21,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40194194,earthquake,76
-ci40194490,2025-02-26 01:20:01.340000+00:00,"9 km SW of Idyllwild, CA",33.6786667,-116.7848333,17.79,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40194490,earthquake,63
-ci40194642,2025-02-26 08:11:33.490000+00:00,"2 km WSW of Garnet, CA",33.8908333,-116.569,11.42,2.04,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40194642,earthquake,64
-ci40195130,2025-02-26 21:14:41.320000+00:00,"24 km ESE of Campo, CA",32.5371667,-116.2276667,10.13,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40195130,earthquake,68
-ci41068424,2025-02-28 06:45:02.370000+00:00,"6 km NNE of Westmorland, CA",33.0846667,-115.5841667,12.01,2.69,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41068424,earthquake,115
-ci41068456,2025-02-28 08:26:24.320000+00:00,"6 km S of Huntington Beach, CA",33.638,-118.0076667,13.52,2.25,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41068456,earthquake,82
-ci41068816,2025-02-28 19:28:30.440000+00:00,"28 km SSW of Ocotillo Wells, CA",32.9105,-116.2423333,8.3,2.31,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41068816,earthquake,82
-ci41069440,2025-03-01 17:08:17.250000+00:00,"6 km ENE of Cabazon, CA",33.9383333,-116.7226667,17.0,2.12,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069440,earthquake,69
-ci41069808,2025-03-02 11:08:32.660000+00:00,"13 km E of Desert Hot Springs, CA",33.9435,-116.3606667,8.09,2.28,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069808,earthquake,80
-ci41069880,2025-03-02 16:16:52.150000+00:00,"13 km NNW of Westmorland, CA",33.1525,-115.6548333,2.06,2.23,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069880,earthquake,77
-ci41069888,2025-03-02 16:17:23.170000+00:00,"14 km WNW of Calipatria, CA",33.1553333,-115.6543333,4.0,2.71,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069888,earthquake,121
-ci41069904,2025-03-02 16:26:55.990000+00:00,"13 km NNW of Westmorland, CA",33.1518333,-115.6553333,3.37,2.49,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069904,earthquake,95
-ci41069960,2025-03-02 19:26:58.320000+00:00,"18 km SSE of Progreso, B.C., MX",32.4421667,-115.4916667,10.71,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069960,earthquake,74
-ci41070112,2025-03-03 06:13:45.110000+00:00,"2 km ESE of North Hollywood, CA",34.1615,-118.3533333,15.59,3.8,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41070112,earthquake,652
-ci41070344,2025-03-03 17:40:57.300000+00:00,"3 km SE of Loma Linda, CA",34.0306667,-117.234,16.22,2.66,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41070344,earthquake,112
-ci41070920,2025-03-04 18:23:26.050000+00:00,"3 km SW of Delta, B.C., MX",32.34,-115.2146667,10.78,2.62,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41070920,earthquake,106
-ci41071256,2025-03-04 22:56:08.820000+00:00,"3 km SE of Loma Linda, CA",34.0315,-117.2343333,16.13,2.35,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41071256,earthquake,85
-ci41071488,2025-03-05 03:08:10.480000+00:00,"19 km SSW of Ocotillo Wells, CA",32.9846667,-116.2083333,-0.06,2.65,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41071488,earthquake,108
-ci41072112,2025-03-05 17:05:07.960000+00:00,"55 km SE of San Clemente Is. (SE tip), CA",32.5246667,-117.8736667,5.91,2.34,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41072112,earthquake,84
-ci41072536,2025-03-05 21:51:59.590000+00:00,"18 km W of Delta, B.C., MX",32.3498333,-115.3791667,17.53,2.12,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41072536,earthquake,69
-ci41073984,2025-03-07 17:45:28.810000+00:00,"11 km NNW of Progreso, B.C., MX",32.6731667,-115.6323333,11.4,2.57,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41073984,earthquake,102
-ci41074336,2025-03-08 04:47:12+00:00,"9 km NNE of Cabazon, CA",33.9956667,-116.7643333,13.21,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41074336,earthquake,62
-ci41075168,2025-03-09 04:11:51.890000+00:00,"26 km NE of Thermal, CA",33.7716667,-115.9081667,1.82,2.69,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41075168,earthquake,111
-ci41075424,2025-03-09 16:49:51.700000+00:00,"3 km WNW of Palomar Observatory, CA",33.3673333,-116.8928333,4.92,2.47,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41075424,earthquake,94
-ci41075888,2025-03-10 00:54:45.690000+00:00,"58 km E of Maneadero, B.C., MX",31.6995,-115.9586667,7.99,3.58,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41075888,earthquake,197
-ci41075976,2025-03-10 04:16:16.760000+00:00,"4 km NW of Aguanga, CA",33.4698333,-116.8978333,13.44,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41075976,earthquake,89
-ci41076168,2025-03-10 12:04:55.910000+00:00,"20 km ESE of Anza, CA",33.5015,-116.4615,7.57,2.62,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41076168,earthquake,106
-ci41077256,2025-03-11 08:36:16.360000+00:00,"21 km ESE of Anza, CA",33.5023333,-116.4593333,6.5,2.36,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41077256,earthquake,86
-ci41077944,2025-03-12 05:16:38.580000+00:00,"15 km N of Ocotillo Wells, CA",33.2756667,-116.128,5.25,2.09,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41077944,earthquake,67
-ci41078344,2025-03-12 17:54:20.990000+00:00,"10 km ESE of Alpine, CA",32.7941667,-116.676,11.37,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41078344,earthquake,76
-ci41079048,2025-03-13 19:41:09.090000+00:00,"9 km NW of Delta, B.C., MX",32.4078333,-115.263,11.47,3.33,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41079048,earthquake,171
-ci41080024,2025-03-15 10:55:20.800000+00:00,"15 km N of Ocotillo Wells, CA",33.2748333,-116.1308333,7.95,2.79,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41080024,earthquake,120
-ci41081624,2025-03-17 09:17:24.570000+00:00,"22 km ESE of Anza, CA",33.4966667,-116.448,6.88,2.58,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41081624,earthquake,103
-ci41081704,2025-03-17 11:50:32.360000+00:00,"33 km NE of Ensenada, B.C., MX",32.0453333,-116.3363333,22.23,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41081704,earthquake,68
-ci41082928,2025-03-18 22:43:11.080000+00:00,"15 km N of Ocotillo Wells, CA",33.277,-116.1316667,3.43,2.49,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41082928,earthquake,95
-ci41083016,2025-03-18 23:43:51.400000+00:00,"1 km N of Manhattan Beach, CA",33.8916667,-118.4093333,12.28,2.15,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41083016,earthquake,81
-ci40904495,2025-03-20 08:39:05.760000+00:00,"11 km ENE of Borrego Springs, CA",33.3011667,-116.267,10.86,3.72,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40904495,earthquake,266
-ci40904647,2025-03-20 10:05:06.300000+00:00,"11 km ENE of Borrego Springs, CA",33.3041667,-116.2671667,10.46,2.96,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40904647,earthquake,144
-ci40904783,2025-03-20 12:49:27.830000+00:00,"69 km WSW of Alberto Oviedo Mota, B.C., MX",31.9323333,-115.8098333,9.15,2.08,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40904783,earthquake,67
-ci37708316,2025-03-20 13:13:32.680000+00:00,"92 km SSW of Alberto Oviedo Mota, B.C., MX",31.4796667,-115.5965,3.54,2.35,,https://earthquake.usgs.gov/earthquakes/eventpage/ci37708316,earthquake,85
-ci40905655,2025-03-20 23:29:48.020000+00:00,"10 km ENE of Borrego Springs, CA",33.2946667,-116.2803333,10.47,2.53,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40905655,earthquake,99
-ci40905743,2025-03-21 01:51:40.820000+00:00,"44 km WSW of Primo Tapia, B.C., MX",32.0058333,-117.3106667,14.58,2.35,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40905743,earthquake,85
-ci40905767,2025-03-21 02:15:23.280000+00:00,"15 km ENE of Indio, CA",33.7863333,-116.0771667,1.61,2.03,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40905767,earthquake,63
-ci40906895,2025-03-22 04:50:24.220000+00:00,"56 km SW of Coronado, CA",32.389,-117.66,5.92,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40906895,earthquake,73
-ci40906943,2025-03-22 07:00:44.080000+00:00,"91 km SSW of Alberto Oviedo Mota, B.C., MX",31.5008333,-115.618,8.7,2.41,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40906943,earthquake,89
-ci40907031,2025-03-22 09:56:07.400000+00:00,"13 km NE of Coachella, CA",33.7611667,-116.069,8.44,2.98,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40907031,earthquake,147
-us7000pluc,2025-03-22 11:20:25.158000+00:00,"38 km ENE of San Vicente, Mexico",31.4222,-115.8581,10.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000pluc,earthquake,112
-ci40907079,2025-03-22 12:08:48.870000+00:00,"16 km ENE of Borrego Springs, CA",33.2931667,-116.2086667,3.4,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40907079,earthquake,81
-ci40907399,2025-03-22 21:10:57.460000+00:00,"10 km ENE of Lake Arrowhead, CA",34.2956667,-117.0996667,7.29,2.37,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40907399,earthquake,86
-ci40907951,2025-03-23 16:07:46.310000+00:00,"3 km WSW of San Bernardino, CA",34.1141667,-117.3223333,17.56,2.54,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40907951,earthquake,101
-ci40908007,2025-03-23 17:58:16.210000+00:00,"15 km ENE of Indio, CA",33.7883333,-116.0763333,2.0,2.01,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40908007,earthquake,62
-ci40908271,2025-03-23 22:09:56.940000+00:00,"15 km N of Ocotillo Wells, CA",33.2801667,-116.1408333,4.93,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40908271,earthquake,89
-ci40908383,2025-03-24 00:29:15.870000+00:00,"16 km ENE of Borrego Springs, CA",33.2968333,-116.2101667,2.56,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40908383,earthquake,63
-ci40909295,2025-03-25 03:11:44.160000+00:00,"59 km E of Maneadero, B.C., MX",31.6961667,-115.9481667,10.92,2.14,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40909295,earthquake,70
-ci40909303,2025-03-25 03:12:58.480000+00:00,"28 km N of Yucca Valley, CA",34.3625,-116.4626667,3.26,2.37,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40909303,earthquake,86
-ci40910623,2025-03-26 09:26:37.590000+00:00,"26 km NE of Thermal, CA",33.7838333,-115.9246667,2.66,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40910623,earthquake,74
-ci40910639,2025-03-26 09:38:48.760000+00:00,"22 km W of Delta, B.C., MX",32.3313333,-115.424,-0.03,2.38,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40910639,earthquake,87
-ci40911519,2025-03-27 13:30:44.470000+00:00,"3 km W of Estacion Coahuila, B.C., MX",32.1978333,-115.0301667,15.83,3.33,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40911519,earthquake,171
-ci40912479,2025-03-29 07:03:42.480000+00:00,"5 km ESE of Yorba Linda, CA",33.8701667,-117.768,10.45,2.13,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40912479,earthquake,70
-ci40912751,2025-03-29 21:20:09.330000+00:00,"4 km SSE of Bombay Beach, CA",33.3218333,-115.712,4.52,2.72,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40912751,earthquake,115
+usp0009mzq,2000-02-03 06:53:47.300000+00:00,"73 km NE of Las Palmas de Gran Canaria, Spain",28.651,-14.994,16.1,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0009mzq,earthquake,112
+usp0009u1x,2000-06-05 11:12:03.400000+00:00,"Canary Islands, Spain region",28.044,-16.205,18.8,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0009u1x,earthquake,168
+usp000a1nq,2000-10-12 09:41:44.700000+00:00,"31 km SSW of Playa del Ingles, Spain",27.482,-15.649,15.4,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000a1nq,earthquake,129
+usp000a857,2001-01-22 16:35:16.280000+00:00,"90 km WNW of Tinajo, Spain",29.492,-14.47,10.0,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000a857,earthquake,168
+usp000a8xq,2001-02-02 18:26:27.670000+00:00,"37 km ENE of Carrizal, Spain",27.991,-15.04,0.0,3.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000a8xq,earthquake,138
+usp000ab4f,2001-03-09 00:55:09.600000+00:00,"53 km SE of Valverde, Spain",27.425,-17.577,30.0,3.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ab4f,earthquake,178
+usp000ab7y,2001-03-11 15:02:47.610000+00:00,"33 km SE of Fasnia, Spain",28.058,-16.168,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ab7y,earthquake,129
+usp000amga,2001-08-15 03:30:27.850000+00:00,"5 km N of San Juan de la Rambla, Spain",28.441,-16.66,20.4,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000amga,earthquake,148
+usp000apxn,2001-09-28 10:54:12.720000+00:00,"39 km ENE of Las Palmas de Gran Canaria, Spain",28.198,-15.025,15.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000apxn,earthquake,104
+usp000arf9,2001-10-22 22:18:05.240000+00:00,"6 km E of Fasnia, Spain",28.237,-16.371,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000arf9,earthquake,96
+usp000arkz,2001-10-25 05:04:11.910000+00:00,"25 km ESE of Fasnia, Spain",28.131,-16.209,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000arkz,earthquake,129
+usp000as2f,2001-11-02 01:24:18.310000+00:00,"8 km E of Fasnia, Spain",28.249,-16.356,8.8,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000as2f,earthquake,89
+usp000asaq,2001-11-06 02:48:40.430000+00:00,"3 km SSW of Güimar, Spain",28.28,-16.425,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000asaq,earthquake,129
+usp000at23,2001-11-18 02:46:28.130000+00:00,"19 km ESE of Fasnia, Spain",28.178,-16.248,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000at23,earthquake,129
+usp000atet,2001-11-25 04:49:34.640000+00:00,"55 km NE of Santa Cruz de Tenerife, Spain",28.852,-15.883,29.6,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000atet,earthquake,129
+usp000atkp,2001-11-27 19:56:02.730000+00:00,"23 km SE of Fasnia, Spain",28.106,-16.244,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000atkp,earthquake,104
+usp000atsf,2001-11-30 22:59:37.020000+00:00,"27 km SSE of Frontera, Spain",27.542,-17.859,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000atsf,earthquake,96
+usp000au78,2001-12-08 01:36:53.190000+00:00,"23 km SSE of Las Rosas, Spain",27.814,-16.566,0.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000au78,earthquake,112
+usp000aujw,2001-12-13 19:06:59.810000+00:00,"43 km SSW of Costa Calma, Spain",27.787,-14.363,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000aujw,earthquake,104
+usp000avrp,2002-01-03 10:35:28.840000+00:00,"46 km ESE of Carrizal, Spain",27.733,-14.981,1.5,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000avrp,earthquake,96
+usp000azcy,2002-03-01 05:36:19.800000+00:00,"Canary Islands, Spain region",28.06,-16.162,0.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000azcy,earthquake,112
+usp000azhm,2002-03-03 13:30:18.810000+00:00,"39 km ENE of Las Palmas de Gran Canaria, Spain",28.258,-15.052,0.2,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000azhm,earthquake,112
+usp000aztk,2002-03-06 16:35:00.950000+00:00,"22 km ESE of Candelaria, Spain",28.244,-16.175,0.0,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000aztk,earthquake,89
+usp000azut,2002-03-07 02:08:05.050000+00:00,"25 km ESE of Lomo de Arico, Spain",28.076,-16.249,17.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000azut,earthquake,129
+usp000b0dt,2002-03-16 02:50:50.840000+00:00,"31 km ESE of Fasnia, Spain",28.104,-16.16,0.0,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b0dt,earthquake,148
+usp000b0vy,2002-03-23 03:03:45.010000+00:00,"28 km SE of Fasnia, Spain",28.077,-16.206,0.0,3.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b0vy,earthquake,158
+usp000b3e6,2002-04-30 02:58:21.110000+00:00,"82 km NW of El Cotillo, Spain",29.169,-14.642,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b3e6,earthquake,129
+usp000b3f2,2002-04-30 16:01:38.590000+00:00,"29 km SE of Fasnia, Spain",28.088,-16.192,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b3f2,earthquake,129
+usp000b41u,2002-05-10 01:14:03.960000+00:00,"30 km ESE of Fasnia, Spain",28.14,-16.153,24.7,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b41u,earthquake,104
+usp000b4hb,2002-05-18 02:25:14.180000+00:00,"Canary Islands, Spain region",28.136,-16.246,0.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b4hb,earthquake,121
+usp000b4up,2002-05-23 15:13:23.750000+00:00,"68 km NW of El Cotillo, Spain",29.156,-14.458,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b4up,earthquake,129
+usp000b5hv,2002-06-04 23:12:36.440000+00:00,"34 km ESE of Lomo de Arico, Spain",28.042,-16.162,0.0,3.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b5hv,earthquake,138
+usp000b62m,2002-06-13 05:17:19.430000+00:00,"46 km SSE of Caniço, Portugal",32.262,-16.657,10.0,3.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b62m,earthquake,178
+usp000b6ng,2002-06-21 14:51:10.620000+00:00,"32 km ESE of Fasnia, Spain",28.09,-16.155,0.0,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b6ng,earthquake,168
+usp000b6p5,2002-06-21 22:29:20.310000+00:00,"4 km NNE of San Nicolás, Spain",28.027,-15.762,28.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b6p5,earthquake,121
+usp000b6um,2002-06-24 11:48:05.770000+00:00,"30 km ESE of Fasnia, Spain",28.15,-16.14,4.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b6um,earthquake,112
+usp000b7x4,2002-07-11 07:30:16.770000+00:00,"34 km W of San Nicolás, Spain",27.991,-16.129,0.0,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b7x4,earthquake,148
+usp000b8uv,2002-07-26 23:43:52.910000+00:00,"30 km ESE of Fasnia, Spain",28.11,-16.159,13.0,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b8uv,earthquake,62
+usp000b8vu,2002-07-27 14:50:42.800000+00:00,"8 km SW of Playa de las Américas, Spain",28.004,-16.782,24.6,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000b8vu,earthquake,89
+usp000bbz6,2002-09-11 09:14:33.290000+00:00,"30 km ESE of Fasnia, Spain",28.086,-16.175,0.0,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bbz6,earthquake,81
+usp000bc58,2002-09-13 13:57:23.720000+00:00,"12 km E of Lomo de Arico, Spain",28.145,-16.36,32.5,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bc58,earthquake,96
+usp000bctb,2002-09-21 10:46:11.390000+00:00,"Canary Islands, Spain region",28.08,-16.172,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bctb,earthquake,96
+usp000bcth,2002-09-21 12:07:37.520000+00:00,"28 km ESE of Fasnia, Spain",28.171,-16.163,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bcth,earthquake,96
+usp000bdsq,2002-10-04 13:49:05.850000+00:00,"33 km ESE of Lomo de Arico, Spain",28.02,-16.182,22.3,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bdsq,earthquake,121
+usp000be1v,2002-10-08 09:33:49.450000+00:00,"28 km ESE of Fasnia, Spain",28.112,-16.188,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000be1v,earthquake,96
+usp000bfj1,2002-10-28 19:19:41.170000+00:00,"30 km SE of Candelaria, Spain",28.186,-16.129,0.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bfj1,earthquake,121
+usp000bft5,2002-11-01 10:51:47.490000+00:00,"27 km ESE of Fasnia, Spain",28.108,-16.205,6.6,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bft5,earthquake,96
+usp000bhbe,2002-11-10 17:07:17.480000+00:00,"31 km ESE of Fasnia, Spain",28.129,-16.143,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bhbe,earthquake,104
+usp000bj9b,2002-11-24 05:35:02.690000+00:00,"29 km ESE of Fasnia, Spain",28.155,-16.148,0.0,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bj9b,earthquake,148
+usp000bky8,2002-12-18 21:47:56.350000+00:00,"29 km ESE of Fasnia, Spain",28.174,-16.142,0.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bky8,earthquake,121
+usp000bm7u,2002-12-23 03:51:21.010000+00:00,"22 km N of Tegueste, Spain",28.721,-16.291,1.6,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bm7u,earthquake,129
+usp000bp06,2003-01-22 18:37:12.570000+00:00,"34 km ESE of Lomo de Arico, Spain",28.048,-16.159,0.0,3.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bp06,earthquake,138
+usp000bp3b,2003-01-24 05:06:14.930000+00:00,"35 km ESE of Fasnia, Spain",28.069,-16.136,26.4,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bp3b,earthquake,68
+usp000bppd,2003-01-31 08:30:31.230000+00:00,"27 km ESE of Fasnia, Spain",28.142,-16.181,0.0,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bppd,earthquake,168
+usp000bpuw,2003-02-02 16:17:40.030000+00:00,"23 km SE of Fasnia, Spain",28.108,-16.247,0.0,3.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bpuw,earthquake,138
+usp000bq2t,2003-02-06 05:41:34.940000+00:00,"26 km ESE of Fasnia, Spain",28.141,-16.188,8.9,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bq2t,earthquake,104
+usp000bq33,2003-02-06 09:56:29.240000+00:00,"9 km E of Candelaria, Spain",28.339,-16.281,21.7,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bq33,earthquake,68
+usp000bq44,2003-02-06 18:58:46.060000+00:00,"32 km WNW of San Nicolás, Spain",28.067,-16.095,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bq44,earthquake,129
+usp000bq8t,2003-02-08 15:13:24.440000+00:00,"34 km ESE of Fasnia, Spain",28.091,-16.13,0.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bq8t,earthquake,121
+usp000bq9s,2003-02-09 00:47:51.380000+00:00,"35 km WNW of San Nicolás, Spain",28.052,-16.132,27.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bq9s,earthquake,121
+usp000bqat,2003-02-09 13:20:50.170000+00:00,"34 km WNW of San Nicolás, Spain",28.064,-16.126,25.8,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bqat,earthquake,129
+usp000bqba,2003-02-09 19:00:24.300000+00:00,"34 km ESE of Fasnia, Spain",28.065,-16.141,33.3,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bqba,earthquake,62
+usp000bqjg,2003-02-12 23:40:19.880000+00:00,"32 km ESE of Fasnia, Spain",28.094,-16.145,0.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bqjg,earthquake,112
+usp000brnv,2003-02-28 16:42:14.600000+00:00,"26 km ESE of Fasnia, Spain",28.133,-16.194,10.3,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000brnv,earthquake,112
+usp000brrz,2003-03-02 00:07:46.240000+00:00,"36 km ESE of Lomo de Arico, Spain",27.993,-16.164,31.0,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000brrz,earthquake,148
+usp000bs4q,2003-03-07 12:31:14.710000+00:00,"33 km NW of Gáldar, Spain",28.367,-15.891,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bs4q,earthquake,96
+usp000btcq,2003-03-24 05:32:44.480000+00:00,"50 km NE of Las Palmas de Gran Canaria, Spain",28.449,-15.088,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000btcq,earthquake,96
+usp000btd3,2003-03-24 08:11:20.220000+00:00,"7 km ESE of Fasnia, Spain",28.206,-16.371,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000btd3,earthquake,96
+usp000btf7,2003-03-25 03:11:34.590000+00:00,"34 km ESE of Fasnia, Spain",28.069,-16.142,0.0,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000btf7,earthquake,81
+usp000btta,2003-03-29 20:04:54.110000+00:00,"26 km SSW of Las Rosas, Spain",27.781,-16.725,10.8,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000btta,earthquake,81
+usp000buf6,2003-04-05 17:46:41.290000+00:00,"33 km ESE of Lomo de Arico, Spain",28.024,-16.184,24.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000buf6,earthquake,129
+usp000bufp,2003-04-05 20:54:58.110000+00:00,"26 km SE of Fasnia, Spain",28.086,-16.226,28.5,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bufp,earthquake,74
+usp000buq2,2003-04-08 10:43:21.860000+00:00,"29 km ESE of Lomo de Arico, Spain",28.034,-16.225,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000buq2,earthquake,129
+usp000buut,2003-04-10 04:50:57.840000+00:00,"26 km ESE of Fasnia, Spain",28.147,-16.189,27.8,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000buut,earthquake,81
+usp000bw5w,2003-04-28 23:22:40.970000+00:00,"23 km SE of Candelaria, Spain",28.215,-16.192,23.8,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bw5w,earthquake,168
+usp000bwq4,2003-05-06 06:29:57.890000+00:00,"10 km WSW of Frontera, Spain",27.72,-18.107,21.3,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bwq4,earthquake,271
+usp000bxfs,2003-05-18 18:45:34.190000+00:00,"34 km WNW of San Nicolás, Spain",28.087,-16.113,3.3,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bxfs,earthquake,104
+usp000by0f,2003-05-24 04:26:18.350000+00:00,"10 km E of Fasnia, Spain",28.224,-16.331,0.0,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000by0f,earthquake,56
+usp000by1x,2003-05-24 17:23:22.850000+00:00,"49 km SE of Caniço, Portugal",32.294,-16.514,10.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000by1x,earthquake,112
+usp000by58,2003-05-25 22:19:49.470000+00:00,"25 km SE of Fasnia, Spain",28.099,-16.235,26.8,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000by58,earthquake,129
+usp000by7f,2003-05-26 17:03:28.030000+00:00,"30 km SE of Candelaria, Spain",28.182,-16.136,0.0,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000by7f,earthquake,89
+usp000bzay,2003-06-07 22:59:52.420000+00:00,"5 km SSW of Lomo de Arico, Spain",28.119,-16.501,0.0,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bzay,earthquake,56
+usp000bzg0,2003-06-09 14:31:21.060000+00:00,"29 km ESE of Fasnia, Spain",28.103,-16.184,0.0,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bzg0,earthquake,56
+usp000bzh3,2003-06-10 00:09:13.910000+00:00,"21 km NNE of Valverde, Spain",27.985,-17.831,0.0,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bzh3,earthquake,81
+usp000bzv4,2003-06-14 15:00:26.760000+00:00,"26 km ESE of Lomo de Arico, Spain",28.081,-16.233,13.4,1.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000bzv4,earthquake,22
+usp000c01h,2003-06-16 21:40:21.340000+00:00,"26 km ESE of Fasnia, Spain",28.181,-16.177,24.2,1.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c01h,earthquake,39
+usp000c067,2003-06-18 17:56:01.770000+00:00,"20 km SW of Frontera, Spain",27.636,-18.161,33.6,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c067,earthquake,81
+usp000c0ks,2003-06-22 09:58:36.780000+00:00,"28 km SE of Fasnia, Spain",28.088,-16.201,0.0,1.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c0ks,earthquake,39
+usp000c2nj,2003-07-16 16:47:09.430000+00:00,"23 km E of Fasnia, Spain",28.206,-16.205,15.1,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c2nj,earthquake,50
+usp000c2uh,2003-07-18 21:54:31.550000+00:00,"35 km ESE of Lomo de Arico, Spain",28.041,-16.152,24.1,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c2uh,earthquake,62
+usp000c39s,2003-07-25 05:47:33.130000+00:00,"34 km ESE of Lomo de Arico, Spain",28.041,-16.166,16.3,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c39s,earthquake,81
+usp000c3mh,2003-07-29 03:47:08.920000+00:00,"25 km ESE of Fasnia, Spain",28.119,-16.214,27.5,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c3mh,earthquake,129
+usp000c4hy,2003-08-10 06:29:49.650000+00:00,"58 km N of Tegueste, Spain",29.036,-16.235,0.0,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c4hy,earthquake,62
+usp000c4pf,2003-08-12 11:23:46.190000+00:00,"26 km ESE of Fasnia, Spain",28.126,-16.204,10.0,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c4pf,earthquake,50
+usp000c5bv,2003-08-19 12:25:24.520000+00:00,"26 km ESE of Fasnia, Spain",28.174,-16.176,0.0,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c5bv,earthquake,81
+usp000c67g,2003-08-29 20:12:01.630000+00:00,"44 km ENE of Las Palmas de Gran Canaria, Spain",28.19,-14.969,1.8,1.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c67g,earthquake,26
+usp000c6ab,2003-08-30 20:28:25.660000+00:00,"15 km ESE of Fasnia, Spain",28.198,-16.289,15.2,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6ab,earthquake,62
+usp000c6ac,2003-08-30 20:28:40.830000+00:00,"31 km ESE of Fasnia, Spain",28.129,-16.147,20.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6ac,earthquake,96
+usp000c6ad,2003-08-30 20:32:42.680000+00:00,"32 km ESE of Fasnia, Spain",28.115,-16.137,21.6,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6ad,earthquake,96
+usp000c6af,2003-08-30 20:52:56.370000+00:00,"29 km ESE of Fasnia, Spain",28.137,-16.157,20.0,1.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6af,earthquake,22
+usp000c6b2,2003-08-31 00:58:21.920000+00:00,"33 km ESE of Fasnia, Spain",28.101,-16.138,27.3,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6b2,earthquake,74
+usp000c6ce,2003-08-31 10:39:59.590000+00:00,"30 km ESE of Fasnia, Spain",28.133,-16.15,24.6,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6ce,earthquake,96
+usp000c6ft,2003-09-01 20:01:18.530000+00:00,"30 km ESE of Fasnia, Spain",28.134,-16.15,20.0,1.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6ft,earthquake,30
+usp000c6ps,2003-09-04 02:08:15.690000+00:00,"30 km ESE of Fasnia, Spain",28.145,-16.141,0.0,1.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c6ps,earthquake,19
+usp000c7ym,2003-09-18 22:42:55.260000+00:00,"Canary Islands, Spain region",28.312,-21.48,0.0,3.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c7ym,earthquake,158
+usp000c7zh,2003-09-19 05:48:16.450000+00:00,"33 km ESE of Santa Cruz de Tenerife, Spain",28.311,-15.961,0.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c7zh,earthquake,35
+usp000c81k,2003-09-19 21:59:53.610000+00:00,"4 km SE of La Orotava, Spain",28.364,-16.485,0.0,1.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c81k,earthquake,30
+usp000c8cg,2003-09-23 05:48:26.940000+00:00,"31 km ESE of Candelaria, Spain",28.213,-16.096,27.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c8cg,earthquake,35
+usp000c8dc,2003-09-23 12:22:26.890000+00:00,"24 km ESE of Fasnia, Spain",28.138,-16.216,21.6,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c8dc,earthquake,50
+usp000c8hd,2003-09-24 22:13:21.120000+00:00,"6 km ESE of Güimar, Spain",28.293,-16.349,23.6,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c8hd,earthquake,50
+usp000c950,2003-09-30 10:04:22.490000+00:00,"21 km ESE of Lomo de Arico, Spain",28.093,-16.284,30.2,1.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000c950,earthquake,44
+usp000ca18,2003-10-10 00:10:32.250000+00:00,"9 km ESE of Fasnia, Spain",28.216,-16.345,0.0,1.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ca18,earthquake,22
+usp000capq,2003-10-18 12:32:13.490000+00:00,"21 km ESE of Fasnia, Spain",28.16,-16.24,0.0,1.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000capq,earthquake,26
+usp000cbgk,2003-10-28 22:42:27.270000+00:00,"5 km S of Vega de San Mateo, Spain",27.964,-15.543,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cbgk,earthquake,129
+usp000cc2q,2003-11-04 21:42:31.610000+00:00,"29 km ESE of Fasnia, Spain",28.106,-16.172,26.4,1.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cc2q,earthquake,44
+usp000cccn,2003-11-08 18:26:22.500000+00:00,"31 km ESE of Fasnia, Spain",28.118,-16.142,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cccn,earthquake,96
+usp000cczq,2003-11-16 16:47:18.200000+00:00,"26 km ESE of Fasnia, Spain",28.131,-16.196,0.0,1.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cczq,earthquake,30
+usp000cd10,2003-11-16 23:58:19.210000+00:00,"38 km E of Telde, Spain",28.019,-15.031,23.5,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cd10,earthquake,81
+usp000cdfj,2003-11-20 05:04:51.010000+00:00,"25 km ESE of Fasnia, Spain",28.112,-16.223,0.0,1.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cdfj,earthquake,15
+usp000cdn5,2003-11-22 06:20:47.440000+00:00,"34 km ESE of Lomo de Arico, Spain",28.027,-16.167,11.0,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cdn5,earthquake,50
+usp000cexz,2003-12-10 07:01:08.990000+00:00,"33 km ESE of Lomo de Arico, Spain",28.042,-16.174,16.9,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cexz,earthquake,62
+usp000cf32,2003-12-12 04:22:50.200000+00:00,"12 km SE of Fasnia, Spain",28.154,-16.346,0.0,1.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cf32,earthquake,26
+usp000cfxk,2003-12-24 06:51:00.510000+00:00,"8 km SW of San Bartolomé de Tirajana, Spain",27.874,-15.634,0.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cfxk,earthquake,35
+usp000cggr,2003-12-29 21:38:57.870000+00:00,"20 km ESE of Fasnia, Spain",28.134,-16.262,7.5,1.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cggr,earthquake,39
+usp000ch1m,2004-01-04 02:49:36.580000+00:00,"25 km ESE of Fasnia, Spain",28.117,-16.214,0.0,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ch1m,earthquake,50
+usp000ch9e,2004-01-06 11:05:43.620000+00:00,"78 km NNW of Tegueste, Spain",29.194,-16.546,30.0,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ch9e,earthquake,62
+usp000char,2004-01-07 00:20:51.270000+00:00,"4 km S of La Laguna, Spain",28.441,-16.319,0.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000char,earthquake,35
+usp000chx6,2004-01-15 04:42:54.020000+00:00,"59 km WNW of Pájara, Spain",28.533,-14.681,20.0,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000chx6,earthquake,68
+usp000cka1,2004-02-03 03:57:49.500000+00:00,"95 km NE of Barlovento, Spain",29.415,-17.083,0.0,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cka1,earthquake,81
+usp000ckk2,2004-02-06 20:37:31.670000+00:00,"32 km ESE of Fasnia, Spain",28.121,-16.14,11.3,1.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ckk2,earthquake,39
+usp000cktg,2004-02-09 06:39:12.570000+00:00,"4 km ENE of Fasnia, Spain",28.247,-16.391,12.7,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cktg,earthquake,35
+usp000ckx8,2004-02-10 21:10:15.050000+00:00,"33 km ESE of Lomo de Arico, Spain",28.025,-16.183,27.9,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ckx8,earthquake,96
+usp000cm23,2004-02-12 16:35:37.550000+00:00,"29 km ESE of Fasnia, Spain",28.127,-16.165,25.0,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cm23,earthquake,56
+usp000cmur,2004-02-23 01:17:42.650000+00:00,"26 km ESE of Lomo de Arico, Spain",28.085,-16.23,23.9,1.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cmur,earthquake,26
+usp000cmwu,2004-02-23 21:26:35.030000+00:00,"14 km E of Fasnia, Spain",28.227,-16.294,8.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cmwu,earthquake,35
+usp000cpyp,2004-03-14 20:10:38.830000+00:00,"35 km W of San Nicolás, Spain",28.048,-16.138,20.4,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cpyp,earthquake,74
+usp000cq6t,2004-03-17 22:47:54.770000+00:00,"29 km ESE of Fasnia, Spain",28.148,-16.153,0.0,1.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cq6t,earthquake,39
+usp000cqgb,2004-03-21 01:02:47.490000+00:00,"31 km ESE of Fasnia, Spain",28.134,-16.145,0.0,1.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cqgb,earthquake,22
+usp000cqpp,2004-03-23 15:05:20.310000+00:00,"18 km S of Frontera, Spain",27.589,-17.969,22.0,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cqpp,earthquake,81
+usp000cqx8,2004-03-26 07:03:26.420000+00:00,"19 km NE of Tegueste, Spain",28.637,-16.178,28.2,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cqx8,earthquake,50
+usp000cr08,2004-03-27 07:05:14.790000+00:00,"29 km ESE of Fasnia, Spain",28.131,-16.162,0.0,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cr08,earthquake,56
+usp000cr54,2004-03-28 19:29:42.190000+00:00,"30 km ESE of Fasnia, Spain",28.148,-16.142,0.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cr54,earthquake,35
+usp000cs6g,2004-04-10 21:26:22.300000+00:00,"35 km E of Carrizal, Spain",27.913,-15.04,25.3,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cs6g,earthquake,56
+usp000cshv,2004-04-15 08:22:58.920000+00:00,"32 km ESE of Fasnia, Spain",28.076,-16.167,30.5,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cshv,earthquake,74
+usp000ct27,2004-04-21 16:36:31.220000+00:00,"20 km ESE of Lomo de Arico, Spain",28.071,-16.305,29.0,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ct27,earthquake,50
+usp000ct2d,2004-04-21 18:05:20.130000+00:00,"7 km S of La Guancha, Spain",28.304,-16.644,9.5,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ct2d,earthquake,74
+usp000ct35,2004-04-22 02:14:53.290000+00:00,"8 km SSE of Icod de los Vinos, Spain",28.302,-16.684,12.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ct35,earthquake,35
+usp000ct7r,2004-04-23 18:20:18.680000+00:00,"31 km ESE of Lomo de Arico, Spain",28.051,-16.194,0.0,1.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ct7r,earthquake,44
+usp000ctc1,2004-04-25 05:35:10.710000+00:00,"6 km E of Guía de Isora, Spain",28.204,-16.71,0.0,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ctc1,earthquake,50
+usp000ctpq,2004-04-28 21:42:42.740000+00:00,"16 km WSW of Frontera, Spain",27.717,-18.164,32.0,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ctpq,earthquake,56
+usp000ctss,2004-04-30 00:34:02.750000+00:00,"25 km ESE of Fasnia, Spain",28.157,-16.196,0.0,1.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ctss,earthquake,26
+usp000ctsw,2004-04-30 01:14:27.860000+00:00,"20 km ESE of Fasnia, Spain",28.162,-16.253,16.8,1.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ctsw,earthquake,39
+usp000ctu8,2004-04-30 10:46:01.860000+00:00,"31 km ESE of Fasnia, Spain",28.144,-16.14,0.0,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ctu8,earthquake,81
+usp000cu1w,2004-05-03 02:53:02.400000+00:00,"9 km WNW of Frontera, Spain",27.79,-18.089,18.1,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cu1w,earthquake,74
+usp000cu3w,2004-05-03 22:41:30.860000+00:00,"12 km SW of Frontera, Spain",27.685,-18.104,36.5,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cu3w,earthquake,68
+usp000cu4c,2004-05-04 03:24:29.490000+00:00,"8 km SSW of La Guancha, Spain",28.302,-16.68,11.3,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cu4c,earthquake,62
+usp000cucx,2004-05-07 18:09:32.480000+00:00,"20 km NW of Valverde, Spain",27.936,-18.071,0.0,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cucx,earthquake,62
+usp000cusg,2004-05-11 20:31:11.240000+00:00,"3 km SSW of Icod de los Vinos, Spain",28.344,-16.732,2.7,3.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cusg,earthquake,138
+usp000cutj,2004-05-12 03:47:16.680000+00:00,"24 km ESE of Fasnia, Spain",28.134,-16.219,15.8,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cutj,earthquake,35
+usp000cuww,2004-05-13 06:01:15.210000+00:00,"34 km ESE of Lomo de Arico, Spain",28.044,-16.159,26.5,2.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cuww,earthquake,74
+usp000cv97,2004-05-16 23:51:26.920000+00:00,"11 km NNW of Vilaflor, Spain",28.255,-16.662,13.1,1.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cv97,earthquake,15
+usp000cvah,2004-05-17 07:31:16.060000+00:00,"5 km SSE of Icod de los Vinos, Spain",28.329,-16.692,0.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cvah,earthquake,35
+usp000cvaj,2004-05-17 07:32:50.850000+00:00,"6 km SSW of Icod de los Vinos, Spain",28.314,-16.726,4.7,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cvaj,earthquake,68
+usp000cvcb,2004-05-17 20:17:31.610000+00:00,"31 km ESE of Fasnia, Spain",28.141,-16.136,0.0,1.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cvcb,earthquake,35
+usp000cvh3,2004-05-19 01:43:31.030000+00:00,"32 km SE of Candelaria, Spain",28.171,-16.119,0.0,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cvh3,earthquake,68
+usp000cvnj,2004-05-20 09:32:14.140000+00:00,"21 km NW of Valverde, Spain",27.947,-18.064,0.0,1.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cvnj,earthquake,44
+usp000cw20,2004-05-24 04:02:58.130000+00:00,"30 km SE of Fasnia, Spain",28.081,-16.184,14.1,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cw20,earthquake,104
+usp000cw62,2004-05-25 10:13:08.140000+00:00,"32 km ESE of Fasnia, Spain",28.111,-16.143,0.0,1.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cw62,earthquake,50
+usp000cwrt,2004-05-31 20:13:42.300000+00:00,"24 km ESE of Lomo de Arico, Spain",28.09,-16.245,6.7,1.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cwrt,earthquake,56
+usp000cx0t,2004-06-03 19:06:26.180000+00:00,"32 km SE of Candelaria, Spain",28.173,-16.114,0.0,1.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cx0t,earthquake,44
+usp000cyv7,2004-06-26 12:50:28.840000+00:00,"63 km N of Tegueste, Spain",29.085,-16.284,58.8,3.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cyv7,earthquake,222
+usp000cz69,2004-06-29 20:40:30.220000+00:00,"27 km SE of Lomo de Arico, Spain",28.006,-16.27,29.5,1.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cz69,earthquake,26
+usp000d098,2004-07-16 09:31:22.930000+00:00,"37 km E of Las Palmas de Gran Canaria, Spain",28.092,-15.028,17.3,3.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000d098,earthquake,178
+usp000d0eb,2004-07-18 14:36:35.160000+00:00,"20 km SE of Playa del Ingles, Spain",27.639,-15.424,36.9,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000d0eb,earthquake,96
+usp000d5hh,2004-10-01 15:18:00.080000+00:00,"20 km ENE of Carrizal, Spain",27.955,-15.204,18.5,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000d5hh,earthquake,129
+usp000d8qe,2004-11-18 14:42:28.990000+00:00,"78 km N of Barlovento, Spain",29.534,-17.827,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000d8qe,earthquake,96
+usp000dgk9,2005-02-20 12:43:13.200000+00:00,"26 km ESE of Lomo de Arico, Spain",28.056,-16.242,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dgk9,earthquake,96
+usp000dgvv,2005-02-24 14:56:15.520000+00:00,"27 km NW of San Nicolás, Spain",28.151,-15.987,31.9,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dgvv,earthquake,104
+usp000dj5v,2005-03-14 05:03:39.580000+00:00,"68 km NW of El Cotillo, Spain",29.148,-14.476,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dj5v,earthquake,104
+usp000dks8,2005-03-31 07:41:44.890000+00:00,"61 km S of Caniço, Portugal",32.098,-16.762,7.8,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dks8,earthquake,284
+usp000dkux,2005-03-31 22:24:40.140000+00:00,"27 km SE of Candelaria, Spain",28.192,-16.155,28.4,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dkux,earthquake,121
+usp000dp3q,2005-04-24 04:18:21.330000+00:00,"41 km ESE of Carrizal, Spain",27.79,-15.011,37.9,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dp3q,earthquake,104
+usp000dp7u,2005-04-25 21:14:35.130000+00:00,"26 km ESE of Fasnia, Spain",28.133,-16.195,4.4,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dp7u,earthquake,96
+usp000dq4w,2005-05-07 13:50:27.250000+00:00,"31 km SE of Fasnia, Spain",28.079,-16.177,15.3,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dq4w,earthquake,96
+usp000drmz,2005-05-26 22:30:31.520000+00:00,"40 km S of São Martinho, Portugal",32.28,-16.869,30.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000drmz,earthquake,298
+usp000ds34,2005-06-02 19:27:58.400000+00:00,"162 km S of Caniço, Portugal",31.194,-16.632,0.0,3.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ds34,earthquake,222
+usp000dtue,2005-06-24 16:56:04.880000+00:00,"28 km ESE of Lomo de Arico, Spain",28.055,-16.217,23.1,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dtue,earthquake,112
+usp000du6m,2005-06-30 01:01:02.320000+00:00,"56 km NNW of Tegueste, Spain",28.996,-16.518,68.4,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000du6m,earthquake,121
+usp000dujk,2005-07-05 04:36:24.640000+00:00,"258 km WSW of Fajã da Ovelha, Portugal",31.926,-19.79,0.0,4.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dujk,earthquake,312
+usp000dxu6,2005-08-22 07:05:03.040000+00:00,"21 km ESE of Fasnia, Spain",28.18,-16.224,41.2,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dxu6,earthquake,121
+usp000dyks,2005-09-02 15:14:10.620000+00:00,"26 km ESE of Lomo de Arico, Spain",28.056,-16.248,7.3,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dyks,earthquake,112
+usp000dz5a,2005-09-10 03:38:52.070000+00:00,"140 km E of Caniçal, Portugal",32.711,-15.245,26.7,3.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dz5a,earthquake,158
+usp000dzm2,2005-09-17 16:23:32.880000+00:00,"36 km ESE of Lomo de Arico, Spain",28.03,-16.15,21.3,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000dzm2,earthquake,121
+usp000e4pk,2005-11-22 05:20:54.990000+00:00,"103 km WNW of Yaiza, Spain",29.443,-14.676,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e4pk,earthquake,104
+usp000e4q0,2005-11-22 11:32:22.630000+00:00,"21 km NNW of San Juan de la Rambla, Spain",28.584,-16.708,38.6,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e4q0,earthquake,259
+usp000e5pu,2005-12-07 06:02:00.660000+00:00,"113 km NNW of Tegueste, Spain",29.458,-16.765,77.5,3.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e5pu,earthquake,234
+usp000e7wk,2006-01-09 03:49:08.500000+00:00,"98 km S of São Martinho, Portugal",31.757,-16.912,0.0,3.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e7wk,earthquake,222
+usp000e7za,2006-01-10 12:00:20.780000+00:00,"86 km S of Caniço, Portugal",31.87,-16.782,0.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e7za,earthquake,271
+usp000e82d,2006-01-11 23:09:56.600000+00:00,"107 km S of São Martinho, Portugal",31.675,-16.88,0.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e82d,earthquake,271
+usp000e82s,2006-01-12 04:12:13.530000+00:00,"67 km S of Caniço, Portugal",32.044,-16.782,10.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e82s,earthquake,259
+usp000eayc,2006-02-27 01:28:55.270000+00:00,"15 km NNE of Valverde, Spain",27.939,-17.868,7.4,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eayc,earthquake,96
+usp000ec7s,2006-03-15 17:03:42.950000+00:00,"Canary Islands, Spain region",28.978,-16.76,59.9,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ec7s,earthquake,259
+usp000ed3d,2006-03-28 00:17:36.330000+00:00,"87 km WNW of El Cotillo, Spain",29.096,-14.77,52.1,3.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ed3d,earthquake,178
+usp000eg0w,2006-05-02 01:27:55.290000+00:00,"15 km SSW of Playa del Ingles, Spain",27.625,-15.626,44.8,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eg0w,earthquake,129
+usp000ehnj,2006-05-22 00:07:43.160000+00:00,"Madeira Islands, Portugal region",32.588,-13.326,23.1,4.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ehnj,earthquake,246
+usp000ej58,2006-05-28 09:50:47.430000+00:00,"24 km SE of Fasnia, Spain",28.103,-16.246,24.5,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ej58,earthquake,96
+usp000ejd3,2006-05-31 19:32:13.570000+00:00,"59 km NNE of Las Palmas de Gran Canaria, Spain",28.617,-15.237,41.6,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ejd3,earthquake,112
+usp000eknd,2006-06-17 21:31:44.190000+00:00,"Canary Islands, Spain region",29.661,-14.94,0.0,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eknd,earthquake,148
+usp000emvq,2006-07-04 03:07:30.390000+00:00,"27 km SE of Lomo de Arico, Spain",28.02,-16.26,16.9,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000emvq,earthquake,104
+usp000eqpt,2006-08-11 06:17:07.890000+00:00,"13 km NE of Porto Moniz, Portugal",32.939,-17.053,0.0,3.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eqpt,earthquake,222
+usp000eqx7,2006-08-14 12:47:58.790000+00:00,"16 km E of San Sebastián de la Gomera, Spain",28.071,-16.946,22.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eqx7,earthquake,96
+usp000eucp,2006-10-02 23:45:18.170000+00:00,"31 km ESE of Fasnia, Spain",28.143,-16.134,48.6,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eucp,earthquake,121
+usp000eud8,2006-10-03 04:52:51.230000+00:00,"43 km WNW of Costa Calma, Spain",28.355,-14.614,0.0,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eud8,earthquake,96
+usp000evbh,2006-10-16 21:05:27.710000+00:00,"12 km NNW of Tegueste, Spain",28.629,-16.353,72.3,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000evbh,earthquake,96
+usp000ewg0,2006-11-02 12:05:20.890000+00:00,"52 km N of Tegueste, Spain",28.986,-16.327,66.2,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ewg0,earthquake,112
+usp000eynr,2006-11-23 22:15:20.390000+00:00,"44 km WNW of El Cotillo, Spain",28.85,-14.422,0.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eynr,earthquake,121
+usp000f0rs,2006-12-22 00:30:51.850000+00:00,"35 km E of Carrizal, Spain",27.94,-15.046,28.8,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000f0rs,earthquake,104
+usp000f1ke,2007-01-02 21:32:16.930000+00:00,"23 km ESE of Lomo de Arico, Spain",28.08,-16.268,0.0,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000f1ke,earthquake,89
+usp000f1sp,2007-01-06 01:41:34.270000+00:00,"47 km N of Tegueste, Spain",28.943,-16.294,59.2,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000f1sp,earthquake,112
+usp000f9g3,2007-04-12 02:19:52.260000+00:00,"0 km SSW of Agüimes, Spain",27.897,-15.448,55.0,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000f9g3,earthquake,168
+usp000fda4,2007-06-03 17:48:31.860000+00:00,"31 km ESE of Lomo de Arico, Spain",28.05,-16.193,25.2,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fda4,earthquake,148
+usp000feny,2007-06-23 20:00:52.870000+00:00,"Canary Islands, Spain region",28.215,-21.073,0.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000feny,earthquake,298
+usp000ffcb,2007-07-03 11:39:53.600000+00:00,"218 km SSE of Caniço, Portugal",30.778,-16.108,47.3,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ffcb,earthquake,259
+usp000fgfc,2007-07-17 18:28:48.700000+00:00,"Madeira Islands, Portugal region",32.663,-13.451,29.9,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fgfc,earthquake,284
+usp000fhmx,2007-08-02 02:09:01.340000+00:00,"19 km NNW of Frontera, Spain",27.924,-18.07,32.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fhmx,earthquake,104
+usp000fj22,2007-08-06 21:40:34.650000+00:00,"189 km NNE of Tegueste, Spain",30.185,-15.886,69.8,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fj22,earthquake,148
+usp000fkqg,2007-08-26 09:16:53.970000+00:00,"240 km W of Frontera, Spain",27.782,-20.448,0.0,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fkqg,earthquake,148
+usp000fnr5,2007-09-20 01:26:11.100000+00:00,"32 km ESE of Fasnia, Spain",28.103,-16.139,22.8,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fnr5,earthquake,104
+usp000fppf,2007-10-02 04:02:04.110000+00:00,"134 km NW of El Cotillo, Spain",29.532,-15.0,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fppf,earthquake,104
+usp000fpws,2007-10-05 02:19:40.350000+00:00,"33 km SE of Fasnia, Spain",28.064,-16.155,28.6,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fpws,earthquake,121
+usp000fpye,2007-10-05 17:31:59.140000+00:00,"57 km S of Alajeró, Spain",27.548,-17.265,26.1,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fpye,earthquake,326
+usp000fr9f,2007-10-26 06:30:58.120000+00:00,"33 km ESE of Fasnia, Spain",28.093,-16.143,29.3,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fr9f,earthquake,96
+usp000frcm,2007-10-27 11:32:14.370000+00:00,"32 km ESE of Fasnia, Spain",28.094,-16.154,0.0,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000frcm,earthquake,129
+usp000fs55,2007-11-07 22:48:00.460000+00:00,"24 km ESE of Fasnia, Spain",28.115,-16.232,23.2,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fs55,earthquake,112
+usp000fuw4,2007-12-20 11:02:48.330000+00:00,"4 km SW of Agüimes, Spain",27.884,-15.481,33.2,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fuw4,earthquake,112
+usp000fvdr,2007-12-27 18:05:34.370000+00:00,"29 km ESE of Fasnia, Spain",28.113,-16.167,0.0,3.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fvdr,earthquake,138
+usp000fw5r,2008-01-07 06:42:48.660000+00:00,"28 km SE of Fasnia, Spain",28.08,-16.211,31.7,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fw5r,earthquake,112
+usp000fwt3,2008-01-15 23:15:58.520000+00:00,"5 km ESE of Fasnia, Spain",28.219,-16.391,24.0,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fwt3,earthquake,121
+usp000fy0y,2008-02-02 22:23:33.650000+00:00,"143 km ENE of Caniçal, Portugal",33.029,-15.24,1.7,3.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fy0y,earthquake,222
+usp000g1hd,2008-03-15 05:09:53.660000+00:00,"14 km NE of Las Palmas de Gran Canaria, Spain",28.195,-15.309,54.9,3.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000g1hd,earthquake,178
+usp000g35w,2008-04-05 19:00:38.020000+00:00,"154 km WNW of Tinajo, Spain",29.831,-15.01,68.9,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000g35w,earthquake,148
+usp000g6h7,2008-05-13 07:45:29.590000+00:00,"23 km E of Santa Cruz de Tenerife, Spain",28.437,-16.014,30.3,3.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000g6h7,earthquake,188
+usp000g7s0,2008-05-25 16:37:28.870000+00:00,"106 km NNE of Tegueste, Spain",29.403,-15.907,76.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000g7s0,earthquake,112
+usp000gats,2008-06-28 07:15:30.940000+00:00,"13 km ENE of Telde, Spain",28.025,-15.283,41.0,3.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gats,earthquake,158
+usp000gbvp,2008-07-11 02:07:52.190000+00:00,"273 km E of Caniçal, Portugal",32.773,-13.823,0.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gbvp,earthquake,284
+usp000gcs6,2008-07-21 02:39:23.620000+00:00,"57 km SE of Caniçal, Portugal",32.411,-16.264,0.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gcs6,earthquake,259
+usp000gfby,2008-08-23 21:31:45.670000+00:00,"279 km W of Puntagorda, Spain",28.448,-20.814,0.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gfby,earthquake,259
+usp000gh62,2008-09-16 20:33:28.130000+00:00,"26 km SSE of Playa del Ingles, Spain",27.551,-15.443,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gh62,earthquake,104
+usp000gr3r,2008-12-21 12:05:04.980000+00:00,"163 km S of Costa Calma, Spain",26.686,-14.315,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gr3r,earthquake,271
+usp000gz5z,2009-07-12 22:19:10.700000+00:00,"Canary Islands, Spain region",28.021,-21.555,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gz5z,earthquake,298
+us2013ngb8,2013-03-27 15:07:56+00:00,"25 km W of Frontera, Spain",27.716,-18.263,19.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us2013ngb8,earthquake,326
+usp000jzz9,2013-03-29 09:41:48.670000+00:00,"25 km WSW of Frontera, Spain",27.692,-18.249,17.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000jzz9,earthquake,259
+usb000fvqw,2013-03-29 17:01:20.480000+00:00,"32 km WSW of Frontera, Spain",27.591,-18.283,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usb000fvqw,earthquake,340
+usb000g5kk,2013-04-11 15:26:36.130000+00:00,"26 km W of Frontera, Spain",27.73,-18.274,18.8,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usb000g5kk,earthquake,259
+usc000lst3,2013-12-27 17:46:03.420000+00:00,"28 km W of Frontera, Spain",27.7975,-18.2868,7.48,5.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usc000lst3,earthquake,453
+usc000sv3q,2014-11-06 17:36:53.020000+00:00,"Madeira Islands, Portugal region",32.8741,-13.17,23.8,3.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usc000sv3q,earthquake,234
+us2000j5kz,2019-01-18 06:36:50.660000+00:00,"33 km NW of Agaete, Spain",28.2989,-15.9541,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us2000j5kz,earthquake,298
+us70005lmr,2019-09-26 13:02:08.806000+00:00,"215 km W of Frontera, Spain",27.9754,-20.1771,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us70005lmr,earthquake,355
+us60008brw,2020-03-07 20:58:04.107000+00:00,"27 km S of Caniço, Portugal",32.3998,-16.8207,4.72,5.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us60008brw,earthquake,505
+us60008g09,2020-03-15 10:08:16.707000+00:00,"46 km S of Caniço, Portugal",32.236,-16.8155,10.0,3.8,,https://earthquake.usgs.gov/earthquakes/eventpage/us60008g09,earthquake,224
+us7000fpu4,2021-10-26 16:25:33.055000+00:00,"2 km W of Fuencaliente de la Palma, Spain",28.4947,-17.8688,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fpu4,earthquake,326
+us7000ft4n,2021-11-11 03:37:55.185000+00:00,"6 km S of Tazacorte, Spain",28.5877,-17.9297,35.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000ft4n,earthquake,284
+us7000fv4s,2021-11-13 06:55:57.402000+00:00,"2 km ENE of El Paso, Spain",28.6606,-17.8628,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fv4s,earthquake,271
+us7000fvbu,2021-11-19 01:08:43.667000+00:00,"7 km SW of Mazo, Spain",28.558,-17.8204,35.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fvbu,earthquake,271
+us7000fxa4,2021-11-23 01:03:24.298000+00:00,"6 km SE of Puntallana, Spain",28.696,-17.6878,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fxa4,earthquake,326
+us7000gfav,2022-01-18 13:45:15.259000+00:00,"161 km S of Costa Calma, Spain",26.7104,-14.3502,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000gfav,earthquake,326
+us7000gl7h,2022-02-16 04:32:38.527000+00:00,"Madeira Islands, Portugal region",32.3503,-16.9067,11.68,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000gl7h,earthquake,409
+us7000h10z,2022-04-09 09:45:25.670000+00:00,"15 km SSE of Caniço, Portugal",32.5125,-16.7904,16.8,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000h10z,earthquake,298

@@ -52,6 +52,9 @@ def trigger_index(L_method="Singh"):
 # This function must be called only after the trigger_index function, it uses the trigger_index column
 def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     
+    trigger_index(L_method="Singh")
+    
+
     path = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(path, "..", ".."))
 
@@ -68,5 +71,5 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     utils.saving_data(result_df, "trigger_index_filtered.csv", folder="B_eq_processed")
     return result_df
 
-trigger_index()
+trigger_index(L_method="Singh")
 discard_by_max_trigger_index("wrk_df.csv", 40)
