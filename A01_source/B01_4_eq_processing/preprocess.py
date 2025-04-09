@@ -35,18 +35,38 @@ def trigger_index(L_method="Singh"):
     lat1 = center_coords[0]
     lon1 = center_coords[1]
 
-    result_df = pd.DataFrame(columns=["id", "latitude", "longitude", "trigger_index", "distance", "magnitude", "magtype" ])
+    result_df = pd.DataFrame(columns=["id","time", "magnitude", "magtype", "depth", "latitude", "longitude", "distance", "trigger_index" ])
     for index, row in tqdm(df.iterrows(), total=len(df), desc="Procesando filas"):
         lat2 = row["latitude"]
         lon2 = row["longitude"]
         mag = row["magnitude"]
         L = fault_length(mag, L_method= L_method)
         d = distance_calculation(lat1, lon1, lat2, lon2)[1]
-        trigger_index = d / L
+        trigger_index = round(d / L, 3)
 
-        result_df.loc[index] = [row["id"], row["latitude"], row["longitude"], trigger_index, d, row["magnitude"], row["magtype"]]
+        result_df.loc[index] = [row["id"], row["time"], row["magnitude"], row["magtype"], row["depth"], row["latitude"], row["longitude"], round(d, 3), trigger_index]
     
-    utils.saving_data(result_df, "trigger_index.csv", folder="B_eq_processed")
+    utils.saving_data(result_df, "wrk_df.csv", folder="B_eq_processed")
+    return result_df
+
+# This function must be called only after the trigger_index function, it uses the trigger_index column
+def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
+    
+    path = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(path, "..", ".."))
+
+    file_path = os.path.join(project_root, f"A00_data/B_eq_processed/{file}")
+
+    df = pd.read_csv(file_path)
+    result_df = df[df["trigger_index"] <= max_trigger_index]
+
+    if result_df.empty==True:
+        print(f"There are no records that fulldfill the condition of trigger index > {max_trigger_index}")
+    else:
+        print(f"There were {len(result_df)} records saved")
+
+    utils.saving_data(result_df, "trigger_index_filtered.csv", folder="B_eq_processed")
     return result_df
 
 trigger_index()
+discard_by_max_trigger_index("wrk_df.csv", 40)
