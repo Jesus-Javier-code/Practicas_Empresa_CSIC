@@ -1,5 +1,5 @@
 ---
-title: " "
+title: "Volcana"
 format: 
   dashboard:
     orientation: rows
@@ -371,7 +371,7 @@ img {
 
 
 ```{python}
-#| label: setup-script1
+#| label: geometry
 #| include: false
 import subprocess
 subprocess.run(["python", "../A02_utils/geometry.py"], check=True)
@@ -707,77 +707,32 @@ HTML("""
 </div>
 """)
 ```
-# 🕳️ TERREMOTOS
+:::
+
+# 🕳️ EARTHQUAKES {#earthquakes}
+
+## Earthquake Monitoring {.panel-tabset}
+
+### Mapa de Actividad Sísmica
 ```{python}
-#| label: setup-script2
-#| include: false
-import os
-import subprocess
-
-# Ruta CORRECTA desde A04_web (donde se ejecuta Quarto)
-script_path = os.path.normpath(os.path.join(os.getcwd(), "../A01_source/B01_4_eq_processing/process_eq_data.py"))
-
-# Verifica si el archivo existe
-if not os.path.exists(script_path):
-    raise FileNotFoundError(f"No se encontró el script en: {script_path}")
-
-try:
-    # Ejecuta desde el directorio del script (importante para paths internos)
-    original_dir = os.getcwd()
-    script_dir = os.path.dirname(script_path)
-    
-    if not os.path.exists(script_dir):
-        raise FileNotFoundError(f"Directorio del script no existe: {script_dir}")
-        
-    os.chdir(script_dir)
-    
-    result = subprocess.run(["python", "process_eq_data.py"],
-                          check=True,
-                          capture_output=True,
-                          text=True)
-    
-    print("✅ Script ejecutado correctamente")
-    print(result.stdout)
-    
-    os.chdir(original_dir)  # Vuelve al directorio original
-    
-except Exception as e:
-    print("❌ Error al ejecutar el script:")
-    print(f"Tipo de error: {type(e).__name__}")
-    print(f"Mensaje: {str(e)}")
-    if 'original_dir' in locals():
-        os.chdir(original_dir)
-```
-
-
-```{python}
-#| label: eq-map
+#| label: eq-map-fixed
 #| echo: false
-from IPython.display import display, HTML
-
-try:
-    display(HTML(filename="B_images/eq_map.html"))
-except Exception as e:
-    print(f"Error al cargar el mapa: {str(e)}")
-    display(HTML("<p style='color:red'>No se pudo cargar el mapa de terremotos</p>"))
+from IPython.display import HTML
+display(HTML('<iframe src="./B_images/eq_map.html" width="100%" height="600" style="border:none;"></iframe>'))
 ```
 
 ```{python}
-#| label: eq-table
+#| label: eq-table-fixed
 #| echo: false
+from IPython.display import HTML
+display(HTML('<iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none;"></iframe>'))
+```
+```{python}
+#| label: fixed-eq-histogram
+#| echo: false
+from IPython.display import HTML
 try:
-    display(HTML(filename="B_images/eq_table.html"))
+    display(HTML('<iframe src="./B_images/eq_histogram.html" width="100%" height="500" style="border:none;"></iframe>'))
 except:
-    display(HTML("""
-    <div style="border:2px dashed #ccc; padding:20px; text-align:center;">
-        <h3 style="color:red">Tabla no disponible</h3>
-        <p>Verifique que el archivo 'B_images/eq_table.html' existe</p>
-    </div>
-    """))
-```
-
-```{python}
-#| label: eq-histogram
-#| echo: false
-IFrame("B_images/eq_histogram.html", width="100%", height="500px")
+    display(HTML('<div style="color:red;"><h3>Error: No se pudo cargar el histograma</h3><p>Verifica que el archivo ./B_images/eq_histogram.html existe y contiene datos.</p></div>'))
 ```
