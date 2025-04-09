@@ -391,19 +391,62 @@ document.addEventListener('DOMContentLoaded', function() {
   `;
   
   document.body.appendChild(navContainer);
-  
+
   // Funcionalidad de los botones
-  document.getElementById('homepage-btn').addEventListener('click', () => {
+  const homepageBtn = document.getElementById('homepage-btn');
+  const laPalmaBtn = document.getElementById('la-palma-btn');
+  const earthquakesBtn = document.getElementById('earthquakes-btn');
+
+  homepageBtn.addEventListener('click', () => {
     window.location.hash = '#homepage';
+    updateActiveButton('#homepage');
   });
   
-  document.getElementById('la-palma-btn').addEventListener('click', () => {
+  laPalmaBtn.addEventListener('click', () => {
     window.location.hash = '#la-palma';
+    updateActiveButton('#la-palma');
   });
   
-  document.getElementById('earthquakes-btn').addEventListener('click', () => {
+  earthquakesBtn.addEventListener('click', () => {
     window.location.hash = '#earthquakes';
+    updateActiveButton('#earthquakes');
   });
+
+  // Función para actualizar botones visibles
+  function updateActiveButton(activeTab) {
+    // Reset all buttons
+    homepageBtn.style.display = 'flex';
+    laPalmaBtn.style.display = 'flex';
+    earthquakesBtn.style.display = 'flex';
+    
+    // Hide the active tab button
+    switch(activeTab) {
+      case '#homepage':
+        homepageBtn.style.display = 'none';
+        break;
+      case '#la-palma':
+        laPalmaBtn.style.display = 'none';
+        break;
+      case '#earthquakes':
+        earthquakesBtn.style.display = 'none';
+        break;
+    }
+  }
+
+  // Actualizar al cargar la página
+  function handleHashChange() {
+    const currentHash = window.location.hash || '#homepage';
+    updateActiveButton(currentHash);
+  }
+
+  // Escuchar cambios en el hash
+  window.addEventListener('hashchange', handleHashChange);
+  
+  // Inicializar
+  handleHashChange();
+  
+  // Añadir clase al body para estilos CSS
+  document.body.setAttribute('data-has-circular-nav', 'true');
 });
 </script>
 
@@ -666,7 +709,75 @@ HTML("""
 ```
 # 🕳️ TERREMOTOS
 ```{python}
+#| label: setup-script2
+#| include: false
+import os
+import subprocess
+
+# Ruta CORRECTA desde A04_web (donde se ejecuta Quarto)
+script_path = os.path.normpath(os.path.join(os.getcwd(), "../A01_source/B01_4_eq_processing/process_eq_data.py"))
+
+# Verifica si el archivo existe
+if not os.path.exists(script_path):
+    raise FileNotFoundError(f"No se encontró el script en: {script_path}")
+
+try:
+    # Ejecuta desde el directorio del script (importante para paths internos)
+    original_dir = os.getcwd()
+    script_dir = os.path.dirname(script_path)
+    
+    if not os.path.exists(script_dir):
+        raise FileNotFoundError(f"Directorio del script no existe: {script_dir}")
+        
+    os.chdir(script_dir)
+    
+    result = subprocess.run(["python", "process_eq_data.py"],
+                          check=True,
+                          capture_output=True,
+                          text=True)
+    
+    print("✅ Script ejecutado correctamente")
+    print(result.stdout)
+    
+    os.chdir(original_dir)  # Vuelve al directorio original
+    
+except Exception as e:
+    print("❌ Error al ejecutar el script:")
+    print(f"Tipo de error: {type(e).__name__}")
+    print(f"Mensaje: {str(e)}")
+    if 'original_dir' in locals():
+        os.chdir(original_dir)
+```
+
+
+```{python}
 #| label: eq-map
 #| echo: false
-IFrame("B_images/eq_map.html", width="100%", height="600px")
+from IPython.display import display, HTML
+
+try:
+    display(HTML(filename="B_images/eq_map.html"))
+except Exception as e:
+    print(f"Error al cargar el mapa: {str(e)}")
+    display(HTML("<p style='color:red'>No se pudo cargar el mapa de terremotos</p>"))
+```
+
+```{python}
+#| label: eq-table
+#| echo: false
+try:
+    display(HTML(filename="B_images/eq_table.html"))
+except:
+    display(HTML("""
+    <div style="border:2px dashed #ccc; padding:20px; text-align:center;">
+        <h3 style="color:red">Tabla no disponible</h3>
+        <p>Verifique que el archivo 'B_images/eq_table.html' existe</p>
+    </div>
+    """))
+```
+
+```{python}
+#| label: eq-histogram
+#| echo: false
+IFrame("B_images/eq_histogram.html", width="100%", height="500px")
 ```

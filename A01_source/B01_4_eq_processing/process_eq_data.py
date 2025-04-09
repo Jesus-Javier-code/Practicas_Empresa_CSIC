@@ -1,11 +1,8 @@
 # process_eq_data.py
 import pandas as pd
 import plotly.express as px
-from great_tables import GT, md
 import os
 import sys
-import dash
-from dash import dash_table, html
 
 def main():
     try:
@@ -41,45 +38,52 @@ def main():
 
 def generate_table(data, output_folder):
     try:
-        from dash import dash_table, html
-        import dash
-        import os
-
-        # Crear la tabla interactiva con Dash DataTable
         table_html_path = os.path.join(output_folder, "eq_table.html")
-        app = dash.Dash(__name__)
 
-        # Configurar la tabla interactiva
-        table = dash_table.DataTable(
-            id="eq-table",
-            columns=[
-                {"name": col, "id": col, "type": "numeric" if pd.api.types.is_numeric_dtype(data[col]) else "text"}
-                for col in data.columns
-            ],
-            data=data.head(100).to_dict("records"),  # Mostrar solo las primeras 100 filas
-            page_size=10,  # Número de filas por página
-            style_table={"overflowX": "auto"},
-            style_cell={"textAlign": "center", "padding": "5px"},
-            style_header={"backgroundColor": "rgb(230, 230, 230)", "fontWeight": "bold"},
-            filter_action="native",  # Permitir filtrado
-            sort_action="native",    # Permitir ordenamiento
-            row_selectable="multi",  # Permitir selección de filas
+        # Convertir el DataFrame a HTML (solo las primeras 100 filas)
+        html_table = data.head(100).to_html(
+            index=False,
+            border=0,
+            classes="table table-striped",
+            justify="center"
         )
 
-        # Configurar el layout de la aplicación Dash
-        app.layout = html.Div(
-            [
-                html.H1("Earthquake Trigger Index Table", style={"textAlign": "center"}),
-                html.Div(table, style={"margin": "20px"}),
-            ]
-        )
+        # Envolver en HTML básico
+        full_html = f"""
+        <html>
+        <head>
+            <title>Earthquake Trigger Index Table</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    padding: 20px;
+                }}
+                .table {{
+                    width: 100%;
+                    border-collapse: collapse;
+                }}
+                .table th, .table td {{
+                    border: 1px solid #ccc;
+                    padding: 8px;
+                    text-align: center;
+                }}
+                .table th {{
+                    background-color: #f2f2f2;
+                }}
+            </style>
+        </head>
+        <body>
+            <h1 style="text-align:center;">Earthquake Trigger Index Table</h1>
+            {html_table}
+        </body>
+        </html>
+        """
 
-        # Guardar la tabla como un archivo HTML
         with open(table_html_path, "w", encoding="utf-8") as f:
-            f.write(app.index_string)
-        print(f"✅ Table saved to: {table_html_path}")
-        print(data.head(100).to_string(index=False))  # Print the first 100 rows of the table to console
+            f.write(full_html)
 
+        print(f"✅ Table saved to: {table_html_path}")
+        print(data.head(5).to_string(index=False))
 
     except Exception as e:
         print(f"❌ Error generating table: {str(e)}", file=sys.stderr)
