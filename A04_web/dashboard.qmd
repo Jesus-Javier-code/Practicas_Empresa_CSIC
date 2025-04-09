@@ -1,5 +1,5 @@
 ---
-title: " "
+title: "Volcana"
 format: 
   dashboard:
     orientation: rows
@@ -12,10 +12,11 @@ logo: B_images/Banner_Volcana_Grande.png
 logo-alt: "CSIC logo."
 ---
 <style>
-  /* ===== NUEVO ESTILO PARA NAVEGACIÓN CIRCULAR ===== */
+/* ===== NAVEGACIÓN CIRCULAR VERTICAL ===== */
 :root {
   --volcano-color: #413224;
   --earthquake-color: #413224;
+  --active-color: #FBEBE8;
 }
 
 /* Eliminar navbar original */
@@ -30,61 +31,81 @@ logo-alt: "CSIC logo."
   right: 30px;
   z-index: 1000;
   display: flex;
+  flex-direction: column; /* Cambiado a columna */
   gap: 15px;
 }
 
 .circle-nav-btn {
-  width: 80px;  /* Reducido de 60px */
-  height: 80px; /* Reducido de 60px */
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Sombra más sutil */
-  transition: all 0.2s ease;
-  border: 2px solid white;
-  background-size: 60%; /* Ajuste para que la imagen no salga de los bordes */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  border: 3px solid white;
+  background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(255,255,255,0.9); /* Fondo semitransparente */
+  background-color: #413224;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .circle-nav-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
+/* Botones específicos */
 #homepage-btn {
-  background-color: var(--volcano-color);
   background-image: url('B_images/Logo_Volcana_circular.jpeg');
-  background-size: 70%; /* Logo un poco más grande */
 }
 
 #la-palma-btn {
-  background-color: var(--volcano-color);
-  background-image: url('B_images/la_palma_contorno.png');
-  background-size: 50%; /* Imagen más pequeña */
-  padding: 2px; /* Espacio extra para contorno */
+  background-image: url('B_images/La_Palma_contorno_naranja.png');
 }
 
 #earthquakes-btn {
-  background-color: var(--volcano-color);
-  background-image: url('B_images/earthquake-icon.png');
-  background-size: 60%; /* Icono más pequeño */
+  background-image: url('B_images/earthquake-icon-naranja.png');
 }
 
-/* Eliminar fondos de celdas */
+/* Ocultar botón de la pestaña activa */
+body[data-active-tab="#homepage"] #homepage-btn,
+body[data-active-tab="#la-palma"] #la-palma-btn,
+body[data-active-tab="#earthquakes"] #earthquakes-btn {
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Mostrar solo cuando no está activo */
+body:not([data-active-tab="#homepage"]) #homepage-btn,
+body:not([data-active-tab="#la-palma"]) #la-palma-btn,
+body:not([data-active-tab="#earthquakes"]) #earthquakes-btn {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Transición suave */
+.circle-nav-btn {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Ajustes para el contenido */
 .panel-card, .cell-output, .cell, .panel-card-body, .panel-tabset {
   background: transparent !important;
+  border: none !important;
 }
 
-/* Ajustar iframes para que ocupen toda la celda */
 iframe {
   background: transparent !important;
+  border: none !important;
 }
-
-/* Resto de estilos existentes... (mantén todo lo anterior) */
 
 /* SOLUCIÓN: OCULTAR SOLO LA PESTAÑA HOMEPAGE */
 .navbar-nav li:has(a[href="#homepage"]) {
@@ -174,7 +195,7 @@ img {
 .homepage {
   text-align: center;
   padding: 2rem 1rem;
-  background-color: #FBEBE8;
+  background: transparent;
   min-height: calc(100vh - 120px);
 }
 
@@ -346,11 +367,161 @@ img {
   color: #413224;
   margin: 0 3px;
 }
+
+/* ESTILOS ACTUALIZADOS PARA EL CARRUSEL DE TERREMOTOS */
+.earthquakes-header {
+  position: relative;
+  width: 100%;
+  margin: 0 0 1rem 0; /* Reducido el margen superior */
+  padding: 0;
+}
+
+.carousel-container {
+  height: 80px;  /* Altura más reducida */
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  margin: 0;
+}
+
+.earthquake-header-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.4);
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+
+.earthquakes-logo {
+  height: 16px;  /* Icono más pequeño */
+  width: auto;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+}
+
+.earthquakes-title {
+  color: #d9512c;
+  font-size: 0.85rem; /* Tamaño de fuente reducido */
+  margin: 0;
+  font-weight: bold;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5);
+  white-space: nowrap;
+}
+
+/* Eliminar espacio adicional */
+#earthquakes > :first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+/* ESTILOS POST-IT */
+.post-it-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+
+.post-it {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15),
+              0 3px 6px rgba(0,0,0,0.1);
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.post-it:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+
+.post-it h3 {
+  margin-top: 0;
+  border-bottom: 2px dashed rgba(0,0,0,0.1);
+  padding-bottom: 10px;
+}
+
+
+/* Colores de post-its */
+.post-it.yellow {
+  background: #FFF8B8;
+  background: linear-gradient(135deg, #FFF8B8 0%, #FEF5A4 100%);
+  color: #5E4B1A;
+}
+
+
+.post-it.blue {
+  background: #B8E6FF;
+  background: linear-gradient(135deg, #B8E6FF 0%, #A4D8FE 100%);
+  color: #1A3D5E;
+}
+
+
+.post-it.green {
+  background: #D1F7D1;
+  background: linear-gradient(135deg, #D1F7D1 0%, #BDF5BD 100%);
+  color: #1E5E1A;
+}
+
+
+.post-it.pink {
+  background: #FFD1F7;
+  background: linear-gradient(135deg, #FFD1F7 0%, #FEBDF0 100%);
+  color: #5E1A54;
+}
+
+
+/* Efecto de esquina doblada */
+.post-it::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, transparent 0%, transparent 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1) 100%);
+}
+/* Elimina cualquier fondo en elementos hijos que lo estén tapando */
+.dashboard, .panel-card, .cell, .panel-card-body {
+  background: transparent !important;
+}
+
+
+/* Fondo completo con estampado */
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, #FBEBE8 0%, #F5D9D1 100%),
+    url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 20L90 70H30Z' fill='%23413224' fill-opacity='0.05'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-blend-mode: overlay;
+}
+
 </style>
 
 
+
+
 ```{python}
-#| label: setup-script1
+#| label: geometry
 #| include: false
 import subprocess
 subprocess.run(["python", "../A02_utils/geometry.py"], check=True)
@@ -370,19 +541,62 @@ document.addEventListener('DOMContentLoaded', function() {
   `;
   
   document.body.appendChild(navContainer);
-  
+
   // Funcionalidad de los botones
-  document.getElementById('homepage-btn').addEventListener('click', () => {
+  const homepageBtn = document.getElementById('homepage-btn');
+  const laPalmaBtn = document.getElementById('la-palma-btn');
+  const earthquakesBtn = document.getElementById('earthquakes-btn');
+
+  homepageBtn.addEventListener('click', () => {
     window.location.hash = '#homepage';
+    updateActiveButton('#homepage');
   });
   
-  document.getElementById('la-palma-btn').addEventListener('click', () => {
+  laPalmaBtn.addEventListener('click', () => {
     window.location.hash = '#la-palma';
+    updateActiveButton('#la-palma');
   });
   
-  document.getElementById('earthquakes-btn').addEventListener('click', () => {
+  earthquakesBtn.addEventListener('click', () => {
     window.location.hash = '#earthquakes';
+    updateActiveButton('#earthquakes');
   });
+
+  // Función para actualizar botones visibles
+  function updateActiveButton(activeTab) {
+    // Reset all buttons
+    homepageBtn.style.display = 'flex';
+    laPalmaBtn.style.display = 'flex';
+    earthquakesBtn.style.display = 'flex';
+    
+    // Hide the active tab button
+    switch(activeTab) {
+      case '#homepage':
+        homepageBtn.style.display = 'none';
+        break;
+      case '#la-palma':
+        laPalmaBtn.style.display = 'none';
+        break;
+      case '#earthquakes':
+        earthquakesBtn.style.display = 'none';
+        break;
+    }
+  }
+
+  // Actualizar al cargar la página
+  function handleHashChange() {
+    const currentHash = window.location.hash || '#homepage';
+    updateActiveButton(currentHash);
+  }
+
+  // Escuchar cambios en el hash
+  window.addEventListener('hashchange', handleHashChange);
+  
+  // Inicializar
+  handleHashChange();
+  
+  // Añadir clase al body para estilos CSS
+  document.body.setAttribute('data-has-circular-nav', 'true');
 });
 </script>
 
@@ -453,26 +667,34 @@ HTML(f"""
   </div>
   
   <div class="homepage-section">
-    <h2>Project Goals</h2>
-    <p class="homepage-text">
-      <strong>Volcanic Monitoring:</strong> We aim to analyze brightness temperature and radiance patterns, 
-      model post-eruption lava cooling curves (from the 2021 La Palma eruption), and monitor the fumarole fields of Teide volcano using thermal infrared data.
-    </p>
-    <p class="homepage-text">
-      <strong>Seismic-Volcanic Relationships:</strong> We analyze the earthquake-eruption correlations, by describing a trigger index which takes into account the distance between the epicenter of the events and the volcano we are studying and the magnitude of these events.
-    </p>
-    <p class="homepage-text">
-      <strong>Seismic Filtering for Volcanic Activation:</strong> Because we are working with the USGS catalog, our goal is to make a data screening, showing the user only the earthquakes that have the potential to start an eruption period in the short-term (~5 years more or less).
-    </p>
-    <p class="homepage-text">
-      <strong>Seismic Filtering for Volcanic Activation:</strong> Part of our work involves filtering and analyzing seismic data 
-      to identify earthquake patterns that could potentially lead to volcanic activation, helping to assess early warning signs.
-    </p>
-    <p class="homepage-text">
-      <strong>Technical Development:</strong> We are developing Python-based tools for satellite data processing, automated visualization pipelines, 
-      and machine learning models to aid in eruption prediction and risk assessment.
-    </p>
+  <h2>Project Goals</h2>
+ 
+  <div class="post-it-container">
+    <!-- Post-it 1 -->
+    <div class="post-it yellow">
+      <h3>Thermal Analysis</h3>
+      <p>Analyze <strong>brightness temperature</strong> and <strong>radiance patterns</strong>, model post-eruption lava cooling curves and monitor the fumarole fields of Teide volcano using thermal infrared data.</p>
+    </div>
+   
+    <!-- Post-it 2 -->
+    <div class="post-it blue">
+      <h3>Earthquake Correlation</h3>
+      <p>Analyze <strong>earthquake-eruption correlations</strong> with a custom trigger index based on distance between the epicenter of the events, the volcano we are studying and the magnitude of these events.</p>
+    </div>
+   
+    <!-- Post-it 3 -->
+    <div class="post-it green">
+      <h3>Data Screening</h3>
+      <p>Perform <strong>seismic filtering</strong> to identify signs of volcanic activation with ~5 year prediction window.</p>
+    </div>
+   
+    <!-- Post-it 4 -->
+    <div class="post-it pink">
+      <h3>Technical Development</h3>
+      <p>Create Python tools for satellite data processing, automated visualization pipelines and ML models for eruption prediction.</p>
+    </div>
   </div>
+</div>
   
   <div class="homepage-section">
     <h2>Data Sources</h2>
@@ -643,9 +865,128 @@ HTML("""
 </div>
 """)
 ```
-# 🕳️ TERREMOTOS
+:::
+
+
+# 🕳️ EARTHQUAKES {#earthquakes}
+
 ```{python}
-#| label: eq-map
+#| label: earthquakes-carousel
 #| echo: false
-IFrame("B_images/eq_map.html", width="100%", height="600px")
+HTML(f"""
+<div class="earthquakes-header">
+  <div class="carousel-container">
+    <!-- Slide 1 -->
+    <div class="carousel-slide active" style="background-image: url('B_images/earthquake1.jpg');">
+      <div class="earthquake-header-content">
+        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
+        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+      </div>
+    </div>
+    
+    <!-- Slide 2 -->
+    <div class="carousel-slide" style="background-image: url('B_images/earthquake2.jpg');">
+      <div class="earthquake-header-content">
+        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
+        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+      </div>
+    </div>
+    
+    <!-- Slide 3 -->
+    <div class="carousel-slide" style="background-image: url('B_images/earthquake3.jpg');">
+      <div class="earthquake-header-content">
+        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
+        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+      </div>
+    </div>
+    
+    <!-- Slide 4 -->
+    <div class="carousel-slide" style="background-image: url('B_images/earthquake4.jpg');">
+      <div class="earthquake-header-content">
+        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
+        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+""")
+```
+<script>
+// Horizontal carousel script optimizado
+document.addEventListener('DOMContentLoaded', function() {
+    const eqSlides = document.querySelectorAll('#earthquakes .carousel-slide');
+    if (eqSlides.length === 0) return;
+    
+    let currentEqIndex = 0;
+    eqSlides[0].classList.add('active');
+
+    function nextEqSlide() {
+        eqSlides[currentEqIndex].classList.remove('active');
+        currentEqIndex = (currentEqIndex + 1) % eqSlides.length;
+        eqSlides[currentEqIndex].classList.add('active');
+    }
+
+    let eqSlideInterval = setInterval(nextEqSlide, 3500); // Velocidad más rápida
+
+    const eqContainer = document.querySelector('#earthquakes .carousel-container');
+    if (eqContainer) {
+        eqContainer.addEventListener('mouseenter', () => clearInterval(eqSlideInterval));
+        eqContainer.addEventListener('mouseleave', () => {
+            eqSlideInterval = setInterval(nextEqSlide, 3500);
+        });
+    }
+    
+    // Asegurar que no hay espacio extra
+    const earthquakesSection = document.getElementById('earthquakes');
+    if (earthquakesSection) {
+        earthquakesSection.style.paddingTop = '0';
+        earthquakesSection.style.marginTop = '0';
+    }
+});
+</script>
+
+
+
+## Earthquake Monitoring {.panel-tabset}
+
+### Mapa de Actividad Sísmica
+```{python}
+#| label: eq-map-fixed
+#| echo: false
+from IPython.display import HTML
+display(HTML('<iframe src="./B_images/eq_map.html" width="100%" height="600" style="border:none;"></iframe>'))
+```
+
+```{python}
+#| label: eq-table-fixed
+#| echo: false
+from IPython.display import HTML
+display(HTML('<iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none;"></iframe>'))
+```
+```{python}
+#| label: fixed-eq-histogram
+#| echo: false
+from IPython.display import HTML
+try:
+    display(HTML('<iframe src="./B_images/eq_histogram.html" width="100%" height="500" style="border:none;"></iframe>'))
+except:
+    display(HTML('<div style="color:red;"><h3>Error: No se pudo cargar el histograma</h3><p>Verifica que el archivo ./B_images/eq_histogram.html existe y contiene datos.</p></div>'))
+```
+```{python}
+#| label: earthquakes-credits
+#| echo: false
+HTML("""
+<!-- Nuevo footer de créditos -->
+  <div class="credits-footer">
+    <p>Créditos fotográficos: 
+      <a href="https://seismo.berkeley.edu/blog/2016/11/23/an-earthquake-of-two-flavors.html" target="_blank">Berkeley Seismology Lab</a>, 
+      <a href="https://www.usgs.gov/" target="_blank">USGS</a>, 
+      <a href="http://www.thulescientific.com/media.htm" target="_blank">Thule Scientific</a>,
+      <a href="https://temblor.net/" target="_blank">Temblor.net</a>.
+    </p>
+    <p>All images are used for educational and research purposes.</p>
+  </div>
+</div>
+""")
 ```
