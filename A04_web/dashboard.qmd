@@ -221,7 +221,7 @@ img {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  transition: opacity 1s ease-in-out;
   background-size: cover;
   background-position: center;
 }
@@ -368,56 +368,69 @@ img {
   margin: 0 3px;
 }
 
-/* ESTILOS ACTUALIZADOS PARA EL CARRUSEL DE TERREMOTOS */
-.earthquakes-header {
+/* CARRUSEL DE TERREMOTOS - Versión compacta */
+.earthquakes-carousel {
   position: relative;
   width: 100%;
-  margin: 0 0 1rem 0; /* Reducido el margen superior */
-  padding: 0;
-}
-
-.carousel-container {
-  height: 80px;  /* Altura más reducida */
-  position: relative;
+  height: 120px; /* Mucho más compacto que los 400px de la homepage */
+  margin: 0 0 1rem 0;
   overflow: hidden;
-  border-radius: 4px;
-  display: flex;
-  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.earthquake-header-content {
+.earthquakes-carousel .carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.earthquakes-carousel .carousel-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.earthquakes-carousel .carousel-slide.active {
+  opacity: 1;
+}
+
+/* Contenido del header más compacto */
+.earthquakes-header-content {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
   display: flex;
   align-items: center;
-  gap: 8px;
-  z-index: 10;
-  background-color: rgba(0,0,0,0.4);
-  padding: 3px 12px;
+  gap: 10px;
+  background-color: rgba(0,0,0,0.5);
+  padding: 5px 15px;
   border-radius: 20px;
 }
 
 .earthquakes-logo {
-  height: 16px;  /* Icono más pequeño */
+  height: 24px;
   width: auto;
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
 }
 
 .earthquakes-title {
-  color: #d9512c;
-  font-size: 0.85rem; /* Tamaño de fuente reducido */
+  color: white;
+  font-size: 0.9rem;
   margin: 0;
   font-weight: bold;
-  text-shadow: 0 0 3px rgba(0,0,0,0.5);
-  white-space: nowrap;
+  text-shadow: 0 0 3px rgba(0,0,0,0.7);
 }
 
-/* Eliminar espacio adicional */
-#earthquakes > :first-child {
-  margin-top: 0;
-  padding-top: 0;
+/* Eliminar el overlay si no es necesario */
+.earthquakes-carousel .carousel-overlay {
+  display: none;
 }
 
 
@@ -781,45 +794,100 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-// Script mejorado para transiciones
-document.addEventListener('DOMContentLoaded', function() {
-  const slides = document.querySelectorAll('.carousel-slide');
-  const credits = document.querySelectorAll('.photo-credits');
-  let currentSlide = 0;
-  
-  function nextSlide() {
-    // Oculta elemento actual
-    slides[currentSlide].classList.remove('active');
-    credits[currentSlide].classList.add('hidden');
-    
-    // Calcula siguiente slide
-    currentSlide = (currentSlide + 1) % slides.length;
-    
-    // Muestra nuevo elemento
-    slides[currentSlide].classList.add('active');
-    setTimeout(() => {
-      credits[currentSlide].classList.remove('hidden');
-    }, 50);
-  }
-  
-  // Inicia intervalo
-  let slideInterval = setInterval(nextSlide, 5000);
-  
-  // Pausa al interactuar
-  document.querySelector('.carousel-container').addEventListener('mouseenter', () => {
-    clearInterval(slideInterval);
-  });
-  
-  document.querySelector('.carousel-container').addEventListener('mouseleave', () => {
-    slideInterval = setInterval(nextSlide, 5000);
-  });
-});
-</script>
-
 
 # 🏝️ LA PALMA {#la-palma}
+```{python}
+#| label: la-palma-carousel
+#| echo: false
+HTML(f"""
+<div class="homepage">
+  <!-- Carrusel optimizado -->
+  <div class="homepage-header">
+    <div class="carousel-container">
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/lapalma1.jpg');">
+        <div class="photo-credits">
+          © <a href="https://volcano.si.edu/volcano.cfm?vn=383010" target="_blank">Smithsonian Institution</a>
+        </div>
+      </div>
+      
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background-image: url('B_images/lapalma2.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://www.elperiodico.com/es/fotos/sociedad/erupcion-palma-imagenes-12093812/12125762" target="_blank">Sociedad</a>
+        </div>
+      </div>
+      
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background-image: url('B_images/lapalma3.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://www.elperiodico.com/es/fotos/sociedad/erupcion-palma-imagenes-12093812/12125762" target="_blank">Sociedad</a>
+        </div>
+      </div>
+      
+      <div class="carousel-overlay"></div>
+      <div class="homepage-logo-container">
+        <img src="B_images/La_Palma_contorno_naranja.png" alt="VOLCANA Logo" class="homepage-logo">
+        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+          Volcanic Activity in La Palma
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Nuevo footer de créditos -->
+  <div class="credits-footer">
+    </p>
+  </div>
+</div>
+""")
+```
+<script>
+// CARRUSEL OPTIMIZADO (same as homepage)
+document.addEventListener('DOMContentLoaded', function () {
+  const slides = document.querySelectorAll('#earthquakes .carousel-slide');
+  const credits = document.querySelectorAll('#earthquakes .photo-credits');
+  let currentIndex = 0;
+  let isAnimating = false;
+  let intervalId;
 
+  function showNextSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    // Oculta slide actual
+    slides[currentIndex].classList.remove('active');
+    credits[currentIndex].classList.add('hidden');
+
+    // Calcula nuevo índice
+    currentIndex = (currentIndex + 1) % slides.length;
+
+    // Muestra nuevo slide
+    slides[currentIndex].classList.add('active');
+    credits[currentIndex].classList.remove('hidden');
+
+    // Restablece bandera después de la transición
+    setTimeout(() => {
+      isAnimating = false;
+    }, 1500);
+  }
+
+  // Inicia el carrusel
+  function startCarousel() {
+    intervalId = setInterval(showNextSlide, 5000);
+  }
+
+  // Pausa al interactuar
+  const container = document.querySelector('#earthquakes .carousel-container');
+  if (container) {
+    container.addEventListener('mouseenter', () => clearInterval(intervalId));
+    container.addEventListener('mouseleave', startCarousel);
+  }
+
+  // Inicializa
+  startCarousel();
+});
+</script>
 ## Radiative Power {.panel-tabset}
 
 ```{python}
@@ -866,6 +934,22 @@ HTML("""
 """)
 ```
 :::
+```{python}
+#| label: la-palma-credits
+#| echo: false
+HTML("""
+<!-- Nuevo footer de créditos -->
+  <div class="credits-footer">
+    <p>Créditos fotográficos: 
+      <a href="https://volcano.si.edu/volcano.cfm?vn=383010" target="_blank">Smithsonian Institution</a>, 
+      <a href="https://www.usgs.gov/" target="_blank">USGS</a>, 
+      <a href="https://www.elperiodico.com/es/fotos/sociedad/erupcion-palma-imagenes-12093812/12125762" target="_blank">Sociedad</a>.
+    </p>
+    <p>All images are used for educational and research purposes.</p>
+  </div>
+</div>
+""")
+```
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
@@ -874,77 +958,95 @@ HTML("""
 #| label: earthquakes-carousel
 #| echo: false
 HTML(f"""
-<div class="earthquakes-header">
-  <div class="carousel-container">
-    <!-- Slide 1 -->
-    <div class="carousel-slide active" style="background-image: url('B_images/earthquake1.jpg');">
-      <div class="earthquake-header-content">
-        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
-        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+<div class="homepage">
+  <!-- Carrusel optimizado -->
+  <div class="homepage-header">
+    <div class="carousel-container">
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/earthquake2.jpg');">
+        <div class="photo-credits">
+          © <a href="https://seismo.berkeley.edu/blog/2016/11/23/an-earthquake-of-two-flavors.html" target="_blank">Berkeley Seismology Lab</a>
+        </div>
       </div>
-    </div>
-    
-    <!-- Slide 2 -->
-    <div class="carousel-slide" style="background-image: url('B_images/earthquake2.jpg');">
-      <div class="earthquake-header-content">
-        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
-        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+      
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background-image: url('B_images/earthquake3.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="http://www.thulescientific.com/media.htm" target="_blank">Thule Scientific</a>
+        </div>
       </div>
-    </div>
-    
-    <!-- Slide 3 -->
-    <div class="carousel-slide" style="background-image: url('B_images/earthquake3.jpg');">
-      <div class="earthquake-header-content">
-        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
-        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+      
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background-image: url('B_images/earthquake4.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://temblor.net/" target="_blank">Temblor.net</a>
+        </div>
       </div>
-    </div>
-    
-    <!-- Slide 4 -->
-    <div class="carousel-slide" style="background-image: url('B_images/earthquake4.jpg');">
-      <div class="earthquake-header-content">
-        <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquakes-logo">
-        <span class="earthquakes-title">Volcanic-Seismic Relation</span>
+      
+      <div class="carousel-overlay"></div>
+      <div class="homepage-logo-container">
+        <img src="B_images/earthquake-icon-naranja.png" alt="VOLCANA Logo" class="homepage-logo">
+        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+          Volcanic-Seismic Relation
+        </div>
       </div>
     </div>
   </div>
 </div>
-
+  <!-- Nuevo footer de créditos -->
+  <div class="credits-footer">
+    </p>
+  </div>
+</div>
 """)
 ```
 <script>
-// Horizontal carousel script optimizado
-document.addEventListener('DOMContentLoaded', function() {
-    const eqSlides = document.querySelectorAll('#earthquakes .carousel-slide');
-    if (eqSlides.length === 0) return;
-    
-    let currentEqIndex = 0;
-    eqSlides[0].classList.add('active');
+// CARRUSEL OPTIMIZADO (same as homepage)
+document.addEventListener('DOMContentLoaded', function () {
+  const slides = document.querySelectorAll('#earthquakes .carousel-slide');
+  const credits = document.querySelectorAll('#earthquakes .photo-credits');
+  let currentIndex = 0;
+  let isAnimating = false;
+  let intervalId;
 
-    function nextEqSlide() {
-        eqSlides[currentEqIndex].classList.remove('active');
-        currentEqIndex = (currentEqIndex + 1) % eqSlides.length;
-        eqSlides[currentEqIndex].classList.add('active');
-    }
+  function showNextSlide() {
+    if (isAnimating) return;
+    isAnimating = true;
 
-    let eqSlideInterval = setInterval(nextEqSlide, 3500); // Velocidad más rápida
+    // Oculta slide actual
+    slides[currentIndex].classList.remove('active');
+    credits[currentIndex].classList.add('hidden');
 
-    const eqContainer = document.querySelector('#earthquakes .carousel-container');
-    if (eqContainer) {
-        eqContainer.addEventListener('mouseenter', () => clearInterval(eqSlideInterval));
-        eqContainer.addEventListener('mouseleave', () => {
-            eqSlideInterval = setInterval(nextEqSlide, 3500);
-        });
-    }
-    
-    // Asegurar que no hay espacio extra
-    const earthquakesSection = document.getElementById('earthquakes');
-    if (earthquakesSection) {
-        earthquakesSection.style.paddingTop = '0';
-        earthquakesSection.style.marginTop = '0';
-    }
+    // Calcula nuevo índice
+    currentIndex = (currentIndex + 1) % slides.length;
+
+    // Muestra nuevo slide
+    slides[currentIndex].classList.add('active');
+    credits[currentIndex].classList.remove('hidden');
+
+    // Restablece bandera después de la transición
+    setTimeout(() => {
+      isAnimating = false;
+    }, 1500);
+  }
+
+  // Inicia el carrusel
+  function startCarousel() {
+    intervalId = setInterval(showNextSlide, 5000);
+  }
+
+  // Pausa al interactuar
+  const container = document.querySelector('#earthquakes .carousel-container');
+  if (container) {
+    container.addEventListener('mouseenter', () => clearInterval(intervalId));
+    container.addEventListener('mouseleave', startCarousel);
+  }
+
+  // Inicializa
+  startCarousel();
 });
 </script>
+
 
 
 
