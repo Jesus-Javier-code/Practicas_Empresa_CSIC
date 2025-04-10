@@ -91,8 +91,9 @@ def get_lat_lot_from_file(file="wrk_df.csv"):
 
     return id, lat, lon
 
+"""""
+ This is a future function, for now we consider that the magnitude is already in Mw
 
-
-# This is a future function, for now we consider that the magnitude is already in Mw
-def magnitude_conversion(magnitude, mag_type, target_type="Mw"):
+ def magnitude_conversion(magnitude, mag_type, target_type="Mw"):
     return print("Conversion not implemented yet")
+"""""
