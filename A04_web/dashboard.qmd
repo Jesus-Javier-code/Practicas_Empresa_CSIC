@@ -535,24 +535,32 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let intervalId;
 
-    // Mostrar primer slide y ocultar el resto
-    slides.forEach((slide, index) => {
-      slide.style.opacity = index === 0 ? '1' : '0';
-      slide.classList.toggle('active', index === 0);
-      
-      if (credits[index]) {
-        credits[index].style.display = index === 0 ? 'block' : 'none';
-      }
-    });
+    // Función para actualizar visibilidad
+    function updateVisibility() {
+      slides.forEach((slide, index) => {
+        const isActive = index === currentIndex;
+        slide.style.opacity = isActive ? '1' : '0';
+        slide.classList.toggle('active', isActive);
+        
+        if (credits[index]) {
+          credits[index].style.display = isActive ? 'block' : 'none';
+          credits[index].classList.toggle('hidden', !isActive);
+        }
+      });
+    }
+
+    // Inicializar
+    updateVisibility();
 
     function showNextSlide() {
       console.log("🔄 Cambiando slide...");
       
-      // Oculta slide actual (transición suave)
+      // Oculta el slide actual
       slides[currentIndex].style.opacity = '0';
       slides[currentIndex].classList.remove('active');
       if (credits[currentIndex]) {
         credits[currentIndex].style.display = 'none';
+        credits[currentIndex].classList.add('hidden');
       }
 
       // Calcula nuevo índice
@@ -564,89 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
       slides[currentIndex].classList.add('active');
       if (credits[currentIndex]) {
         credits[currentIndex].style.display = 'block';
-      }
-    }
-
-    // Iniciar solo si hay más de 1 slide
-    if (slides.length > 1) {
-      console.log("⏱️ Iniciando intervalo...");
-      intervalId = setInterval(showNextSlide, 5000);
-
-      // Pausar al interactuar
-      container.addEventListener('mouseenter', () => {
-        console.log("⏸️ Pausando carrusel");
-        clearInterval(intervalId);
-      });
-      
-      container.addEventListener('mouseleave', () => {
-        console.log("▶️ Reanudando carrusel");
-        intervalId = setInterval(showNextSlide, 5000);
-      });
-    }
-  }
-
-  // Inicializar todos los carruseles
-  initCarousel('.homepage .carousel-container');
-  initCarousel('#la-palma .carousel-container');
-  initCarousel('#earthquakes .carousel-container');
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("🚀 Iniciando carruseles...");
-  
-  function initCarousel(containerSelector) {
-    console.log(`🔍 Buscando carrusel: ${containerSelector}`);
-    const container = document.querySelector(containerSelector);
-    
-    if (!container) {
-      console.error(`❌ No se encontró el contenedor: ${containerSelector}`);
-      return;
-    }
-    
-    const slides = container.querySelectorAll('.carousel-slide');
-    const credits = container.querySelectorAll('.photo-credits');
-    
-    console.log(`📸 Slides encontrados: ${slides.length}`);
-    
-    if (slides.length === 0) {
-      console.warn(`⚠️ No hay slides en: ${containerSelector}`);
-      return;
-    }
-
-    let currentIndex = 0;
-    let intervalId;
-
-    // Mostrar primer slide y ocultar el resto
-    slides.forEach((slide, index) => {
-      slide.style.opacity = index === 0 ? '1' : '0';
-      slide.classList.toggle('active', index === 0);
-      
-      if (credits[index]) {
-        credits[index].style.display = index === 0 ? 'block' : 'none';
-      }
-    });
-
-    function showNextSlide() {
-      console.log("🔄 Cambiando slide...");
-      
-      // Oculta slide actual (transición suave)
-      slides[currentIndex].style.opacity = '0';
-      slides[currentIndex].classList.remove('active');
-      if (credits[currentIndex]) {
-        credits[currentIndex].style.display = 'none';
-      }
-
-      // Calcula nuevo índice
-      currentIndex = (currentIndex + 1) % slides.length;
-      console.log(`🎯 Nuevo índice: ${currentIndex}`);
-
-      // Muestra nuevo slide
-      slides[currentIndex].style.opacity = '1';
-      slides[currentIndex].classList.add('active');
-      if (credits[currentIndex]) {
-        credits[currentIndex].style.display = 'block';
+        credits[currentIndex].classList.remove('hidden');
       }
     }
 
@@ -676,12 +602,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-```{python}
-#| label: geometry
-#| include: false
-import subprocess
-subprocess.run(["python", "../A02_utils/geometry.py"], check=True)
-```
 
 
 <script>
@@ -897,6 +817,13 @@ HTML(f"""
 # 🏝️ LA PALMA {#la-palma}
 
 ```{python}
+#| label: geometry
+#| include: false
+import subprocess
+subprocess.run(["python", "../A02_utils/geometry_2.py"], check=True)
+```
+
+```{python}
 #| label: la-palma-carousel
 #| echo: false
 HTML(f"""
@@ -949,25 +876,46 @@ HTML(f"""
 
 ```{python}
 #| label: setup-potencia
-#| include: false
-import subprocess
-subprocess.run(["python", "../A02_utils/geometry_2.py"], check=True)
-```
-```{python}
 #| echo: false
 from IPython.display import HTML
 
 HTML('''
+<style>
+/* Estilo específico para el iframe problemático */
+.daily-plot-container iframe {
+    overflow: hidden !important;
+    scrollbar-width: none !important; /* Para Firefox */
+    -ms-overflow-style: none !important; /* Para IE/Edge */
+}
+.daily-plot-container iframe::-webkit-scrollbar {
+    display: none !important; /* Para Chrome/Safari */
+}
+</style>
+
 <div style="width: 100%; max-width: 5000px; margin: 0 auto;">
 
-  <!-- Radiative Power -->
-  <div style="margin-bottom: 40px;">
-    <iframe src="B_images/radiative_power_plot.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+  <!-- Radiative Power Plots - Side by Side -->
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 40px;">
+    <!-- Weekly Plot -->
+    <div style="flex: 1; min-width: 400px; height: 520px;">
+      <iframe src="B_images/radiative_power_plot.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+      <p style="text-align: center; margin-top: 10px; color: #666;">
+        Weekly Maximum Radiative Power (data by S. Aveni)
+      </p>
+    </div>
+    
+    <!-- Daily Plot - Contenedor especial -->
+    <div class="daily-plot-container" style="flex: 1; min-width: 400px; height: 520px;">
+      <iframe src="B_images/radiative_power_daily.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+      <p style="text-align: center; margin-top: 10px; color: #666;">
+        Daily Radiative Power (data by NASA LAADS DAAC (MODIS/VIIRS))
+      </p>
+    </div>
   </div>
 
-  <!-- Mapa -->
-  <div style="margin-bottom: 40px;">
-    <iframe src="B_images/la_palma_eruption_viewer.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+  <!-- Map -->
+  <div style="margin-bottom: 40px; height: 520px;">
+    <iframe src="B_images/la_palma_eruption_viewer.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
   </div>
 
   <!-- Video -->
@@ -985,9 +933,9 @@ HTML('''
     </p>
   </div>
 
-  <!-- Créditos -->
+  <!-- Credits -->
   <div style="margin-top: 40px; text-align: center; font-size: 0.9em; color: #666;">
-    <p>Créditos fotográficos: 
+    <p>Photo credits: 
       <a href="https://volcano.si.edu/volcano.cfm?vn=383010" target="_blank">Smithsonian Institution</a>, 
       <a href="https://www.usgs.gov/" target="_blank">USGS</a>, 
       <a href="https://www.elperiodico.com/es/fotos/sociedad/erupcion-palma-imagenes-12093812/12125762" target="_blank">Sociedad</a>.
@@ -1001,6 +949,16 @@ HTML('''
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
+
+```{python}
+#| label: geometry_1
+#| include: false
+import subprocess
+result = subprocess.run(["python", "../A02_utils/geometry.py"], capture_output=True, text=True)
+print(result.stdout)
+if result.stderr:
+    print("Errors:", result.stderr)
+```
 
 ```{python}
 #| label: earthquakes-carousel
@@ -1070,7 +1028,7 @@ display(HTML('''
 
   <!-- Mapa 2 -->
   <div style="width: 50%;">
-    <iframe src="./B_images/eq_map2.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <iframe src="./B_images/eq_map_filtered.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
   </div>
 </div>
 '''))
@@ -1091,7 +1049,7 @@ display(HTML('''
 
   <!-- Histograma 2 -->
   <div style="width: 50%;">
-    <iframe src="./B_images/eq_histogram2.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <iframe src="./B_images/eq_trigger_histogram.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
   </div>
 </div>
 '''))

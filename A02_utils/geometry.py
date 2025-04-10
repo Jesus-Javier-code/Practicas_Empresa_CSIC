@@ -1,48 +1,260 @@
-# process_eq_data.py
+# geometry.py
 import pandas as pd
 import plotly.express as px
 import os
 import sys
+import plotly.graph_objects as go
+import plotly.io as pio
+from datetime import datetime
+import numpy as np
 
-def main():
+# Configuration - La Palma volcano coordinates
+VOLCANO_COORDS = {
+    'latitude': 28.57,
+    'longitude': -17.84,
+    'region_radius': 100  # km around volcano
+}
+
+# Custom CSS for rounded corners
+ROUNDED_CORNERS_CSS = """
+<style>
+    .plot-container {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        background: white;
+        margin: 10px;
+    }
+    .plotly-graph-div {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+    }
+    .modebar {
+        top: 60px !important;
+    }
+</style>
+"""
+
+def add_rounded_corners(html_path):
+    """Add rounded corners CSS to generated HTML files"""
     try:
-        # Configurar rutas - VERSIÓN DEFINITIVA CORREGIDA
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        # El script está en A02_utils, necesitamos llegar a Practicas_Empresa_CSIC
-        project_root = os.path.dirname(current_dir)  # Esto nos lleva a Practicas_Empresa_CSIC
+        with open(html_path, 'r+', encoding='utf-8') as f:
+            content = f.read()
+            f.seek(0)
+            # Add CSS and container div
+            content = content.replace('<head>', '<head>' + ROUNDED_CORNERS_CSS)
+            content = content.replace('<div id="', '<div class="plot-container"><div id="')
+            content = content.replace('</body>', '</div></body>')
+            f.write(content)
+    except Exception as e:
+        print(f"❌ Error adding rounded corners: {str(e)}", file=sys.stderr)
+
+def load_data(file_name):
+    """Load earthquake data from CSV with correct relative paths"""
+    try:
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        data_path = os.path.join(base_dir, "A00_data", "B_eq_processed", file_name)
         
-        input_csv = os.path.join(project_root, "A00_data", "B_eq_processed", "wrk_df.csv")
-        output_folder = os.path.join(project_root, "A04_web", "B_images")
+        print(f"🔄 Loading data from: {data_path}")
         
-        # Verificación EXTENDIDA
-        if not os.path.exists(input_csv):
-            print(f"❌ Error: Archivo no encontrado en {input_csv}", file=sys.stderr)
-            print("Por favor verifica:")
-            print(f"1. La estructura exacta debe ser: {project_root}/A00_data/B_eq_processed/wrk_df.csv")
-            print(f"2. Que los nombres de carpetas coincidan exactamente (mayúsculas/minúsculas)")
-            print(f"3. Que el archivo existe en esa ubicación")
-            return 1
+        if not os.path.exists(data_path):
+            print(f"❌ File not found at: {data_path}")
+            return pd.DataFrame()
         
-        # Resto del código...
+        df = pd.read_csv(data_path)
+        
+        if 'time' in df.columns:
+            df['time'] = pd.to_datetime(df['time'], errors='coerce')
+            df = df.dropna(subset=['time'])
+        
+        print(f"✅ Loaded {len(df)} records from {file_name}")
+        return df
+    
+    except Exception as e:
+        print(f"❌ Error loading {file_name}: {str(e)}", file=sys.stderr)
+        return pd.DataFrame()
+
+def generate_map(data, output_folder, is_filtered=False):
+    """Generate earthquake map with Canary Islands focus"""
+    try:
+        output_path = os.path.join(output_folder, 
+                                 "eq_map_filtered.html" if is_filtered else "eq_map.html")
+        title = "Filtered Earthquakes" if is_filtered else "Earthquake Trigger Index"
+        
+        # Create base figure
+        fig = go.Figure()
+        
+        # Add earthquake data
+        fig.add_trace(go.Scattergeo(
+            lon = data['longitude'],
+            lat = data['latitude'],
+            text = data['id'],
+            marker = dict(
+                size = data['magnitude']*3,
+                color = data['trigger_index'],
+                colorscale = 'Viridis',
+                colorbar = dict(title='Trigger Index', thickness=15, len=0.5),
+                line = dict(width=0.5, color='black'),
+                opacity = 0.8
+            ),
+            name = 'Earthquakes',
+            hoverinfo = 'text+lon+lat'
+        ))
+        
+        # Add volcano marker
+        fig.add_trace(go.Scattergeo(
+            lon = [-17.84],
+            lat = [28.57],
+            text = ['Cumbre Vieja Volcano'],
+            marker = dict(size=12, color='red', symbol='triangle-up'),
+            name = 'Volcano',
+            hoverinfo = 'text'
+        ))
+        
+        # Configure map view
+        fig.update_geos(
+            resolution = 110,
+            scope = 'europe',
+            showcountries = True,
+            countrycolor = 'black',
+            showsubunits = True,
+            subunitcolor = 'grey',
+            showland = True,
+            landcolor = 'rgb(243, 243, 243)',
+            showocean = True,
+            oceancolor = 'rgb(212, 212, 255)',
+            coastlinewidth = 1.5,
+            lataxis_range = [27.5, 29.8],  # Canary Islands latitude range
+            lonaxis_range = [-18.5, -13.0]  # Canary Islands longitude range
+        )
+        
+        fig.update_layout(
+            title = dict(text=f"{title}<br><sup>Canary Islands</sup>", x=0.5, font=dict(size=20)),
+            margin = dict(l=0, r=0, t=60, b=0),
+            geo = dict(bgcolor='white', subunitwidth=1)
+        )
+        
         os.makedirs(output_folder, exist_ok=True)
-        eq_data = pd.read_csv(input_csv)
+        fig.write_html(output_path)
+        add_rounded_corners(output_path)
         
-        generate_table(eq_data, output_folder)
-        generate_map(eq_data, output_folder)
-        generate_histogram(eq_data, output_folder)
-        
-        return 0
+        print(f"✅ Map saved to: {output_path}")
         
     except Exception as e:
-        print(f"❌ Error inesperado: {str(e)}", file=sys.stderr)
-        return 1
+        print(f"❌ Error: {str(e)}", file=sys.stderr)
 
-# ... (resto de funciones igual)
+def generate_histogram(data, output_folder):
+    """Generate trigger index histogram with range slider"""
+    try:
+        hist_html_path = os.path.join(output_folder, "eq_trigger_histogram.html")
+        total_events = len(data)
+
+        fig = go.Figure()
+        fig.add_trace(go.Histogram(
+            x=data["trigger_index"],
+            nbinsx=60,
+            marker_color="#1f77b4",
+            marker_line_color='black',
+            marker_line_width=0.5,
+            opacity=0.8,
+            name="Trigger Index",
+            hovertemplate="Value: %{x}<br>Count: %{y}<extra></extra>"
+        ))
+
+        fig.update_layout(
+            title=f"Trigger Index Distribution (Total: {total_events})",
+            title_font=dict(size=22, family="Arial"),
+            xaxis_title="Trigger Index Value",
+            yaxis_title="Number of Events",
+            bargap=0.1,
+            plot_bgcolor='white',
+            xaxis=dict(
+                showgrid=True,
+                gridcolor='lightgray',
+                gridwidth=0.5,
+                rangeslider=dict(visible=True, thickness=0.05, bgcolor='lightgray'),
+                zeroline=True,
+                zerolinecolor='black'
+            ),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor='lightgray',
+                gridwidth=0.5,
+                zeroline=True,
+                zerolinecolor='black'
+            ),
+            margin=dict(l=50, r=50, t=80, b=50),
+            hovermode="x unified"
+        )
+
+        fig.write_html(hist_html_path, full_html=True, config={'scrollZoom': True})
+        add_rounded_corners(hist_html_path)
+        print(f"✅ Trigger index histogram saved to: {hist_html_path}")
+
+    except Exception as e:
+        print(f"❌ Error generating histogram: {str(e)}", file=sys.stderr)
+
+def plot_events_histogram(output_folder):
+    """Generate time-based histogram with consistent styling"""
+    try:
+        df = load_data("wrk_df.csv")
+        if df.empty:
+            return
+
+        total_events = len(df)
+        output_path = os.path.join(output_folder, "eq_histogram.html")
+
+        fig = go.Figure()
+        fig.add_trace(go.Histogram(
+            x=df["time"],
+            nbinsx=30,
+            marker_color="#1f77b4",
+            marker_line_color='black',
+            marker_line_width=0.5,
+            opacity=0.8,
+            xbins=dict(start=df["time"].min(), end=df["time"].max(), size='M1'),
+            name="Earthquakes"
+        ))
+
+        fig.update_layout(
+            title=f"Earthquake Events Over Time (Total: {total_events})",
+            title_font=dict(size=22, family="Arial"),
+            xaxis_title="Date",
+            yaxis_title="Number of Events",
+            bargap=0.1,
+            plot_bgcolor='white',
+            xaxis=dict(
+                showgrid=True,
+                gridcolor='lightgray',
+                gridwidth=0.5,
+                rangeslider=dict(visible=True, thickness=0.1, bgcolor='lightgray'),
+                type='date',
+                tickformat="%b %Y"
+            ),
+            yaxis=dict(
+                showgrid=True,
+                gridcolor='lightgray',
+                gridwidth=0.5,
+                zeroline=True,
+                zerolinecolor='black'
+            ),
+            margin=dict(l=50, r=50, t=80, b=50),
+            hovermode="x unified"
+        )
+
+        pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
+        add_rounded_corners(output_path)
+        print(f"✅ Events timeline histogram saved to: {output_path}")
+
+    except Exception as e:
+        print(f"❌ Error generating events histogram: {str(e)}", file=sys.stderr)
+
 def generate_table(data, output_folder):
+    """Generate HTML table of earthquake data"""
     try:
         table_html_path = os.path.join(output_folder, "eq_table.html")
-
-        # Convertir el DataFrame a HTML (solo las primeras 100 filas)
+        
         html_table = data.head(100).to_html(
             index=False,
             border=0,
@@ -50,33 +262,49 @@ def generate_table(data, output_folder):
             justify="center"
         )
 
-        # Envolver en HTML básico
         full_html = f"""
         <html>
         <head>
-            <title>Earthquake Trigger Index Table</title>
+            <title>Earthquake Data Table</title>
+            {ROUNDED_CORNERS_CSS}
             <style>
                 body {{
                     font-family: Arial, sans-serif;
                     padding: 20px;
+                }}
+                .table-container {{
+                    border-radius: 15px;
+                    overflow: hidden;
+                    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                    margin: 10px;
                 }}
                 .table {{
                     width: 100%;
                     border-collapse: collapse;
                 }}
                 .table th, .table td {{
-                    border: 1px solid #ccc;
+                    border: 1px solid #ddd;
                     padding: 8px;
                     text-align: center;
                 }}
                 .table th {{
                     background-color: #f2f2f2;
+                    position: sticky;
+                    top: 0;
+                }}
+                .table tr:nth-child(even) {{
+                    background-color: #f9f9f9;
+                }}
+                .table tr:hover {{
+                    background-color: #f1f1f1;
                 }}
             </style>
         </head>
         <body>
-            <h1 style="text-align:center;">Earthquake Trigger Index Table</h1>
-            {html_table}
+            <div class="table-container">
+                <h1 style="text-align:center;">Earthquake Data</h1>
+                {html_table}
+            </div>
         </body>
         </html>
         """
@@ -84,132 +312,52 @@ def generate_table(data, output_folder):
         with open(table_html_path, "w", encoding="utf-8") as f:
             f.write(full_html)
 
-<<<<<<< HEAD
+        print(f"✅ Table saved to: {table_html_path}")
+
     except Exception as e:
         print(f"❌ Error generating table: {str(e)}", file=sys.stderr)
-        raise
 
-def generate_map(data, output_folder):
+def main():
     try:
-        map_html_path = os.path.join(output_folder, "eq_map.html")
-        fig = px.scatter_geo(
-            data,
-            lat='latitude',
-            lon='longitude',
-            size=data['magnitude']*2,
-            color='trigger_index',
-            color_continuous_scale='Viridis',
-            hover_name='id',
-            projection='natural earth'
-        )
-        fig.write_html(map_html_path, full_html=False)
+        print("\n" + "="*50)
+        print("🌋 Earthquake Data Visualization Generator")
+        print("="*50 + "\n")
+        
+        eq_data = load_data("wrk_df.csv")
+        filtered_data = load_data("trigger_index_filtered.csv")
+        
+        if eq_data.empty:
+            print("❌ No earthquake data loaded - check file paths", file=sys.stderr)
+            base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+            expected_path1 = os.path.join(base_dir, "A00_data", "B_eq_processed", "wrk_df.csv")
+            expected_path2 = os.path.join(base_dir, "A00_data", "B_eq_processed", "trigger_index_filtered.csv")
+            print(f"Expected files at:\n- {expected_path1}\n- {expected_path2}")
+            return 1
+        
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        output_folder = os.path.join(base_dir, "A04_web", "B_images")
+        os.makedirs(output_folder, exist_ok=True)
+        
+        print("\n" + "="*50)
+        print("🔄 Generating visualizations...")
+        print("="*50 + "\n")
+        
+        generate_table(eq_data, output_folder)
+        generate_map(eq_data, output_folder, is_filtered=False)
+        generate_map(filtered_data, output_folder, is_filtered=True)
+        generate_histogram(eq_data, output_folder)
+        plot_events_histogram(output_folder)
+        
+        print("\n" + "="*50)
+        print("✅ All visualizations generated successfully!")
+        print(f"📁 Output folder: {output_folder}")
+        print("="*50 + "\n")
+        
+        return 0
+        
     except Exception as e:
-        print(f"❌ Error generating map: {str(e)}", file=sys.stderr)
-        raise
-
-def generate_histogram(data, output_folder):
-    try:
-        hist_html_path = os.path.join(output_folder, "eq_histogram.html")
-        fig = px.histogram(
-            data,
-            x='trigger_index',
-            nbins=30,
-            title='Trigger Index Distribution'
-        )
-        fig.write_html(hist_html_path, full_html=False)
-    except Exception as e:
-        print(f"❌ Error generating histogram: {str(e)}", file=sys.stderr)
-        raise
+        print(f"❌ Unexpected error: {str(e)}", file=sys.stderr)
+        return 1
 
 if __name__ == "__main__":
     sys.exit(main())
-=======
-    fig.update_layout(
-        mapbox_style="open-street-map",
-        mapbox=dict(
-            center=dict(lat=lati, lon=long),
-            zoom=12,
-            bounds=dict(west=lon_min, east=lon_max, north=lat_max, south=lat_min)
-        ),
-        margin=dict(l=0, r=0, t=0, b=0),
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        autosize=True,
-        dragmode=False
-    )
-
-    fig.add_trace(go.Scattermapbox(
-        mode="lines",
-        lon=[lon_min, lon_max, lon_max, lon_min, lon_min],
-        lat=[lat_min, lat_min, lat_max, lat_max, lat_min],
-        marker=dict(size=10, color="black"),
-        line=dict(width=2, color="black"),
-        name="Área de estudio"
-    ))
-
-    grid(fig, lat_min, lat_max, lon_min, lon_max)
-    
-    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../A04_web/B_images")
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, output_file)
-    
-    pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
-    print(f"Mapa guardado en: {output_path}")
-
-# Coordenadas del volcán de Tajogaite
-pos1_la_palma = np.array([28.601109109131052, -17.929768956228138])
-pos2_la_palma = np.array([28.62514776637218, -17.872144640744164])
-
-pos3_la_palma = np.array([28.3, -18.2])
-pos4_la_palma = np.array([28.8, -17.9])
-
-geo_map(pos1_la_palma, pos2_la_palma, "Volcán de Tajogaite", "mapa_tajogaite.html")
-geo_map(pos3_la_palma, pos4_la_palma, "Región alrededor", "mapa_region_alrededor.html")
-
-def plot_events_histogram(file = "bsc_events_info.csv"):
-    path = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.abspath(os.path.join(path, ".."))
-
-    file_path = os.path.join(project_root, f"A00_data/B_eq_raw/{file}")
-
-    df = pd.read_csv(file_path)
-
-    df["time"] = pd.to_datetime(df["time"], errors='coerce')
-
-    fig = go.Figure(data=[
-        go.Histogram(
-            x=df["time"],
-            nbinsx=30,  
-            marker_color="blue"
-        )
-    ])
-
-    fig.update_layout(
-        title="Histograma de Eventos Sísmicos",
-        xaxis_title="Fecha y Hora",
-        yaxis_title="Número de Eventos",
-        xaxis_tickformat="%Y-%m",  
-        xaxis_rangeslider_visible=True,  
-        barmode="overlay"
-    )
-    total_events = len(df)  # Contar el número total de eventos
-
-    fig.update_layout(
-        title=f"Histograma de Eventos Sísmicos (Total: {total_events})",  # Agregar el total al título
-        xaxis_title="Fecha",
-        yaxis_title="Número de Eventos",
-        xaxis_tickformat="%Y-%m",  # Formato de solo fecha en el eje x
-        xaxis_rangeslider_visible=True,  # Mostrar el rango deslizante
-        barmode="overlay"
-    )
-
-
-    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../A04_web/B_images")
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, "histograma_eventos.html")
-
-    pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
-    print(f"Histograma guardado en: {output_path}")
-
-plot_events_histogram("bsc_events_info.csv")
->>>>>>> 32aad805db90742d4e8d5b1440f8420175a06eae

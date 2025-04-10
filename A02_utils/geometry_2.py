@@ -1,3 +1,4 @@
+import xarray as xr
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
@@ -5,15 +6,15 @@ import pandas as pd
 import json
 import os
 import sys
-
+from datetime import datetime
 
 # Configuration
-OUTLINE_COLOR = 'rgba(150, 0, 0, 1)'  # Dark red outline
-FILL_COLOR = 'rgba(255, 50, 50, 0.5)'  # Semi-transparent red for lava area
-MAPBOX_STYLE = "open-street-map"  # Base map style
+OUTLINE_COLOR = 'rgba(150, 0, 0, 1)'
+FILL_COLOR = 'rgba(255, 50, 50, 0.5)'
+MAPBOX_STYLE = "open-street-map"
 
 def load_lava_perimeter():
-    """Load lava flow perimeter from GeoJSON with absolute path"""
+    """Load lava flow perimeter from GeoJSON"""
     try:
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         geojson_path = os.path.join(base_dir, "A00_data", "B_raw", "perimetro_dron_211123.geojson")
@@ -24,7 +25,6 @@ def load_lava_perimeter():
         return np.array(data['features'][0]['geometry']['coordinates'][0])
     
     except Exception:
-        # Approximate coordinates of the main lava flow
         return np.array([
             [-17.8735, 28.6132], [-17.8730, 28.6130], [-17.8725, 28.6128],
             [-17.8720, 28.6125], [-17.8715, 28.6123], [-17.8710, 28.6120],
@@ -33,6 +33,153 @@ def load_lava_perimeter():
             [-17.8675, 28.6103], [-17.8670, 28.6100], [-17.8665, 28.6098],
             [-17.8660, 28.6095], [-17.8655, 28.6093], [-17.8650, 28.6090]
         ])
+
+def load_netcdf_data():
+    """Load and process netCDF data"""
+    try:
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        nc_path = os.path.join(base_dir, "A00_data", "B_processed", "Radiative_Power_by_Year_Month_Day", "frp_btmedia_curva_final.nc")
+        
+        ds = xr.open_dataset(nc_path)
+        df = ds.to_dataframe().reset_index()
+        
+        # Check available columns
+        available_cols = df.columns.tolist()
+        print("Available columns in netCDF:", available_cols)
+        
+        # Prepare result DataFrame
+        result = pd.DataFrame({
+            'Date': pd.to_datetime(df['time']),
+            'Radiative_Power': df['FRP']
+        })
+        
+        return result.dropna()
+    
+    except Exception as e:
+        print(f"\nError loading netCDF data: {str(e)}")
+        if 'ds' in locals():
+            print("Variables in netCDF file:", list(ds.variables.keys()))
+        return None
+
+def generate_netcdf_visualization(df, output_file):
+    """Generate interactive visualization for netCDF data with custom date range selector"""
+    if df is None or df.empty:
+        print("No data available for visualization")
+        return
+    
+    fig = go.Figure()
+    
+    # Add main trace - points only, no lines
+    fig.add_trace(
+        go.Scatter(
+            x=df['Date'],
+            y=df['Radiative_Power'],
+            mode='markers',  # Points only
+            name='Radiative Power',
+            marker=dict(
+                size=8,  # Increased marker size
+                color='#E74C3C',
+                line=dict(width=1, color='#413224'),
+                opacity=0.8
+            ),
+            hovertemplate='<b>Date</b>: %{x|%d-%m-%Y}<br><b>Power</b>: %{y:.2f} MW<extra></extra>'
+        )
+    )
+    
+    # Update layout with centered title
+    fig.update_layout(
+        title={
+            'text': '<b>Daily Radiative Power</b><br><sub>Tajogaite Volcano (2021-Up to date)</sub>',
+            'y':0.95,  # Position slightly lower
+            'x':0.5,    # Centered
+            'xanchor': 'center',
+            'yanchor': 'top',
+            'font': dict(size=18)
+        },
+        xaxis_title='Date',
+        yaxis_title='Radiative Power (MW)',
+        plot_bgcolor='white',
+        hovermode='x unified',
+        margin=dict(l=50, r=50, t=80, b=50, pad=0),
+        xaxis=dict(
+            rangeslider=dict(visible=True),
+            rangeselector=dict(
+                buttons=list([
+                    dict(count=1, label="1m", step="month", stepmode="backward"),
+                    dict(count=6, label="6m", step="month", stepmode="backward"),
+                    dict(count=1, label="1y", step="year", stepmode="backward"),
+                    dict(step="all", label="All")
+                ])
+            ),
+            type="date",
+            gridcolor='#f0f0f0'
+        ),
+        yaxis=dict(gridcolor='#f0f0f0')
+    )
+    
+    # Add custom calendar button
+    calendar_button = """
+    <script>
+    function addCalendarButton() {
+        var modebar = document.querySelector('.modebar');
+        if (modebar && !document.getElementById('custom-calendar-btn')) {
+            var btn = document.createElement('div');
+            btn.id = 'custom-calendar-btn';
+            btn.className = 'modebar-btn';
+            btn.title = 'Select Date Range';
+            btn.innerHTML = '📅';
+            btn.style.fontSize = '20px';
+            btn.style.padding = '5px';
+            btn.onclick = function() {
+                var start = prompt('Enter start date (YYYY-MM-DD):');
+                var end = prompt('Enter end date (YYYY-MM-DD):');
+                if (start && end) {
+                    var plotDiv = document.querySelector('.plotly-graph-div');
+                    Plotly.relayout(plotDiv, {
+                        'xaxis.range': [start, end]
+                    });
+                }
+            };
+            modebar.appendChild(btn);
+        }
+    }
+    // Wait for plot to render
+    setTimeout(addCalendarButton, 500);
+    </script>
+    """
+    
+    # Save with customizations
+    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn')
+    html_content = html_content.replace('</body>', calendar_button + '</body>')
+    
+    # Add CSS for rounded corners
+    custom_css = """
+    <style>
+        .plot-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            background: white;
+            margin: 10px;
+        }
+        .plotly-graph-div {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+        .modebar {
+            top: 60px !important;  /* Adjusted to avoid title overlap */
+        }
+    </style>
+    """
+    html_content = html_content.replace('<head>', '<head>' + custom_css)
+    html_content = html_content.replace('<div id="', '<div class="plot-container"><div id="')
+    html_content = html_content.replace('</body>', '</div></body>')
+    
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    
+    print(f"Daily radiative power visualization saved to: {output_file}")
 
 def generate_eruption_map(output_file):
     """Generate interactive eruption map focused on La Palma"""
@@ -212,12 +359,87 @@ def generate_eruption_map(output_file):
     
     print(f"Map generated successfully: {output_file}")
 
+
+# [Rest of your functions remain unchanged - load_radiative_data, generate_radiative_power_plot, main]
+
+    # Generate HTML with improved CSS for buttons
+    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'responsive': True})
+    
+    # CSS mejorado para los botones
+    custom_css = """
+    <style>
+        .plot-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .plotly-graph-div {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        /* Botones grandes y bien separados */
+        .updatemenu {
+            position: absolute !important;
+            left: 10px !important;
+            top: 10px !important;
+            z-index: 1000 !important;
+        }
+        .updatemenu .btn {
+            min-width: 140px !important;  /* Más ancho */
+            padding: 12px 15px !important;  /* Más padding */
+            font-size: 14px !important;  /* Tamaño de fuente fijo */
+            margin: 6px 0 !important;  /* Más margen entre botones */
+            background-color: rgba(255,255,255,0.95) !important;
+            border: 2px solid #cccccc !important;  /* Borde más grueso */
+            border-radius: 6px !important;  /* Bordes más redondeados */
+            color: black !important;
+            height: auto !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            text-align: center !important;
+            font-weight: bold !important;  /* Texto en negrita */
+        }
+        .updatemenu .btn-group {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;  /* Espacio adicional entre botones */
+        }
+        .updatemenu .btn:hover {
+            background-color: #f0f0f0 !important;
+            transform: scale(1.02) !important;  /* Efecto de hover */
+        }
+        .updatemenu .btn.active {
+            background-color: #e0e0e0 !important;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2) !important;  /* Efecto presionado */
+        }
+        /* Asegurar que el contenedor de botones no afecte el diseño */
+        .updatemenu-container {
+            pointer-events: none !important;
+        }
+        .updatemenu-container * {
+            pointer-events: auto !important;
+        }
+    </style>
+    """
+    
+    # Inject our custom CSS
+    html_content = html_content.replace('<head>', '<head>' + custom_css)
+    html_content = html_content.replace('<div id="', '<div class="plot-container"><div id="')
+    html_content = html_content.replace('</body>', '</div></body>')
+    
+    # Write the modified HTML to file
+    with open(output_file, 'w') as f:
+        f.write(html_content)
+
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot with rounded corners"""
     fig = px.scatter(df, 
                     x='DateTime', 
                     y='Radiative_Power',
-                    title='<b>Maximum Weekly Radiative Power</b><br><sup>La Palma Volcano (2021-2024)</sup>',
+                    title='<b>Weekly Radiative Power</b><br><sup>Tajogaite Volcano (2021-2024)</sup>',
                     template='plotly_white',
                     labels={
                         'DateTime': 'Date',
@@ -245,9 +467,9 @@ def generate_radiative_power_plot(df, output_file):
         xaxis=dict(
             rangeselector=dict(
                 buttons=list([
-                    dict(count=1, label="1 month", step="month", stepmode="backward"),
-                    dict(count=6, label="6 months", step="month", stepmode="backward"),
-                    dict(count=1, label="1 year", step="year", stepmode="backward"),
+                    dict(count=1, label="1m", step="month", stepmode="backward"),
+                    dict(count=6, label="6m", step="month", stepmode="backward"),
+                    dict(count=1, label="1y", step="year", stepmode="backward"),
                     dict(step="all", label="All")
                 ]),
                 bgcolor='#f7f7f7'
@@ -354,6 +576,12 @@ def main():
         map_file = os.path.join(output_dir, "la_palma_eruption_viewer.html")
         generate_eruption_map(map_file)
         
+        # Generate netCDF visualization
+        nc_data = load_netcdf_data()
+        if nc_data is not None:
+            nc_file = os.path.join(output_dir, "radiative_power_daily.html")
+            generate_netcdf_visualization(nc_data, nc_file)
+        
         # Generate radiative power plot
         df = load_radiative_data()
         if df is not None:
@@ -363,8 +591,10 @@ def main():
         
         print("\nAll visualizations generated successfully in:")
         print(f"- Eruption map: {map_file}")
+        if nc_data is not None:
+            print(f"- Daily radiative power: {nc_file}")
         if df is not None:
-            print(f"- Radiative power plot: {plot_file}")
+            print(f"- Weekly radiative power plot: {plot_file}")
         
         return True
         
@@ -375,5 +605,3 @@ def main():
 if __name__ == "__main__":
     success = main()
     sys.exit(0 if success else 1)
-
-
