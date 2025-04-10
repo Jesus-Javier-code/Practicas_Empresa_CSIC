@@ -84,6 +84,7 @@ def generate_table(data, output_folder):
         with open(table_html_path, "w", encoding="utf-8") as f:
             f.write(full_html)
 
+<<<<<<< HEAD
     except Exception as e:
         print(f"❌ Error generating table: {str(e)}", file=sys.stderr)
         raise
@@ -122,3 +123,93 @@ def generate_histogram(data, output_folder):
 
 if __name__ == "__main__":
     sys.exit(main())
+=======
+    fig.update_layout(
+        mapbox_style="open-street-map",
+        mapbox=dict(
+            center=dict(lat=lati, lon=long),
+            zoom=12,
+            bounds=dict(west=lon_min, east=lon_max, north=lat_max, south=lat_min)
+        ),
+        margin=dict(l=0, r=0, t=0, b=0),
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        autosize=True,
+        dragmode=False
+    )
+
+    fig.add_trace(go.Scattermapbox(
+        mode="lines",
+        lon=[lon_min, lon_max, lon_max, lon_min, lon_min],
+        lat=[lat_min, lat_min, lat_max, lat_max, lat_min],
+        marker=dict(size=10, color="black"),
+        line=dict(width=2, color="black"),
+        name="Área de estudio"
+    ))
+
+    grid(fig, lat_min, lat_max, lon_min, lon_max)
+    
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../A04_web/B_images")
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, output_file)
+    
+    pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
+    print(f"Mapa guardado en: {output_path}")
+
+# Coordenadas del volcán de Tajogaite
+pos1_la_palma = np.array([28.601109109131052, -17.929768956228138])
+pos2_la_palma = np.array([28.62514776637218, -17.872144640744164])
+
+pos3_la_palma = np.array([28.3, -18.2])
+pos4_la_palma = np.array([28.8, -17.9])
+
+geo_map(pos1_la_palma, pos2_la_palma, "Volcán de Tajogaite", "mapa_tajogaite.html")
+geo_map(pos3_la_palma, pos4_la_palma, "Región alrededor", "mapa_region_alrededor.html")
+
+def plot_events_histogram(file = "bsc_events_info.csv"):
+    path = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(path, ".."))
+
+    file_path = os.path.join(project_root, f"A00_data/B_eq_raw/{file}")
+
+    df = pd.read_csv(file_path)
+
+    df["time"] = pd.to_datetime(df["time"], errors='coerce')
+
+    fig = go.Figure(data=[
+        go.Histogram(
+            x=df["time"],
+            nbinsx=30,  
+            marker_color="blue"
+        )
+    ])
+
+    fig.update_layout(
+        title="Histograma de Eventos Sísmicos",
+        xaxis_title="Fecha y Hora",
+        yaxis_title="Número de Eventos",
+        xaxis_tickformat="%Y-%m",  
+        xaxis_rangeslider_visible=True,  
+        barmode="overlay"
+    )
+    total_events = len(df)  # Contar el número total de eventos
+
+    fig.update_layout(
+        title=f"Histograma de Eventos Sísmicos (Total: {total_events})",  # Agregar el total al título
+        xaxis_title="Fecha",
+        yaxis_title="Número de Eventos",
+        xaxis_tickformat="%Y-%m",  # Formato de solo fecha en el eje x
+        xaxis_rangeslider_visible=True,  # Mostrar el rango deslizante
+        barmode="overlay"
+    )
+
+
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../A04_web/B_images")
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, "histograma_eventos.html")
+
+    pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
+    print(f"Histograma guardado en: {output_path}")
+
+plot_events_histogram("bsc_events_info.csv")
+>>>>>>> 32aad805db90742d4e8d5b1440f8420175a06eae

@@ -1,4 +1,5 @@
 id,time,location,latitude,longitude,depth,magnitude,alert,url,eventtype,significance
+<<<<<<< HEAD
 usp0009mzq,2000-02-03 06:53:47.300000+00:00,"73 km NE of Las Palmas de Gran Canaria, Spain",28.651,-14.994,16.1,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0009mzq,earthquake,112
 usp0009u1x,2000-06-05 11:12:03.400000+00:00,"Canary Islands, Spain region",28.044,-16.205,18.8,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0009u1x,earthquake,168
 usp000a1nq,2000-10-12 09:41:44.700000+00:00,"31 km SSW of Playa del Ingles, Spain",27.482,-15.649,15.4,2.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000a1nq,earthquake,129
@@ -267,3 +268,78 @@ us7000fxa4,2021-11-23 01:03:24.298000+00:00,"6 km SE of Puntallana, Spain",28.69
 us7000gfav,2022-01-18 13:45:15.259000+00:00,"161 km S of Costa Calma, Spain",26.7104,-14.3502,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000gfav,earthquake,326
 us7000gl7h,2022-02-16 04:32:38.527000+00:00,"Madeira Islands, Portugal region",32.3503,-16.9067,11.68,4.9,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000gl7h,earthquake,409
 us7000h10z,2022-04-09 09:45:25.670000+00:00,"15 km SSE of Caniço, Portugal",32.5125,-16.7904,16.8,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000h10z,earthquake,298
+=======
+ci40831471,2025-01-01 15:19:34.050000+00:00,"7 km WSW of Holtville, CA",32.7781667,-115.4401667,12.79,2.57,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831471,earthquake,102
+ci40831495,2025-01-01 15:27:31.790000+00:00,"7 km SW of Holtville, CA",32.774,-115.4405,11.21,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831495,earthquake,89
+ci37697436,2025-01-01 15:27:34.010000+00:00,"9 km SSE of Holtville, CA",32.7381667,-115.3296667,14.15,2.41,,https://earthquake.usgs.gov/earthquakes/eventpage/ci37697436,earthquake,89
+ci40831535,2025-01-01 15:34:05.790000+00:00,"6 km WSW of Holtville, CA",32.7806667,-115.4391667,15.0,2.84,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831535,earthquake,124
+ci40831567,2025-01-01 15:40:13.140000+00:00,"7 km SW of Holtville, CA",32.771,-115.4335,12.01,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831567,earthquake,62
+ci40831583,2025-01-01 15:44:05.420000+00:00,"7 km SW of Holtville, CA",32.7673333,-115.4348333,11.99,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831583,earthquake,73
+ci40831679,2025-01-01 16:50:41.100000+00:00,"7 km SW of Holtville, CA",32.7685,-115.4326667,15.37,2.78,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831679,earthquake,119
+ci40831687,2025-01-01 17:28:13.820000+00:00,"12 km ESE of North Shore, CA",33.4825,-115.8233333,8.85,2.67,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831687,earthquake,110
+ci40831695,2025-01-01 17:35:21.930000+00:00,"7 km SW of Holtville, CA",32.7675,-115.4348333,12.88,2.53,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831695,earthquake,98
+ci40831703,2025-01-01 17:36:15.830000+00:00,"8 km SW of Holtville, CA",32.7563333,-115.4298333,8.94,2.08,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831703,earthquake,67
+ci40831847,2025-01-01 23:36:54.650000+00:00,"16 km NNW of Borrego Springs, CA",33.3891667,-116.4411667,11.83,2.0,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40831847,earthquake,62
+ci40832031,2025-01-02 05:27:12.090000+00:00,"16 km ENE of Borrego Springs, CA",33.3081667,-116.2208333,5.41,2.14,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40832031,earthquake,70
+ci40832359,2025-01-02 16:37:32.940000+00:00,"14 km W of El Centro, CA",32.7721667,-115.7065,7.2,2.26,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40832359,earthquake,79
+ci40833655,2025-01-04 07:29:14.560000+00:00,"30 km ENE of Ensenada, B.C., MX",31.9585,-116.3161667,23.23,2.61,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40833655,earthquake,105
+ci40834055,2025-01-05 11:38:23.760000+00:00,"7 km E of Ocotillo, CA",32.726,-115.9231667,10.62,2.13,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40834055,earthquake,70
+ci40834559,2025-01-06 13:49:52.980000+00:00,"1 km ESE of El Centro, CA",32.7838333,-115.5435,15.78,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40834559,earthquake,169
+ci40836207,2025-01-08 21:59:30.850000+00:00,"7 km SW of Holtville, CA",32.7738333,-115.4345,14.89,2.76,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836207,earthquake,119
+ci40836255,2025-01-08 23:18:37.780000+00:00,"8 km SW of Holtville, CA",32.7561667,-115.4283333,10.71,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836255,earthquake,73
+ci40836479,2025-01-09 15:19:40.920000+00:00,"22 km NE of Pine Valley, CA",32.9428333,-116.3381667,4.51,2.09,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836479,earthquake,67
+ci40836791,2025-01-09 23:05:01.380000+00:00,"22 km ESE of Anza, CA",33.4821667,-116.4531667,12.9,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40836791,earthquake,63
+ci40837831,2025-01-11 08:14:47.790000+00:00,"16 km WSW of Delta, B.C., MX",32.3246667,-115.3585,19.43,2.77,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40837831,earthquake,118
+ci40839055,2025-01-14 00:22:15.180000+00:00,"6 km WSW of Pine Valley, CA",32.7936667,-116.5838333,16.8,2.12,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40839055,earthquake,69
+ci40839295,2025-01-14 13:10:17.130000+00:00,"8 km E of Borrego Springs, CA",33.2441667,-116.288,11.78,2.77,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40839295,earthquake,119
+ci40840015,2025-01-15 14:03:58.880000+00:00,"9 km ENE of Ocotillo Wells, CA",33.1655,-116.0405,5.54,3.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40840015,earthquake,144
+ci40840391,2025-01-15 20:05:10.640000+00:00,"9 km ENE of Ocotillo Wells, CA",33.168,-116.0368333,7.09,2.44,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40840391,earthquake,92
+ci40841463,2025-01-16 23:28:49.500000+00:00,"9 km ENE of Ocotillo Wells, CA",33.1665,-116.036,6.73,2.22,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40841463,earthquake,76
+ci41034376,2025-01-23 18:08:47.730000+00:00,"18 km W of Delta, B.C., MX",32.3291667,-115.3858333,14.74,4.37,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci41034376,earthquake,332
+ci40852607,2025-01-27 16:29:32.860000+00:00,"6 km WSW of Aguanga, CA",33.4163333,-116.9235,7.07,2.57,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40852607,earthquake,104
+ci40172042,2025-01-29 09:07:52.290000+00:00,"4 km NW of Aguanga, CA",33.4708333,-116.8958333,13.4,2.04,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40172042,earthquake,64
+ci40177482,2025-02-01 11:19:25.350000+00:00,"6 km W of Borrego Springs, CA",33.2601667,-116.4441667,1.97,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40177482,earthquake,63
+ci40178666,2025-02-03 03:30:15.170000+00:00,"3 km W of Lake Henshaw, CA",33.2373333,-116.7906667,13.86,2.77,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40178666,earthquake,159
+ci40181210,2025-02-07 02:02:59.320000+00:00,"13 km NNE of Borrego Springs, CA",33.3648333,-116.3161667,11.79,2.32,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40181210,earthquake,83
+ci40182138,2025-02-08 12:25:52.140000+00:00,"15 km ESE of Julian, CA",33.048,-116.442,12.46,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40182138,earthquake,74
+ci40182738,2025-02-09 08:24:26.790000+00:00,"13 km NW of Progreso, B.C., MX",32.6663333,-115.6795,9.09,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40182738,earthquake,73
+ci40183738,2025-02-10 21:57:37.420000+00:00,"10 km NNE of Ocotillo Wells, CA",33.2211667,-116.085,11.54,2.67,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40183738,earthquake,110
+ci40184194,2025-02-11 13:31:42.980000+00:00,"12 km SSE of Anza, CA",33.4555,-116.624,9.96,2.23,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40184194,earthquake,77
+ci40186370,2025-02-15 18:09:03.040000+00:00,"70 km WSW of Alberto Oviedo Mota, B.C., MX",31.9186667,-115.8136667,7.87,2.51,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40186370,earthquake,97
+ci40187002,2025-02-16 15:48:17.090000+00:00,"14 km W of Progreso, B.C., MX",32.5991667,-115.731,8.09,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40187002,earthquake,68
+ci40191850,2025-02-22 21:06:35.380000+00:00,"37 km SW of Rosarito, B.C., MX",32.1061667,-117.3163333,9.52,2.18,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40191850,earthquake,73
+ci40192026,2025-02-23 01:31:42.180000+00:00,"24 km SE of Campo, CA",32.4515,-116.2901667,17.12,2.27,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40192026,earthquake,79
+ci40192522,2025-02-23 22:24:02.830000+00:00,"3 km WNW of Palomar Observatory, CA",33.3693333,-116.8921667,5.76,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40192522,earthquake,74
+ci40192530,2025-02-23 22:25:33.340000+00:00,"3 km WNW of Palomar Observatory, CA",33.3681667,-116.891,5.72,2.41,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40192530,earthquake,90
+ci40194194,2025-02-25 19:38:44.610000+00:00,"1 km WSW of Brawley, CA",32.9748333,-115.5423333,10.98,2.21,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40194194,earthquake,76
+ci40195130,2025-02-26 21:14:41.320000+00:00,"24 km ESE of Campo, CA",32.5371667,-116.2276667,10.13,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40195130,earthquake,68
+ci41068424,2025-02-28 06:45:02.370000+00:00,"6 km NNE of Westmorland, CA",33.0846667,-115.5841667,12.01,2.69,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41068424,earthquake,115
+ci41068816,2025-02-28 19:28:30.440000+00:00,"28 km SSW of Ocotillo Wells, CA",32.9105,-116.2423333,8.3,2.31,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41068816,earthquake,82
+ci41069880,2025-03-02 16:16:52.150000+00:00,"13 km NNW of Westmorland, CA",33.1525,-115.6548333,2.06,2.23,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069880,earthquake,77
+ci41069888,2025-03-02 16:17:23.170000+00:00,"14 km WNW of Calipatria, CA",33.1553333,-115.6543333,4.0,2.71,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069888,earthquake,121
+ci41069904,2025-03-02 16:26:55.990000+00:00,"13 km NNW of Westmorland, CA",33.1518333,-115.6553333,3.37,2.49,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069904,earthquake,95
+ci41069960,2025-03-02 19:26:58.320000+00:00,"18 km SSE of Progreso, B.C., MX",32.4421667,-115.4916667,10.71,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41069960,earthquake,74
+ci41071488,2025-03-05 03:08:10.480000+00:00,"19 km SSW of Ocotillo Wells, CA",32.9846667,-116.2083333,-0.06,2.65,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41071488,earthquake,108
+ci41072536,2025-03-05 21:51:59.590000+00:00,"18 km W of Delta, B.C., MX",32.3498333,-115.3791667,17.53,2.12,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41072536,earthquake,69
+ci41073984,2025-03-07 17:45:28.810000+00:00,"11 km NNW of Progreso, B.C., MX",32.6731667,-115.6323333,11.4,2.57,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41073984,earthquake,102
+ci41075424,2025-03-09 16:49:51.700000+00:00,"3 km WNW of Palomar Observatory, CA",33.3673333,-116.8928333,4.92,2.47,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41075424,earthquake,94
+ci41075976,2025-03-10 04:16:16.760000+00:00,"4 km NW of Aguanga, CA",33.4698333,-116.8978333,13.44,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41075976,earthquake,89
+ci41076168,2025-03-10 12:04:55.910000+00:00,"20 km ESE of Anza, CA",33.5015,-116.4615,7.57,2.62,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41076168,earthquake,106
+ci41077256,2025-03-11 08:36:16.360000+00:00,"21 km ESE of Anza, CA",33.5023333,-116.4593333,6.5,2.36,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41077256,earthquake,86
+ci41077944,2025-03-12 05:16:38.580000+00:00,"15 km N of Ocotillo Wells, CA",33.2756667,-116.128,5.25,2.09,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41077944,earthquake,67
+ci41078344,2025-03-12 17:54:20.990000+00:00,"10 km ESE of Alpine, CA",32.7941667,-116.676,11.37,2.19,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41078344,earthquake,76
+ci41080024,2025-03-15 10:55:20.800000+00:00,"15 km N of Ocotillo Wells, CA",33.2748333,-116.1308333,7.95,2.79,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41080024,earthquake,120
+ci41081624,2025-03-17 09:17:24.570000+00:00,"22 km ESE of Anza, CA",33.4966667,-116.448,6.88,2.58,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41081624,earthquake,103
+ci41081704,2025-03-17 11:50:32.360000+00:00,"33 km NE of Ensenada, B.C., MX",32.0453333,-116.3363333,22.23,2.1,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41081704,earthquake,68
+ci41082928,2025-03-18 22:43:11.080000+00:00,"15 km N of Ocotillo Wells, CA",33.277,-116.1316667,3.43,2.49,,https://earthquake.usgs.gov/earthquakes/eventpage/ci41082928,earthquake,95
+ci40904495,2025-03-20 08:39:05.760000+00:00,"11 km ENE of Borrego Springs, CA",33.3011667,-116.267,10.86,3.72,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40904495,earthquake,266
+ci40904647,2025-03-20 10:05:06.300000+00:00,"11 km ENE of Borrego Springs, CA",33.3041667,-116.2671667,10.46,2.96,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40904647,earthquake,144
+ci40904783,2025-03-20 12:49:27.830000+00:00,"69 km WSW of Alberto Oviedo Mota, B.C., MX",31.9323333,-115.8098333,9.15,2.08,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40904783,earthquake,67
+ci40905655,2025-03-20 23:29:48.020000+00:00,"10 km ENE of Borrego Springs, CA",33.2946667,-116.2803333,10.47,2.53,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40905655,earthquake,99
+ci40905743,2025-03-21 01:51:40.820000+00:00,"44 km WSW of Primo Tapia, B.C., MX",32.0058333,-117.3106667,14.58,2.35,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40905743,earthquake,85
+ci40907079,2025-03-22 12:08:48.870000+00:00,"16 km ENE of Borrego Springs, CA",33.2931667,-116.2086667,3.4,2.3,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40907079,earthquake,81
+ci40908271,2025-03-23 22:09:56.940000+00:00,"15 km N of Ocotillo Wells, CA",33.2801667,-116.1408333,4.93,2.4,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40908271,earthquake,89
+ci40908383,2025-03-24 00:29:15.870000+00:00,"16 km ENE of Borrego Springs, CA",33.2968333,-116.2101667,2.56,2.02,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40908383,earthquake,63
+ci40910639,2025-03-26 09:38:48.760000+00:00,"22 km W of Delta, B.C., MX",32.3313333,-115.424,-0.03,2.38,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40910639,earthquake,87
+ci40912751,2025-03-29 21:20:09.330000+00:00,"4 km SSE of Bombay Beach, CA",33.3218333,-115.712,4.52,2.72,,https://earthquake.usgs.gov/earthquakes/eventpage/ci40912751,earthquake,115
+>>>>>>> 32aad805db90742d4e8d5b1440f8420175a06eae
