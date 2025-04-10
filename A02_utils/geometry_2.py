@@ -42,9 +42,9 @@ def generate_eruption_map(output_file):
     # Create figure
     fig = go.Figure()
     
-    # Zoom level and center adjusted for the whole Canary Islands
-    initial_zoom = 5  # Zoom out further to show the entire Canary Islands
-    initial_center = dict(lat=28.5, lon=-15.6)  # Centered on the Canary Islands
+    # Ajusta el zoom y centro para mostrar todas las Islas Canarias
+    initial_zoom = 6.5  # Zoom un poco más cercano que antes
+    initial_center = dict(lat=28.7, lon=-15.8)  # Centrado un poco más al norte y este
     lava_zoom = 12  # Zoom level for the lava view
     lava_center = dict(lat=28.613, lon=-17.873)  # Centered on the lava area
     
@@ -80,56 +80,57 @@ def generate_eruption_map(output_file):
     ))
     
     # Map layout configuration
+    # Map layout configuration
     fig.update_layout(
         mapbox=dict(
             style=MAPBOX_STYLE,
             center=initial_center,
             zoom=initial_zoom,
             layers=[],
-            # Set bounds to keep view focused on Canary Islands
+            # Ajusta los límites para incluir todas las islas
             bounds=dict(
-                west=-18.5,  # Westernmost point
-                east=-13.5,  # Easternmost point
-                south=27.5,  # Southernmost point
-                north=29.5   # Northernmost point
+                west=-19.0,  # Más al oeste para incluir El Hierro
+                east=-13.0,  # Más al este para incluir Lanzarote
+                south=27.6,  # Un poco más al sur
+                north=29.5   # Igual al norte
             )
         ),
-        margin=dict(l=0, r=0, t=0, b=0),  # No margins
+        margin=dict(l=0, r=0, t=0, b=0),
         showlegend=False,
-        updatemenus=[  # Menu for buttons
+        updatemenus=[
             dict(
                 type="buttons",
                 direction="right",
-                x=0.02,  # Positioned at left side
-                y=0.98,  # Positioned at top
+                x=0.02,
+                y=0.98,
                 xanchor="left",
                 yanchor="top",
                 pad=dict(t=5, b=5, l=10, r=10),
                 bgcolor="rgba(255,255,255,0.9)",
                 bordercolor="#cccccc",
                 borderwidth=1,
-                font=dict(size=12, family="Arial"),
+                font=dict(size=12, family="Arial", color="black"),  # Tamaño de fuente reducido
                 buttons=[
                     dict(
-                        label="Normal View",
+                        label="Vista General",
                         method="relayout",
                         args=[{
                             "mapbox.center": initial_center, 
                             "mapbox.zoom": initial_zoom,
                             "mapbox.bounds": dict(
-                                west=-18.5,
-                                east=-13.5,
-                                south=27.5,
+                                west=-19.0,
+                                east=-13.0,
+                                south=27.6,
                                 north=29.5
                             )
                         }]
                     ),
                     dict(
-                        label="Lava View",
+                        label="Vista Lava",
                         method="update",
-                        args=[{"visible": [True, "!visible"]},  # Toggle lava visibility
+                        args=[{"visible": [True, "!visible"]},
                               {"mapbox.center": lava_center, "mapbox.zoom": lava_zoom}],
-                        args2=[{"visible": [True, False]},  # Second click hides lava but keeps zoom
+                        args2=[{"visible": [True, False]},
                               {"mapbox.center": lava_center, "mapbox.zoom": lava_zoom}]
                     )
                 ]
@@ -137,10 +138,10 @@ def generate_eruption_map(output_file):
         ]
     )
     
-    # Generate HTML with rounded corners
+    # Generate HTML with improved CSS for buttons
     html_content = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'responsive': True})
     
-    # Add custom CSS for rounded corners and fixed buttons
+    # CSS mejorado para los botones
     custom_css = """
     <style>
         .plot-container {
@@ -155,6 +156,7 @@ def generate_eruption_map(output_file):
             width: 100% !important;
             height: 100% !important;
         }
+        /* Botones grandes y bien separados */
         .updatemenu {
             position: absolute !important;
             left: 10px !important;
@@ -162,10 +164,39 @@ def generate_eruption_map(output_file):
             z-index: 1000 !important;
         }
         .updatemenu .btn {
-            min-width: 100px !important;
-            padding: 5px 10px !important;
-            font-size: 12px !important;
-            margin: 2px !important;
+            min-width: 140px !important;  /* Más ancho */
+            padding: 12px 15px !important;  /* Más padding */
+            font-size: 14px !important;  /* Tamaño de fuente fijo */
+            margin: 6px 0 !important;  /* Más margen entre botones */
+            background-color: rgba(255,255,255,0.95) !important;
+            border: 2px solid #cccccc !important;  /* Borde más grueso */
+            border-radius: 6px !important;  /* Bordes más redondeados */
+            color: black !important;
+            height: auto !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            text-align: center !important;
+            font-weight: bold !important;  /* Texto en negrita */
+        }
+        .updatemenu .btn-group {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;  /* Espacio adicional entre botones */
+        }
+        .updatemenu .btn:hover {
+            background-color: #f0f0f0 !important;
+            transform: scale(1.02) !important;  /* Efecto de hover */
+        }
+        .updatemenu .btn.active {
+            background-color: #e0e0e0 !important;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2) !important;  /* Efecto presionado */
+        }
+        /* Asegurar que el contenedor de botones no afecte el diseño */
+        .updatemenu-container {
+            pointer-events: none !important;
+        }
+        .updatemenu-container * {
+            pointer-events: auto !important;
         }
     </style>
     """
@@ -180,7 +211,6 @@ def generate_eruption_map(output_file):
         f.write(html_content)
     
     print(f"Map generated successfully: {output_file}")
-
 
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot with rounded corners"""

@@ -27,7 +27,7 @@ body, html, .dashboard {
   font-family: 'Arial', sans-serif;
   min-height: 100vh;
   background:
-    linear-gradient(135deg, #FBEBE8 0%, #F5D9D1 100%),
+    linear-gradient(135deg, #FFCC9C 0%, #FFCC9C 100%),
     url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 20L90 70H30Z' fill='%23413224' fill-opacity='0.05'/%3E%3C/svg%3E");
   background-attachment: fixed;
   background-repeat: repeat;
@@ -125,6 +125,7 @@ iframe {
   height: 400px !important;
   display: block !important;
 }
+
 
 img {
   max-width: 100% !important;
@@ -460,6 +461,51 @@ img {
   border-radius: 8px;
   width: 100%;
   height: 100%;
+}
+/* ===== LIMPIEZA DE BORDES RESIDUALES ===== */
+.dashboard > .grid {
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Eliminar cualquier espacio entre filas */
+.dashboard > .grid > .row {
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+
+/* Limpieza específica para las secciones principales */
+#homepage, #la-palma, #earthquakes {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Limpieza de iframes embebidos */
+iframe {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Eliminar sombras/bordes residuales de las celdas */
+.cell {
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Limpieza específica para el banner */
+.homepage-header {
+  margin-bottom: 0 !important;
+}
+
+/* Asegurar que no hay espacios en los contenedores */
+.panel-card, .panel-card-body, .panel-tabset {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 </style>
 
@@ -1082,3 +1128,5 @@ HTML("""
 </div>
 """)
 ```
+
+
