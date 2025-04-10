@@ -785,7 +785,7 @@ HTML(f"""
       </div>
       
       <!-- Slide 2 -->
-      <div class="carousel-slide" style="background-image: url('B_images/volcano4.png');">
+      <div class="carousel-slide" style="background-image: url('B_images/volcano5.jpg');">
         <div class="photo-credits hidden">
           © <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">Turismo Lanzarote</a>
         </div>
