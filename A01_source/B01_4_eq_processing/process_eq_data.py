@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import os
 import sys
-<<<<<<< HEAD
 import dash
 from dash import dash_table, html
 import plotly.graph_objects as go
@@ -13,8 +12,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 from A01_source.B01_4_eq_processing import preprocess as pre
 from A01_source.B01_2_eq_download import utils as utils
 from A01_source.B01_2_eq_download import download as dwl
-=======
->>>>>>> d19ec1359dc8445beca1218c12200db1b2cd7ec1
 
 def main():
     try:
