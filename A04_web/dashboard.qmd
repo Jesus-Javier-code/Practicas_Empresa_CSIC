@@ -216,12 +216,12 @@ img {
 
 /* ESTILOS PARA EL LOGO DE TEXTO "VOLCANA" */
 .volcana-title {
-  width: auto !important;       /* Ancho automático para mantener proporción */
-  height: auto !important;     /* Altura automática */
-  max-height: 120px !important; /* Altura máxima (ajusta según necesites) */
+  width: auto !important;
+  height: auto !important;
+  max-height: 120px !important;
   margin: 15px 0 !important;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)) !important;
-  object-fit: contain !important; /* Mantiene la proporción */
+  object-fit: contain !important;
 }
 
 /* ===== CRÉDITOS FOTOS ===== */
@@ -354,14 +354,147 @@ img {
 }
 
 /* ===== ESTILOS ESPECÍFICOS LA PALMA ===== */
-#la-palma .panel-tabset .tab-content {
+#la-palma .panel-tabset,
+#la-palma .tab-content,
+#la-palma .tab-pane,
+#la-palma .cell,
+#la-palma .cell-output,
+#la-palma .cell-output-display,
+#la-palma .quarto-figure {
   background: transparent !important;
-  border: none !important;
   padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-#la-palma iframe { background: transparent !important; }
+#la-palma iframe {
+  background: transparent !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ===== ESTILOS TERREMOTOS ===== */
+#earthquakes .panel-tabset {
+  background: transparent !important;
+  border: none !important;
+}
+
+#earthquakes .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+#earthquakes .map-container, 
+#earthquakes .histogram-container {
+  background: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: 500px;
+}
+
+#earthquakes .table-container {
+  width: 100%;
+  background: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+#earthquakes iframe {
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("🚀 Iniciando carruseles...");
+  
+  function initCarousel(containerSelector) {
+    console.log(`🔍 Buscando carrusel: ${containerSelector}`);
+    const container = document.querySelector(containerSelector);
+    
+    if (!container) {
+      console.error(`❌ No se encontró el contenedor: ${containerSelector}`);
+      return;
+    }
+    
+    const slides = container.querySelectorAll('.carousel-slide');
+    const credits = container.querySelectorAll('.photo-credits');
+    
+    console.log(`📸 Slides encontrados: ${slides.length}`);
+    
+    if (slides.length === 0) {
+      console.warn(`⚠️ No hay slides en: ${containerSelector}`);
+      return;
+    }
+
+    let currentIndex = 0;
+    let intervalId;
+
+    // Mostrar primer slide y ocultar el resto
+    slides.forEach((slide, index) => {
+      slide.style.opacity = index === 0 ? '1' : '0';
+      slide.classList.toggle('active', index === 0);
+      
+      if (credits[index]) {
+        credits[index].style.display = index === 0 ? 'block' : 'none';
+      }
+    });
+
+    function showNextSlide() {
+      console.log("🔄 Cambiando slide...");
+      
+      // Oculta slide actual (transición suave)
+      slides[currentIndex].style.opacity = '0';
+      slides[currentIndex].classList.remove('active');
+      if (credits[currentIndex]) {
+        credits[currentIndex].style.display = 'none';
+      }
+
+      // Calcula nuevo índice
+      currentIndex = (currentIndex + 1) % slides.length;
+      console.log(`🎯 Nuevo índice: ${currentIndex}`);
+
+      // Muestra nuevo slide
+      slides[currentIndex].style.opacity = '1';
+      slides[currentIndex].classList.add('active');
+      if (credits[currentIndex]) {
+        credits[currentIndex].style.display = 'block';
+      }
+    }
+
+    // Iniciar solo si hay más de 1 slide
+    if (slides.length > 1) {
+      console.log("⏱️ Iniciando intervalo...");
+      intervalId = setInterval(showNextSlide, 5000);
+
+      // Pausar al interactuar
+      container.addEventListener('mouseenter', () => {
+        console.log("⏸️ Pausando carrusel");
+        clearInterval(intervalId);
+      });
+      
+      container.addEventListener('mouseleave', () => {
+        console.log("▶️ Reanudando carrusel");
+        intervalId = setInterval(showNextSlide, 5000);
+      });
+    }
+  }
+
+  // Inicializar todos los carruseles
+  initCarousel('.homepage .carousel-container');
+  initCarousel('#la-palma .carousel-container');
+  initCarousel('#earthquakes .carousel-container');
+});
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -666,6 +799,7 @@ HTML(f"""
 
 
 # 🏝️ LA PALMA {#la-palma}
+
 ```{python}
 #| label: la-palma-carousel
 #| echo: false
@@ -712,7 +846,8 @@ HTML(f"""
 </div>
 """)
 ```
-## Radiative Power {.panel-tabset}
+
+
 
 ```{python}
 #| label: setup-potencia
@@ -720,52 +855,40 @@ HTML(f"""
 import subprocess
 subprocess.run(["python", "../A02_utils/geometry_2.py"], check=True)
 ```
-
-::: {.row}
-
 ```{python}
-#| label: display-potencia
-#| fig-cap: "Radiative Power vs Time (Tajogaite Volcano)"
-IFrame("B_images/radiative_power_plot.html", width="100%", height="500px")
-```
-:::
-
-::: {.row}
-```{python}
-#| label: mapa-mundi
-#| fig-cap: "Simplified world map showing Tajogaite Volcano"
-IFrame("B_images/la_palma_eruption_viewer.html", width="100%", height="500px")
-```
-:::
-:::{.row}
-```{python}
-#| label: la-palma-video
 #| echo: false
-HTML("""
-<div style="width: 80%; margin: 0 auto; padding: 20px 0;">
-  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe 
-      src="https://www.youtube.com/embed/yDgV1YTPxok" 
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-      frameborder="0" 
-      allowfullscreen>
-    </iframe>
+from IPython.display import HTML
+
+HTML('''
+<div style="width: 100%; max-width: 5000px; margin: 0 auto;">
+
+  <!-- Radiative Power -->
+  <div style="margin-bottom: 40px;">
+    <iframe src="B_images/radiative_power_plot.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
   </div>
-  <p style="text-align: center; margin-top: 10px; color: #666;">
-    Tajogaite Volcano Eruption - La Palma 2021
-  </p>
-</div>
-""")
-```
-:::
 
-:::{.row}
-```{python}
-#| label: la-palma-credits
-#| echo: false
-HTML("""
-<!-- Nuevo footer de créditos -->
-  <div class="credits-footer">
+  <!-- Mapa -->
+  <div style="margin-bottom: 40px;">
+    <iframe src="B_images/la_palma_eruption_viewer.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+  </div>
+
+  <!-- Video -->
+  <div style="margin-bottom: 40px;">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      <iframe 
+        src="https://www.youtube.com/embed/yDgV1YTPxok" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p style="text-align: center; margin-top: 10px; color: #666;">
+      Tajogaite Volcano Eruption - La Palma 2021
+    </p>
+  </div>
+
+  <!-- Créditos -->
+  <div style="margin-top: 40px; text-align: center; font-size: 0.9em; color: #666;">
     <p>Créditos fotográficos: 
       <a href="https://volcano.si.edu/volcano.cfm?vn=383010" target="_blank">Smithsonian Institution</a>, 
       <a href="https://www.usgs.gov/" target="_blank">USGS</a>, 
@@ -773,10 +896,10 @@ HTML("""
     </p>
     <p>All images are used for educational and research purposes.</p>
   </div>
+
 </div>
-""")
+''')
 ```
-:::
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
@@ -832,28 +955,62 @@ HTML(f"""
 ## Earthquake Monitoring {.panel-tabset}
 
 ### Mapa de Actividad Sísmica
+
 ```{python}
-#| label: eq-map-fixed
+#| label: eq-maps-side-by-side
 #| echo: false
 from IPython.display import HTML
-display(HTML('<iframe src="./B_images/eq_map.html" width="100%" height="600" style="border:none;"></iframe>'))
+
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Mapa 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+  </div>
+
+  <!-- Mapa 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map2.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+  </div>
+</div>
+'''))
+
+
+```
+```{python}
+#| label: eq-histograms-side-by-side
+#| echo: false
+from IPython.display import HTML
+
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Histograma 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_histogram.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+  </div>
+
+  <!-- Histograma 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_histogram2.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+  </div>
+</div>
+'''))
+
 ```
 
 ```{python}
-#| label: eq-table-fixed
+#| label: eq-table-fullwidth
 #| echo: false
 from IPython.display import HTML
-display(HTML('<iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none;"></iframe>'))
+
+display(HTML('''
+<div style="width: 100%; max-width: 1200px; margin: 0 auto; margin-top: -10px;">
+  <iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+</div>
+'''))
+
 ```
-```{python}
-#| label: fixed-eq-histogram
-#| echo: false
-from IPython.display import HTML
-try:
-    display(HTML('<iframe src="./B_images/eq_histogram.html" width="100%" height="500" style="border:none;"></iframe>'))
-except:
-    display(HTML('<div style="color:red;"><h3>Error: No se pudo cargar el histograma</h3><p>Verifica que el archivo ./B_images/eq_histogram.html existe y contiene datos.</p></div>'))
-```
+
 ```{python}
 #| label: earthquakes-credits
 #| echo: false

@@ -5,8 +5,7 @@ import pandas as pd
 import json
 import os
 import sys
-from shapely.geometry import Polygon, Point
-from datetime import datetime
+
 
 # Configuration
 OUTLINE_COLOR = 'rgba(150, 0, 0, 1)'  # Dark red outline
@@ -36,18 +35,20 @@ def load_lava_perimeter():
         ])
 
 def generate_eruption_map(output_file):
-    """Generate interactive eruption map with zoom controls"""
+    """Generate interactive eruption map focused on La Palma"""
     # Load lava perimeter data
     lava_coords = load_lava_perimeter()
     
     # Create figure
     fig = go.Figure()
     
-    # Initial view settings (zoomed out to show all Canary Islands)
-    initial_zoom = 6
-    initial_center = dict(lat=28.5, lon=-15.6)  # Centered on Canary Islands
+    # Zoom level and center adjusted for the whole Canary Islands
+    initial_zoom = 5  # Zoom out further to show the entire Canary Islands
+    initial_center = dict(lat=28.5, lon=-15.6)  # Centered on the Canary Islands
+    lava_zoom = 12  # Zoom level for the lava view
+    lava_center = dict(lat=28.613, lon=-17.873)  # Centered on the lava area
     
-    # MAIN VOLCANO MARKER (visible in all zoom levels)
+    # MAIN VOLCANO MARKER
     fig.add_trace(go.Scattermapbox(
         mode="markers+text",
         lon=[-17.873],
@@ -57,32 +58,12 @@ def generate_eruption_map(output_file):
             color='red',
             symbol='circle',
             opacity=0.8,
-            # Para Scattermapbox, usamos 'color' para el relleno y ajustamos la opacidad
         ),
         text=["Tajogaite"],
         textposition="top right",
         hoverinfo="text",
         name="Volcano Location",
         textfont=dict(size=10, color='black')
-    ))
-    
-    # DETAILED VOLCANO MARKER (only visible when zoomed in)
-    fig.add_trace(go.Scattermapbox(
-        mode="markers+text",
-        lon=[-17.873],
-        lat=[28.613],
-        marker=dict(
-            size=15,
-            color='red',
-            symbol='circle',
-            opacity=1.0,
-        ),
-        text=["Tajogaite"],
-        textposition="top right",
-        hoverinfo="text",
-        name="Volcano Location (detailed)",
-        visible=False,
-        textfont=dict(size=14, color='black')
     ))
     
     # Lava perimeter trace with filled area (initially hidden)
@@ -94,7 +75,7 @@ def generate_eruption_map(output_file):
         fillcolor=FILL_COLOR,
         line=dict(color=OUTLINE_COLOR, width=2),
         name="Lava Flow Area",
-        visible=False,
+        visible=False,  # Initially hidden
         hoverinfo="none"
     ))
     
@@ -104,54 +85,105 @@ def generate_eruption_map(output_file):
             style=MAPBOX_STYLE,
             center=initial_center,
             zoom=initial_zoom,
-            layers=[]
+            layers=[],
+            # Set bounds to keep view focused on Canary Islands
+            bounds=dict(
+                west=-18.5,  # Westernmost point
+                east=-13.5,  # Easternmost point
+                south=27.5,  # Southernmost point
+                north=29.5   # Northernmost point
+            )
         ),
-        margin=dict(l=0, r=0, t=30, b=0),
-        title_text="<b>La Palma Volcano Eruption Viewer</b>",
-        title_x=0.5,
-        showlegend=True,
-        legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1
-        ),
-        updatemenus=[
+        margin=dict(l=0, r=0, t=0, b=0),  # No margins
+        showlegend=False,
+        updatemenus=[  # Menu for buttons
             dict(
                 type="buttons",
                 direction="right",
-                x=0.5,
-                y=1.15,
-                showactive=True,
-                buttons=list([
+                x=0.02,  # Positioned at left side
+                y=0.98,  # Positioned at top
+                xanchor="left",
+                yanchor="top",
+                pad=dict(t=5, b=5, l=10, r=10),
+                bgcolor="rgba(255,255,255,0.9)",
+                bordercolor="#cccccc",
+                borderwidth=1,
+                font=dict(size=12, family="Arial"),
+                buttons=[
                     dict(
-                        label="Hide Lava Area",
-                        method="update",
-                        args=[{"visible": [True, False, False]},
-                             {"title": "La Palma - Normal View",
-                              "mapbox.center": initial_center,
-                              "mapbox.zoom": initial_zoom}]
+                        label="Normal View",
+                        method="relayout",
+                        args=[{
+                            "mapbox.center": initial_center, 
+                            "mapbox.zoom": initial_zoom,
+                            "mapbox.bounds": dict(
+                                west=-18.5,
+                                east=-13.5,
+                                south=27.5,
+                                north=29.5
+                            )
+                        }]
                     ),
                     dict(
-                        label="Show Lava Area",
+                        label="Lava View",
                         method="update",
-                        args=[{"visible": [False, True, True]},
-                             {"title": "La Palma - Eruption Impact",
-                              "mapbox.center": dict(lat=28.613, lon=-17.873),
-                              "mapbox.zoom": 12}]
+                        args=[{"visible": [True, "!visible"]},  # Toggle lava visibility
+                              {"mapbox.center": lava_center, "mapbox.zoom": lava_zoom}],
+                        args2=[{"visible": [True, False]},  # Second click hides lava but keeps zoom
+                              {"mapbox.center": lava_center, "mapbox.zoom": lava_zoom}]
                     )
-                ])
+                ]
             )
         ]
     )
     
-    # Save the file
-    fig.write_html(output_file)
+    # Generate HTML with rounded corners
+    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'responsive': True})
+    
+    # Add custom CSS for rounded corners and fixed buttons
+    custom_css = """
+    <style>
+        .plot-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .plotly-graph-div {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .updatemenu {
+            position: absolute !important;
+            left: 10px !important;
+            top: 10px !important;
+            z-index: 1000 !important;
+        }
+        .updatemenu .btn {
+            min-width: 100px !important;
+            padding: 5px 10px !important;
+            font-size: 12px !important;
+            margin: 2px !important;
+        }
+    </style>
+    """
+    
+    # Inject our custom CSS
+    html_content = html_content.replace('<head>', '<head>' + custom_css)
+    html_content = html_content.replace('<div id="', '<div class="plot-container"><div id="')
+    html_content = html_content.replace('</body>', '</div></body>')
+    
+    # Write the modified HTML to file
+    with open(output_file, 'w') as f:
+        f.write(html_content)
+    
     print(f"Map generated successfully: {output_file}")
 
+
 def generate_radiative_power_plot(df, output_file):
-    """Generate the radiative power scatter plot"""
+    """Generate the radiative power scatter plot with rounded corners"""
     fig = px.scatter(df, 
                     x='DateTime', 
                     y='Radiative_Power',
@@ -165,16 +197,13 @@ def generate_radiative_power_plot(df, output_file):
                     opacity=0.7,
                     size_max=10)
     
-    # Customize markers for smoother, rounded appearance
+    # Customize markers
     fig.update_traces(
         marker=dict(
-            size=8,  # Slightly larger for better visibility
-            color='#E74C3C',  # Volcanic red
-            symbol='circle',  # Ensures perfectly round markers
-            line=dict(
-                width=1, 
-                color='#413224',  # Brown border
-            ),
+            size=8,
+            color='#E74C3C',
+            symbol='circle',
+            line=dict(width=1, color='#413224'),
             opacity=0.8,
             sizemode='diameter'
         ),
@@ -231,7 +260,39 @@ def generate_radiative_power_plot(df, output_file):
         bgcolor="white"
     )
 
-    fig.write_html(output_file, include_plotlyjs='cdn')
+    # Generate HTML with rounded corners
+    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'responsive': True})
+    
+    # Add custom CSS for rounded corners
+    custom_css = """
+    <style>
+        .plot-container {
+            border-radius: 15px !important;
+            overflow: hidden !important;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1) !important;
+        }
+        .plotly-graph-div {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 15px !important;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    """
+    
+    # Inject our custom CSS
+    html_content = html_content.replace('<head>', '<head>' + custom_css)
+    html_content = html_content.replace('<div id="', '<div class="plot-container"><div id="')
+    html_content = html_content.replace('</body>', '</div></body>')
+    
+    # Write the modified HTML to file
+    with open(output_file, 'w') as f:
+        f.write(html_content)
 
 def load_radiative_data():
     """Load and prepare radiative power data"""
@@ -259,7 +320,7 @@ def main():
         output_dir = os.path.join(base_dir, "A04_web", "B_images")
         os.makedirs(output_dir, exist_ok=True)
         
-        # Generate eruption map
+        # Generate eruption map focused on La Palma
         map_file = os.path.join(output_dir, "la_palma_eruption_viewer.html")
         generate_eruption_map(map_file)
         
@@ -284,3 +345,4 @@ def main():
 if __name__ == "__main__":
     success = main()
     sys.exit(0 if success else 1)
+
