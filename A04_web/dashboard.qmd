@@ -207,12 +207,38 @@ img {
   width: 150px !important;
   height: 150px !important;
   margin: 0 auto !important;
-  border: 3px solid white !important;
   box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(47,45,45,0.8);
   border-radius: 50% !important;
   padding: 5px !important;
 }
+
+/* Contenedor circular (mantiene la forma) */
+.earthquake-logo-wrapper {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  border-radius: 50% !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Imagen DESALINEADA intencionalmente */
+.earthquake-logo {
+  width: 80% !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;  /* Cambia este valor para mover verticalmente (ej: 40% para arriba) */
+  left: 50%; /* Cambia este valor para mover horizontalmente (ej: 60% para derecha) */
+  transform: translate(-50%, -55%);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
 
 /* ESTILOS PARA EL LOGO DE TEXTO "VOLCANA" */
 .volcana-title {
@@ -373,6 +399,30 @@ img {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+
+/* Añade esto a tu sección de estilos */
+.lapalma-logo {
+  width: 150px !important;
+  height: 150px !important; /* Mismo valor que width para mantener el círculo perfecto */
+  margin: 0 auto !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.lapalma-logo img {
+  width: 70% !important; /* Ajusta este valor según necesites */
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  object-fit: contain;
+}
+
 
 /* ===== ESTILOS TERREMOTOS ===== */
 #earthquakes .panel-tabset {
@@ -809,7 +859,7 @@ HTML(f"""
   <div class="homepage-header">
     <div class="carousel-container">
       <!-- Slide 1 -->
-      <div class="carousel-slide active" style="background-image: url('B_images/lapalma1.jpg');">
+      <div class="carousel-slide active" style="background-image: url('B_images/lapalma.png');">
         <div class="photo-credits">
           © <a href="https://volcano.si.edu/volcano.cfm?vn=383010" target="_blank">Smithsonian Institution</a>
         </div>
@@ -831,11 +881,13 @@ HTML(f"""
       
       <div class="carousel-overlay"></div>
       <div class="homepage-logo-container">
-        <img src="B_images/La_Palma_contorno_naranja.png" alt="VOLCANA Logo" class="homepage-logo">
-        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-          Volcanic Activity in La Palma
-        </div>
-      </div>
+  <div class="lapalma-logo">
+    <img src="B_images/La_Palma_contorno_naranja.png" alt="La Palma Logo">
+  </div>
+  <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+    Volcanic Activity in La Palma
+  </div>
+</div>
     </div>
   </div>
 </div>
@@ -935,11 +987,13 @@ HTML(f"""
       
       <div class="carousel-overlay"></div>
       <div class="homepage-logo-container">
-        <img src="B_images/earthquake-icon-naranja.png" alt="VOLCANA Logo" class="homepage-logo">
-        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-          Volcanic-Seismic Relation
-        </div>
-      </div>
+  <div class="earthquake-logo-wrapper">
+    <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquake-logo">
+  </div>
+  <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+    Volcanic-Seismic Relation
+  </div>
+</div>
     </div>
   </div>
 </div>
