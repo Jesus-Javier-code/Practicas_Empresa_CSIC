@@ -114,7 +114,7 @@ def generate_map(data, output_folder, is_filtered=False):
         
         # Configure map view
         fig.update_geos(
-            resolution = 110,
+            resolution = 25,
             scope = 'europe',
             showcountries = True,
             countrycolor = 'black',
@@ -126,7 +126,8 @@ def generate_map(data, output_folder, is_filtered=False):
             oceancolor = 'rgb(212, 212, 255)',
             coastlinewidth = 1.5,
             lataxis_range = [27.5, 29.8],  # Canary Islands latitude range
-            lonaxis_range = [-18.5, -13.0]  # Canary Islands longitude range
+            lonaxis_range = [-18.5, -13.0] # Canary Islands longitude range
+        
         )
         
         fig.update_layout(
