@@ -717,7 +717,7 @@ HTML(f"""
       <!-- Slide 2 -->
       <div class="carousel-slide" style="background-image: url('B_images/volcano5.jpg');">
         <div class="photo-credits hidden">
-          © <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">Turismo Lanzarote</a>
+          © <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">El País</a>
         </div>
       </div>
       
@@ -789,7 +789,7 @@ HTML(f"""
       <ul>
         <li><strong>NASA LAADS DAAC</strong> (MODIS/VIIRS data)</li>
         <li><strong>Copernicus Open Access Hub</strong> (Sentinel satellite data)</li>
-        <li><strong>USGS Volcano Hazards Program</strong> (Seismic and volcanic data)</li>
+        <li><strong>USGS Earthquake Catalogue</strong> (Seismic and volcanic data)</li>
       </ul>
     </p>
   </div>
@@ -812,7 +812,7 @@ HTML(f"""
   <div class="credits-footer">
     <p>Images sources: 
       <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta de Salamanca</a>, 
-      <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">Turismo Lanzarote</a>, 
+      <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">El País</a>, 
       <a href="https://www.nationalgeographic.com.es/fotografia/erupcion-palma-imagenes_17364" target="_blank">National Geographic</a>.
     </p>
     <p>All images are used for educational and research purposes.</p>
@@ -916,7 +916,7 @@ HTML('''
     
     <!-- Daily Plot - Contenedor especial -->
     <div class="daily-plot-container" style="flex: 1; min-width: 400px; height: 520px;">
-      <iframe src="B_images/radiative_power_daily.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+      <iframe src="B_images/radiative_power_daily.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" scrolling="no"></iframe>
       <p style="text-align: center; margin-top: 10px; color: #666;">
         Daily Radiative Power (data by NASA LAADS DAAC (MODIS/VIIRS))
       </p>
@@ -1033,12 +1033,12 @@ display(HTML('''
 <div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
   <!-- Mapa 1 -->
   <div style="width: 50%;">
-    <iframe src="./B_images/eq_map.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <iframe src="./B_images/eq_map.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 
   <!-- Mapa 2 -->
   <div style="width: 50%;">
-    <iframe src="./B_images/eq_map_filtered.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <iframe src="./B_images/eq_map_filtered.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 </div>
 '''))
@@ -1054,12 +1054,12 @@ display(HTML('''
 <div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
   <!-- Histograma 1 -->
   <div style="width: 50%;">
-    <iframe src="./B_images/eq_histogram.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <iframe src="./B_images/eq_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 
   <!-- Histograma 2 -->
   <div style="width: 50%;">
-    <iframe src="./B_images/eq_trigger_histogram.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+    <iframe src="./B_images/eq_trigger_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 </div>
 '''))
@@ -1086,8 +1086,7 @@ HTML("""
 <!-- Nuevo footer de créditos -->
   <div class="credits-footer">
     <p>Images sources: 
-      <a href="https://seismo.berkeley.edu/blog/2016/11/23/an-earthquake-of-two-flavors.html" target="_blank">Berkeley Seismology Lab</a>, 
-      <a href="https://www.usgs.gov/" target="_blank">USGS</a>, 
+      <a href="https://seismo.berkeley.edu/blog/2016/11/23/an-earthquake-of-two-flavors.html" target="_blank">Berkeley Seismology Lab</a>,  
       <a href="http://www.thulescientific.com/media.htm" target="_blank">Thule Scientific</a>,
       <a href="https://temblor.net/" target="_blank">Temblor.net</a>.
     </p>
