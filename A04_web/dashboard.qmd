@@ -882,8 +882,6 @@ HTML(f"""
 """)
 ```
 
-
-
 ```{python}
 #| label: setup-potencia
 #| echo: false
@@ -894,15 +892,91 @@ HTML('''
 /* Estilo específico para el iframe problemático */
 .daily-plot-container iframe {
     overflow: hidden !important;
-    scrollbar-width: none !important; /* Para Firefox */
-    -ms-overflow-style: none !important; /* Para IE/Edge */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
 }
 .daily-plot-container iframe::-webkit-scrollbar {
-    display: none !important; /* Para Chrome/Safari */
+    display: none !important;
+}
+
+/* Nuevos estilos para los textos */
+.context-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-left: 5px solid #d7512c;
+    height: 100%;
+}
+
+.context-title {
+    color: #d7512c;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.context-text {
+    color: #413224;
+    line-height: 1.6;
+}
+
+.highlight {
+    background-color: #FBEBE8;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Contenedor principal para texto + mapa */
+.top-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* Texto a la izquierda */
+.text-container {
+    display: flex;
+}
+
+/* Mapa a la derecha */
+.map-container {
+    height: 400px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 900px) {
+    .top-container {
+        grid-template-columns: 1fr;
+    }
+    .map-container {
+        height: 400px;
+    }
 }
 </style>
 
 <div style="width: 100%; max-width: 5000px; margin: 0 auto;">
+
+  <!-- Sección superior con texto a la izquierda y mapa a la derecha -->
+  <div class="top-container">
+    <!-- Texto introductorio (izquierda) -->
+    <div class="text-container">
+      <div class="context-box">
+        <div class="context-title">Decoding Tajogaite's Thermal Signature</div>
+        <div class="context-text">
+          The 2021 Tajogaite eruption produced one of the most complete thermal records in Canarian volcanology. These visualizations reveal how radiative power (heat flux measured in megawatts) evolved during the 85-day eruption, with distinct phases visible in both daily and weekly resolutions. The red-shaded period marks the official eruption duration, while red data points indicate anomalously low values - either measurement artifacts or atmospheric interference events.
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mapa (derecha) -->
+    <div class="map-container">
+      <iframe src="B_images/la_palma_eruption_viewer.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+    </div>
+  </div>
 
   <!-- Radiative Power Plots - Side by Side -->
   <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 40px;">
@@ -914,7 +988,7 @@ HTML('''
       </p>
     </div>
     
-    <!-- Daily Plot - Contenedor especial -->
+    <!-- Daily Plot -->
     <div class="daily-plot-container" style="flex: 1; min-width: 400px; height: 520px;">
       <iframe src="B_images/radiative_power_daily.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" scrolling="no"></iframe>
       <p style="text-align: center; margin-top: 10px; color: #666;">
@@ -923,27 +997,95 @@ HTML('''
     </div>
   </div>
 
-  <!-- Map -->
-  <div style="margin-bottom: 40px; height: 520px;">
-    <iframe src="B_images/la_palma_eruption_viewer.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
-  </div>
-
-  <!-- Video -->
-  <div style="margin-bottom: 40px;">
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <iframe 
-        src="https://www.youtube.com/embed/yDgV1YTPxok" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
-        frameborder="0" 
-        allowfullscreen>
-      </iframe>
+  <!-- Sección interpretativa -->
+  <div class="context-box">
+    <div class="context-title">Key Observations</div>
+    <div class="context-text">
+      <strong>Phase Transitions:</strong> The weekly plot shows 4 distinct eruptive phases:<br>
+      1) Initial fissure opening (Sept 19-28) with rapid power increase<br>
+      2) Stable cone building (Sept 29-Oct 15) with sustained 300-400MW output<br>
+      3) Paroxysmal phase (Oct 16-Nov 8) featuring the maximum recorded 1,127MW<br>
+      4) Waning activity (Nov 9-Dec 13) with episodic spikes<br><br>
+      
+      <strong>Daily Variability:</strong> The high-resolution data reveals how lava tube collapses (sharp drops) and strombolian bursts (sudden spikes) created this "volcanic ECG" pattern.
     </div>
-    <p style="text-align: center; margin-top: 10px; color: #666;">
-      Tajogaite Volcano Eruption - La Palma 2021
-    </p>
   </div>
 
-  <!-- Credits -->
+  <!-- Contexto geográfico -->
+  <div class="context-box">
+    <div class="context-title">The Eruption Footprint</div>
+    <div class="context-text">
+      This interactive map documents the lava flow progression that ultimately covered 12.2 km². 
+      Use the view toggles to compare:<br>
+      - Shows the eruption's position within La Palma's volcanic ridge<br>
+      - Zooms to the main flow with its 6.5km length and 3.5km maximum width<br><br>
+      
+      The primary vent at 1,100m elevation fed flows that reached the ocean in just 6 days, while secondary vents created the complex morphology visible in the drone perimeter survey.
+    </div>
+  </div>
+<style>
+/* ESTILOS PARA EL VIDEO - VERSIÓN CORREGIDA */
+.video-container-clean {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.video-container-clean iframe {
+  display: block;
+  border: none;
+  width: 100%;
+}
+
+.video-caption {
+  text-align: center;
+  margin: 8px 0 0 0 !important;
+  padding: 0 !important;
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.2;
+}
+
+/* Reset para todos los elementos padres */
+#video-parent-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+</style>
+
+<!-- Contenedor principal (asegúrate de que este es el padre directo) -->
+<div id="video-parent-container" style="margin-bottom: 15px;">
+  <!-- Contenedor del video - versión optimizada -->
+  <div class="video-container-clean" style="position: relative; padding-bottom: 56.25%;">
+    <iframe 
+      src="https://www.youtube.com/embed/yDgV1YTPxok" 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+  <p class="video-caption">Tajogaite Volcano Eruption - La Palma 2021</p>
+</div>
+
+<!-- Contexto geográfico -->
+  <div class="context-box">
+    <div class="context-title">The Eruption Footprint</div>
+    <div class="context-text">
+      This interactive map documents the lava flow progression that ultimately covered 12.2 km². 
+      Use the view toggles to compare:<br>
+      - Shows the eruption's position within La Palma's volcanic ridge<br>
+      - Zooms to the main flow with its 6.5km length and 3.5km maximum width<br><br>
+      
+      The primary vent at 1,100m elevation fed flows that reached the ocean in just 6 days, while secondary vents created the complex morphology visible in the drone perimeter survey.
+    </div>
+  </div>
+
+
+  <!-- Créditos -->
   <div style="margin-top: 40px; text-align: left; font-size: 0.9em; color: #666;">
     <p>Images sources: 
       <a href="https://volcano.si.edu/volcano.cfm?vn=383010" target="_blank">Smithsonian Institution</a>, 

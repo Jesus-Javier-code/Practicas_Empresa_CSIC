@@ -120,10 +120,6 @@ def generate_netcdf_visualization(df, output_file):
     
     df['Is_Anomaly'] = df.apply(get_anomaly_conditions, axis=1)
     
-    # [Resto del código de visualización permanece igual...]
-    
-    # [Rest of the visualization code remains the same...]
-    
     fig = go.Figure()
     
     # Add eruption period background
@@ -171,6 +167,24 @@ def generate_netcdf_visualization(df, output_file):
         hovertemplate='<b>Date</b>: %{x|%d-%m-%Y}<br><b>Power</b>: %{y:.2f} MW<extra>⚠ Anomaly detected</extra>'
     ))
     
+    # Add maximum value annotation (NEW CODE)
+    max_power = df['Radiative_Power'].max()
+    max_date = df.loc[df['Radiative_Power'].idxmax(), 'Date']
+    fig.add_annotation(
+        x=max_date,
+        y=max_power,
+        text=f"Maximum: {max_power:.0f} MW",
+        showarrow=True,
+        arrowhead=1,
+        ax=-50,
+        ay=-40,
+        font=dict(size=12, color="#E74C3C"),
+        bordercolor="#413224",
+        borderwidth=1,
+        borderpad=4,
+        bgcolor="white"
+    )
+    
     # Update layout
     fig.update_layout(
         title={
@@ -202,8 +216,8 @@ def generate_netcdf_visualization(df, output_file):
             bordercolor='rgba(0,0,0,0.2)',
             borderwidth=1,
             font=dict(size=12),
-            itemclick=False,  # Opcional: deshabilita el toggle al hacer click
-            itemdoubleclick=False  # Opcional: deshabilita el toggle al doble click
+            itemclick=False,
+            itemdoubleclick=False
         )
     )
     
@@ -353,11 +367,12 @@ def generate_eruption_map(output_file):
     # Create figure
     fig = go.Figure()
     
-    # Ajusta el zoom y centro para mostrar todas las Islas Canarias
-    initial_zoom = 6.5
-    initial_center = dict(lat=28.7, lon=-15.8)
-    lava_zoom = 12
-    lava_center = dict(lat=28.613, lon=-17.873)
+    # Ajusta el zoom y centro para mostrar solo La Palma
+    initial_zoom = 9  # Zoom más cercano que antes (6.5)
+    initial_center = dict(lat=28.65, lon=-17.85)  # Coordenadas ajustadas para centrar mejor La Palma
+    
+    lava_zoom = 12  # Zoom para vista detallada del flujo de lava
+    lava_center = dict(lat=28.613, lon=-17.9)  # Coordenadas del volcán Tajogaite
     
     # MAIN VOLCANO MARKER
     fig.add_trace(go.Scattermapbox(
