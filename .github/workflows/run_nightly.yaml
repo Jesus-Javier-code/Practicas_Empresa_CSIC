@@ -16,7 +16,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: '3.11'
+
+      - name: Instalar librerías del sistema necesarias para netCDF4
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libhdf5-dev libnetcdf-dev libjpeg-dev build-essential
 
       - name: Install dependencies
         run: |
