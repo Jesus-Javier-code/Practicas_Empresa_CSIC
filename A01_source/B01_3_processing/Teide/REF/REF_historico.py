@@ -17,16 +17,13 @@ script_path = Path(__file__).resolve()
 project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
 # Define input and output directories for brightness temperature data and REF results
-base_path = project_dir / "00_data" / "processed" / "BT_daily_pixels"
-output_dir = project_dir / "00_data" / "processed" / "REF"
+base_path = project_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
+output_dir = project_dir / "A00_data" / "B_processed" / "Teide" / "REF"
 output_dir.mkdir(parents=True, exist_ok=True)
 
-# === VOLCANO REGION (La Palma) ===
-# Define the geographic bounding box for the area of interest (the volcano region)
-lat_min = 28.55
-lat_max = 28.65
-lon_min = -17.93
-lon_max = -17.80
+# Define the geographic bounding box for the region of interest (Teide)
+lat_min, lat_max = 28.2717, 28.2744
+lon_min, lon_max = -16.6408, -16.6380
 
 # === DATE RANGE TO PROCESS ===
 # Set the initial and final dates for which REF files should be generated

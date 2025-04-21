@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 # === CONFIGURE YOUR DATE RANGE HERE ===
 start_date = datetime(2021, 12, 1)
-end_date = datetime(2021, 12, 31)
+end_date = datetime(2025, 4, 20)
 
 # === FUNCTIONS ===
 def radiance_to_bt(radiance, wavelength_um):
@@ -71,7 +71,7 @@ def process_nc_file(nc_file, output_base_path):
     # Create output folder and file
     output_folder = output_base_path / f"{yyyy}_{ddd}"
     output_folder.mkdir(parents=True, exist_ok=True)
-    output_nc = output_folder / f"BT_LaPalma_VJ102IMG_{yyyy}_{ddd}.nc"
+    output_nc = output_folder / f"BT_Teide_VJ102IMG_{yyyy}_{ddd}.nc"
 
     # Write the NetCDF file
     with Dataset(output_nc, "w", format="NETCDF4") as dst:
@@ -97,8 +97,8 @@ def process_nc_file(nc_file, output_base_path):
 
 # === PATH CONFIGURATION ===
 script_path = Path(__file__).resolve().parent
-input_base_path = script_path / "00_data/raw/data_VJ"
-output_path = script_path / "00_data/processed/BT_daily_pixels"
+input_base_path = script_path / "A00_data/B_raw/data_VJ"
+output_path = script_path / "A00_data/B_processed/Teide/BT_daily_pixels"
 
 # === LOOP THROUGH FILES AND FILTER BY DATE ===
 for folder in sorted(input_base_path.glob("20*_???")):
