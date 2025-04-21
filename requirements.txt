@@ -20,3 +20,4 @@ six==1.17.0
 tzdata==2025.2
 urllib3==2.4.0
 xarray==2025.3.1
+rioxarray==0.2.0
