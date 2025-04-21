@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 import sys
 import os
-
+import netCDF4
 
 
 def run_script(script_path):
