@@ -190,7 +190,7 @@ def descargar_datos1():
                 filepath = os.path.join(output_dir, filename)
 
                 print(f"📥 Downloading {filename}...")
-                os.system(f'wget -q --show-progress --header="Authorization: Bearer {TOKEN}" -O "{filepath}" "{link}"')
+                os.system(f'wget -q --header="Authorization: Bearer {TOKEN}" -O "{filepath}" "{link}" > /dev/null 2>&1')
 
                 try:
                     dataset = netCDF4.Dataset(filepath, 'r')
