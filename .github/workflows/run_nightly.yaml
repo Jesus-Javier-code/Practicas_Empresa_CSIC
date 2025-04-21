@@ -2,7 +2,7 @@ name: Ejecutar script cada noche
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Ejecuta todos los días a las 2 AM UTC
+    - cron: '0 2 * * *'  # Todos los días a las 2 AM UTC
   workflow_dispatch:
 
 jobs:
@@ -28,15 +28,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Verificar que netCDF4 está instalado correctamente
-        run: |
-          pip install netCDF4
-          python -c "import netCDF4; print('netCDF4 instalado correctamente:', netCDF4.__version__)"
-
       - name: Ejecutar script principal
-        run: python main.py
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Ejecutar main.py
         run: python main.py
