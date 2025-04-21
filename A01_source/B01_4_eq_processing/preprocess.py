@@ -54,7 +54,6 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     
     trigger_index(L_method="Singh")
     
-
     path = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(path, "..", ".."))
 
