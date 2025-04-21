@@ -70,5 +70,5 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     utils.saving_data(result_df, "trigger_index_filtered.csv", folder="B_eq_processed")
     return result_df
 
-trigger_index(L_method="Singh")
+#trigger_index(L_method="Singh")
 discard_by_max_trigger_index("wrk_df.csv", 40)

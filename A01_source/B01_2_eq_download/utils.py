@@ -51,7 +51,7 @@ def limit_region_coords(lat_cent, lon_cent, region_rad):
 def mw_to_mo(mw):
      return 10**(3/2 * mw + 16.1)
 
-
+"""
 # Esto está todavía en proceso de desarrollo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def magnitude_of_completeness(date_i, date_f, center_coords, reg_rad):
        
@@ -76,6 +76,7 @@ def magnitude_of_completeness(date_i, date_f, center_coords, reg_rad):
     detail_events_df = get_detail_data_frame(events, get_all_magnitudes= True)
 
     return detail_events_df
+"""
 
 def get_lat_lot_from_file(file="wrk_df.csv"):
     path = os.path.dirname(os.path.abspath(__file__))
@@ -91,9 +92,21 @@ def get_lat_lot_from_file(file="wrk_df.csv"):
 
     return id, lat, lon
 
-"""""
- This is a future function, for now we consider that the magnitude is already in Mw
+def simulate_min_mag_by_radius(radius, max_trigger_index = 100.0, L_method = "Singh"):
 
- def magnitude_conversion(magnitude, mag_type, target_type="Mw"):
-    return print("Conversion not implemented yet")
-"""""
+    distance_list = np.arange(15, radius+15, radius/15) 
+
+    min_magnitude = np.array([])
+    
+    for distance in distance_list: 
+
+        fault_length = distance / max_trigger_index
+ 
+        if L_method == "Singh":
+            min_magnitude = np.append(min_magnitude, np.ceil(4 + 2 *  np.log10(fault_length)))
+        elif L_method == "USGS":
+            min_magnitude = np.append(min_magnitude, np.ceil(1.85 + 2 * np.log10(fault_length)))
+        else:
+            raise ValueError("Invalid L_method. Choose 'Singh' or 'USGS'.")
+
+    return min_magnitude, distance_list
