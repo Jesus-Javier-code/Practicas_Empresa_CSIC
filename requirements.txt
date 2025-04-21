@@ -8,4 +8,4 @@ scipy==1.15.2
 plotly==6.0.1
 xarray==v2025.03.0
 dash==3.0.1
-
+usgs-libcomcat==2.1.6

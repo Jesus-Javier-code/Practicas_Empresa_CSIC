@@ -252,7 +252,7 @@ def generate_histogram(data, output_folder):
 
         fig = px.histogram(
             data,
-            x="trigger_index",
+            x="date",
             nbins=60,
             title="Trigger Index Histogram",
             marginal="rug"
@@ -263,7 +263,7 @@ def generate_histogram(data, output_folder):
             title_font=dict(size=20),
             xaxis_title="Trigger Index",
             yaxis_title="Frequency",
-            bargap= 10,
+            bargap= 0.2,
             coloraxis_colorbar=dict(
                 title="Trigger Index",  # Título de la barra de colores
                 tickvals=[data["trigger_index"].min(), data["trigger_index"].max()],

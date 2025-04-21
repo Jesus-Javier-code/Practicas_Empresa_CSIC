@@ -8,6 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 
 from A01_source.B01_2_eq_download import utils as utils
 from A01_source.B01_2_eq_download import download as dwl
+from A01_source.B01_2_eq_download.download import ref
 
 def fault_length(magnitude, L_method = "Singh"):
     if L_method == "Singh":
@@ -30,8 +31,14 @@ def distance_calculation(lat1, lon1, lat2, lon2):
     return id, distance
 
 # This function must be called only after the working_df function, it uses the wrk_df.csv file
-def trigger_index(L_method="Singh"):
-    df = pd.read_csv("A00_data\B_eq_processed\wrk_df.csv")
+def trigger_index(L_method="Singh", file_name="wrk_df.csv"):
+
+    file_path = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(file_path, "..", ".."))
+
+    file_path = os.path.join(project_root, f"A00_data/B_eq_processed/{file_name}")
+
+    df = pd.read_csv(file_path)
     center_coords = dwl.ref[2]
     lat1 = center_coords[0]
     lon1 = center_coords[1]
@@ -70,5 +77,17 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
 
     utils.saving_data(result_df, "trigger_index_filtered.csv", folder="B_eq_processed")
     return result_df
+ 
+def get_all_events(answer="no"):
+    if answer == "yes":
+        dwl.download_all_by_region(*ref)
+        trigger_index(L_method="Singh", file_name="all_events_wrk_df.csv")
+        discard_by_max_trigger_index("all_events_wrk_df.csv", 40)
+        return print("All vents downloaded in 'all_events_wrk_df.csv'")
+    elif answer == "no":
+        dwl.download_optimized(*ref)
+        trigger_index(L_method="Singh")
+        discard_by_max_trigger_index("wrk_df.csv", 40)
+        return print("Only relevants events downloaded in 'wrk_df.csv'")
 
-discard_by_max_trigger_index("wrk_df.csv", 40)
+get_all_events("no")

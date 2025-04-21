@@ -64,14 +64,16 @@ def download_all_by_region(date_i, date_f, center_coords, reg_rad):
     )
 
     summary_events_df = get_summary_data_frame(events)
-    utils.saving_data(summary_events_df, "bsc_events_info.csv", folder = "B_eq_raw")
+    utils.saving_data(summary_events_df, "all_bsc_events_info.csv", folder = "B_eq_raw")
     
     detail_events_df = get_detail_data_frame(events, get_all_magnitudes= True)
-    utils.saving_data(detail_events_df, "dtl_mag_events_info.csv", folder = "B_eq_raw")
+    utils.saving_data(detail_events_df, "all_dtl_mag_events_info.csv", folder = "B_eq_raw")
 
-    return center_coords
+    merged_df = working_df(summary_events_df, detail_events_df, "all_events_wrk_df.csv")
 
-def working_df(df1, df2):
+    return merged_df, center_coords
+
+def working_df(df1, df2, file_name = "wrk_df.csv"):
     # Create a working dataframe with the next variables:
     # ID, Date, Magnitude, Magtype, Latitude, Longitude, Depth (km)
     
@@ -96,7 +98,7 @@ def working_df(df1, df2):
             merged_df[col] = merged_df[f"{col}_y"]
             merged_df.drop(columns=[f"{col}_x", f"{col}_y"], inplace=True)
 
-    utils.saving_data(merged_df, "wrk_df.csv", folder = "B_eq_processed")
+    utils.saving_data(merged_df, f"{file_name}", folder = "B_eq_processed")
 
     return merged_df
 
@@ -157,13 +159,12 @@ def download_optimized(date_i, date_f, center_coords, reg_rad):
 
     return working_df(cumulative_summary_df, cumulative_detail_df), center_coords
 
-
 """
 ref = ("2024-01-01 00:00", "2025-03-30 00:00", (32.62691152238639, -116.34553204019909), 500)
-
 download_all_by_region(*ref)
 """
 
-ref = ("2000-01-01 00:00", "2025-03-30 00:00", (28.61302051993363, -17.866746656292413), 75)
+ref = ("2000-01-01 00:00", "2025-03-30 00:00", (28.61302051993363, -17.866746656292413), 750)
 
-download_optimized(*ref)
+#download_all_by_region(*ref)
+#download_optimized(*ref)

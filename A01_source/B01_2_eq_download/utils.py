@@ -5,7 +5,10 @@ from datetime import datetime
 from libcomcat.search import search
 from libcomcat.dataframes import get_summary_data_frame, get_detail_data_frame
 from tqdm import tqdm
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from A01_source.B01_2_eq_download import download as dwl
 
 # Constants
 R_earth = 6378.1 # km | Equatorial radius (source: NASA's Earth Fact Sheet)

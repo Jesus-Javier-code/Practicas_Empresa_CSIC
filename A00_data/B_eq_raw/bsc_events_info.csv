@@ -1,7 +1,7 @@
 id,time,location,latitude,longitude,depth,magnitude,alert,url,eventtype,significance
-ci40593503,2024-05-20 12:17:36.030000+00:00,"17 km SE of Ocotillo Wells, CA",33.028,-116.0046667,11.18,4.05,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci40593503,earthquake,460
-ci40669624,2024-02-14 07:53:13.600000+00:00,"10 km N of Westmorland, CA",33.1276667,-115.623,9.84,4.04,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci40669624,earthquake,277
-ci40666368,2024-02-12 08:42:48.620000+00:00,"2 km NNW of El Centro, CA",32.7998333,-115.5655,15.76,4.56,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci40666368,earthquake,567
-ci40666320,2024-02-12 08:38:34.290000+00:00,"4 km SSW of Imperial, CA",32.8161667,-115.5866667,13.64,4.05,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci40666320,earthquake,254
-ci40666288,2024-02-12 08:36:25.460000+00:00,"3 km NNW of El Centro, CA",32.8135,-115.5735,17.93,4.81,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci40666288,earthquake,926
-ci40865184,2024-08-07 04:09:56.760000+00:00,"24 km SW of Lamont, CA",35.109,-119.097,11.6,5.22,green,https://earthquake.usgs.gov/earthquakes/eventpage/ci40865184,earthquake,1079
+us7000fvbu,2021-11-19 01:08:43.667000+00:00,"7 km SW of Mazo, Spain",28.558,-17.8204,35.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fvbu,earthquake,271
+us7000fv4s,2021-11-13 06:55:57.402000+00:00,"2 km ENE of El Paso, Spain",28.6606,-17.8628,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fv4s,earthquake,271
+us7000ft4n,2021-11-11 03:37:55.185000+00:00,"6 km S of Tazacorte, Spain",28.5877,-17.9297,35.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000ft4n,earthquake,284
+us7000fpu4,2021-10-26 16:25:33.055000+00:00,"2 km W of Fuencaliente de la Palma, Spain",28.4947,-17.8688,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fpu4,earthquake,326
+us7000fxa4,2021-11-23 01:03:24.298000+00:00,"6 km SE of Puntallana, Spain",28.696,-17.6878,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fxa4,earthquake,326
+usc000lst3,2013-12-27 17:46:03.420000+00:00,"28 km W of Frontera, Spain",27.7975,-18.2868,7.48,5.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usc000lst3,earthquake,453
