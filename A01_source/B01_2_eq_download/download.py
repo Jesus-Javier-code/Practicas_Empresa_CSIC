@@ -5,7 +5,11 @@ import pandas as pd
 import numpy as np
 
 # If running this script, the next line must be changed, otherwise it will not work
-from . import utils as utils
+try:
+    from . import utils as utils
+except ImportError:
+    import utils as utils
+    
 from tqdm import tqdm
 
 # In case it is recquired to filter by minimum magnitude (NOT USED)
@@ -68,7 +72,7 @@ def download_all_by_region(date_i, date_f, center_coords, reg_rad):
     return center_coords
 
 def working_df(df1, df2):
-    # The mean of this function is to create a working dataframe with the next variables:
+    # Create a working dataframe with the next variables:
     # ID, Date, Magnitude, Magtype, Latitude, Longitude, Depth (km)
     
     variables = ["id", "time", "magnitude", "magtype", "latitude", "longitude", "depth"]
@@ -126,7 +130,7 @@ def download_optimized(date_i, date_f, center_coords, reg_rad):
         )
 
         if not events:
-            print(f"No se encontraron eventos para la distancia {distance_list[i]} km.")
+            print(f"No se encontraron eventos con magnitud {min_mag[i]} para la distancia {round(distance_list[i], 2)} km.")
             continue
 
     # Procesar los eventos
@@ -155,7 +159,8 @@ def download_optimized(date_i, date_f, center_coords, reg_rad):
 
 
 """
-ref = ("2025-01-01 00:00", "2025-03-30 00:00", (32.62691152238639, -116.34553204019909), 500)
+ref = ("2024-01-01 00:00", "2025-03-30 00:00", (32.62691152238639, -116.34553204019909), 500)
+
 download_all_by_region(*ref)
 """
 

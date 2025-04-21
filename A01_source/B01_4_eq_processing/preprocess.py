@@ -29,6 +29,7 @@ def distance_calculation(lat1, lon1, lat2, lon2):
     distance = utils.R_earth * c
     return id, distance
 
+# This function must be called only after the working_df function, it uses the wrk_df.csv file
 def trigger_index(L_method="Singh"):
     df = pd.read_csv("A00_data\B_eq_processed\wrk_df.csv")
     center_coords = dwl.ref[2]
@@ -36,6 +37,7 @@ def trigger_index(L_method="Singh"):
     lon1 = center_coords[1]
 
     result_df = pd.DataFrame(columns=["id","time", "magnitude", "magtype", "depth", "latitude", "longitude", "distance", "trigger_index" ])
+    
     for index, row in tqdm(df.iterrows(), total=len(df), desc="Procesando filas"):
         lat2 = row["latitude"]
         lon2 = row["longitude"]
@@ -49,7 +51,6 @@ def trigger_index(L_method="Singh"):
     utils.saving_data(result_df, "wrk_df.csv", folder="B_eq_processed")
     return result_df
 
-# This function must be called only after the trigger_index function, it uses the trigger_index column
 def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     
     trigger_index(L_method="Singh")
@@ -70,5 +71,4 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     utils.saving_data(result_df, "trigger_index_filtered.csv", folder="B_eq_processed")
     return result_df
 
-#trigger_index(L_method="Singh")
 discard_by_max_trigger_index("wrk_df.csv", 40)

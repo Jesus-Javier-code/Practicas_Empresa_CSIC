@@ -51,33 +51,6 @@ def limit_region_coords(lat_cent, lon_cent, region_rad):
 def mw_to_mo(mw):
      return 10**(3/2 * mw + 16.1)
 
-"""
-# Esto está todavía en proceso de desarrollo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-def magnitude_of_completeness(date_i, date_f, center_coords, reg_rad):
-       
-    lat_cent, lon_cent = center_coords
-    lat_min, lat_max, lon_min, lon_max = limit_region_coords(lat_cent, lon_cent, reg_rad)
-
-    date_i = datetime.strptime(date_format(date_i), "%Y,%m,%d,%H,%M")
-    date_f = datetime.strptime(date_format(date_f), "%Y,%m,%d,%H,%M")
-     
-    events = search(
-        starttime= date_i,
-        endtime= date_f,
-        minlatitude= lat_min,
-        maxlatitude= lat_max,
-        minlongitude= lon_min,
-        maxlongitude= lon_max,
-        minmagnitude= -10,
-        eventtype= "earthquake",
-        orderby= "time"
-    )
-    
-    detail_events_df = get_detail_data_frame(events, get_all_magnitudes= True)
-
-    return detail_events_df
-"""
-
 def get_lat_lot_from_file(file="wrk_df.csv"):
     path = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(path, "..", ".."))
