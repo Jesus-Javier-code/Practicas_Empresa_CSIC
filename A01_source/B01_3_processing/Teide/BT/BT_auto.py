@@ -8,12 +8,17 @@ import re
 from datetime import datetime, timedelta
 
 # === CONFIGURATION ===
-# Define the absolute paths to input and output directories
-input_base_path = Path("/Users/moni/Desktop/Practicas_Empresa_CSIC/00_data/raw/data_VJ")
-output_base_path = Path("/Users/moni/Desktop/Practicas_Empresa_CSIC/00_data/processed/BT_daily_pixels")
+# Ruta base relativa al script
+script_path = Path(__file__).resolve()
+proyecto_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
+
+# Define rutas relativas a la ubicación del proyecto
+input_base_path = proyecto_dir / "A00_data" / "B_raw" / "data_VJ"
+output_base_path = proyecto_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
 
 # Create output directory if it doesn't exist
 output_base_path.mkdir(parents=True, exist_ok=True)
+
 
 # === VOLCANO REGION ===
 lat_min = 28.55

@@ -7,9 +7,9 @@ from pathlib import Path
 script_path = Path(__file__).resolve()
 proyecto_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
-ruta_bt = proyecto_dir / "00_data" / "processed" / "BT_daily_pixels"
-ruta_ref = proyecto_dir / "00_data" / "processed" / "REF"
-salida_nc = proyecto_dir / "00_data" / "processed" / "Radiative_Power_by_Year_Month_Day" / "radiative_power.nc"
+ruta_bt = proyecto_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
+ruta_ref = proyecto_dir / "A00_data" / "B_processed" / "Teide" / "REF"
+salida_nc = proyecto_dir / "A00_data" / "B_processed" / "Teide" / "Radiative_Power_by_Year_Month_Day" / "radiative_power.nc"
 
 area_pixel = 140625  # m²
 sigma = 5.67e-8      # W/m²·K⁴

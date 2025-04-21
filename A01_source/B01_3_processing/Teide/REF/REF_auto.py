@@ -11,9 +11,10 @@ import calendar
 script_path = Path(__file__).resolve()
 project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
-base_path = project_dir / "00_data" / "processed" / "BT_daily_pixels"
-output_dir = project_dir / "00_data" / "processed" / "REF"
+base_path = project_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
+output_dir = project_dir / "A00_data" / "B_processed" / "Teide" / "REF"
 output_dir.mkdir(parents=True, exist_ok=True)
+
 
 # === VOLCANO REGION ===
 lat_min = 28.55
