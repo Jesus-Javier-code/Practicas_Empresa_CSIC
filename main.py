@@ -42,7 +42,7 @@ def main():
     download_script = scripts_directory / "01_1_download" / "download.py"
     bt_script = scripts_directory / "01_3_processing" / "BT" / "BT_auto.py"
     ref_script = scripts_directory / "01_3_processing" / "REF" / "REF_auto.py"
-    rp_script = scripts_directory / "01_3_processing" / "radiative_power" / "RP_auto.py"
+    rp_script = scripts_directory / "01_3_processing" / "radiative_power" / "rp_daily.py"
     
     # Start the automation process
     print("Starting daily automation...")
