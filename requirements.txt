@@ -7,7 +7,7 @@ fonttools==4.57.0
 idna==3.10
 kiwisolver==1.4.8
 matplotlib==3.10.1
-netCDF4==1.6.5
+netCDF4==1.7.2
 numpy==2.2.5
 packaging==25.0
 pandas==2.2.3
