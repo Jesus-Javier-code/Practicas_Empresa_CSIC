@@ -203,7 +203,7 @@ def descargar_datos1():
                     oeste = dataset.getncattr('WestBoundingCoordinate')
 
                     if esta_en_la_palma(sur, norte, este, oeste) and es_de_noche(flag):
-                        print("✔️ Valid file: nighttime over La Palma.")
+                        print("✔️ Valid file: nighttime over Teide.")
                         break
                     else:
                         print("❌ Does not meet conditions. Deleting...")
