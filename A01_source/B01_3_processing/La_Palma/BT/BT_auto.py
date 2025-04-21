@@ -13,7 +13,7 @@ script_path = Path(__file__).resolve()
 proyecto_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
 # Define rutas relativas a la ubicación del proyecto
-input_base_path = proyecto_dir / "A00_data" / "B_raw" / "data_VJ"
+input_base_path = proyecto_dir / "A00_data" / "B_raw" / "La_Palma" / "data_VJ"
 output_base_path = proyecto_dir / "A00_data" / "B_processed" / "La_Palma" / "BT_daily_pixels"
 
 # Create output directory if it doesn't exist
