@@ -111,6 +111,7 @@ def es_de_noche(day_night_flag):
 
 # === MAIN FUNCTION ===
 
+
 def descargar_datos1():
     """
     Downloads satellite data for the previous day, filters it for nighttime images 

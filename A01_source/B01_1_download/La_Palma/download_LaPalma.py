@@ -159,7 +159,7 @@ def descargar_datos1():
     # Definir el directorio específico para los archivos del día (a partir del directorio base)
     output_dir = base_output_dir / f"{year}_{doy}"
 
-    # Crear el directorio si no existe
+    # Crear el directorio si no existe 
     os.makedirs(output_dir, exist_ok=True)
 
     print(f"Ruta de salida: {output_dir}")
