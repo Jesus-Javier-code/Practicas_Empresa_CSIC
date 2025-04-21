@@ -14,9 +14,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Configurar Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  
+          python-version: '3.11'  # <-- Usa una versión más compatible
+
+      - name: Instalar librerías del sistema necesarias
+        run: sudo apt-get update && sudo apt-get install -y libhdf5-dev libnetcdf-dev
 
       - name: Instalar dependencias
         run: |
@@ -24,4 +27,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Ejecutar main.py
-        run: python main.py  
+        run: python main.py
