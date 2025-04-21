@@ -21,7 +21,7 @@ jobs:
       - name: Instalar librerías del sistema necesarias para netCDF4
         run: |
           sudo apt-get update
-          sudo apt-get install -y libhdf5-dev libnetcdf-dev
+          sudo apt-get install -y libhdf5-dev libnetcdf-dev libjpeg-dev
 
       - name: Instalar dependencias del proyecto
         run: |
