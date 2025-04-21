@@ -28,5 +28,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run main
+      - name: Run main script
         run: python main.py
+
+      - name: Guardar archivo final de FRP
+        uses: actions/upload-artifact@v3
+        with:
+          name: frp_final
+          path: 00_data/processed/Radiative_Power_by_Year_Month_Day/radiative_power.nc
