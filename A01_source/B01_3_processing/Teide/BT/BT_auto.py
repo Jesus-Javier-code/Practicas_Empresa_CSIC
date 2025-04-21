@@ -21,10 +21,10 @@ output_base_path.mkdir(parents=True, exist_ok=True)
 
 
 # === VOLCANO REGION ===
-lat_min = 28.55
-lat_max = 28.65
-lon_min = -17.93
-lon_max = -17.80
+lat_min = 28.2717
+lat_max = 28.2744
+lon_min = -16.6408
+lon_max = -16.6380
 
 # === FUNCTIONS ===
 def radiance_to_bt(radiance, wavelength_um):
