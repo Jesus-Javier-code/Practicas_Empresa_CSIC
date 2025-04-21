@@ -7,3 +7,14 @@ scipy==1.15.2
 plotly==6.0.1
 xarray==v2025.03.0
 dash==3.0.1
+netCDF4==1.6.2
+pandas==2.1.0
+datetime
+pathlib
+os
+requests
+glob
+xarray
+re
+rioxarray
+calendar
