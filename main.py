@@ -54,6 +54,7 @@ def main():
     
     # Run the scripts in the correct order
     run_script(download_script_LaPalma)  # First, download the data
+    run_script(download_script_Teide)
     run_script(bt_script_LaPalma)        # Then, convert it to brightness temperature (BT)
     run_script(bt_script_Teide)        # Then, convert it to brightness temperature (BT)
     run_script(ref_script_LaPalma)       # Next, calculate the REF
