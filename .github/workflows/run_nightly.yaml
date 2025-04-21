@@ -2,7 +2,7 @@ name: Ejecutar script cada noche
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Todos los días a las 2 AM UTC
+    - cron: '0 2 * * *'  
   workflow_dispatch:
 
 jobs:
@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: frp_final
-          path: 00_data/processed/Radiative_Power_by_Year_Month_Day/radiative_power.nc
+          path: A00_data/B_processed/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc
