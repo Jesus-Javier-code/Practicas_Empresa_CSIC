@@ -28,5 +28,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run download script
-        run: python A01_source/B01_1_download/La_Palma/download_LaPalma.py
+      - name: Run main
+        run: python main.py
