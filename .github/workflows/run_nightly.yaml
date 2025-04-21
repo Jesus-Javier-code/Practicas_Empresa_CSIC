@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frp_final
-          path: 00_data/processed/Radiative_Power_by_Year_Month_Day/radiative_power.nc
+          path: A00_data/B_processed/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc
