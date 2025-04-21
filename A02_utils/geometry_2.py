@@ -43,7 +43,7 @@ def load_netcdf_data():
     """Load and process netCDF data"""
     try:
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        nc_path = os.path.join(base_dir, "A00_data", "B_processed", "Radiative_Power_by_Year_Month_Day", "frp_btmedia_curva_final.nc")
+        nc_path = os.path.join(base_dir, "A00_data", "B_processed", "Radiative_Power_by_Year_Month_Day","La_Palma", "radiative_power.nc")
         
         ds = xr.open_dataset(nc_path)
         df = ds.to_dataframe().reset_index()
@@ -67,58 +67,10 @@ def load_netcdf_data():
         return None
 
 def generate_netcdf_visualization(df, output_file):
-    """Generate interactive visualization for netCDF data with eruption period and low values highlighted"""
+    """Generate interactive visualization for netCDF data with eruption period"""
     if df is None or df.empty:
         print("No data available for visualization")
         return
-    
-    # Mejoramos la detección temprana con estos ajustes:
-    window_size = 7  # Ventana de 7 días
-    
-    # Cálculo de estadísticas móviles con parámetros optimizados
-    df['Rolling_Median'] = df['Radiative_Power'].rolling(
-        window=window_size, 
-        center=True, 
-        min_periods=1  # Permitir cálculos con menos datos al inicio
-    ).median()
-    
-    df['Rolling_Std'] = df['Radiative_Power'].rolling(
-        window=window_size,
-        center=True,
-        min_periods=1  # Aceptar menos puntos al inicio
-    ).std().fillna(0)  # Evitar NaN en las primeras fechas
-    
-    # Umbrales adaptativos mejorados para primeras fechas
-    eruption_start = pd.to_datetime(ERUPTION_START)
-    eruption_end = pd.to_datetime(ERUPTION_END)
-    first_month = eruption_start + pd.DateOffset(months=1)
-    
-    def get_anomaly_conditions(row):
-        if pd.isna(row['Rolling_Median']):
-            return False
-            
-        date = row['Date']
-        power = row['Radiative_Power']
-        median = row['Rolling_Median']
-        std = max(row['Rolling_Std'], 1.0)  # Evitar std=0 en primeras fechas
-        
-        # Período eruptivo y primer mes (máxima sensibilidad)
-        if date <= first_month:
-            return (power < (median - 1.0 * std)) or (power < 0.3 * median)
-        
-        # 1-6 meses post erupción
-        elif date <= eruption_end + pd.DateOffset(months=6):
-            return (power < (median - 1.5 * std)) or (power < 0.4 * median)
-        
-        # 6-12 meses post erupción
-        elif date <= eruption_end + pd.DateOffset(years=1):
-            return (power < (median - 2.0 * std)) or (power < 0.5 * median)
-        
-        # Datos recientes (umbral más estricto)
-        else:
-            return (power < (median - 2.5 * std)) or (power < 0.2 * median)
-    
-    df['Is_Anomaly'] = df.apply(get_anomaly_conditions, axis=1)
     
     fig = go.Figure()
     
@@ -136,13 +88,12 @@ def generate_netcdf_visualization(df, output_file):
         annotation_font_color="red"
     )
     
-    # Add normal points (larger blue circles)
-    normal_points = df[~df['Is_Anomaly']]
+    # Add all points as normal values (blue circles)
     fig.add_trace(go.Scatter(
-        x=normal_points['Date'],
-        y=normal_points['Radiative_Power'],
+        x=df['Date'],
+        y=df['Radiative_Power'],
         mode='markers',
-        name='Normal Values',
+        name='Radiative Power',
         marker=dict(
             size=8,
             color='#3498DB',
@@ -151,23 +102,7 @@ def generate_netcdf_visualization(df, output_file):
         hovertemplate='<b>Date</b>: %{x|%d-%m-%Y}<br><b>Power</b>: %{y:.2f} MW<extra></extra>'
     ))
     
-    # Add anomaly points (smaller red diamonds)
-    anomaly_points = df[df['Is_Anomaly']]
-    fig.add_trace(go.Scatter(
-        x=anomaly_points['Date'],
-        y=anomaly_points['Radiative_Power'],
-        mode='markers',
-        name='Anomaly Values',
-        marker=dict(
-            size=5,
-            color='#FF0000',
-            symbol='diamond',
-            line=dict(width=1, color='DarkSlateGrey')
-        ),
-        hovertemplate='<b>Date</b>: %{x|%d-%m-%Y}<br><b>Power</b>: %{y:.2f} MW<extra>⚠ Anomaly detected</extra>'
-    ))
-    
-    # Add maximum value annotation (NEW CODE)
+    # Add maximum value annotation
     max_power = df['Radiative_Power'].max()
     max_date = df.loc[df['Radiative_Power'].idxmax(), 'Date']
     fig.add_annotation(
@@ -188,7 +123,7 @@ def generate_netcdf_visualization(df, output_file):
     # Update layout
     fig.update_layout(
         title={
-            'text': '<b>Daily Radiative Power with Adaptive Anomaly Detection</b><br><sub>Tajogaite Volcano (2021-Present)</sub>',
+            'text': '<b>Daily Radiative Power</b><br><sub>Tajogaite Volcano (2021-Present)</sub>',
             'y':0.95,
             'x':0.5,
             'xanchor': 'center',
