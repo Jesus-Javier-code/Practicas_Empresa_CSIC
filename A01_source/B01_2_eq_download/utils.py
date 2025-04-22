@@ -5,7 +5,10 @@ from datetime import datetime
 from libcomcat.search import search
 from libcomcat.dataframes import get_summary_data_frame, get_detail_data_frame
 from tqdm import tqdm
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from A01_source.B01_2_eq_download import download as dwl
 
 # Constants
 R_earth = 6378.1 # km | Equatorial radius (source: NASA's Earth Fact Sheet)
@@ -51,32 +54,6 @@ def limit_region_coords(lat_cent, lon_cent, region_rad):
 def mw_to_mo(mw):
      return 10**(3/2 * mw + 16.1)
 
-
-# Esto está todavía en proceso de desarrollo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-def magnitude_of_completeness(date_i, date_f, center_coords, reg_rad):
-       
-    lat_cent, lon_cent = center_coords
-    lat_min, lat_max, lon_min, lon_max = limit_region_coords(lat_cent, lon_cent, reg_rad)
-
-    date_i = datetime.strptime(date_format(date_i), "%Y,%m,%d,%H,%M")
-    date_f = datetime.strptime(date_format(date_f), "%Y,%m,%d,%H,%M")
-     
-    events = search(
-        starttime= date_i,
-        endtime= date_f,
-        minlatitude= lat_min,
-        maxlatitude= lat_max,
-        minlongitude= lon_min,
-        maxlongitude= lon_max,
-        minmagnitude= -10,
-        eventtype= "earthquake",
-        orderby= "time"
-    )
-    
-    detail_events_df = get_detail_data_frame(events, get_all_magnitudes= True)
-
-    return detail_events_df
-
 def get_lat_lot_from_file(file="wrk_df.csv"):
     path = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(path, "..", ".."))
@@ -91,9 +68,21 @@ def get_lat_lot_from_file(file="wrk_df.csv"):
 
     return id, lat, lon
 
-"""""
- This is a future function, for now we consider that the magnitude is already in Mw
+def simulate_min_mag_by_radius(radius, max_trigger_index = 100.0, L_method = "Singh"):
 
- def magnitude_conversion(magnitude, mag_type, target_type="Mw"):
-    return print("Conversion not implemented yet")
-"""""
+    distance_list = np.arange(15, radius+15, radius/15) 
+
+    min_magnitude = np.array([])
+    
+    for distance in distance_list: 
+
+        fault_length = distance / max_trigger_index
+ 
+        if L_method == "Singh":
+            min_magnitude = np.append(min_magnitude, np.ceil(4 + 2 *  np.log10(fault_length)))
+        elif L_method == "USGS":
+            min_magnitude = np.append(min_magnitude, np.ceil(1.85 + 2 * np.log10(fault_length)))
+        else:
+            raise ValueError("Invalid L_method. Choose 'Singh' or 'USGS'.")
+
+    return min_magnitude, distance_list
