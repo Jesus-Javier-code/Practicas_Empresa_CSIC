@@ -90,7 +90,12 @@ if output_nc.exists():
         print(f"{date_str} → Date already exists. Skipping save.")
     else:
         combined = xr.concat([existing_ds, new_ds], dim="time").sortby("time")
-        combined.to_netcdf(output_nc)
+        # Cierra manualmente el dataset anterior si fue abierto
+    try:
+        existing_ds.close()
+    except Exception:
+        pass
+        combined.to_netcdf(output_nc, mode="w")  # modo escritura completa
         print(f"✔︎ Appended new data to: {output_nc.name}")
 else:
     new_ds.to_netcdf(output_nc)
