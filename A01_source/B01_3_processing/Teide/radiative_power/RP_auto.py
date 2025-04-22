@@ -28,7 +28,7 @@ fecha_str = ayer.strftime("%Y-%m-%d")
 print(f"\n=== CALCULANDO FRP PARA {fecha_str} ===")
 
 # === CARGAR ARCHIVO MENSUAL ===
-archivo_bt = bt_dir / f"BT_LaPalma_VJ102IMG_{año}_{mes:02d}.nc"
+archivo_bt = bt_dir / f"BT_Teide_VJ102IMG_{año}_{mes:02d}.nc"
 if not archivo_bt.exists():
     print(f"{fecha_str} → Archivo mensual no encontrado: {archivo_bt.name}")
     exit()
