@@ -1,2 +1,4 @@
 .venv/
-*.nc
+VJ*.nc
+BT*.nc
+REF*.nc
