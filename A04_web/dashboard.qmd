@@ -1080,11 +1080,12 @@ HTML('''
 }
 
 .map-container {
-    height: 100%;
-    min-height: 450px;
+    height: 349px;
+    min-height: 349px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px transparent;
+    top: -8px;
     position: relative;
     margin: 0 !important;
     padding: 0 !important;
@@ -1114,7 +1115,7 @@ HTML('''
     height: 550px;
     background: transparent !important;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px transparent;
     padding: 0 !important;
     margin: 0 !important;  /* Elimina todos los márgenes */
     position: relative;
@@ -1320,6 +1321,44 @@ iframe {
     padding: 0 !important;
     gap: 0 !important;
 }
+
+.info-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.info-button {
+  background-color: #d7512c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  width: 600px;
+  font-size: 13.5px;
+  max-width: 90vw;
+}
+
+
 </style>
 
 <div class="main-container">
@@ -1347,7 +1386,6 @@ iframe {
         </div>
         <div class="context-text">
           • Red-shaded period marks official eruption duration<br>
-          • Anomalous measurements shown in red<br>
           • Clear phase transitions visible at different temporal scales
         </div>
       </div>
@@ -1381,68 +1419,279 @@ iframe {
     </div>
   </div>
 
-  <!-- Radiative Power Plots -->
-  <div class="plots-container">
-    <!-- Weekly Plot -->
-    <div class="plot-wrapper">
-      <iframe src="B_images/radiative_power_plot.html"></iframe>
-      <p class="plot-caption">Weekly Maximum Radiative Power (MW) - S. Aveni Dataset</p>
+<!-- Radiative Power Plots -->
+<div class="plots-container">
+  
+  <!-- Weekly Plot -->
+  <div class="plot-wrapper">
+    <iframe src="B_images/radiative_power_plot.html"></iframe>
+    <p class="plot-caption">Weekly Maximum Radiative Power (MW) - S. Aveni Dataset</p>
+
+    <!-- Info Icon & Tooltip for Plot 1 -->
+    <div class="info-box">
+      <button class="info-button" onclick="toggleInfo('info1')">i</button>
+      <div class="info-popup" id="info1">
+        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
+        <br><br>
+        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
+      </div>
     </div>
+  </div>
+
+  <!-- Daily Plot -->
+  <div class="plot-wrapper">
+    <iframe src="B_images/radiative_power_daily.html"></iframe>
+    <p class="plot-caption">Daily Radiative Power - NASA MODIS/VIIRS Data</p>
+
+    <!-- Info Icon & Tooltip for Plot 2 -->
+    <div class="info-box">
+      <button class="info-button" onclick="toggleInfo('info2')">i</button>
+      <div class="info-popup" id="info2">
+        This graph displays the estimated daily Fire Radiative Power (FRP) over the volcano, derived from satellite-based brightness temperature (BT) measurements using the VIIRS sensor (channel I05, 11.45 µm).
+        <br><br>
+        For each day, the observed BT is compared to a monthly thermal reference (REF), representing the typical background temperature when there is no volcanic activity. Only valid pixels within the defined volcanic area are considered.
+        <br><br>
+        The FRP for each pixel is calculated using the Stefan–Boltzmann law:
+        <br><br>
+        FRP = σ · ((T_obs)⁴ - (T_ref)⁴) · A
+        <br><br>
+        where σ is the Stefan–Boltzmann constant (5.67×10⁻⁸ W·m⁻²·K⁻⁴), T_obs is the observed brightness temperature (K), T_ref is the reference temperature (K), and A is the area per pixel (140,625 m²).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Añade esto después del plots-container y antes del video-section -->
+<!-- Timeline and Phases Section -->
+<div class="timeline-phases-section">
+    <div class="context-box" style="margin-bottom: 0;">
+        <div class="context-title">Eruption Timeline & Phases</div>
+        <div class="timeline-phases-container">
+            <!-- Timeline Column -->
+            <div class="timeline-column">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Sep 19</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Eruption Begins</h4>
+                            <p>Initial fissure opening at Cumbre Vieja</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Sep 28</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>First Lava Ocean Entry</h4>
+                            <p>Lava reaches the Atlantic Ocean</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Oct 15</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Peak Activity</h4>
+                            <p>Maximum thermal output recorded</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Dec 13</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Eruption Ends</h4>
+                            <p>Official declaration of eruption end</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phases Column -->
+            <div class="phases-column">
+                <div class="phase-card">
+                    <img src="https://cdn.shortpixel.ai/spai/w_758+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/04/volcan_foto1.jpeg" alt="Initial Phase">
+                    <div class="phase-info">
+                        <h4>Initial Phase</h4>
+                        <p>Sep 19-28</p>
+                        <div class="phase-desc">Rapid escalation as fissures opened</div>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_042.jpg" alt="Construction Phase">
+                    <div class="phase-info">
+                        <h4>Construction Phase</h4>
+                        <p>Sep 29-Oct 15</p>
+                        <div class="phase-desc">Stable cone building (300-400MW)</div>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <img src="https://cdn.shortpixel.ai/spai/w_739+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/09/Volcan1_sm.jpg" alt="Paroxysmal Phase">
+                    <div class="phase-info">
+                        <h4>Paroxysmal Phase</h4>
+                        <p>Oct 16-Nov 8</p>
+                        <div class="phase-desc">Peak output at 1,127MW</div>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_036.jpg" alt="Decline Phase">
+                    <div class="phase-info">
+                        <h4>Decline Phase</h4>
+                        <p>Nov 9-Dec 13</p>
+                        <div class="phase-desc">Episodic spikes during waning activity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Timeline & Phases Section */
+.timeline-phases-section {
+    margin: 40px 0;
+}
+
+.timeline-phases-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Timeline Styles */
+.timeline-column {
+    position: relative;
+    padding-right: 20px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #d7512c;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 30px;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 4px solid #d7512c;
+    border-radius: 50%;
+    left: -12px;
+    top: 0;
+}
+
+.timeline-date {
+    font-weight: bold;
+    color: #d7512c;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.timeline-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.timeline-content h4 {
+    margin-top: 0;
+    color: #413224;
+    font-size: 1.2em;
+}
+
+/* Phases Styles */
+.phases-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.phase-card {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 120px;
+}
+
+.phase-card:hover {
+    transform: translateY(-3px);
+}
+
+.phase-card img {
+    width: 150px;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.phase-info {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.phase-info h4 {
+    margin: 0 0 5px 0;
+    color: #d7512c;
+    font-size: 1.1em;
+}
+
+.phase-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.phase-desc {
+    margin-top: 8px;
+    color: #413224;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .timeline-phases-container {
+        grid-template-columns: 1fr;
+    }
     
-    <!-- Daily Plot -->
-    <div class="plot-wrapper">
-      <iframe src="B_images/radiative_power_daily.html"></iframe>
-      <p class="plot-caption">Daily Radiative Power - NASA MODIS/VIIRS Data</p>
-    </div>
-  </div>
-
-  <!-- Key Observations -->
-  <div class="context-box">
-    <div class="context-title">Eruptive Phase Analysis</div>
-    <div class="context-text">
-      <strong>Four distinct phases emerged from the thermal data:</strong>
-    </div>
-    <div class="context-text">
-      <strong>Initial Phase</strong> (Sept 19-28): Rapid escalation as fissures opened<br>
-      <strong>Construction Phase</strong> (Sept 29-Oct 15): Stable cone building (300-400MW)<br>
-      <strong>Paroxysmal Phase</strong> (Oct 16-Nov 8): Peak output at 1,127MW<br>
-      <strong>Decline Phase</strong> (Nov 9-Dec 13): Episodic spikes during waning activity
-    </div>
-    <div class="context-text">
-      The daily resolution reveals a "volcanic ECG" pattern showing:<br>
-      • Strombolian bursts (sudden spikes)<br>
-      • Lava tube collapses (sharp drops)<br>
-      • Atmospheric interference events
-    </div>
-  </div>
-
-  <!-- Eruption Footprint -->
-  <div class="context-box">
-    <div class="context-title">Geological Impact</div>
-    <div class="context-text">
-      The interactive map documents the lava flow's dramatic progression across La Palma's western flank:
-    </div>
-    <div class="context-text">
-      <strong>General Characteristics:</strong><br>
-      • Positioned along the Cumbre Vieja volcanic ridge<br>
-      • Total coverage of 12.2 km² (3.5% of La Palma's surface)<br>
-      • Maximum elevation: 1,100m at main vent
-    </div>
-    <div class="context-text">
-      <strong>Flow Dimensions:</strong><br>
-      • 6.5km maximum length (to ocean entry)<br>
-      • 3.5km maximum width<br>
-      • Ocean reached in just 6 days (fastest recorded in Canaries)
-    </div>
-  </div>
-
-  <!-- Video Section -->
-  <div class="context-box">
-    <div class="context-title">Eruption Timeline Visualization</div>
-    <div class="context-text">
-      This timelapse compilation shows the dramatic evolution of Tajogaite volcano from multiple perspectives, capturing key moments in the eruption sequence.
-    </div>
-  </div>
+    .timeline-column {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .phase-card {
+        height: auto;
+        flex-direction: column;
+    }
+    
+    .phase-card img {
+        width: 100%;
+        height: 150px;
+    }
+}
+</style>
   
 <div class="volcano-content">
   <div class="video-wrapper">
@@ -1533,8 +1782,32 @@ iframe {
     <p>All content presented for educational and scientific research purposes</p>
   </div>
 </div>
+
+
 ''')
+
+
 ```
+<script>
+function toggleInfo() {
+  const popup = document.getElementById("info-popup");
+  popup.style.display = (popup.style.display === "block") ? "none" : "block";
+}
+</script>
+
+<script>
+function toggleInfo(id) {
+    const popup = document.getElementById(id);
+    const isVisible = popup.style.display === 'block';
+    
+    // Cierra cualquier otro popup abierto
+    document.querySelectorAll('.info-popup').forEach(p => p.style.display = 'none');
+
+    // Alterna visibilidad del actual
+    popup.style.display = isVisible ? 'none' : 'block';
+}
+</script>
+
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
