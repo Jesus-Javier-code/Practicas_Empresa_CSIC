@@ -1365,7 +1365,7 @@ iframe {
 
   <!-- Hero Banner -->
   <div class="hero-banner">
-    <div class="hero-title">Tajogaite Volcano: A Thermal Chronicle</div>
+    <div class="hero-title">Tajogaite Volcano</div>
     <div class="hero-subtitle">
       The 2021 eruption on La Palma produced one of the most thoroughly documented volcanic events in Canary Islands history. 
       Explore the thermal evolution and geological impact through interactive visualizations.
@@ -1462,236 +1462,825 @@ iframe {
 </div>
 
 <!-- Añade esto después del plots-container y antes del video-section -->
-<!-- Timeline and Phases Section -->
-<div class="timeline-phases-section">
-    <div class="context-box" style="margin-bottom: 0;">
-        <div class="context-title">Eruption Timeline & Phases</div>
-        <div class="timeline-phases-container">
-            <!-- Timeline Column -->
-            <div class="timeline-column">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">Sep 19</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h4>Eruption Begins</h4>
-                            <p>Initial fissure opening at Cumbre Vieja</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Sep 28</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h4>First Lava Ocean Entry</h4>
-                            <p>Lava reaches the Atlantic Ocean</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Oct 15</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h4>Peak Activity</h4>
-                            <p>Maximum thermal output recorded</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Dec 13</div>
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h4>Eruption Ends</h4>
-                            <p>Official declaration of eruption end</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Phases Column -->
-            <div class="phases-column">
-                <div class="phase-card">
-                    <img src="https://cdn.shortpixel.ai/spai/w_758+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/04/volcan_foto1.jpeg" alt="Initial Phase">
-                    <div class="phase-info">
-                        <h4>Initial Phase</h4>
-                        <p>Sep 19-28</p>
-                        <div class="phase-desc">Rapid escalation as fissures opened</div>
-                    </div>
-                </div>
-                
-                <div class="phase-card">
-                    <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_042.jpg" alt="Construction Phase">
-                    <div class="phase-info">
-                        <h4>Construction Phase</h4>
-                        <p>Sep 29-Oct 15</p>
-                        <div class="phase-desc">Stable cone building (300-400MW)</div>
-                    </div>
-                </div>
-                
-                <div class="phase-card">
-                    <img src="https://cdn.shortpixel.ai/spai/w_739+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/09/Volcan1_sm.jpg" alt="Paroxysmal Phase">
-                    <div class="phase-info">
-                        <h4>Paroxysmal Phase</h4>
-                        <p>Oct 16-Nov 8</p>
-                        <div class="phase-desc">Peak output at 1,127MW</div>
-                    </div>
-                </div>
-                
-                <div class="phase-card">
-                    <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_036.jpg" alt="Decline Phase">
-                    <div class="phase-info">
-                        <h4>Decline Phase</h4>
-                        <p>Nov 9-Dec 13</p>
-                        <div class="phase-desc">Episodic spikes during waning activity</div>
-                    </div>
-                </div>
-            </div>
+<!-- Eruption Background Section -->
+<div class="hero-banner eruption-background">
+    <div class="hero-content">
+        <div class="hero-title">Tajogaite Eruption Background</div>
+        <div class="hero-subtitle">
+            Seismic precursors, geological anomalies, and the key events that marked the 2021 eruption of Tajogaite
         </div>
     </div>
 </div>
 
 <style>
-/* Timeline & Phases Section */
-.timeline-phases-section {
-    margin: 40px 0;
-}
-
-.timeline-phases-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-/* Timeline Styles */
-.timeline-column {
+.header-section {
     position: relative;
-    padding-right: 20px;
+    margin-bottom: 60px;
 }
-
-.timeline {
+/* Matching Hero Banner Style */
+.eruption-background {
+    background: linear-gradient(135deg, #d7512c 0%, #413224 100%);
+    text-align: left;
+    padding: 50px 40px;
+    margin-bottom: 30px;
     position: relative;
-    padding-left: 30px;
+    overflow: hidden;
 }
 
-.timeline::before {
+/* Hero Banner */
+.hero-banner {
+    background: linear-gradient(135deg, #d7512c 0%, #413224 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hero-title {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.section-header {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    z-index: 2;
+}
+
+.header-content {
+    position: relative;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2 rem;
+    font-weight: 800;
+    color: #d7512c;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.main-title::after {
     content: '';
     position: absolute;
-    width: 4px;
-    background-color: #d7512c;
-    top: 0;
-    bottom: 0;
+    bottom: -8px;
     left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #d7512c, #f2a900);
+    border-radius: 2px;
 }
 
-.timeline-item {
+.header-divider {
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, #d7512c, #f2a900);
+    margin: 25px auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+    font-style: italic;
     position: relative;
-    margin-bottom: 30px;
-    padding-left: 30px;
+    padding-top: 10px;
 }
 
-.timeline-dot {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #fff;
-    border: 4px solid #d7512c;
-    border-radius: 50%;
-    left: -12px;
-    top: 0;
-}
-
-.timeline-date {
-    font-weight: bold;
-    color: #d7512c;
-    margin-bottom: 5px;
-    font-size: 1.1em;
-}
-
-.timeline-content {
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.timeline-content h4 {
-    margin-top: 0;
-    color: #413224;
-    font-size: 1.2em;
-}
-
-/* Phases Styles */
-.phases-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.phase-card {
-    display: flex;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    height: 120px;
-}
-
-.phase-card:hover {
-    transform: translateY(-3px);
-}
-
-.phase-card img {
-    width: 150px;
-    height: 100%;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
-.phase-info {
-    padding: 15px;
-    flex-grow: 1;
-}
-
-.phase-info h4 {
-    margin: 0 0 5px 0;
-    color: #d7512c;
-    font-size: 1.1em;
-}
-
-.phase-info p {
-    margin: 0;
-    color: #666;
-    font-size: 0.9em;
-    font-weight: bold;
-}
-
-.phase-desc {
-    margin-top: 8px;
-    color: #413224;
-    font-size: 0.9em;
-    line-height: 1.4;
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-    .timeline-phases-container {
-        grid-template-columns: 1fr;
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
     }
-    
-    .timeline-column {
-        padding-right: 0;
-        margin-bottom: 30px;
+    .subtitle {
+        font-size: 1rem;
     }
-    
-    .phase-card {
-        height: auto;
-        flex-direction: column;
+    .full-width-banner {
+        padding: 40px 0;
     }
-    
-    .phase-card img {
-        width: 100%;
-        height: 150px;
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+    .header-divider {
+        margin: 20px auto;
+    }
+    .lava-pattern {
+        background-size: 150px 30px;
     }
 }
 </style>
+
+<div class="background-section">
+    <!-- Video in top-right corner -->
+    <div class="video-feature" style="--video-height: 500px">
+        <video controls poster="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/La_Palma_Pre-eruption_quakes.webm/800px--La_Palma_Pre-eruption_quakes.webm.jpg">
+            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/d/d9/La_Palma_Pre-eruption_quakes.webm/La_Palma_Pre-eruption_quakes.webm.1080p.vp9.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <div class="photo-credits">
+          © <a href="https://es.wikipedia.org/wiki/Erupci%C3%B3n_volc%C3%A1nica_de_La_Palma_de_2021" target="_blank">IGN</a>
+        </div>
+    </div>
+    
+    <!-- Text content -->
+    <div class="text-content">
+        <div class="context-box">
+            <div class="context-title">Geological Background</div>
+            <div class="context-text">
+                <p>The island of La Palma, experiences seismic activity related to regional tectonics. Between October 2017 and June 2021, eight similar seismic swarms were recorded in the southern part of the island.</p>
+                
+                <p>A 2021 scientific study using advanced satellite techniques detected anomalies in the subsurface of the Aridane Valley since 2009-2010, suggesting possible volcanic reactivation. However, the study itself noted that in 80% of cases with these types of signals, no eruptions occur.</p>
+                
+                <p>On September 11, 2021, a new low-intensity seismic swarm began. By Monday the 13th, about 1,500 seismic movements had been recorded, concentrated in the Cumbre Vieja Natural Park.</p>
+                
+                <p>On September 19, the day the eruption began, more than 300 earthquakes were detected, including one of magnitude 3.8 mbLg at shallow depth. Additionally, ground deformation of up to 15 cm was recorded due to magma pressure.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+.photo-credits {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.8em;
+    color: #666;
+    padding: 0 10px;
+}
+
+.photo-credits a {
+    color:rgb(222, 198, 192);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.photo-credits a:hover {
+    text-decoration: underline;
+}
+.background-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+    align-items: start;
+}
+
+.video-feature {
+    position: sticky;
+    top: 20px;
+    height: 650px; /* Default height if not specified */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    background: #000;
+}
+
+.video-feature video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    min-height: var(--video-height, 400px); /* Matches video height */
+}
+
+.context-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-left: 5px solid #d7512c;
+    flex-grow: 1;
+}
+
+.context-title {
+    color: #d7512c;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.context-text p {
+    margin-bottom: 20px;
+    line-height: 1.7;
+    color: #333;
+}
+
+.context-text p:last-child {
+    margin-bottom: 0;
+}
+
+.video-caption {
+    text-align: center;
+    margin-top: 12px;
+    color: #666;
+    font-size: 0.9em;
+    font-style: italic;
+    padding: 0 10px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .background-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-feature {
+        position: relative;
+        top: auto;
+        margin-bottom: 25px;
+        height: auto;
+        aspect-ratio: 16/9; /* Better mobile aspect ratio */
+    }
+    
+    .text-content {
+        min-height: auto;
+    }
+}
+</style>
+<div class="volcano-carousel">
+    <!-- Main Display -->
+    <div class="main-display">
+        <img id="main-image" src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" alt="Tajogaite Eruption">
+        <div class="photo-credits">
+            © <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>
+        </div>
+    </div>
+    
+    <!-- Carousel Track -->
+    <div class="carousel-container">
+        <button class="arrow prev">‹</button>
+        <div class="carousel-track">
+            <div class="carousel-item active" data-src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" data-credit='© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'>
+                <img src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" alt="Eruption Phase 1">
+            </div>
+            <div class="carousel-item" data-src="https://media.npr.org/assets/img/2021/12/25/ap21333740073510-5f70d9b23c0b55c9e3964d87928a90879948af59.jpg?s=2000&c=85&f=webp" data-credit='© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'>
+                <img src="https://media.npr.org/assets/img/2021/12/25/ap21333740073510-5f70d9b23c0b55c9e3964d87928a90879948af59.jpg?s=2000&c=85&f=webp" alt="Eruption Phase 2">
+            </div>
+            <div class="carousel-item" data-src="https://media.npr.org/assets/img/2021/12/25/ap21334562130732-4c641859dbf9a21ac419a673e2e563f9efb1d922.jpg?s=2000&c=85&f=webp" data-credit='© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'>
+                <img src="https://media.npr.org/assets/img/2021/12/25/ap21334562130732-4c641859dbf9a21ac419a673e2e563f9efb1d922.jpg?s=2000&c=85&f=webp" alt="Eruption Phase 3">
+            </div>
+            <div class="carousel-item" data-src="https://people.com/thmb/c4q0OmUYsR1r6jad-j_TITL5zqQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(986x589:988x591):format(webp)/la-palma-true-story-main-121724-22fa714f85274d5bb8346e9de713e833.jpg" data-credit='© <a href="https://people.com/la-palma-true-story-8763080" target="_blank">People Magazine</a>'>
+                <img src="https://people.com/thmb/c4q0OmUYsR1r6jad-j_TITL5zqQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(986x589:988x591):format(webp)/la-palma-true-story-main-121724-22fa714f85274d5bb8346e9de713e833.jpg" alt="Eruption Phase 4">
+            </div>
+            <div class="carousel-item" data-src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2021-12/211203-la-palma-mb-1336-5c3d37.jpg" data-credit='© <a href="https://www.lkz.de/%C3%BCberregionales_artikel,-la-palma-lava-noch-800-meter-von-la-laguna-entfernt-_arid,662809.html" target="_blank">LKZ</a>'>
+                <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2021-12/211203-la-palma-mb-1336-5c3d37.jpg" alt="Eruption Phase 5">
+            </div>
+            <div class="carousel-item" data-src="https://dims.apnews.com/dims4/default/54085d9/2147483647/strip/true/crop/3000x2000+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2F51c88d083ec149bd83d7899bf6e8d655%2F3000.jpeg" data-credit='© <a href="https://visitlapalma.es/en/experiences/why-a-new-volcano-appeared-in-la-palma/" target="_blank">Visitalapalma</a>'>
+                <img src="https://dims.apnews.com/dims4/default/54085d9/2147483647/strip/true/crop/3000x2000+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2F51c88d083ec149bd83d7899bf6e8d655%2F3000.jpeg" alt="Eruption Phase 6">
+            </div>
+            <div class="carousel-item" data-src="https://static.euronews.com/articles/stories/06/17/54/94/1200x675_cmsv2_33d484f9-787a-568c-8009-58d13ff01985-6175494.jpg" data-credit='© <a href="https://www.euronews.com" target="_blank">Euronews</a>'>
+                <img src="https://static.euronews.com/articles/stories/06/17/54/94/1200x675_cmsv2_33d484f9-787a-568c-8009-58d13ff01985-6175494.jpg" alt="Eruption Phase 7">
+            </div>
+        </div>
+        <button class="arrow next">›</button>
+    </div>
+</div>
+
+<style>
+.volcano-carousel {
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.main-display {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 500px;
+    background: #f5f5f5;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photo-credits {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+}
+
+.photo-credits a {
+    color: #ff9e7d;
+    text-decoration: none;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.carousel-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 20px 10px;
+    width: 100%;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    position: relative;
+}
+
+.carousel-item:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.carousel-item.active {
+    width: 180px;
+    height: 120px;
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(215,81,44,0.4);
+    z-index: 2;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.arrow {
+    background: rgba(215,81,44,0.8);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.arrow:hover {
+    background: #d7512c;
+    transform: scale(1.1);
+}
+
+.prev {
+    left: 5px;
+}
+
+.next {
+    right: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-display {
+        height: 350px;
+    }
+    
+    .carousel-item {
+        width: 90px;
+        height: 60px;
+    }
+    
+    .carousel-item.active {
+        width: 140px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-display {
+        height: 250px;
+    }
+    
+    .carousel-container {
+        padding: 0 40px;
+    }
+    
+    .carousel-item {
+        width: 70px;
+        height: 50px;
+    }
+    
+    .carousel-item.active {
+        width: 110px;
+        height: 70px;
+    }
+    
+    .arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+}
+</style>
+
+
+
+<!-- Combined Timeline + Gallery Section -->
+<div class="context-box" style="margin-bottom: 25px;">
+  <div class="context-title">Eruption Timeline</div>
+ 
+  <div class="timeline-gallery-grid">
+    <!-- Timeline Column -->
+    <div class="timeline-column">
+      <div class="compact-timeline">
+        <!-- Event 1 -->
+        <div class="timeline-event">
+          <div class="event-date">Sep 19, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Eruption Begins</h4>
+            <p>Initial fissure opening at Cumbre Vieja with strombolian activity.</p>
+          </div>
+        </div>
+       
+        <!-- Event 2 -->
+        <div class="timeline-event">
+          <div class="event-date">Sep 28, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Lava Reaches Ocean</h4>
+            <p>First lava ocean entry creating delta formations.</p>
+          </div>
+        </div>
+       
+        <!-- Event 3 -->
+        <div class="timeline-event">
+          <div class="event-date">Oct 15, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Peak Activity</h4>
+            <p>Maximum thermal output (2974 MW) recorded.</p>
+          </div>
+        </div>
+       
+        <!-- Event 4 -->
+        <div class="timeline-event">
+          <div class="event-date">Dec 13, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Eruption Ends</h4>
+            <p>After 85 days, covering 12.2 km².</p>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <!-- Gallery Column - VERSIÓN CORREGIDA -->
+    <div class="gallery-column">
+      <div class="thermal-gallery">
+        <div class="gallery-row">
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://cdn.shortpixel.ai/spai/w_1227+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/04/volcan_foto1.jpeg"
+                   alt="  Eruption begins">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Eruption begins</div>
+              <p class="image-description">It began emitting columns of smoke and ash, then started its strombolian activity with lava fountains reaching heights of 300 to 500 meters.</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_042.jpg"
+                   alt="Lava reaches ocean">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Lava reaches ocean</div>
+              <p class="image-description">Lava reaches Atlantic Ocean forming "Playa Nueva" delta (0.48 km²). Steam clouds contain HCl and volcanic glass particles.</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-row">
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://estaticos-cdn.prensaiberica.es/clip/256ca343-fefb-4826-974c-d558e4ebcc13_source-aspect-ratio_default_0.webp"
+                   alt="Peak activity">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Peak activity</div>
+              <p class="image-description">Peak activity with 2974 MW radiative power output.It emitted large-scale fountains of Strombolian lava, ash, and SO₂.</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://static.eldiario.es/clip/ae527920-e930-4d94-a28d-944f2824d2c4_16-9-discover-aspect-ratio_default_0.webp"
+                   alt="Eruption ends">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Eruption ends</div>
+              <p class="image-description">Progressive cooling of lava flows (12.2 km² coverage). Around 370 hectares of crops were affected and 2.998 buildings were destroyed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+/* SOLUCIÓN DEFINITIVA PARA LAS IMÁGENES */
+.image-container {
+  width: 100%;
+  height: 100px; /* Altura fija */
+  overflow: hidden; /* Recorta el exceso */
+  position: relative;
+}
+
+
+.image-container img {
+  width: 100%;
+  height: 10%;
+  object-fit: cover; /* Ajusta manteniendo proporciones */
+  object-position: center; /* Centrado por defecto */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+
+/* Ajustes específicos para cada imagen */
+.gallery-row:nth-child(1) .gallery-item:nth-child(1) img {
+  object-position: 60% 30%; /* Ajuste para primera imagen */
+}
+
+
+.gallery-row:nth-child(2) .gallery-item:nth-child(1) img {
+  object-position: 70% center; /* Ajuste especial para la tercera imagen problemática */
+}
+
+
+
+
+
+
+/* Contenedor de texto */
+.gallery-text {
+  padding: 12px 15px;
+  background: rgba(255,255,255,0.95);
+}
+
+
+/* Texto descriptivo */
+.image-description {
+  color: #555;
+  text-align: center;
+  font-size: 0.8em;
+  line-height: 1.4;
+  margin: 8px 0 0 0;
+}
+
+
+/* Ajuste para el título */
+.gallery-caption {
+  font-size: 0.9em;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+  color: #d7512c;
+}
+
+
+/* Reestructuración del ítem */
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Ajuste de altura de imagen */
+.image-container {
+  height: 150px; /* Reducida para compensar el texto */
+}
+
+
+
+
+/* ESTRUCTURA PRINCIPAL */
+.timeline-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+
+/* TIMELINE STYLES */
+.compact-timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+
+.compact-timeline::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: #d7512c;
+  top: 10px;
+  bottom: 10px;
+  left: 15px;
+}
+
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+
+.event-date {
+  font-weight: bold;
+  color: #d7512c;
+  margin-bottom: 5px;
+  font-size: 0.95em;
+}
+
+
+.event-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border: 3px solid #d7512c;
+  border-radius: 50%;
+  left: -38px;
+  top: 3px;
+}
+
+
+.event-content {
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+
+.event-content:hover {
+  transform: translateX(5px);
+}
+
+
+.event-content h4 {
+  margin-top: 0;
+  color: #413224;
+  font-size: 1.1em;
+}
+
+
+.event-content p {
+  color: #666;
+  margin-bottom: 0;
+  font-size: 0.9em;
+}
+
+
+/* GALLERY STYLES */
+.thermal-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+.gallery-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+
+.gallery-caption {
+  padding: 10px;
+  background: rgba(255,255,255,0.9);
+  text-align: center;
+  font-size: 0.85em;
+  color: #413224;
+  font-weight: bold;
+}
+
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 900px) {
+  .timeline-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .compact-timeline {
+    padding-left: 30px;
+    margin-bottom: 30px;
+  }
+ 
+  .event-dot {
+    left: -28px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .gallery-row {
+    grid-template-columns: 1fr;
+  }
+ 
+  .image-container {
+    height: 180px;
+  }
+ 
+  .event-content {
+    padding: 12px;
+  }
+}
+
+  <!-- Video Section -->
+  <div class="context-box">
+    <div class="context-title">Eruption Timeline Visualization</div>
+    <div class="context-text">
+      This timelapse compilation shows the dramatic evolution of Tajogaite volcano from multiple perspectives, capturing key moments in the eruption sequence.
+    </div>
+  </div>
   
 <div class="volcano-content">
   <div class="video-wrapper">
@@ -1808,6 +2397,95 @@ function toggleInfo(id) {
 }
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.carousel-track');
+    const items = document.querySelectorAll('.carousel-item');
+    const mainImage = document.getElementById('main-image');
+    const photoCredits = document.querySelector('.photo-credits');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    
+    let currentIndex = 0;
+    let isAnimating = false;
+    
+    // Initialize
+    updateMainImage();
+    centerActiveItem();
+    
+    // Navigation functions
+    function updateMainImage() {
+        const activeItem = items[currentIndex];
+        mainImage.src = activeItem.dataset.src;
+        photoCredits.innerHTML = activeItem.dataset.credit;
+        
+        // Update active class
+        items.forEach((item, index) => {
+            item.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    function centerActiveItem() {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        const activeItem = items[currentIndex];
+        const containerWidth = track.parentElement.offsetWidth;
+        const itemWidth = activeItem.offsetWidth;
+        const itemOffset = activeItem.offsetLeft;
+        const itemCenter = itemOffset + (itemWidth / 2);
+        const scrollPosition = itemCenter - (containerWidth / 2);
+        
+        track.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
+    }
+    
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        if (isAnimating) return;
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+        updateMainImage();
+        centerActiveItem();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        if (isAnimating) return;
+        currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+        updateMainImage();
+        centerActiveItem();
+    });
+    
+    // Click on thumbnail
+    items.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            if (isAnimating || index === currentIndex) return;
+            currentIndex = index;
+            updateMainImage();
+            centerActiveItem();
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevBtn.click();
+        } else if (e.key === 'ArrowRight') {
+            nextBtn.click();
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        centerActiveItem();
+    });
+});
+</script>
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
