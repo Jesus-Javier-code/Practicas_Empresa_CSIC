@@ -1330,6 +1330,57 @@ HTML(f"""
 
 ## Earthquake Monitoring {.panel-tabset}
 
+````{python}
+#| label: user-inputs
+#| echo: false
+import streamlit as st
+import subprocess
+
+# Título de la sección
+st.header("Earthquake Monitoring")
+
+# Formulario para ingresar parámetros
+with st.form("earthquake_form"):
+    st.write("### Parámetros de búsqueda")
+    fecha_inicial = st.date_input("Fecha inicial")
+    fecha_final = st.date_input("Fecha final")
+    latitud = st.number_input("Latitud", value=0.0, format="%.6f")
+    longitud = st.number_input("Longitud", value=0.0, format="%.6f")
+    radio = st.number_input("Radio de la región (km)", value=100.0, format="%.1f")
+    
+    # Botón para enviar el formulario
+    submit_button = st.form_submit_button("Actualizar displays")
+
+# Ejecutar lógica cuando se presiona el botón
+if submit_button:
+    st.write("Procesando datos con los siguientes parámetros:")
+    st.write(f"Fecha inicial: {fecha_inicial}")
+    st.write(f"Fecha final: {fecha_final}")
+    st.write(f"Latitud: {latitud}")
+    st.write(f"Longitud: {longitud}")
+    st.write(f"Radio: {radio} km")
+    # Llamar a tu función de procesamiento
+    try:
+        # Aquí puedes llamar a tu función de Python
+        subprocess.run(["python", "../A01_source/B01_2_eq_download/download.py", 
+                        str(fecha_inicial), str(fecha_final), str(latitud), str(longitud), str(radio)], check=True)
+        st.success("Datos procesados correctamente. Actualizando displays...")
+    except Exception as e:
+        st.error(f"Error al procesar los datos: {e}")
+
+# Displays actualizados
+st.write("### Mapas de actividad sísmica")
+st.write("Mapa actualizado basado en los parámetros ingresados:")
+st.components.v1.iframe(src="./B_images/eq_map.html", width=700, height=500)
+
+st.write("### Histogramas de actividad sísmica")
+st.write("Histogramas actualizados:")
+st.components.v1.iframe(src="./B_images/eq_histogram.html", width=700, height=500)
+    
+
+````
+
+
 ### Mapa de Actividad Sísmica
 
 ```{python}
