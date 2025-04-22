@@ -40,88 +40,77 @@ def load_lava_perimeter():
         ])
 
 def load_netcdf_data():
-    """Load and process netCDF data"""
+    """Load and process netCDF data with fallback"""
     try:
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        nc_path = os.path.join(base_dir, "A00_data", "B_processed", "Radiative_Power_by_Year_Month_Day", "frp_btmedia_curva_final.nc")
         
-        ds = xr.open_dataset(nc_path)
-        df = ds.to_dataframe().reset_index()
+        # Try multiple possible paths
+        possible_paths = [
+            os.path.join(base_dir, "A00_data", "B_processed","La_Palma", "Radiative_Power_by_Year_Month_Day", "radiative_power.nc"),
+            os.path.join(base_dir, "A00_data", "B_raw", "radiative_power.nc"),
+            os.path.join(base_dir, "A00_data", "radiative_power.nc")
+        ]
         
-        # Check available columns
-        available_cols = df.columns.tolist()
-        print("Available columns in netCDF:", available_cols)
+        for nc_path in possible_paths:
+            if os.path.exists(nc_path):
+                print(f"Found netCDF file at: {nc_path}")
+                ds = xr.open_dataset(nc_path)
+                df = ds.to_dataframe().reset_index()
+                
+                # Check available columns
+                available_cols = df.columns.tolist()
+                print("Available columns in netCDF:", available_cols)
+                
+                # Prepare result DataFrame
+                result = pd.DataFrame({
+                    'Date': pd.to_datetime(df['time']),
+                    'Radiative_Power': df['FRP'] if 'FRP' in df else df['radiative_power'] if 'radiative_power' in df else df.iloc[:, 1]
+                }).dropna()
+                
+                return result
         
-        # Prepare result DataFrame - ensure consistent column naming
-        result = pd.DataFrame({
-            'Date': pd.to_datetime(df['time']),
-            'Radiative_Power': df['FRP']
-        }).dropna()
-        
-        return result
+        print("No netCDF file found in any of the searched locations")
+        return None
     
     except Exception as e:
         print(f"\nError loading netCDF data: {str(e)}")
-        if 'ds' in locals():
-            print("Variables in netCDF file:", list(ds.variables.keys()))
         return None
 
 def generate_netcdf_visualization(df, output_file):
-    """Generate interactive visualization for netCDF data with eruption period and low values highlighted"""
+    """Generate interactive visualization for netCDF data with eruption period"""
     if df is None or df.empty:
         print("No data available for visualization")
         return
     
-    # Mejoramos la detección temprana con estos ajustes:
-    window_size = 7  # Ventana de 7 días
+    # Create figure using plotly express for consistent styling
+    fig = px.scatter(df, 
+                    x='Date', 
+                    y='Radiative_Power',
+                    title='<b>Daily Radiative Power</b><br><sup>Tajogaite Volcano (2021-Present) - Red background shows eruption period</sup>',
+                    template='plotly_white',
+                    labels={
+                        'Date': 'Date',
+                        'Radiative_Power': 'Radiative Power (MW)'
+                    },
+                    hover_data={'Date': '|%d/%m/%Y'},
+                    opacity=0.7,
+                    size_max=10)
     
-    # Cálculo de estadísticas móviles con parámetros optimizados
-    df['Rolling_Median'] = df['Radiative_Power'].rolling(
-        window=window_size, 
-        center=True, 
-        min_periods=1  # Permitir cálculos con menos datos al inicio
-    ).median()
-    
-    df['Rolling_Std'] = df['Radiative_Power'].rolling(
-        window=window_size,
-        center=True,
-        min_periods=1  # Aceptar menos puntos al inicio
-    ).std().fillna(0)  # Evitar NaN en las primeras fechas
-    
-    # Umbrales adaptativos mejorados para primeras fechas
-    eruption_start = pd.to_datetime(ERUPTION_START)
-    eruption_end = pd.to_datetime(ERUPTION_END)
-    first_month = eruption_start + pd.DateOffset(months=1)
-    
-    def get_anomaly_conditions(row):
-        if pd.isna(row['Rolling_Median']):
-            return False
-            
-        date = row['Date']
-        power = row['Radiative_Power']
-        median = row['Rolling_Median']
-        std = max(row['Rolling_Std'], 1.0)  # Evitar std=0 en primeras fechas
-        
-        # Período eruptivo y primer mes (máxima sensibilidad)
-        if date <= first_month:
-            return (power < (median - 1.0 * std)) or (power < 0.3 * median)
-        
-        # 1-6 meses post erupción
-        elif date <= eruption_end + pd.DateOffset(months=6):
-            return (power < (median - 1.5 * std)) or (power < 0.4 * median)
-        
-        # 6-12 meses post erupción
-        elif date <= eruption_end + pd.DateOffset(years=1):
-            return (power < (median - 2.0 * std)) or (power < 0.5 * median)
-        
-        # Datos recientes (umbral más estricto)
-        else:
-            return (power < (median - 2.5 * std)) or (power < 0.2 * median)
-    
-    df['Is_Anomaly'] = df.apply(get_anomaly_conditions, axis=1)
-    
-    fig = go.Figure()
-    
+    # Customize markers to match weekly plot
+    fig.update_traces(
+        marker=dict(
+            size=8,
+            color='#3498DB',
+            symbol='circle',
+            line=dict(width=1, color='#413224'),
+            opacity=0.8,
+            sizemode='diameter'
+        ),
+        selector=dict(mode='markers'),
+        name='Radiative Power',
+        showlegend=True
+    )
+
     # Add eruption period background
     fig.add_vrect(
         x0=ERUPTION_START, 
@@ -136,38 +125,7 @@ def generate_netcdf_visualization(df, output_file):
         annotation_font_color="red"
     )
     
-    # Add normal points (larger blue circles)
-    normal_points = df[~df['Is_Anomaly']]
-    fig.add_trace(go.Scatter(
-        x=normal_points['Date'],
-        y=normal_points['Radiative_Power'],
-        mode='markers',
-        name='Normal Values',
-        marker=dict(
-            size=8,
-            color='#3498DB',
-            line=dict(width=1, color='DarkSlateGrey')
-        ),
-        hovertemplate='<b>Date</b>: %{x|%d-%m-%Y}<br><b>Power</b>: %{y:.2f} MW<extra></extra>'
-    ))
-    
-    # Add anomaly points (smaller red diamonds)
-    anomaly_points = df[df['Is_Anomaly']]
-    fig.add_trace(go.Scatter(
-        x=anomaly_points['Date'],
-        y=anomaly_points['Radiative_Power'],
-        mode='markers',
-        name='Anomaly Values',
-        marker=dict(
-            size=5,
-            color='#FF0000',
-            symbol='diamond',
-            line=dict(width=1, color='DarkSlateGrey')
-        ),
-        hovertemplate='<b>Date</b>: %{x|%d-%m-%Y}<br><b>Power</b>: %{y:.2f} MW<extra>⚠ Anomaly detected</extra>'
-    ))
-    
-    # Add maximum value annotation (NEW CODE)
+    # Add maximum value annotation
     max_power = df['Radiative_Power'].max()
     max_date = df.loc[df['Radiative_Power'].idxmax(), 'Date']
     fig.add_annotation(
@@ -185,27 +143,28 @@ def generate_netcdf_visualization(df, output_file):
         bgcolor="white"
     )
     
-    # Update layout
+    # Update layout to match weekly plot
     fig.update_layout(
-        title={
-            'text': '<b>Daily Radiative Power with Adaptive Anomaly Detection</b><br><sub>Tajogaite Volcano (2021-Present)</sub>',
-            'y':0.95,
-            'x':0.5,
-            'xanchor': 'center',
-            'yanchor': 'top',
-            'font': dict(size=18)
-        },
-        xaxis_title='Date',
-        yaxis_title='Radiative Power (MW)',
-        plot_bgcolor='white',
-        hovermode='x unified',
-        margin=dict(l=50, r=50, t=100, b=80),
         xaxis=dict(
             rangeslider=dict(visible=True),
             type="date",
+            title_text='Date',
             gridcolor='#f0f0f0'
         ),
-        yaxis=dict(gridcolor='#f0f0f0'),
+        yaxis=dict(
+            title_text='Radiative Power (MW)',
+            gridcolor='#f0f0f0'
+        ),
+        hovermode="x unified",
+        plot_bgcolor='white',
+        margin=dict(l=50, r=50, b=80, t=100),
+        title_x=0.5,
+        title_font=dict(size=20),
+        hoverlabel=dict(
+            bgcolor="white",
+            font_size=12,
+            font_family="Arial"
+        ),
         legend=dict(
             orientation="v",
             yanchor="top",
@@ -221,7 +180,7 @@ def generate_netcdf_visualization(df, output_file):
         )
     )
     
-    # [Rest of your HTML saving code remains the same...]
+    # Add custom date range selector
     date_selector_html = """
     <div class="date-selector-container">
         <style>
@@ -325,36 +284,39 @@ def generate_netcdf_visualization(df, output_file):
     </script>
     """
     
-    # Save with customizations
-    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn')
-    html_content = html_content.replace('</body>', date_selector_html + '</body>')
+    # Generate HTML with rounded corners
+    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'responsive': True})
     
-    # Add CSS for rounded corners
+    # Add custom CSS for rounded corners
     custom_css = """
     <style>
         .plot-container {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            background: white;
-            margin: 10px;
+            border-radius: 15px !important;
+            overflow: hidden !important;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1) !important;
             position: relative;
         }
         .plotly-graph-div {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 15px !important;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
             width: 100%;
             height: 100%;
-            border-radius: 15px;
-        }
-        .modebar {
-            top: 60px !important;
         }
     </style>
     """
+    
+    # Inject our custom CSS and date selector
     html_content = html_content.replace('<head>', '<head>' + custom_css)
     html_content = html_content.replace('<div id="', '<div class="plot-container"><div id="')
-    html_content = html_content.replace('</body>', '</div></body>')
+    html_content = html_content.replace('</body>', date_selector_html + '</div></body>')
     
-    with open(output_file, 'w', encoding='utf-8') as f:
+    # Write the modified HTML to file
+    with open(output_file, 'w') as f:
         f.write(html_content)
     
     print(f"Daily radiative power visualization saved to: {output_file}")
