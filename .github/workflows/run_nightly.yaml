@@ -40,7 +40,7 @@ jobs:
           
           # Verificar que los archivos existen antes de intentar hacer git add
           if [ -f "A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc" ]; then
-            git add A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc
+            git add A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc
           fi
       
           if [ -f "A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc" ]; then
