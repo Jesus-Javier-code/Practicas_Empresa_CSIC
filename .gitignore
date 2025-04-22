@@ -1,2 +1,7 @@
 .venv/
-*.nc
+VJ*.nc
+REF*.nc
+
+# EXCEPCIONES: permite guardar los .nc clave
+!A00_data/B_processed/**/radiative_power*.nc
+!A00_data/B_processed/**/BT_LaPalma_VJ102IMG_*.nc
