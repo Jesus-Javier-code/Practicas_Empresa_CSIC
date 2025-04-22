@@ -34,18 +34,16 @@ jobs:
         run: python main.py
 
       - name: Commit y push de los .nc
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-
-          git pull origin main --rebase || true
-
-          git add A00_data/B_processed/La_Palma/BT_daily_pixels/*.nc || true
-          git add A00_data/B_processed/Teide/BT_daily_pixels/*.nc || true
-          git add A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc || true
-          git add A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || true
-
-          git diff --cached --quiet || git commit -m "Actualización diaria automática de BT y FRP"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+          git pull origin main --rebase
+      
+          git add -f A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc || true
+          git add -f A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || true
+      
+          git diff --cached --quiet || git commit -m "Actualización diaria automática de FRP"
+          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }} HEAD:main
