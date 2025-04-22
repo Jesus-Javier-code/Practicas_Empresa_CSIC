@@ -2,7 +2,7 @@ name: Ejecutar script cada noche
 
 on:
   schedule:
-    - cron: '0 2 * * *' 
+    - cron: '0 2 * * *'  # Todos los días a las 2 AM UTC
   workflow_dispatch:
 
 jobs:
@@ -10,20 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout del repositorio
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Necesario para poder hacer push
 
-      - name: Set up Python
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Instalar librerías del sistema necesarias para netCDF4
+      - name: Instalar dependencias del sistema para netCDF4
         run: |
           sudo apt-get update
           sudo apt-get install -y libhdf5-dev libnetcdf-dev libjpeg-dev build-essential
 
-      - name: Instalar dependencias Python
+      - name: Instalar dependencias del proyecto
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -31,14 +33,16 @@ jobs:
       - name: Ejecutar main.py
         run: python main.py
 
-      - name: Subir archivo La Palma
-        uses: actions/upload-artifact@v4
-        with:
-          name: frp_lapalma
-          path: A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc
-
-      - name: Subir archivo Teide
-        uses: actions/upload-artifact@v4
-        with:
-          name: frp_teide
-          path: A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc
+      - name: Hacer commit de los .nc actualizados
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          git add A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc
+          git add A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc
+          
+          # Commit solo si hay cambios
+          git diff --cached --quiet || git commit -m "Actualización diaria automática de FRP"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
