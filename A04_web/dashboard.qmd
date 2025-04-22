@@ -1,6 +1,6 @@
 ---
 title: "Volcana"
-format: 
+format:
   dashboard:
     orientation: rows
     scroll: false
@@ -1872,57 +1872,81 @@ HTML(f"""
 ```
 
 
+## Formulario de Entrada
+
+<!-- Formulario HTML para capturar inputs -->
+<div>
+  <label for="date_i">Initial Date:</label>
+  <input type="date" id="date_i" name="date_i">
+</div>
+
+<div>
+  <label for="date_f">Final Date:</label>
+  <input type="date" id="date_f" name="date_f">
+</div>
+
+<div>
+  <label for="latitude">Latitude:</label>
+  <input type="number" id="latitude" name="latitude" step="0.0001">
+</div>
+
+<div>
+  <label for="longitude">Longitude:</label>
+  <input type="number" id="longitude" name="longitude" step="0.0001">
+</div>
+
+
+<div>
+  <label for="radius">Radius (km):</label>
+  <input type="number" id="radius" name="region" min="1">
+</div>
+
+<button onclick="ejecutarPython()">Update Search</button>
+
+<!-- Resultados -->
+<div id="result"></div>
+
+<!-- Script para ejecutar Python con Pyodide -->
+<script type="module">
+async function ejecutarPython() {
+  // Capturar valores del formulario
+  const Initial_date = document.getElementById('date_i').value;
+  const Final_date = document.getElementById('date_f').value;
+  const latitude = parseFloat(document.getElementById('latitude').value);
+  const longitude = parseFloat(document.getElementById('longitude').value);
+  const radius = parseFloat(document.getElementById('radius').value);
+
+ // Cargar Pyodide (solo una vez)
+  if (!window.pyodide) {
+    window.pyodide = await loadPyodide({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+    });
+    await pyodide.loadPackage("micropip");
+  }
+
+  // Instalar paquetes necesarios (si es requerido)
+  await pyodide.runPythonAsync(`
+    import micropip
+    await micropip.install(['pandas', 'numpy'])  # Ejemplo: instalar librerías
+  `);
+
+  
+  // Ejecutar función de Python con los inputs
+  const resultado = await pyodide.runPythonAsync(`
+    def consultar_datos(date_i, date_f, latitude, longitude, radius):
+        # Aquí va tu lógica de Python (ejemplo simplificado)
+        import pandas as pd
+        return f"Consulted data: {date_i} a {date_f}, Coord: ({latitude}, {longitude}), Radius: {radius} km"
+
+    consultar_datos("${Initial_date}", "${Final_date}", ${latitude}, ${longitude}, ${radius})
+  `);
+
+  // Mostrar resultados en el HTML
+  document.getElementById("result").innerHTML = result;
+}
+</script>
+
 ## Earthquake Monitoring {.panel-tabset}
-
-````{python}
-#| label: user-inputs
-#| echo: false
-import streamlit as st
-import subprocess
-
-# Título de la sección
-st.header("Earthquake Monitoring")
-
-# Formulario para ingresar parámetros
-with st.form("earthquake_form"):
-    st.write("### Parámetros de búsqueda")
-    fecha_inicial = st.date_input("Fecha inicial")
-    fecha_final = st.date_input("Fecha final")
-    latitud = st.number_input("Latitud", value=0.0, format="%.6f")
-    longitud = st.number_input("Longitud", value=0.0, format="%.6f")
-    radio = st.number_input("Radio de la región (km)", value=100.0, format="%.1f")
-    
-    # Botón para enviar el formulario
-    submit_button = st.form_submit_button("Actualizar displays")
-
-# Ejecutar lógica cuando se presiona el botón
-if submit_button:
-    st.write("Procesando datos con los siguientes parámetros:")
-    st.write(f"Fecha inicial: {fecha_inicial}")
-    st.write(f"Fecha final: {fecha_final}")
-    st.write(f"Latitud: {latitud}")
-    st.write(f"Longitud: {longitud}")
-    st.write(f"Radio: {radio} km")
-    # Llamar a tu función de procesamiento
-    try:
-        # Aquí puedes llamar a tu función de Python
-        subprocess.run(["python", "../A01_source/B01_2_eq_download/download.py", 
-                        str(fecha_inicial), str(fecha_final), str(latitud), str(longitud), str(radio)], check=True)
-        st.success("Datos procesados correctamente. Actualizando displays...")
-    except Exception as e:
-        st.error(f"Error al procesar los datos: {e}")
-
-# Displays actualizados
-st.write("### Mapas de actividad sísmica")
-st.write("Mapa actualizado basado en los parámetros ingresados:")
-st.components.v1.iframe(src="./B_images/eq_map.html", width=700, height=500)
-
-st.write("### Histogramas de actividad sísmica")
-st.write("Histogramas actualizados:")
-st.components.v1.iframe(src="./B_images/eq_histogram.html", width=700, height=500)
-    
-
-````
 
 
 ### Mapa de Actividad Sísmica
@@ -1989,8 +2013,10 @@ HTML("""
 
 <!-- Credits Footer -->
   <div class="credits-footer">
-    <p><strong>Data sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
+    <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
+    <p><strong>Data source:</strong> Public <a href = https://www.usgs.gov/programs/earthquake-hazards/earthquakes>USGS Catalog </a> by using the Python library <a href = https://code.usgs.gov/ghsc/esi/libcomcat-python/-/tree/main?ref_type=heads> libcomcat </a> by <a href = https://www.usgs.gov/staff-profiles/michael-hearne#data> Mike Hearne </a> </p> 
     <p>All content presented for educational and scientific research purposes</p>
+
   </div>
 </div>
 """)

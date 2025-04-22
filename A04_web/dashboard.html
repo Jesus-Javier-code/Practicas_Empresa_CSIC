@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-input9c6ef00e5bd25c65</title>
+<title>Volcana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,68 +61,91 @@ ul.task-list li input[type="checkbox"] {
     <div class="navbar-brand-container">       
     <a href="#"><img src="B_images/Banner_Volcana_Grande.png" alt="CSIC logo." class="navbar-logo d-inline-block"></a>
       <div class="navbar-title">
-        
+        <div class="navbar-title-text"><a href="#">Volcana</a></div>
         
         
       </div>
     </div>
-<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-homepage" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#homepage" data-scrolling="false" href="#homepage" aria-controls="homepage" aria-selected="true"><span class="nav-link-text">🏝️ HOMEPAGE</span></a></li><li class="nav-item" role="presentation"><a id="tab-la-palma" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#la-palma" data-scrolling="false" href="#la-palma" aria-controls="la-palma" aria-selected="false"><span class="nav-link-text">🏝️ LA PALMA</span></a></li><li class="nav-item" role="presentation"><a id="tab-el-teide" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#el-teide" data-scrolling="false" href="#el-teide" aria-controls="el-teide" aria-selected="false"><span class="nav-link-text">🌋 EL TEIDE</span></a></li><li class="nav-item" role="presentation"><a id="tab-terremotos" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#terremotos" data-scrolling="false" href="#terremotos" aria-controls="terremotos" aria-selected="false"><span class="nav-link-text">🕳️ TERREMOTOS</span></a></li></ul><div class="quarto-dashboard-links"><a class="quarto-dashboard-link" href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC/" title="GitHub"><i class="bi bi-github"></i></a></div></div></div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-homepage" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#homepage" data-scrolling="false" href="#homepage" aria-controls="homepage" aria-selected="true"><span class="nav-link-text">🏝️ HOMEPAGE</span></a></li><li class="nav-item" role="presentation"><a id="tab-la-palma" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#la-palma" data-scrolling="false" href="#la-palma" aria-controls="la-palma" aria-selected="false"><span class="nav-link-text">🏝️ LA PALMA</span></a></li><li class="nav-item" role="presentation"><a id="tab-earthquakes" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#earthquakes" data-scrolling="false" href="#earthquakes" aria-controls="earthquakes" aria-selected="false"><span class="nav-link-text">🕳️ EARTHQUAKES</span></a></li></ul><div class="quarto-dashboard-links"><a class="quarto-dashboard-link" href="https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC/" title="GitHub"><i class="bi bi-github"></i></a></div></div></div>
 </nav>
 </header>
-<div class="page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">  
+<div class="page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages tab-content">  
 
 <style class="bslib-grid-item html-fill-item">
-/* SOLUCIÓN: OCULTAR SOLO LA PESTAÑA HOMEPAGE */
-.navbar-nav li:has(a[href="#homepage"]) {
-  display: none !important;
+/* ===== VARIABLES Y RESET GENERAL ===== */
+:root {
+  --volcano-color: #413224;
+  --earthquake-color: #413224;
+  --active-color: #FBEBE8;
 }
-/* RESET GENERAL */
+
 body, html, .dashboard {
   overflow: visible !important;
   height: auto !important;
-  background-color: #FBEBE8;
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, #FFCC9C 0%, #FFCC9C 100%),
+    url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 20L90 70H30Z' fill='%23413224' fill-opacity='0.05'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-blend-mode: overlay;
 }
 
-/* ELIMINAR TODOS LOS BORDES Y SCROLLS */
-.panel-card, .cell-output, .cell, .panel-card-body, .panel-tabset {
-  overflow: visible !important;
-  height: auto !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  margin: 0 !important;
-  padding: 0 !important;
+/* ===== NAVEGACIÓN CIRCULAR ===== */
+.navbar {
+  display: none !important;
 }
 
-/* ELIMINAR BORDES DE GRÁFICOS */
-.quarto-figure {
-  border: none !important;
+.circle-nav-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* IFRAMES COMPACTOS SIN BORDES */
-iframe {
-  width: 100% !important;
-  height: 400px !important;
-  border: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-  background: transparent !important;
+.circle-nav-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  border: 3px solid white;
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #413224;
 }
 
-/* IMÁGENES RESPONSIVAS */
-img {
-  max-width: 100% !important;
-  height: auto !important;
-  display: block !important;
-  margin: 0 auto !important;
-  border: none !important;
+.circle-nav-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-/* ESTILOS DEL HEADER */
+/* Iconos de navegación */
+#homepage-btn { 
+  background-image: url('B_images/Logo_Volcana_circular.jpeg');
+  background-size: 50%;
+}
+#la-palma-btn { 
+  background-image: url('B_images/La_Palma_contorno_naranja.png');
+  background-size: 60%;
+}
+#earthquakes-btn { 
+  background-image: url('B_images/earthquake-icon-naranja.png');
+  background-size: 70%;
+}
+
+/* ===== HEADER ===== */
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
 .navbar-brand::after {
   content: "VOLCANA";
@@ -156,33 +179,38 @@ img {
   background-color: rgba(65,50,36,0.1) !important;
 }
 
-/* ESTILOS PÁGINA PRINCIPAL */
+/* ===== CONTENIDOS TRANSPARENTES ===== */
+.dashboard, .panel-card, .cell, .panel-card-body, 
+.panel-tabset, .quarto-figure, iframe {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+iframe {
+  width: 100% !important;
+  height: 400px !important;
+  display: block !important;
+  overflow: hidden !important;
+}
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* ===== ESTILOS HOMEPAGE ===== */
 .homepage {
   text-align: center;
   padding: 2rem 1rem;
-  background-color: #FBEBE8;
   min-height: calc(100vh - 120px);
 }
 
-
-
-
-/* LOGO HOMEPAGE */
-.homepage-logo {
-  width: 250px !important;
-  height: 250px !important;
-  margin: 0.5rem auto 0.5rem !important;
-  border-radius: 50% !important; /* Hace el logo redondeado */
-  object-fit: cover;
-  transition: transform 0.3s ease; /* Añade transición suave */
-}
-
-.volcana-title {
-  height: 120px !important;  /* Más pequeño */
-  margin-bottom: 1.5rem !important;
-}
-
-/* RESTAURAR RECUADROS BLANCOS */
 .homepage-section {
   background-color: rgba(255,255,255,0.7) !important;
   border-radius: 12px !important;
@@ -191,14 +219,158 @@ img {
   max-width: 800px !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
 }
-/* LOGOS INSTITUCIONALES - SIN FONDO */
-.institutional-logos {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  padding: 10px 0 !important;
+
+/* ===== CARRUSEL PRINCIPAL ===== */
+.homepage-header, .earthquakes-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* FORZAR ALINEACIÓN HORIZONTAL */
+.homepage-header { 
+  height: 400px; 
+  margin-bottom: 0 !important;
+}
+.earthquakes-carousel { 
+  height: 120px; 
+  margin: 0 0 1rem 0; 
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out !important;
+  background-size: cover;
+  background-position: center;
+  will-change: opacity;
+  backface-visibility: hidden;
+}
+
+.carousel-slide.active { opacity: 1; }
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  z-index: 5;
+}
+
+.earthquakes-carousel .carousel-overlay { display: none; }
+
+.homepage-logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+}
+
+.homepage-logo {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(47,45,45,0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
+}
+
+/* Contenedor circular */
+.earthquake-logo-wrapper {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  border-radius: 50% !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.earthquake-logo {
+  width: 80% !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.lapalma-logo {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.lapalma-logo img {
+  width: 70% !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  object-fit: contain;
+}
+
+.volcana-title {
+  width: auto !important;
+  height: auto !important;
+  max-height: 120px !important;
+  margin: 15px 0 !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)) !important;
+  object-fit: contain !important;
+}
+
+/* ===== CRÉDITOS FOTOS ===== */
+.photo-credits {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 20;
+  color: white;
+  font-size: 0.8rem;
+  font-family: Arial, sans-serif;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  display: none;
+  background: transparent !important;
+}
+
+.photo-credits:not(.hidden) { display: block; }
+.photo-credits.hidden { opacity: 0; }
+
+.photo-credits a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.photo-credits a:hover { text-decoration: underline; }
+
+/* ===== LOGOS INSTITUCIONALES ===== */
 .institutional-logos-container {
   display: flex;
   justify-content: center;
@@ -211,32 +383,511 @@ img {
   gap: 30px;
   margin: 1rem auto;
   padding: 0 !important;
+  background: transparent !important;
 }
 
 .institutional-logo {
   height: 45px !important;
   width: auto;
   max-width: 100px;
-  transition: all 0.3s ease; /* Transición para animación */
-  filter: grayscale(30%); /* Efecto inicial */
+  transition: all 0.3s ease;
+  filter: grayscale(30%);
 }
 
 .institutional-logo:hover {
-  transform: scale(1.1) translateY(-5px); /* Efecto de levitación */
-  filter: grayscale(0%) drop-shadow(0 5px 5px rgba(0,0,0,0.2)); /* Más color y sombra */
+  transform: scale(1.1) translateY(-5px);
+  filter: grayscale(0%) drop-shadow(0 5px 5px rgba(0,0,0,0.2));
 }
+
+/* ===== POST-ITS ===== */
+.post-it-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.post-it {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.1);
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-it:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.post-it h3 {
+  margin-top: 0;
+  border-bottom: 2px dashed rgba(0,0,0,0.1);
+  padding-bottom: 10px;
+}
+
+.post-it::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, transparent 0%, transparent 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1) 100%);
+}
+
+.post-it.yellow {
+  background: linear-gradient(135deg, #FFF8B8 0%, #FEF5A4 100%);
+  color: #5E4B1A;
+}
+
+.post-it.blue {
+  background: linear-gradient(135deg, #B8E6FF 0%, #A4D8FE 100%);
+  color: #1A3D5E;
+}
+
+.post-it.green {
+  background: linear-gradient(135deg, #D1F7D1 0%, #BDF5BD 100%);
+  color: #1E5E1A;
+}
+
+.post-it.pink {
+  background: linear-gradient(135deg, #FFD1F7 0%, #FEBDF0 100%);
+  color: #5E1A54;
+}
+
+/* ===== FOOTER ===== */
+.credits-footer {
+  margin: 0 !important;
+  padding: 0.5rem !important;
+  font-size: 0.75rem;
+  color: #666;
+  border: none !important;
+}
+
+.credits-footer a {
+  color: #413224;
+  margin: 0 3px;
+}
+
+/* ===== ESTILOS ESPECÍFICOS LA PALMA ===== */
+#la-palma .panel-tabset,
+#la-palma .tab-content,
+#la-palma .tab-pane,
+#la-palma .cell,
+#la-palma .cell-output,
+#la-palma .cell-output-display,
+#la-palma .quarto-figure {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#la-palma iframe {
+  background: transparent !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ===== ESTILOS TERREMOTOS ===== */
+#earthquakes .panel-tabset {
+  background: transparent !important;
+  border: none !important;
+}
+
+#earthquakes .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+#earthquakes .map-container, 
+#earthquakes .histogram-container {
+  background: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: 500px;
+}
+
+#earthquakes .table-container {
+  width: 100%;
+  background: rgba(255,255,255,0.7);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+#earthquakes iframe {
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== CORRECCIONES SOLICITADAS ===== */
+/* 1. Mapa ocupando todo el espacio */
+.map-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+
+/* 2. Eliminar espacios transparentes */
+.main-container > * {
+  margin-top: 0 !important;
+  margin-bottom: 20px !important;
+}
+.main-container > *:last-child {
+  margin-bottom: 0 !important;
+}
+.panel-card, .panel-card-body, .panel-tabset {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 3. Quitar scroll bar */
+.plot-wrapper iframe, iframe[src*="radiative_power_daily"] {
+  overflow: hidden !important;
+}
+
+/* 4. Eliminar líneas blancas */
+#la-palma, .homepage, #earthquakes {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.dashboard, .grid, .row {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Asegurar que no hay espacios residuales */
+.dashboard > .grid {
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.dashboard > .grid > .row {
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+
+/* Limpieza específica para el banner */
+.homepage-header {
+  margin-bottom: 0 !important;
+}
+
+/* Eliminar sombras/bordes residuales de las celdas */
+.cell {
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* ELIMINAR BORDE INFERIOR DE .tab-content */
+.tab-content {
+  border-bottom: none !important;
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  padding: 1em 1em 0 1em !important;
+}
+
+/* ===== ESTILOS PARA LA SECCIÓN DE LA PALMA ===== */
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 !important;
+}
+
+.top-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.map-container {
+  height: 100%;
+  min-height: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.plots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.plot-wrapper {
+  flex: 1;
+  min-width: 400px;
+  height: 550px;
+  background: transparent !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative;
+  overflow: hidden;
+  border: none !important;
+}
+
+.video-container {
+  margin: 30px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 900px) {
+  .top-container {
+    grid-template-columns: 1fr;
+  }
+  .map-container {
+    height: 400px;
+  }
+  .plot-wrapper {
+    min-width: 100%;
+  }
+}
+
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("🚀 Iniciando carruseles...");
+  
+  function initCarousel(containerSelector) {
+    console.log(`🔍 Buscando carrusel: ${containerSelector}`);
+    const container = document.querySelector(containerSelector);
+    
+    if (!container) {
+      console.error(`❌ No se encontró el contenedor: ${containerSelector}`);
+      return;
+    }
+    
+    const slides = container.querySelectorAll('.carousel-slide');
+    const credits = container.querySelectorAll('.photo-credits');
+    
+    console.log(`📸 Slides encontrados: ${slides.length}`);
+    
+    if (slides.length === 0) {
+      console.warn(`⚠️ No hay slides en: ${containerSelector}`);
+      return;
+    }
+
+    let currentIndex = 0;
+    let intervalId;
+
+    // Función para actualizar visibilidad
+    function updateVisibility() {
+      slides.forEach((slide, index) => {
+        const isActive = index === currentIndex;
+        slide.style.opacity = isActive ? '1' : '0';
+        slide.classList.toggle('active', isActive);
+        
+        if (credits[index]) {
+          credits[index].style.display = isActive ? 'block' : 'none';
+          credits[index].classList.toggle('hidden', !isActive);
+        }
+      });
+    }
+
+    // Inicializar
+    updateVisibility();
+
+    function showNextSlide() {
+      console.log("🔄 Cambiando slide...");
+      
+      // Oculta el slide actual
+      slides[currentIndex].style.opacity = '0';
+      slides[currentIndex].classList.remove('active');
+      if (credits[currentIndex]) {
+        credits[currentIndex].style.display = 'none';
+        credits[currentIndex].classList.add('hidden');
+      }
+
+      // Calcula nuevo índice
+      currentIndex = (currentIndex + 1) % slides.length;
+      console.log(`🎯 Nuevo índice: ${currentIndex}`);
+
+      // Muestra nuevo slide
+      slides[currentIndex].style.opacity = '1';
+      slides[currentIndex].classList.add('active');
+      if (credits[currentIndex]) {
+        credits[currentIndex].style.display = 'block';
+        credits[currentIndex].classList.remove('hidden');
+      }
+    }
+
+    // Iniciar solo si hay más de 1 slide
+    if (slides.length > 1) {
+      console.log("⏱️ Iniciando intervalo...");
+      intervalId = setInterval(showNextSlide, 5000);
+
+      // Pausar al interactuar
+      container.addEventListener('mouseenter', () => {
+        console.log("⏸️ Pausando carrusel");
+        clearInterval(intervalId);
+      });
+      
+      container.addEventListener('mouseleave', () => {
+        console.log("▶️ Reanudando carrusel");
+        intervalId = setInterval(showNextSlide, 5000);
+      });
+    }
+  }
+
+  // Inicializar todos los carruseles
+  initCarousel('.homepage .carousel-container');
+  initCarousel('#la-palma .carousel-container');
+  initCarousel('#earthquakes .carousel-container');
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Crear botones de navegación
+  const navContainer = document.createElement('div');
+  navContainer.className = 'circle-nav-container';
+  
+  navContainer.innerHTML = `
+    <div class="circle-nav-btn" id="homepage-btn" title="Home"></div>
+    <div class="circle-nav-btn" id="la-palma-btn" title="La Palma"></div>
+    <div class="circle-nav-btn" id="earthquakes-btn" title="Earthquakes"></div>
+  `;
+  
+  document.body.appendChild(navContainer);
+
+  // Funcionalidad de los botones
+  const homepageBtn = document.getElementById('homepage-btn');
+  const laPalmaBtn = document.getElementById('la-palma-btn');
+  const earthquakesBtn = document.getElementById('earthquakes-btn');
+
+  homepageBtn.addEventListener('click', () => {
+    window.location.hash = '#homepage';
+    updateActiveButton('#homepage');
+  });
+  
+  laPalmaBtn.addEventListener('click', () => {
+    window.location.hash = '#la-palma';
+    updateActiveButton('#la-palma');
+  });
+  
+  earthquakesBtn.addEventListener('click', () => {
+    window.location.hash = '#earthquakes';
+    updateActiveButton('#earthquakes');
+  });
+
+  // Función para actualizar botones visibles
+  function updateActiveButton(activeTab) {
+    // Reset all buttons
+    homepageBtn.style.display = 'flex';
+    laPalmaBtn.style.display = 'flex';
+    earthquakesBtn.style.display = 'flex';
+    
+    // Hide the active tab button
+    switch(activeTab) {
+      case '#homepage':
+        homepageBtn.style.display = 'none';
+        break;
+      case '#la-palma':
+        laPalmaBtn.style.display = 'none';
+        break;
+      case '#earthquakes':
+        earthquakesBtn.style.display = 'none';
+        break;
+    }
+  }
+
+  // Actualizar al cargar la página
+  function handleHashChange() {
+    const currentHash = window.location.hash || '#homepage';
+    updateActiveButton(currentHash);
+  }
+
+  // Escuchar cambios en el hash
+  window.addEventListener('hashchange', handleHashChange);
+  
+  // Inicializar
+  handleHashChange();
+  
+  // Añadir clase al body para estilos CSS
+  document.body.setAttribute('data-has-circular-nav', 'true');
+});
+</script>
 <div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
 <div id="homepage" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-homepage">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div id="homepage-content" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="3">
+<div id="homepage-content" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="24">
 
 <div class="homepage html-fill-item html-fill-container">
+  <!-- Carrusel optimizado -->
   <div class="homepage-header html-fill-item html-fill-container">
-    <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
-    <img src="B_images/Volcana_letras.png" alt="VOLCANA" class="volcana-title">
+    <div class="carousel-container html-fill-item html-fill-container">
+      <!-- Slide 1 -->
+      <div class="carousel-slide active html-fill-item html-fill-container" style="background-image: url('B_images/volcano1.jpg');">
+        <div class="photo-credits html-fill-item html-fill-container">
+          © <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide html-fill-item html-fill-container" style="background-image: url('B_images/volcano5.jpg');">
+        <div class="photo-credits hidden html-fill-item html-fill-container">
+          © <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">El País</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide html-fill-item html-fill-container" style="background-image: url('B_images/volcano3.jpeg');">
+        <div class="photo-credits hidden html-fill-item html-fill-container">
+          © <a href="https://www.nationalgeographic.com.es/fotografia/erupcion-palma-imagenes_17364" target="_blank">National Geographic</a>
+        </div>
+      </div>
+
+      <div class="carousel-overlay html-fill-item html-fill-container"></div>
+      <div class="homepage-logo-container html-fill-item html-fill-container">
+        <img src="B_images/Logo_Volcana.jpeg" alt="VOLCANA Logo" class="homepage-logo">
+        <img src="B_images/Volcana_letras.png" alt="VOLCANA" class="volcana-title">
+      </div>
+    </div>
   </div>
 
   <div class="homepage-section html-fill-item html-fill-container">
@@ -256,24 +907,34 @@ img {
   </div>
 
   <div class="homepage-section html-fill-item html-fill-container">
-    <h2>Project Goals</h2>
-    <p class="homepage-text">
-      <strong>Volcanic Monitoring:</strong> We aim to analyze brightness temperature and radiance patterns, 
-      model post-eruption lava cooling curves (from the 2021 La Palma eruption), and monitor the fumarole fields of Teide volcano using thermal infrared data.
-    </p>
-    <p class="homepage-text">
-      <strong>Seismic-Volcanic Relationships:</strong> We focus on the global analysis of earthquake-eruption correlations, 
-      statistical modeling of eruption triggers, and case studies of notable volcanic eruption sequences.
-    </p>
-    <p class="homepage-text">
-      <strong>Seismic Filtering for Volcanic Activation:</strong> Part of our work involves filtering and analyzing seismic data 
-      to identify earthquake patterns that could potentially lead to volcanic activation, helping to assess early warning signs.
-    </p>
-    <p class="homepage-text">
-      <strong>Technical Development:</strong> We are developing Python-based tools for satellite data processing, automated visualization pipelines, 
-      and machine learning models to aid in eruption prediction and risk assessment.
-    </p>
+  <h2>Project Goals</h2>
+
+  <div class="post-it-container html-fill-item html-fill-container">
+    <!-- Post-it 1 -->
+    <div class="post-it yellow html-fill-item html-fill-container">
+      <h3>Thermal Analysis</h3>
+      <p>Analyze <strong>brightness temperature</strong> and <strong>radiance patterns</strong>, model post-eruption lava cooling curves and monitor the fumarole fields of Teide volcano using thermal infrared data.</p>
+    </div>
+
+    <!-- Post-it 2 -->
+    <div class="post-it blue html-fill-item html-fill-container">
+      <h3>Earthquake Correlation</h3>
+      <p>Analyze <strong>earthquake-eruption correlations</strong> with a custom trigger index based on distance between the epicenter of the events, the volcano we are studying and the magnitude of these events.</p>
+    </div>
+
+    <!-- Post-it 3 -->
+    <div class="post-it green html-fill-item html-fill-container">
+      <h3>Data Screening</h3>
+      <p>Perform <strong>seismic filtering</strong> to identify signs of volcanic activation with ~5 year prediction window.</p>
+    </div>
+
+    <!-- Post-it 4 -->
+    <div class="post-it pink html-fill-item html-fill-container">
+      <h3>Technical Development</h3>
+      <p>Create Python tools for satellite data processing, automated visualization pipelines and ML models for eruption prediction.</p>
+    </div>
   </div>
+</div>
 
   <div class="homepage-section html-fill-item html-fill-container">
     <h2>Data Sources</h2>
@@ -282,7 +943,7 @@ img {
       </p><ul>
         <li><strong>NASA LAADS DAAC</strong> (MODIS/VIIRS data)</li>
         <li><strong>Copernicus Open Access Hub</strong> (Sentinel satellite data)</li>
-        <li><strong>USGS Volcano Hazards Program</strong> (Seismic and volcanic data)</li>
+        <li><strong>USGS Earthquake Catalogue</strong> (Seismic and volcanic data)</li>
       </ul>
     <p></p>
   </div>
@@ -301,6 +962,15 @@ img {
     </div>
   </div>
 </div>
+  <!-- Nuevo footer de créditos -->
+  <div class="credits-footer html-fill-item html-fill-container">
+    <p>Images sources: 
+      <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta de Salamanca</a>, 
+      <a href="https://turismolanzarote.com/que-visitar/cact-lanzarote/montanas-del-fuego/" target="_blank">El País</a>, 
+      <a href="https://www.nationalgeographic.com.es/fotografia/erupcion-palma-imagenes_17364" target="_blank">National Geographic</a>.
+    </p>
+    <p>All images are used for educational and research purposes.</p>
+  </div>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -311,36 +981,1027 @@ img {
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
 </div>
-<div id="la-palma" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-la-palma">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+</div>
+<div id="la-palma" class="dashboard-page bslib-grid-item html-fill-item tab-pane grid-skip html-fill-container" data-orientation="rows" aria-labelledby="tab-la-palma">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div id="la-palma-carousel" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="26">
+
+<div class="homepage html-fill-item html-fill-container">
+  <!-- Carrusel optimizado -->
+  <div class="homepage-header html-fill-item html-fill-container">
+    <div class="carousel-container html-fill-item html-fill-container">
+      <!-- Slide 1 -->
+      <div class="carousel-slide active html-fill-item html-fill-container" style="background-image: url('B_images/lapalma.png');">
+        <div class="photo-credits html-fill-item html-fill-container">
+          © <a href="https://volcano.si.edu/volcano.cfm?vn=383010" target="_blank">Smithsonian Institution</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide html-fill-item html-fill-container" style="background-image: url('B_images/lapalma2.jpg');">
+        <div class="photo-credits hidden html-fill-item html-fill-container">
+          © <a href="https://www.elperiodico.com/es/fotos/sociedad/erupcion-palma-imagenes-12093812/12125762" target="_blank">Sociedad</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide html-fill-item html-fill-container" style="background-image: url('B_images/lapalma3.jpg');">
+        <div class="photo-credits hidden html-fill-item html-fill-container">
+          © <a href="https://www.elperiodico.com/es/fotos/sociedad/erupcion-palma-imagenes-12093812/12125762" target="_blank">Sociedad</a>
+        </div>
+      </div>
+
+      <div class="carousel-overlay html-fill-item html-fill-container"></div>
+      <div class="homepage-logo-container html-fill-item html-fill-container">
+  <div class="lapalma-logo html-fill-item html-fill-container">
+    <img src="B_images/La_Palma_contorno_naranja.png" alt="La Palma Logo">
+  </div>
+  <div class="volcana-title html-fill-item html-fill-container" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+    Volcanic Activity in La Palma
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+  <!-- Nuevo footer de créditos -->
+  <div class="credits-footer html-fill-item html-fill-container">
+    <p></p>
+  </div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div id="setup-potencia" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="27">
+
+<style>
+/* Main container */
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Hero Banner */
+.hero-banner {
+    background: linear-gradient(135deg, #d7512c 0%, #413224 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hero-title {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+    font-size: 1.1em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Context box styling */
+.context-box {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-left: 5px solid #d7512c;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.context-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.context-title {
+    color: #d7512c;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
+}
+
+.context-text {
+    color: #413224;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* Top section with text and map */
+.top-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.text-container {
+    display: flex;
+}
+
+.map-container {
+    height: 349px;
+    min-height: 349px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px transparent;
+    top: -8px;
+    position: relative;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* Añade esto al CSS */
+.map-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+}
+
+.plots-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 !important;  /* Elimina márgenes superior e inferior */
+    padding: 0 !important;
+}
+
+.plot-wrapper {
+    flex: 1;
+    min-width: 400px;
+    height: 550px;
+    background: transparent !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px transparent;
+    padding: 0 !important;
+    margin: 0 !important;  /* Elimina todos los márgenes */
+    position: relative;
+    overflow: hidden;
+    border: none !important;
+}
+
+/* Asegura que no haya espacio entre elementos consecutivos */
+.context-box + .plots-container,
+.plots-container + .context-box {
+    margin-top: 0 !important;
+}
+
+.plot-caption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #666;
+    font-size: 0.95em;
+    font-style: italic;
+    padding: 0 10px;
+}
+
+/* Video container */
+.video-container {
+    margin: 30px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* Elimina márgenes residuales */
+.main-container > * {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+}
+
+.main-container > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Elimina padding residual */
+.panel-card, .panel-card-body, .panel-tabset {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.video-caption {
+    text-align: center;
+    margin: 12px 0 0 0;
+    color: #666;
+    font-size: 0.95em;
+}
+
+/* Añade esto */
+.plot-wrapper iframe {
+    overflow: hidden !important;
+}
+
+/* O específicamente para esa gráfica */
+iframe[src*="radiative_power_daily"] {
+    overflow: hidden !important;
+}
+
+/* Key points styling */
+.key-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+/* Para La Palma */
+#la-palma {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Para Homepage y Earthquakes */
+.homepage, #earthquakes {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Eliminar cualquier borde residual */
+.dashboard, .grid, .row {
+    border: none !important;
+    outline: none !important;
+}
+
+.key-point {
+    background: rgba(255,255,255,0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-top: 4px solid #d7512c;
+}
+
+.key-point-title {
+    color: #d7512c;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+/* Credits Footer */
+.credits-footer {
+    margin-top: 30px;
+    padding: 15px 0;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .top-container {
+        grid-template-columns: 1fr;
+    }
+    .map-container {
+        height: 400px;
+    }
+    .plot-wrapper {
+        min-width: 100%;
+    }
+    .hero-title {
+        font-size: 1.8em;
+    }
+}
+
+iframe {
+    border: none !important;
+    outline: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    overflow: hidden;
+}
+/* ===== CORRECCIONES SOLICITADAS ===== */
+/* 1. Mapa ocupando todo el espacio */
+.map-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+}
+
+/* 2. Eliminar espacios transparentes */
+.main-container > * {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+}
+.main-container > *:last-child {
+    margin-bottom: 0 !important;
+}
+.panel-card, .panel-card-body, .panel-tabset {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 3. Quitar scroll bar */
+.plot-wrapper iframe, iframe[src*="radiative_power_daily"] {
+    overflow: hidden !important;
+}
+
+/* 4. Eliminar líneas blancas */
+#la-palma, .homepage, #earthquakes {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+.dashboard, .grid, .row {
+    border: none !important;
+    outline: none !important;
+}
+
+/* Asegurar que no hay espacios residuales */
+.dashboard > .grid {
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.dashboard > .grid > .row {
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+}
+
+.info-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.info-button {
+  background-color: #d7512c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  width: 600px;
+  font-size: 13.5px;
+  max-width: 90vw;
+}
+
+
+</style>
+
+<div class="main-container html-fill-item html-fill-container">
+
+  <!-- Hero Banner -->
+  <div class="hero-banner html-fill-item html-fill-container">
+    <div class="hero-title html-fill-item html-fill-container">Tajogaite Volcano: A Thermal Chronicle</div>
+    <div class="hero-subtitle html-fill-item html-fill-container">
+      The 2021 eruption on La Palma produced one of the most thoroughly documented volcanic events in Canary Islands history. 
+      Explore the thermal evolution and geological impact through interactive visualizations.
+    </div>
+  </div>
+
+  <!-- Top Section: Text + Map -->
+  <div class="top-container html-fill-item html-fill-container">
+    <!-- Text Content -->
+    <div class="text-container html-fill-item html-fill-container">
+      <div class="context-box html-fill-item html-fill-container">
+        <div class="context-title html-fill-item html-fill-container">Decoding the Thermal Signature</div>
+        <div class="context-text html-fill-item html-fill-container">
+          The Tajogaite eruption established new benchmarks in volcanic monitoring, providing unprecedented thermal resolution across its 85-day eruptive period.
+        </div>
+        <div class="context-text html-fill-item html-fill-container">
+          <strong>Visualization highlights:</strong>
+        </div>
+        <div class="context-text html-fill-item html-fill-container">
+          • Red-shaded period marks official eruption duration<br>
+          • Clear phase transitions visible at different temporal scales
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="map-container html-fill-item html-fill-container">
+      <iframe src="B_images/la_palma_eruption_viewer.html"></iframe>
+    </div>
+  </div>
+
+  <!-- Key Points Grid -->
+  <div class="key-points html-fill-item html-fill-container">
+    <div class="key-point html-fill-item html-fill-container">
+      <div class="key-point-title html-fill-item html-fill-container">85 Days of Activity</div>
+      <div class="context-text html-fill-item html-fill-container">
+        From initial fissure opening on September 19 to declared end on December 13, 2021
+      </div>
+    </div>
+    <div class="key-point html-fill-item html-fill-container">
+      <div class="key-point-title html-fill-item html-fill-container">12.2 km² Covered</div>
+      <div class="context-text html-fill-item html-fill-container">
+        Lava flows ultimately covered an area equivalent to 1,700 football fields
+      </div>
+    </div>
+    <div class="key-point html-fill-item html-fill-container">
+      <div class="key-point-title html-fill-item html-fill-container">2974 MW Peak</div>
+      <div class="context-text html-fill-item html-fill-container">
+        Maximum radiative power recorded during the paroxysmal phase
+      </div>
+    </div>
+  </div>
+
+<!-- Radiative Power Plots -->
+<div class="plots-container html-fill-item html-fill-container">
+
+  <!-- Weekly Plot -->
+  <div class="plot-wrapper html-fill-item html-fill-container">
+    <iframe src="B_images/radiative_power_plot.html"></iframe>
+    <p class="plot-caption">Weekly Maximum Radiative Power (MW) - S. Aveni Dataset</p>
+
+    <!-- Info Icon & Tooltip for Plot 1 -->
+    <div class="info-box html-fill-item html-fill-container">
+      <button class="info-button" onclick="toggleInfo('info1')">i</button>
+      <div class="info-popup html-fill-item html-fill-container" id="info1">
+        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
+        <br><br>
+        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
+      </div>
+    </div>
+  </div>
+
+  <!-- Daily Plot -->
+  <div class="plot-wrapper html-fill-item html-fill-container">
+    <iframe src="B_images/radiative_power_daily.html"></iframe>
+    <p class="plot-caption">Daily Radiative Power - NASA MODIS/VIIRS Data</p>
+
+    <!-- Info Icon & Tooltip for Plot 2 -->
+    <div class="info-box html-fill-item html-fill-container">
+      <button class="info-button" onclick="toggleInfo('info2')">i</button>
+      <div class="info-popup html-fill-item html-fill-container" id="info2">
+        This graph displays the estimated daily Fire Radiative Power (FRP) over the volcano, derived from satellite-based brightness temperature (BT) measurements using the VIIRS sensor (channel I05, 11.45 µm).
+        <br><br>
+        For each day, the observed BT is compared to a monthly thermal reference (REF), representing the typical background temperature when there is no volcanic activity. Only valid pixels within the defined volcanic area are considered.
+        <br><br>
+        The FRP for each pixel is calculated using the Stefan–Boltzmann law:
+        <br><br>
+        FRP = σ · ((T_obs)⁴ - (T_ref)⁴) · A
+        <br><br>
+        where σ is the Stefan–Boltzmann constant (5.67×10⁻⁸ W·m⁻²·K⁻⁴), T_obs is the observed brightness temperature (K), T_ref is the reference temperature (K), and A is the area per pixel (140,625 m²).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Añade esto después del plots-container y antes del video-section -->
+<!-- Timeline and Phases Section -->
+<div class="timeline-phases-section html-fill-item html-fill-container">
+    <div class="context-box html-fill-item html-fill-container" style="margin-bottom: 0;">
+        <div class="context-title html-fill-item html-fill-container">Eruption Timeline &amp; Phases</div>
+        <div class="timeline-phases-container html-fill-item html-fill-container">
+            <!-- Timeline Column -->
+            <div class="timeline-column html-fill-item html-fill-container">
+                <div class="timeline html-fill-item html-fill-container">
+                    <div class="timeline-item html-fill-item html-fill-container">
+                        <div class="timeline-date html-fill-item html-fill-container">Sep 19</div>
+                        <div class="timeline-dot html-fill-item html-fill-container"></div>
+                        <div class="timeline-content html-fill-item html-fill-container">
+                            <h4>Eruption Begins</h4>
+                            <p>Initial fissure opening at Cumbre Vieja</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item html-fill-item html-fill-container">
+                        <div class="timeline-date html-fill-item html-fill-container">Sep 28</div>
+                        <div class="timeline-dot html-fill-item html-fill-container"></div>
+                        <div class="timeline-content html-fill-item html-fill-container">
+                            <h4>First Lava Ocean Entry</h4>
+                            <p>Lava reaches the Atlantic Ocean</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item html-fill-item html-fill-container">
+                        <div class="timeline-date html-fill-item html-fill-container">Oct 15</div>
+                        <div class="timeline-dot html-fill-item html-fill-container"></div>
+                        <div class="timeline-content html-fill-item html-fill-container">
+                            <h4>Peak Activity</h4>
+                            <p>Maximum thermal output recorded</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item html-fill-item html-fill-container">
+                        <div class="timeline-date html-fill-item html-fill-container">Dec 13</div>
+                        <div class="timeline-dot html-fill-item html-fill-container"></div>
+                        <div class="timeline-content html-fill-item html-fill-container">
+                            <h4>Eruption Ends</h4>
+                            <p>Official declaration of eruption end</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phases Column -->
+            <div class="phases-column html-fill-item html-fill-container">
+                <div class="phase-card html-fill-item html-fill-container">
+                    <img src="https://cdn.shortpixel.ai/spai/w_758+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/04/volcan_foto1.jpeg" alt="Initial Phase">
+                    <div class="phase-info html-fill-item html-fill-container">
+                        <h4>Initial Phase</h4>
+                        <p>Sep 19-28</p>
+                        <div class="phase-desc html-fill-item html-fill-container">Rapid escalation as fissures opened</div>
+                    </div>
+                </div>
+
+                <div class="phase-card html-fill-item html-fill-container">
+                    <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_042.jpg" alt="Construction Phase">
+                    <div class="phase-info html-fill-item html-fill-container">
+                        <h4>Construction Phase</h4>
+                        <p>Sep 29-Oct 15</p>
+                        <div class="phase-desc html-fill-item html-fill-container">Stable cone building (300-400MW)</div>
+                    </div>
+                </div>
+
+                <div class="phase-card html-fill-item html-fill-container">
+                    <img src="https://cdn.shortpixel.ai/spai/w_739+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/09/Volcan1_sm.jpg" alt="Paroxysmal Phase">
+                    <div class="phase-info html-fill-item html-fill-container">
+                        <h4>Paroxysmal Phase</h4>
+                        <p>Oct 16-Nov 8</p>
+                        <div class="phase-desc html-fill-item html-fill-container">Peak output at 1,127MW</div>
+                    </div>
+                </div>
+
+                <div class="phase-card html-fill-item html-fill-container">
+                    <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_036.jpg" alt="Decline Phase">
+                    <div class="phase-info html-fill-item html-fill-container">
+                        <h4>Decline Phase</h4>
+                        <p>Nov 9-Dec 13</p>
+                        <div class="phase-desc html-fill-item html-fill-container">Episodic spikes during waning activity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Timeline & Phases Section */
+.timeline-phases-section {
+    margin: 40px 0;
+}
+
+.timeline-phases-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Timeline Styles */
+.timeline-column {
+    position: relative;
+    padding-right: 20px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #d7512c;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 30px;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 4px solid #d7512c;
+    border-radius: 50%;
+    left: -12px;
+    top: 0;
+}
+
+.timeline-date {
+    font-weight: bold;
+    color: #d7512c;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.timeline-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.timeline-content h4 {
+    margin-top: 0;
+    color: #413224;
+    font-size: 1.2em;
+}
+
+/* Phases Styles */
+.phases-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.phase-card {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 120px;
+}
+
+.phase-card:hover {
+    transform: translateY(-3px);
+}
+
+.phase-card img {
+    width: 150px;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.phase-info {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.phase-info h4 {
+    margin: 0 0 5px 0;
+    color: #d7512c;
+    font-size: 1.1em;
+}
+
+.phase-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.phase-desc {
+    margin-top: 8px;
+    color: #413224;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .timeline-phases-container {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-column {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .phase-card {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .phase-card img {
+        width: 100%;
+        height: 150px;
+    }
+}
+</style>
+
+<div class="volcano-content html-fill-item html-fill-container">
+  <div class="video-wrapper html-fill-item html-fill-container">
+    <iframe src="https://www.youtube.com/embed/yDgV1YTPxok" frameborder="0" allowfullscreen=""></iframe>
+    <p class="video-credit">Tajogaite Volcano Eruption Timelapse - La Palma 2021 (Credit: INVOLCAN)</p>
+  </div>
+
+
+<style>
+  .volcano-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-credit {
+    margin: 5px 0 0 0;
+    padding: 0;
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+  }
+
+  .science-context {
+    margin: 0;
+    padding: 15px;
+    background: #f8f8f8;
+    border-top: 3px solid #e74c3c;
+  }
+
+  .context-heading {
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+
+  .context-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  .findings-list {
+    margin: 10px 0 0 20px;
+    padding: 0;
+  }
+
+  .findings-list li {
+    margin-bottom: 5px;
+  }
+</style>
+
+<!-- Scientific Significance -->
+  <div class="context-box html-fill-item html-fill-container">
+    <div class="context-title html-fill-item html-fill-container">Scientific Legacy</div>
+    <div class="context-text html-fill-item html-fill-container">
+      The Tajogaite eruption provided volcanologists with unprecedented monitoring opportunities:
+    </div>
+    <div class="context-text html-fill-item html-fill-container">
+      • Highest resolution thermal record of any Canarian eruption<br>
+      • Clear documentation of phase transitions<br>
+      • Validation of new predictive models<br>
+      • Insights into basaltic volcanism dynamics<br>
+      • Benchmark for future eruption response protocols
+    </div>
+  </div>
+
+
+  <!-- Credits Footer -->
+  <div class="credits-footer html-fill-item html-fill-container">
+    <p><strong>Data sources:</strong> Smithsonian Global Volcanism Program • USGS • IGN Spain • NASA LAADS DAAC</p>
+    <p>All content presented for educational and scientific research purposes</p>
+  </div>
+</div>
+
+
+</div>
+</div>
+</div>
+<script>
+function toggleInfo() {
+  const popup = document.getElementById("info-popup");
+  popup.style.display = (popup.style.display === "block") ? "none" : "block";
+}
+</script>
+<script>
+function toggleInfo(id) {
+    const popup = document.getElementById(id);
+    const isVisible = popup.style.display === 'block';
+    
+    // Cierra cualquier otro popup abierto
+    document.querySelectorAll('.info-popup').forEach(p => p.style.display = 'none');
+
+    // Alterna visibilidad del actual
+    popup.style.display = isVisible ? 'none' : 'block';
+}
+</script>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div id="earthquakes" class="dashboard-page bslib-grid-item html-fill-item tab-pane grid-skip html-fill-container" data-orientation="rows" aria-labelledby="tab-earthquakes">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div id="earthquakes-carousel" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="29">
+
+<div class="homepage html-fill-item html-fill-container">
+  <!-- Carrusel optimizado -->
+  <div class="homepage-header html-fill-item html-fill-container">
+    <div class="carousel-container html-fill-item html-fill-container">
+      <!-- Slide 1 -->
+      <div class="carousel-slide active html-fill-item html-fill-container" style="background-image: url('B_images/earthquake2.jpg');">
+        <div class="photo-credits html-fill-item html-fill-container">
+          © <a href="https://seismo.berkeley.edu/blog/2016/11/23/an-earthquake-of-two-flavors.html" target="_blank">Berkeley Seismology Lab</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide html-fill-item html-fill-container" style="background-image: url('B_images/earthquake3.jpg');">
+        <div class="photo-credits hidden html-fill-item html-fill-container">
+          © <a href="http://www.thulescientific.com/media.htm" target="_blank">Thule Scientific</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide html-fill-item html-fill-container" style="background-image: url('B_images/earthquake4.jpg');">
+        <div class="photo-credits hidden html-fill-item html-fill-container">
+          © <a href="https://temblor.net/" target="_blank">Temblor.net</a>
+        </div>
+      </div>
+
+      <div class="carousel-overlay html-fill-item html-fill-container"></div>
+      <div class="homepage-logo-container html-fill-item html-fill-container">
+  <div class="earthquake-logo-wrapper html-fill-item html-fill-container">
+    <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquake-logo">
+  </div>
+  <div class="volcana-title html-fill-item html-fill-container" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+    Volcanic-Seismic Relation
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+  <!-- Nuevo footer de créditos -->
+  <div class="credits-footer html-fill-item html-fill-container">
+    <p></p>
+  </div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<!-- Formulario HTML para capturar inputs -->
+<div class="html-fill-item html-fill-container">
+<p><label for="date_i">Initial Date:</label> <input type="date" id="date_i" name="date_i"></p>
+</div>
+<div class="html-fill-item html-fill-container">
+<p><label for="date_f">Final Date:</label> <input type="date" id="date_f" name="date_f"></p>
+</div>
+<div class="html-fill-item html-fill-container">
+<p><label for="latitude">Latitude:</label> <input type="number" id="latitude" name="latitude" step="0.0001"></p>
+</div>
+<div class="html-fill-item html-fill-container">
+<p><label for="longitude">Longitude:</label> <input type="number" id="longitude" name="longitude" step="0.0001"></p>
+</div>
+<div class="html-fill-item html-fill-container">
+<p><label for="radius">Radius (km):</label> <input type="number" id="radius" name="region" min="1"></p>
+</div>
+<button onclick="ejecutarPython()">
+Update Search
+</button>
+<!-- Resultados -->
+<div id="result" class="html-fill-item html-fill-container">
+
+</div>
+<!-- Script para ejecutar Python con Pyodide -->
+<script type="module">
+async function ejecutarPython() {
+  // Capturar valores del formulario
+  const Initial_date = document.getElementById('date_i').value;
+  const Final_date = document.getElementById('date_f').value;
+  const latitude = parseFloat(document.getElementById('latitude').value);
+  const longitude = parseFloat(document.getElementById('longitude').value);
+  const radius = parseFloat(document.getElementById('radius').value);
+
+ // Cargar Pyodide (solo una vez)
+  if (!window.pyodide) {
+    window.pyodide = await loadPyodide({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+    });
+    await pyodide.loadPackage("micropip");
+  }
+
+  // Instalar paquetes necesarios (si es requerido)
+  await pyodide.runPythonAsync(`
+    import micropip
+    await micropip.install(['pandas', 'numpy'])  # Ejemplo: instalar librerías
+  `);
+
+  
+  // Ejecutar función de Python con los inputs
+  const resultado = await pyodide.runPythonAsync(`
+    def consultar_datos(date_i, date_f, latitude, longitude, radius):
+        # Aquí va tu lógica de Python (ejemplo simplificado)
+        import pandas as pd
+        return f"Consulted data: {date_i} a {date_f}, Coord: ({latitude}, {longitude}), Radius: {radius} km"
+
+    consultar_datos("${Initial_date}", "${Final_date}", ${latitude}, ${longitude}, ${radius})
+  `);
+
+  // Mostrar resultados en el HTML
+  document.getElementById("result").innerHTML = result;
+}
+</script>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
 <div class="panel-tabset html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
 grid-auto-rows: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div id="display-potencia" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="5">
+<div id="eq-maps-side-by-side" class="cell-output cell-output-display html-fill-item html-fill-container">
 
-        <iframe width="100%" height="400px" src="B_images/radiative_power_plot.html" frameborder="0" allowfullscreen=""></iframe>
-        
-<p>Radiative Power vs Time</p>
-</div>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
-<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div id="mapa-tajogaite-main" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="6">
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;" class="html-fill-item html-fill-container">
+  <!-- Mapa 1 -->
+  <div style="width: 50%;" class="html-fill-item html-fill-container">
+    <iframe src="./B_images/eq_map.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
 
-        <iframe width="100%" height="400px" src="B_images/mapa_tajogaite.html" frameborder="0" allowfullscreen=""></iframe>
-        
-<p>Mapa interactivo del Volcán de Tajogaite</p>
+  <!-- Mapa 2 -->
+  <div style="width: 50%;" class="html-fill-item html-fill-container">
+    <iframe src="./B_images/eq_map_filtered.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+</div>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -349,29 +2010,21 @@ grid-auto-rows: minmax(0, 1fr);">
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div id="mapa-tajogaite-surroundings" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="7">
+<div id="eq-histograms-side-by-side" class="cell-output cell-output-display html-fill-item html-fill-container">
 
-        <iframe width="100%" height="400px" src="B_images/mapa_region_alrededor.html" frameborder="0" allowfullscreen=""></iframe>
-        
-<p>Mapa interactivo de los alrededores del Volcán de Tajogaite</p>
-</div>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div id="mapa-mundi" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="8">
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;" class="html-fill-item html-fill-container">
+  <!-- Histograma 1 -->
+  <div style="width: 50%;" class="html-fill-item html-fill-container">
+    <iframe src="./B_images/eq_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
 
-        <iframe width="100%" height="550px" src="B_images/la_palma_eruption_viewer.html" frameborder="0" allowfullscreen=""></iframe>
-        
-<p>Mapa mundi simplificado con el Volcán Tajogaite</p>
+  <!-- Histograma 2 -->
+  <div style="width: 50%;" class="html-fill-item html-fill-container">
+    <iframe src="./B_images/eq_trigger_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+</div>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -380,20 +2033,12 @@ grid-auto-rows: minmax(0, 1fr);">
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-</div>
-</div>
-</div>
-<div id="el-teide" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-el-teide">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div class="cell-output cell-output-display html-fill-item html-fill-container">
-<div id="teide-analysis" class="quarto-figure quarto-figure-center html-fill-item html-fill-container">
-<figure class="figure">
-<p><img src="dashboard_files/figure-html/teide-analysis-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Análisis de Potencia Radiativa - El Teide</figcaption>
-</figure>
+<div id="eq-table-fullwidth" class="cell-output cell-output-display html-fill-item html-fill-container">
+
+<div style="width: 100%; max-width: 1200px; margin: 0 auto; margin-top: -10px;" class="html-fill-item html-fill-container">
+  <iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
 </div>
 </div>
 </div>
@@ -403,19 +2048,18 @@ grid-auto-rows: minmax(0, 1fr);">
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-</div>
-<div id="terremotos" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-terremotos">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div class="cell-output cell-output-display html-fill-item html-fill-container">
-<div id="earthquake-trigger-index" class="quarto-figure quarto-figure-center html-fill-item html-fill-container">
-<figure class="figure">
-<p><img src="dashboard_files/figure-html/earthquake-trigger-index-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Trigger Index - Terremoto</figcaption>
-</figure>
-</div>
+<div id="earthquakes-credits" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="33">
+
+
+<!-- Credits Footer -->
+  <div class="credits-footer html-fill-item html-fill-container">
+    <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
+    <p><strong>Data source:</strong> Public <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes">USGS Catalog </a> by using the Python library <a href="https://code.usgs.gov/ghsc/esi/libcomcat-python/-/tree/main?ref_type=heads"> libcomcat </a> by <a href="https://www.usgs.gov/staff-profiles/michael-hearne#data"> Mike Hearne </a> </p> 
+    <p>All content presented for educational and scientific research purposes</p>
+
+  </div>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -424,12 +2068,15 @@ grid-auto-rows: minmax(0, 1fr);">
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
 <div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
 
 </div>
 </div>
 </div>
 </div>
+
+
 
 
 <script id="quarto-html-after-body" type="application/javascript">
@@ -849,7 +2496,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</div> <!-- /container fluid -->
+ <!-- /container fluid -->
 
 <script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (_event) {
