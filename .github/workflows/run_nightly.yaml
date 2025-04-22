@@ -42,7 +42,7 @@ jobs:
       
           git pull origin main --rebase
       
-          git add -f A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc || true
+          git add -f A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc || true
           git add -f A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || true
       
           git diff --cached --quiet || git commit -m "Actualización diaria automática de FRP"
