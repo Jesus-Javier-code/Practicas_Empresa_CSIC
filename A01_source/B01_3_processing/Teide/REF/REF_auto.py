@@ -13,11 +13,9 @@ base_path = project_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixel
 output_dir = project_dir / "A00_data" / "B_processed" / "Teide" / "REF"
 output_dir.mkdir(parents=True, exist_ok=True)
 
-# === REGIÓN DEL VOLCÁN (La Palma) ===
-lat_min = 28.55
-lat_max = 28.65
-lon_min = -17.93
-lon_max = -17.80
+# === REGIÓN DEL VOLCÁN ===
+lat_min, lat_max = 28.2717, 28.2744
+lon_min, lon_max = -16.6408, -16.6380
 
 # === FECHA ACTUAL ===
 hoy = datetime.now()
@@ -26,7 +24,7 @@ month_ref = hoy.month
 
 print(f"\n=== Generando REF para {hoy.strftime('%Y-%m')} ===")
 
-# === CARGAR ARCHIVO MENSUAL BT ===
+# === CARGAR ARCHIVO MENSUAL ===
 archivo_mensual = base_path / f"BT_Teide_VJ102IMG_{year_ref}_{month_ref:02d}.nc"
 if not archivo_mensual.exists():
     print(f"✘ No se encontró el archivo mensual: {archivo_mensual.name}")
@@ -44,14 +42,17 @@ bt_template = ds_mensual["BT_I05"].isel(time=0)
 bt_template.rio.set_spatial_dims(x_dim="x", y_dim="y", inplace=True)
 bt_template.rio.write_crs("EPSG:4326", inplace=True)
 
+# === COORDENADAS COMPLETAS ===
+lat_vals = ds_mensual["latitude"].values
+lon_vals = ds_mensual["longitude"].values
+lat_grid, lon_grid = np.meshgrid(lat_vals, lon_vals, indexing="ij")
+
 # === PROCESAR ESCENAS ===
 stack_reprojected = []
 valid_files = []
 
-for i in range(ds_mensual.dims["time"]):
+for i in range(ds_mensual.sizes["time"]):
     bt = ds_mensual["BT_I05"].isel(time=i)
-    lat = ds_mensual["latitude"]
-    lon = ds_mensual["longitude"]
 
     bt_scene = bt
     bt_scene.rio.set_spatial_dims(x_dim="x", y_dim="y", inplace=True)
@@ -59,9 +60,10 @@ for i in range(ds_mensual.dims["time"]):
 
     bt_aligned = bt_scene.rio.reproject_match(bt_template)
 
+    # Aplicar máscara geográfica
     mask = (
-        (lat.values >= lat_min) & (lat.values <= lat_max) &
-        (lon.values >= lon_min) & (lon.values <= lon_max)
+        (lat_grid >= lat_min) & (lat_grid <= lat_max) &
+        (lon_grid >= lon_min) & (lon_grid <= lon_max)
     )
 
     if not np.any(mask):
@@ -87,7 +89,7 @@ for i in range(ds_mensual.dims["time"]):
     else:
         print(f"Escena {i} DESCARTADA (min={minval:.2f}, std={stdval:.2f})")
 
-print(f"\nEscenas válidas: {len(stack_reprojected)} / {ds_mensual.dims['time']}")
+print(f"\nEscenas válidas: {len(stack_reprojected)} / {ds_mensual.sizes['time']}")
 
 if len(stack_reprojected) == 0:
     print("✘ No hay escenas válidas. No se genera REF.")
