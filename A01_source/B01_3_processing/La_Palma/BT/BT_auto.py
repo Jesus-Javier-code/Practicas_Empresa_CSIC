@@ -1,10 +1,8 @@
 import os
-import glob
 import numpy as np
 import xarray as xr
 from netCDF4 import Dataset
 from pathlib import Path
-import re
 from datetime import datetime, timedelta
 
 # === RUTAS ===
@@ -32,7 +30,6 @@ def process_to_monthly(nc_file, file_date):
         i05 = obs["I05"][:]
         bt_i05 = radiance_to_bt(i05.filled(np.nan))
 
-        # Coordenadas
         south = nc.getncattr('SouthBoundingCoordinate')
         north = nc.getncattr('NorthBoundingCoordinate')
         west = nc.getncattr('WestBoundingCoordinate')
@@ -42,7 +39,6 @@ def process_to_monthly(nc_file, file_date):
         latitudes = np.linspace(north, south, n_lines)
         longitudes = np.linspace(west, east, n_pixels)
 
-    # Crear DataArray para esta escena
     da = xr.DataArray(
         bt_i05[np.newaxis, :, :],
         dims=("time", "y", "x"),
@@ -50,8 +46,8 @@ def process_to_monthly(nc_file, file_date):
             "time": [np.datetime64(file_date.date())],
             "y": np.arange(n_lines),
             "x": np.arange(n_pixels),
-            "latitude": (["y", "x"], np.meshgrid(latitudes, longitudes, indexing="ij")[0]),
-            "longitude": (["y", "x"], np.meshgrid(latitudes, longitudes, indexing="ij")[1]),
+            "latitude": ("y", latitudes),
+            "longitude": ("x", longitudes),
         },
         name="BT_I05"
     )
@@ -65,15 +61,15 @@ dia_juliano = ayer.timetuple().tm_yday
 
 print(f"\n=== Procesando BT para {ayer.strftime('%Y-%m-%d')} ===")
 
-# === ELIMINAR ACUMULADO DEL MES ANTERIOR (si es día 1)
+# === ELIMINAR ARCHIVO DEL MES ANTERIOR SI ES DÍA 1 ===
 if ayer.day == 1:
     mes_anterior = (ayer - timedelta(days=1)).strftime("%Y_%m")
-    archivo_anterior = output_dir_bt / f"BT_acumulado_{mes_anterior}.nc"
+    archivo_anterior = output_dir_bt / f"BT_LaPalma_VJ102IMG_{mes_anterior.replace('_', '_')}.nc"
     if archivo_anterior.exists():
         archivo_anterior.unlink()
         print(f"→ Archivo acumulado anterior eliminado: {archivo_anterior.name}")
 
-# === PROCESAR ARCHIVO DEL DÍA
+# === PROCESAR ARCHIVO DEL DÍA ===
 input_folder = input_base_path / f"{año}_{dia_juliano:03d}"
 archivos = list(input_folder.glob("VJ102IMG.A*.nc"))
 
@@ -91,12 +87,24 @@ print(f"→ BT media del {ayer.strftime('%Y-%m-%d')}: {bt_mean:.2f} K")
 nombre_nc = f"BT_LaPalma_VJ102IMG_{año}_{mes:02d}.nc"
 ruta_nc = output_dir_bt / nombre_nc
 
+encoding = {
+    "BT_I05": {"zlib": True, "complevel": 4, "dtype": "float32"},
+    "latitude": {"zlib": True, "dtype": "float32"},
+    "longitude": {"zlib": True, "dtype": "float32"},
+}
+
 if ruta_nc.exists():
     existente = xr.open_dataset(ruta_nc)
-    combinado = xr.concat([existente, bt_da], dim="time")
+    combinado = xr.concat([existente, bt_da.to_dataset()], dim="time")
     combinado = combinado.sortby("time")
+    existente.close()  # << importante para evitar bloqueo del archivo
 else:
     combinado = bt_da.to_dataset()
 
-combinado.to_netcdf(ruta_nc)
-print(f"✔︎ Actualizado: {ruta_nc.name}")
+try:
+    combinado.to_netcdf(ruta_nc, encoding=encoding)
+    print(f"✔︎ Actualizado: {ruta_nc.name}")
+except PermissionError:
+    alt_path = ruta_nc.parent / f"{ruta_nc.stem}_v2.nc"
+    combinado.to_netcdf(alt_path, encoding=encoding)
+    print(f"✔︎ Guardado como versión alternativa: {alt_path.name}")
