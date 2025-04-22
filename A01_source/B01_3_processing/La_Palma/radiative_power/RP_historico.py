@@ -14,8 +14,8 @@ script_path = Path(__file__).resolve()
 project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
 # Define paths for input data and output NetCDF file
-base_path = project_dir / "00_data" / "processed" / "BT_daily_pixels"
-output_nc = project_dir / "00_data" / "processed" / "Radiative_Power_by_Year_Month_Day" / "frp_btmedia_curva_final.nc"
+base_path = project_dir / "A00_data" / "B_processed" / "La_Palma" / "BT_daily_pixels"
+output_nc = project_dir / "A00_data" / "B_processed" / "La_Palma" / "Radiative_Power_by_Year_Month_Day" / "radiative_power.nc"
 
 # Stefan-Boltzmann constant (W/m²·K⁴)
 sigma = 5.67e-8  
