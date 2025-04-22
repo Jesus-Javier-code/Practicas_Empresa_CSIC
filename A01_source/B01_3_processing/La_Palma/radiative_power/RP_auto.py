@@ -10,7 +10,7 @@ script_path = Path(__file__).resolve()
 project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
 base_path = project_dir / "A00_data" / "B_processed" / "La_Palma" / "BT_daily_pixels"
-output_nc = project_dir / "A00_data" / "B_processed" / "La_Palma" / "Radiative_Power_by_Year_Month_Day" / "radiative_power_data.nc"
+output_nc = project_dir / "A00_data" / "B_processed" / "La_Palma" / "Radiative_Power_by_Year_Month_Day" / "radiative_power.nc"
 
 sigma = 5.67e-8  # Stefan-Boltzmann constant
 

@@ -45,8 +45,8 @@ def main():
     bt_script_Teide = scripts_directory / "B01_3_processing" /  "Teide" / "BT" / "BT_auto.py"
     ref_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "REF" / "REF_auto.py"
     ref_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "REF" / "REF_auto.py"
-    rp_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "radiative_power" / "rp_daily.py"
-    rp_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "radiative_power" / "rp_daily.py"
+    rp_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "radiative_power" / "RP_auto.py"
+    rp_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "radiative_power" / "RP_auto.py"
 
    
     # Start the automation process

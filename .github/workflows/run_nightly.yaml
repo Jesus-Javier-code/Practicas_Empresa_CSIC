@@ -2,7 +2,7 @@ name: Ejecutar script cada noche
 
 on:
   schedule:
-    - cron: '0 2 * * *'  
+    - cron: '0 2 * * *' 
   workflow_dispatch:
 
 jobs:
@@ -23,16 +23,22 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libhdf5-dev libnetcdf-dev libjpeg-dev build-essential
 
-      - name: Install Python dependencies
+      - name: Instalar dependencias Python
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run main script
+      - name: Ejecutar main.py
         run: python main.py
 
-      - name: Guardar archivo final de FRP
+      - name: Subir archivo La Palma
         uses: actions/upload-artifact@v4
         with:
-          name: frp_final
-          path: A00_data/B_processed/Radiative_Power_by_Year_Month_Day/radiative_power_data.nc
+          name: frp_lapalma
+          path: A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc
+
+      - name: Subir archivo Teide
+        uses: actions/upload-artifact@v4
+        with:
+          name: frp_teide
+          path: A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc
