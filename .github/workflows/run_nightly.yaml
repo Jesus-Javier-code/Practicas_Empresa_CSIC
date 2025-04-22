@@ -35,7 +35,7 @@ jobs:
 
       - name: Commit y push de los .nc
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
@@ -46,4 +46,4 @@ jobs:
           git add -f A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || true
       
           git diff --cached --quiet || git commit -m "Actualización diaria automática de FRP"
-          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          git push https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }} HEAD:main
