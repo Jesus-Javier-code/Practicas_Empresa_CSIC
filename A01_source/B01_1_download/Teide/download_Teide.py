@@ -8,22 +8,22 @@ from pathlib import Path
 # === CONSTANTS ===
 
 # Geographic bounding box for La Palma (Canary Islands)
-LAT_LA_PALMA_MIN = 28.601109109131052
+LAT_TEIDE_MIN = 28.2717
 """
 float: Southern latitude boundary of La Palma.
 """
 
-LAT_LA_PALMA_MAX = 28.62514776637218
+LAT_TEIDE_MAX = 28.2744
 """
 float: Northern latitude boundary of La Palma.
 """
 
-LON_LA_PALMA_MIN = -17.929768956228138
+LON_TEIDE_MIN = -16.6408
 """
 float: Western longitude boundary of La Palma.
 """
 
-LON_LA_PALMA_MAX = -17.872144640744164
+LON_TEIDE_MAX = -16.6380
 """
 float: Eastern longitude boundary of La Palma.
 """
@@ -90,8 +90,8 @@ def esta_en_la_palma(sur, norte, este, oeste):
     Returns:
         bool: True if the image intersects with the defined bounding box of La Palma, False otherwise.
     """
-    return (sur <= LAT_LA_PALMA_MAX and norte >= LAT_LA_PALMA_MIN and
-            oeste <= LON_LA_PALMA_MAX and este >= LON_LA_PALMA_MIN)
+    return (sur <= LAT_TEIDE_MAX and norte >= LAT_TEIDE_MIN and
+            oeste <= LON_TEIDE_MAX and este >= LON_TEIDE_MIN)
 
 
 
@@ -110,6 +110,7 @@ def es_de_noche(day_night_flag):
 
 
 # === MAIN FUNCTION ===
+
 
 def descargar_datos1():
     """
@@ -147,11 +148,14 @@ def descargar_datos1():
     year, doy = obtener_fecha_ayer()
 
     # === CONFIGURACIÓN DE DIRECTORIO DE SALIDA ===
-    # Obtener la ruta del proyecto basándonos en la ubicación de este script
-    script_path = Path(__file__).resolve().parent  # Esto obtiene el directorio donde se ejecuta el script
+    # Ruta absoluta del script actual
+    script_path = Path(__file__).resolve()
 
-    # Definir la ruta base donde quieres guardar los archivos (relativo al proyecto)
-    base_output_dir = script_path.parents[1] / "A00_data" / "B_raw" / "La_Palma"  # Subimos al directorio raíz del proyecto
+    # Subir hasta la raíz del proyecto (parece estar 3 niveles arriba desde el script)
+    proyecto_dir = script_path.parents[3]
+
+    # Ruta a la carpeta de salida dentro de A00_data
+    base_output_dir = proyecto_dir / "A00_data" / "B_raw" / "Teide"
 
     # Obtener la fecha actual (o la fecha del día juliano, según tu caso)
     year, doy = obtener_fecha_ayer()  # Asumiendo que esta función devuelve el año y el día juliano de ayer
@@ -187,7 +191,7 @@ def descargar_datos1():
                 filepath = os.path.join(output_dir, filename)
 
                 print(f"📥 Downloading {filename}...")
-                os.system(f'wget --header="Authorization: Bearer {TOKEN}" -O {filepath} {link}')
+                os.system(f'wget -q --header="Authorization: Bearer {TOKEN}" -O "{filepath}" "{link}" > /dev/null 2>&1')
 
                 try:
                     dataset = netCDF4.Dataset(filepath, 'r')
@@ -199,7 +203,7 @@ def descargar_datos1():
                     oeste = dataset.getncattr('WestBoundingCoordinate')
 
                     if esta_en_la_palma(sur, norte, este, oeste) and es_de_noche(flag):
-                        print("✔️ Valid file: nighttime over La Palma.")
+                        print("✔️ Valid file: nighttime over Teide.")
                         break
                     else:
                         print("❌ Does not meet conditions. Deleting...")

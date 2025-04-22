@@ -147,19 +147,22 @@ def descargar_datos1():
     year, doy = obtener_fecha_ayer()
 
     # === CONFIGURACIÓN DE DIRECTORIO DE SALIDA ===
-    # Obtener la ruta del proyecto basándonos en la ubicación de este script
-    script_path = Path(__file__).resolve().parent  # Esto obtiene el directorio donde se ejecuta el script
+    # Ruta absoluta del script actual
+    script_path = Path(__file__).resolve()
 
-    # Definir la ruta base donde quieres guardar los archivos (relativo al proyecto)
-    base_output_dir = script_path.parents[1] / "A00_data" / "B_raw" / "La_Palma"  # Subimos al directorio raíz del proyecto
+    # Subir hasta la raíz del proyecto (parece estar 3 niveles arriba desde el script)
+    proyecto_dir = script_path.parents[3]
 
+    # Ruta a la carpeta de salida dentro de A00_data
+    base_output_dir = proyecto_dir / "A00_data" / "B_raw" / "La_Palma"
+    
     # Obtener la fecha actual (o la fecha del día juliano, según tu caso)
     year, doy = obtener_fecha_ayer()  # Asumiendo que esta función devuelve el año y el día juliano de ayer
 
     # Definir el directorio específico para los archivos del día (a partir del directorio base)
     output_dir = base_output_dir / f"{year}_{doy}"
 
-    # Crear el directorio si no existe
+    # Crear el directorio si no existe 
     os.makedirs(output_dir, exist_ok=True)
 
     print(f"Ruta de salida: {output_dir}")
@@ -187,7 +190,7 @@ def descargar_datos1():
                 filepath = os.path.join(output_dir, filename)
 
                 print(f"📥 Downloading {filename}...")
-                os.system(f'wget --header="Authorization: Bearer {TOKEN}" -O {filepath} {link}')
+                os.system(f'wget -q --header="Authorization: Bearer {TOKEN}" -O "{filepath}" "{link}" > /dev/null 2>&1')
 
                 try:
                     dataset = netCDF4.Dataset(filepath, 'r')

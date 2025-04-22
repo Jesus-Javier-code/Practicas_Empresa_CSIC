@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 import sys
 import os
-
+import netCDF4
 
 
 def run_script(script_path):
@@ -36,22 +36,32 @@ def main():
     script_path = Path(__file__).resolve().parent
     
     # Directory where all scripts are located
-    scripts_directory = script_path / "01_source"
+    scripts_directory = script_path / "A01_source"
     
     # Full path for each script that needs to be executed
-    download_script = scripts_directory / "01_1_download" / "download.py"
-    bt_script = scripts_directory / "01_3_processing" / "BT" / "BT_auto.py"
-    ref_script = scripts_directory / "01_3_processing" / "REF" / "REF_auto.py"
-    rp_script = scripts_directory / "01_3_processing" / "radiative_power" / "rp_daily.py"
-    
+    download_script_LaPalma = scripts_directory / "B01_1_download" / "La_Palma" / "download_LaPalma.py"
+    download_script_Teide = scripts_directory / "B01_1_download" / "Teide" / "download_Teide.py"
+    bt_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "BT" / "BT_auto.py"
+    bt_script_Teide = scripts_directory / "B01_3_processing" /  "Teide" / "BT" / "BT_auto.py"
+    ref_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "REF" / "REF_auto.py"
+    ref_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "REF" / "REF_auto.py"
+    rp_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "radiative_power" / "rp_daily.py"
+    rp_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "radiative_power" / "rp_daily.py"
+
+   
     # Start the automation process
     print("Starting daily automation...")
     
     # Run the scripts in the correct order
-    run_script(download_script)  # First, download the data
-    run_script(bt_script)        # Then, convert it to brightness temperature (BT)
-    run_script(ref_script)       # Next, calculate the REF
-    run_script(rp_script)        # Finally, calculate the radiative power (FRP)
+    run_script(download_script_LaPalma)  # First, download the data
+    run_script(download_script_Teide)
+    run_script(bt_script_LaPalma)        # Then, convert it to brightness temperature (BT)
+    run_script(bt_script_Teide)        # Then, convert it to brightness temperature (BT)
+    run_script(ref_script_LaPalma)       # Next, calculate the REF
+    run_script(ref_script_Teide)       # Next, calculate the REF
+    run_script(rp_script_LaPalma)        # Finally, calculate the radiative power (FRP)
+    run_script(rp_script_Teide)        # Finally, calculate the radiative power (FRP)
+
 
     print("Process completed successfully.")
 
