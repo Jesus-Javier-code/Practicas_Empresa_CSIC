@@ -81,6 +81,10 @@ body, html, .dashboard {
   background-image: url('B_images/La_Palma_contorno_naranja.png');
   background-size: 60%;
 }
+#teide-btn { 
+  background-image: url('B_images/Teide_contorno_naranja.png');
+  background-size: 80%;
+}
 #earthquakes-btn { 
   background-image: url('B_images/earthquake-icon-naranja.png');
   background-size: 70%;
@@ -229,6 +233,28 @@ img {
   background-color: rgba(47,45,45,0.8);
   border-radius: 50% !important;
   padding: 5px !important;
+}
+
+.teide-logo {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.teide-logo img {
+  width: 70% !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  object-fit: contain;
 }
 
 /* Contenedor circular */
@@ -503,7 +529,7 @@ img {
 }
 
 /* 4. Eliminar líneas blancas */
-#la-palma, .homepage, #earthquakes {
+#la-palma, .homepage, #teide, #earthquakes {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
@@ -718,6 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Inicializar todos los carruseles
   initCarousel('.homepage .carousel-container');
   initCarousel('#la-palma .carousel-container');
+  initCarousel('#teide .carousel-container');
   initCarousel('#earthquakes .carousel-container');
 });
 </script>
@@ -734,6 +761,7 @@ document.addEventListener('DOMContentLoaded', function() {
   navContainer.innerHTML = `
     <div class="circle-nav-btn" id="homepage-btn" title="Home"></div>
     <div class="circle-nav-btn" id="la-palma-btn" title="La Palma"></div>
+    <div class="circle-nav-btn" id="teide-btn" title="Teide"></div>
     <div class="circle-nav-btn" id="earthquakes-btn" title="Earthquakes"></div>
   `;
   
@@ -743,6 +771,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const homepageBtn = document.getElementById('homepage-btn');
   const laPalmaBtn = document.getElementById('la-palma-btn');
   const earthquakesBtn = document.getElementById('earthquakes-btn');
+  const teideBtn = document.getElementById
+  ('teide-btn')
 
   homepageBtn.addEventListener('click', () => {
     window.location.hash = '#homepage';
@@ -753,7 +783,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.hash = '#la-palma';
     updateActiveButton('#la-palma');
   });
-  
+
+  teideBtn.addEventListener('click', () => {
+    window.location.hash = '#teide';
+    updateActiveButton('#teide');
+  });
+
   earthquakesBtn.addEventListener('click', () => {
     window.location.hash = '#earthquakes';
     updateActiveButton('#earthquakes');
@@ -764,6 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset all buttons
     homepageBtn.style.display = 'flex';
     laPalmaBtn.style.display = 'flex';
+    teideBtn.style.display = 'flex';
     earthquakesBtn.style.display = 'flex';
     
     // Hide the active tab button
@@ -773,6 +809,9 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
       case '#la-palma':
         laPalmaBtn.style.display = 'none';
+        break;
+      case '#teide':
+        teideBtn.style.display = 'none';
         break;
       case '#earthquakes':
         earthquakesBtn.style.display = 'none';
@@ -1440,7 +1479,7 @@ iframe {
 
   <!-- Daily Plot -->
   <div class="plot-wrapper">
-    <iframe src="B_images/radiative_power_daily.html"></iframe>
+    <iframe src="B_images/radiative_power_daily.html" scrolling = "no"></iframe>
     <p class="plot-caption">Daily Radiative Power - NASA MODIS/VIIRS Data</p>
 
     <!-- Info Icon & Tooltip for Plot 2 -->
@@ -1499,7 +1538,7 @@ iframe {
 }
 
 .hero-title {
-    font-size: 2.2em;
+    font-size: 1.5em;
     margin-bottom: 15px;
     font-weight: bold;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
@@ -1646,7 +1685,7 @@ iframe {
 .video-feature {
     position: sticky;
     top: 20px;
-    height: 650px; /* Default height if not specified */
+    height: 625px; /* Default height if not specified */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
@@ -2085,7 +2124,7 @@ iframe {
 }
 
 .hero-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color: white;
     margin-bottom: 15px;
@@ -2228,13 +2267,12 @@ iframe {
 }
 </style>
 
+
 <div class="simple-carousel">
-    <!-- Imagen Principal -->
+    <!-- Imagen Principal con contenedor de créditos -->
     <div class="main-image-container">
         <img id="main-carousel-image" src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" alt="Tajogaite Eruption">
-        <div class="photo-credits">
-            © <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>
-        </div>
+        <div id="photo-credits" class="photo-credits">© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a></div>
     </div>
    
     <!-- Indicadores de Puntos -->
@@ -2249,14 +2287,13 @@ iframe {
     </div>
 </div>
 
-
 <style>
 .simple-carousel {
     max-width: 1000px;
     margin: 30px auto;
     text-align: center;
+    position: relative;
 }
-
 
 .main-image-container {
     position: relative;
@@ -2267,14 +2304,12 @@ iframe {
     height: 500px;
 }
 
-
 #main-carousel-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: opacity 0.5s ease;
 }
-
 
 .photo-credits {
     position: absolute;
@@ -2285,23 +2320,22 @@ iframe {
     padding: 8px 15px;
     border-radius: 20px;
     font-size: 0.85em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
-
 
 .photo-credits a {
     color: #ff9e7d;
     text-decoration: none;
 }
 
-
 .carousel-dots {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin-top: 20px;
-  flex-direction: row; /* Esto asegura disposición horizontal */
+  flex-direction: row;
 }
-
 
 .dot {
     width: 14px;
@@ -2312,12 +2346,15 @@ iframe {
     transition: all 0.3s ease;
 }
 
-
 .dot.active {
     background: #d7512c;
     transform: scale(1.2);
 }
 
+/* Efecto de fade para la transición */
+.fade-out {
+    opacity: 0 !important;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -2325,7 +2362,6 @@ iframe {
         height: 350px;
     }
 }
-
 
 @media (max-width: 480px) {
     .main-image-container {
@@ -2335,6 +2371,11 @@ iframe {
     .dot {
         width: 12px;
         height: 12px;
+    }
+    
+    .photo-credits {
+        font-size: 0.7em;
+        padding: 5px 10px;
     }
 }
 </style>
@@ -2370,6 +2411,8 @@ function toggleInfo(id) {
     popup.style.display = isVisible ? 'none' : 'block';
 }
 </script>
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const images = [
@@ -2394,7 +2437,7 @@ document.addEventListener('DOMContentLoaded', function() {
             credit: '© <a href="https://www.lkz.de/%C3%BCberregionales_artikel,-la-palma-lava-noch-800-meter-von-la-laguna-entfernt-_arid,662809.html" target="_blank">1kz</a>'
         },
         {
-            src: "https://dims.apnews.com/dims4/default/54085d9/2147483647/strip/true/crop/3000x2000+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2F51c88d083ec149bd83d7899bf6e8d655%2F3000.jpeg",
+            src: "https://www.seguritecnia.es/wp-content/uploads/2022/11/plano-general-zona-exclusion.jpg",
             credit: '© <a href="https://visitlapalma.es/en/experiences/why-a-new-volcano-appeared-in-la-palma/" target="_blank">Visitlapalma</a>'
         },
         {
@@ -2403,49 +2446,114 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-
     const mainImage = document.getElementById('main-carousel-image');
-    const photoCredits = document.querySelector('.photo-credits');
+    const photoCredits = document.getElementById('photo-credits');
     const dots = document.querySelectorAll('.dot');
     let currentIndex = 0;
-
+    let intervalId;
 
     function updateCarousel(index) {
-        // Actualiza imagen y créditos
-        mainImage.style.opacity = 0;
-       
+        // Aplicar fade-out a la imagen y créditos actuales
+        mainImage.classList.add('fade-out');
+        photoCredits.classList.add('fade-out');
+        
+        // Esperar a que termine la transición de fade-out
         setTimeout(() => {
+            // Cambiar la imagen y los créditos
             mainImage.src = images[index].src;
-            photoCredits.innerHTML = images[index].credit; // Actualiza el contenido HTML de los créditos
-            mainImage.style.opacity = 1;
-        }, 200);
-       
-        // Actualiza puntos
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-       
-        currentIndex = index;
+            photoCredits.innerHTML = images[index].credit;
+            
+            // Quitar fade-out para mostrar el nuevo contenido
+            mainImage.classList.remove('fade-out');
+            photoCredits.classList.remove('fade-out');
+            
+            // Actualizar puntos activos
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            
+            currentIndex = index;
+        }, 300); // Este tiempo debe coincidir con la duración de la transición CSS
     }
-
 
     // Eventos para los puntos
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             const index = parseInt(dot.getAttribute('data-index'));
-            if (index >= 0 && index < images.length) {
+            if (index !== currentIndex) {
+                // Reiniciar el intervalo cuando se hace clic manualmente
+                clearInterval(intervalId);
                 updateCarousel(index);
+                startAutoRotation();
             }
         });
     });
 
+    // Función para iniciar la rotación automática
+    function startAutoRotation() {
+        intervalId = setInterval(() => {
+            const nextIndex = (currentIndex + 1) % images.length;
+            updateCarousel(nextIndex);
+        }, 5000);
+    }
 
-    // Navegación automática
-    setInterval(() => {
-        const nextIndex = (currentIndex + 1) % images.length;
-        updateCarousel(nextIndex);
-    }, 5000);
+    // Iniciar la rotación automática
+    startAutoRotation();
 });
 </script>
+
+# TEIDE {#teide}
+```{python}
+
+#| label: teide-carousel
+#| echo: false
+
+from IPython.display import HTML
+
+HTML(f"""
+<div class="homepage">
+  <!-- Carrusel optimizado -->
+  <div class="homepage-header">
+    <div class="carousel-container">
+      
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/teide1.jpg');">
+        <div class="photo-credits">
+          © <a href="https://diariodeavisos.elespanol.com/2020/06/las-fumarolas-del-teide-alimentarian-generadores-termoelectricos/" target="_blank">Diario de Avisos</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background-image: url('B_images/teide2.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://www.eldia.es/buzzeando/2025/04/04/extrana-imagen-teide-dejado-borrasca-dv-116063039.html" target="_blank">El Día</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background-image: url('B_images/teide3.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://tenerifeandoporelmundo.com/2016/11/ascenso-al-pico-del-teide-en-teleferico.html" target="_blank">Tenerifeando por el mundo</a>
+        </div>
+      </div>
+
+      <div class="carousel-overlay"></div>
+
+      <!-- Logo del Teide -->
+      <div class="homepage-logo-container">
+        <div class="teide-logo">
+          <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
+        </div>
+        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+          El Teide
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+""")
+```
+
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
