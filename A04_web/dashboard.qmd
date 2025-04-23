@@ -1,6 +1,6 @@
 ---
 title: "Volcana"
-format:
+format: 
   dashboard:
     orientation: rows
     scroll: false
@@ -80,6 +80,10 @@ body, html, .dashboard {
 #la-palma-btn { 
   background-image: url('B_images/La_Palma_contorno_naranja.png');
   background-size: 60%;
+}
+#teide-btn { 
+  background-image: url('B_images/Teide_contorno_naranja.png');
+  background-size: 80%;
 }
 #earthquakes-btn { 
   background-image: url('B_images/earthquake-icon-naranja.png');
@@ -229,6 +233,28 @@ img {
   background-color: rgba(47,45,45,0.8);
   border-radius: 50% !important;
   padding: 5px !important;
+}
+
+.teide-logo {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.teide-logo img {
+  width: 70% !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  object-fit: contain;
 }
 
 /* Contenedor circular */
@@ -503,7 +529,7 @@ img {
 }
 
 /* 4. Eliminar líneas blancas */
-#la-palma, .homepage, #earthquakes {
+#la-palma, .homepage, #teide, #earthquakes {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
@@ -718,6 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Inicializar todos los carruseles
   initCarousel('.homepage .carousel-container');
   initCarousel('#la-palma .carousel-container');
+  initCarousel('#teide .carousel-container');
   initCarousel('#earthquakes .carousel-container');
 });
 </script>
@@ -734,6 +761,7 @@ document.addEventListener('DOMContentLoaded', function() {
   navContainer.innerHTML = `
     <div class="circle-nav-btn" id="homepage-btn" title="Home"></div>
     <div class="circle-nav-btn" id="la-palma-btn" title="La Palma"></div>
+    <div class="circle-nav-btn" id="teide-btn" title="Teide"></div>
     <div class="circle-nav-btn" id="earthquakes-btn" title="Earthquakes"></div>
   `;
   
@@ -743,6 +771,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const homepageBtn = document.getElementById('homepage-btn');
   const laPalmaBtn = document.getElementById('la-palma-btn');
   const earthquakesBtn = document.getElementById('earthquakes-btn');
+  const teideBtn = document.getElementById
+  ('teide-btn')
 
   homepageBtn.addEventListener('click', () => {
     window.location.hash = '#homepage';
@@ -753,7 +783,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.hash = '#la-palma';
     updateActiveButton('#la-palma');
   });
-  
+
+  teideBtn.addEventListener('click', () => {
+    window.location.hash = '#teide';
+    updateActiveButton('#teide');
+  });
+
   earthquakesBtn.addEventListener('click', () => {
     window.location.hash = '#earthquakes';
     updateActiveButton('#earthquakes');
@@ -764,6 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset all buttons
     homepageBtn.style.display = 'flex';
     laPalmaBtn.style.display = 'flex';
+    teideBtn.style.display = 'flex';
     earthquakesBtn.style.display = 'flex';
     
     // Hide the active tab button
@@ -773,6 +809,9 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
       case '#la-palma':
         laPalmaBtn.style.display = 'none';
+        break;
+      case '#teide':
+        teideBtn.style.display = 'none';
         break;
       case '#earthquakes':
         earthquakesBtn.style.display = 'none';
@@ -1419,13 +1458,10 @@ iframe {
     </div>
   </div>
 
-<!-- Radiative Power Plots -->
 <div class="plots-container">
-  
-  <!-- Weekly Plot -->
+  <!-- Gráfica semanal -->
   <div class="plot-wrapper">
-    <iframe src="B_images/radiative_power_plot.html"></iframe>
-    <p class="plot-caption">Weekly Maximum Radiative Power (MW) - S. Aveni Dataset</p>
+    <iframe src="B_images/radiative_power_plot.html" style="height: 100%; width: 100%; border: none;"></iframe>
 
     <!-- Info Icon & Tooltip for Plot 1 -->
     <div class="info-box">
@@ -1438,10 +1474,9 @@ iframe {
     </div>
   </div>
 
-  <!-- Daily Plot -->
   <div class="plot-wrapper">
-    <iframe src="B_images/radiative_power_daily.html"></iframe>
-    <p class="plot-caption">Daily Radiative Power - NASA MODIS/VIIRS Data</p>
+    <iframe src="B_images/radiative_power_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+  
 
     <!-- Info Icon & Tooltip for Plot 2 -->
     <div class="info-box">
@@ -1460,6 +1495,114 @@ iframe {
     </div>
   </div>
 </div>
+
+
+<style>
+/* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
+.plots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /* Mismo ancho que el contenedor principal */
+  margin: 0 auto;
+  padding: 0;
+}
+
+.plot-wrapper {
+  flex: 1;
+  min-width: 400px;
+  height: 550px; /* Restauramos la altura original */
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px transparent; /* Estilo original */
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Ajustes para iframes - sin espacios */
+.plot-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+
+/* Análisis combinado - estilo mejorado */
+.combined-analysis {
+  width: 100%;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #d7512c;
+}
+
+.combined-analysis h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.combined-analysis p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .plot-wrapper {
+    min-width: 100%;
+    height: 450px; /* Altura ajustada para móviles */
+  }
+}
+
+/* Mantenemos los estilos del info-box como estaban */
+.info-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.info-button {
+  background-color: #d7512c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  width: 600px;
+  font-size: 13.5px;
+  max-width: 90vw;
+}
+</style>
+
+
+
+
 
 <!-- Añade esto después del plots-container y antes del video-section -->
 <!-- Eruption Background Section -->
@@ -1499,7 +1642,7 @@ iframe {
 }
 
 .hero-title {
-    font-size: 2.2em;
+    font-size: 1.5em;
     margin-bottom: 15px;
     font-weight: bold;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
@@ -1721,227 +1864,9 @@ iframe {
     }
 }
 </style>
-<div class="volcano-carousel">
-    <!-- Main Display -->
-    <div class="main-display">
-        <img id="main-image" src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" alt="Tajogaite Eruption">
-        <div class="photo-credits">
-            © <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>
-        </div>
-    </div>
-    
-    <!-- Carousel Track -->
-    <div class="carousel-container">
-        <button class="arrow prev">‹</button>
-        <div class="carousel-track">
-            <div class="carousel-item active" data-src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" data-credit='© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'>
-                <img src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" alt="Eruption Phase 1">
-            </div>
-            <div class="carousel-item" data-src="https://media.npr.org/assets/img/2021/12/25/ap21333740073510-5f70d9b23c0b55c9e3964d87928a90879948af59.jpg?s=2000&c=85&f=webp" data-credit='© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'>
-                <img src="https://media.npr.org/assets/img/2021/12/25/ap21333740073510-5f70d9b23c0b55c9e3964d87928a90879948af59.jpg?s=2000&c=85&f=webp" alt="Eruption Phase 2">
-            </div>
-            <div class="carousel-item" data-src="https://media.npr.org/assets/img/2021/12/25/ap21334562130732-4c641859dbf9a21ac419a673e2e563f9efb1d922.jpg?s=2000&c=85&f=webp" data-credit='© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'>
-                <img src="https://media.npr.org/assets/img/2021/12/25/ap21334562130732-4c641859dbf9a21ac419a673e2e563f9efb1d922.jpg?s=2000&c=85&f=webp" alt="Eruption Phase 3">
-            </div>
-            <div class="carousel-item" data-src="https://people.com/thmb/c4q0OmUYsR1r6jad-j_TITL5zqQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(986x589:988x591):format(webp)/la-palma-true-story-main-121724-22fa714f85274d5bb8346e9de713e833.jpg" data-credit='© <a href="https://people.com/la-palma-true-story-8763080" target="_blank">People Magazine</a>'>
-                <img src="https://people.com/thmb/c4q0OmUYsR1r6jad-j_TITL5zqQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(986x589:988x591):format(webp)/la-palma-true-story-main-121724-22fa714f85274d5bb8346e9de713e833.jpg" alt="Eruption Phase 4">
-            </div>
-            <div class="carousel-item" data-src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2021-12/211203-la-palma-mb-1336-5c3d37.jpg" data-credit='© <a href="https://www.lkz.de/%C3%BCberregionales_artikel,-la-palma-lava-noch-800-meter-von-la-laguna-entfernt-_arid,662809.html" target="_blank">LKZ</a>'>
-                <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2021-12/211203-la-palma-mb-1336-5c3d37.jpg" alt="Eruption Phase 5">
-            </div>
-            <div class="carousel-item" data-src="https://dims.apnews.com/dims4/default/54085d9/2147483647/strip/true/crop/3000x2000+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2F51c88d083ec149bd83d7899bf6e8d655%2F3000.jpeg" data-credit='© <a href="https://visitlapalma.es/en/experiences/why-a-new-volcano-appeared-in-la-palma/" target="_blank">Visitalapalma</a>'>
-                <img src="https://dims.apnews.com/dims4/default/54085d9/2147483647/strip/true/crop/3000x2000+0+0/resize/599x399!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2F51c88d083ec149bd83d7899bf6e8d655%2F3000.jpeg" alt="Eruption Phase 6">
-            </div>
-            <div class="carousel-item" data-src="https://static.euronews.com/articles/stories/06/17/54/94/1200x675_cmsv2_33d484f9-787a-568c-8009-58d13ff01985-6175494.jpg" data-credit='© <a href="https://www.euronews.com" target="_blank">Euronews</a>'>
-                <img src="https://static.euronews.com/articles/stories/06/17/54/94/1200x675_cmsv2_33d484f9-787a-568c-8009-58d13ff01985-6175494.jpg" alt="Eruption Phase 7">
-            </div>
-        </div>
-        <button class="arrow next">›</button>
-    </div>
-</div>
-
-<style>
-.volcano-carousel {
-    max-width: 100%;
-    margin: 40px auto;
-    padding: 0 20px;
-    overflow: hidden;
-}
-
-.main-display {
-    position: relative;
-    margin-bottom: 20px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    height: 500px;
-    background: #f5f5f5;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.main-display img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.photo-credits {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.85em;
-}
-
-.photo-credits a {
-    color: #ff9e7d;
-    text-decoration: none;
-}
-
-.carousel-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 50px;
-}
-
-.carousel-track {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 15px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 20px 10px;
-    width: 100%;
-}
-
-.carousel-track::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel-item {
-    flex: 0 0 auto;
-    width: 120px;
-    height: 80px;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.7;
-    position: relative;
-}
-
-.carousel-item:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-}
-
-.carousel-item.active {
-    width: 180px;
-    height: 120px;
-    opacity: 1;
-    box-shadow: 0 5px 15px rgba(215,81,44,0.4);
-    z-index: 2;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.arrow {
-    background: rgba(215,81,44,0.8);
-    border: none;
-    color: white;
-    font-size: 24px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    z-index: 10;
-    flex-shrink: 0;
-}
-
-.arrow:hover {
-    background: #d7512c;
-    transform: scale(1.1);
-}
-
-.prev {
-    left: 5px;
-}
-
-.next {
-    right: 5px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .main-display {
-        height: 350px;
-    }
-    
-    .carousel-item {
-        width: 90px;
-        height: 60px;
-    }
-    
-    .carousel-item.active {
-        width: 140px;
-        height: 90px;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-display {
-        height: 250px;
-    }
-    
-    .carousel-container {
-        padding: 0 40px;
-    }
-    
-    .carousel-item {
-        width: 70px;
-        height: 50px;
-    }
-    
-    .carousel-item.active {
-        width: 110px;
-        height: 70px;
-    }
-    
-    .arrow {
-        width: 35px;
-        height: 35px;
-        font-size: 20px;
-    }
-}
-</style>
-
-
-
 <!-- Combined Timeline + Gallery Section -->
 <div class="context-box" style="margin-bottom: 25px;">
   <div class="context-title">Eruption Timeline</div>
- 
   <div class="timeline-gallery-grid">
     <!-- Timeline Column -->
     <div class="timeline-column">
@@ -1988,14 +1913,13 @@ iframe {
       </div>
     </div>
    
-    <!-- Gallery Column - VERSIÓN CORREGIDA -->
+    <!-- Gallery Column -->
     <div class="gallery-column">
       <div class="thermal-gallery">
         <div class="gallery-row">
           <div class="gallery-item">
             <div class="image-container">
-              <img src="https://cdn.shortpixel.ai/spai/w_1227+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/04/volcan_foto1.jpeg"
-                   alt="  Eruption begins">
+              <img src="https://cdn.shortpixel.ai/spai/w_1227+q_glossy+ret_img+to_auto/lapalmastars.com/wp-content/uploads/2022/04/volcan_foto1.jpeg" alt="Eruption begins">
             </div>
             <div class="gallery-text">
               <div class="gallery-caption">Eruption begins</div>
@@ -2004,8 +1928,7 @@ iframe {
           </div>
           <div class="gallery-item">
             <div class="image-container">
-              <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_042.jpg"
-                   alt="Lava reaches ocean">
+              <img src="https://volcano.si.edu/images/bulletin/383010/383010_BGVN_042.jpg" alt="Lava reaches ocean">
             </div>
             <div class="gallery-text">
               <div class="gallery-caption">Lava reaches ocean</div>
@@ -2016,8 +1939,7 @@ iframe {
         <div class="gallery-row">
           <div class="gallery-item">
             <div class="image-container">
-              <img src="https://estaticos-cdn.prensaiberica.es/clip/256ca343-fefb-4826-974c-d558e4ebcc13_source-aspect-ratio_default_0.webp"
-                   alt="Peak activity">
+              <img src="https://estaticos-cdn.prensaiberica.es/clip/256ca343-fefb-4826-974c-d558e4ebcc13_source-aspect-ratio_default_0.webp" alt="Peak activity">
             </div>
             <div class="gallery-text">
               <div class="gallery-caption">Peak activity</div>
@@ -2026,8 +1948,7 @@ iframe {
           </div>
           <div class="gallery-item">
             <div class="image-container">
-              <img src="https://static.eldiario.es/clip/ae527920-e930-4d94-a28d-944f2824d2c4_16-9-discover-aspect-ratio_default_0.webp"
-                   alt="Eruption ends">
+              <img src="https://static.eldiario.es/clip/ae527920-e930-4d94-a28d-944f2824d2c4_16-9-discover-aspect-ratio_default_0.webp" alt="Eruption ends">
             </div>
             <div class="gallery-text">
               <div class="gallery-caption">Eruption ends</div>
@@ -2040,7 +1961,6 @@ iframe {
   </div>
 </div>
 
-
 <style>
 /* SOLUCIÓN DEFINITIVA PARA LAS IMÁGENES */
 .image-container {
@@ -2050,38 +1970,29 @@ iframe {
   position: relative;
 }
 
-
 .image-container img {
   width: 100%;
-  height: 10%;
+  height: 100%;
   object-fit: cover; /* Ajusta manteniendo proporciones */
   object-position: center; /* Centrado por defecto */
   display: block;
   transition: transform 0.5s ease;
 }
 
-
 /* Ajustes específicos para cada imagen */
 .gallery-row:nth-child(1) .gallery-item:nth-child(1) img {
   object-position: 60% 30%; /* Ajuste para primera imagen */
 }
 
-
 .gallery-row:nth-child(2) .gallery-item:nth-child(1) img {
   object-position: 70% center; /* Ajuste especial para la tercera imagen problemática */
 }
-
-
-
-
-
 
 /* Contenedor de texto */
 .gallery-text {
   padding: 12px 15px;
   background: rgba(255,255,255,0.95);
 }
-
 
 /* Texto descriptivo */
 .image-description {
@@ -2092,7 +2003,6 @@ iframe {
   margin: 8px 0 0 0;
 }
 
-
 /* Ajuste para el título */
 .gallery-caption {
   font-size: 0.9em;
@@ -2102,21 +2012,16 @@ iframe {
   color: #d7512c;
 }
 
-
 /* Reestructuración del ítem */
 .gallery-item {
   display: flex;
   flex-direction: column;
 }
 
-
 /* Ajuste de altura de imagen */
 .image-container {
   height: 150px; /* Reducida para compensar el texto */
 }
-
-
-
 
 /* ESTRUCTURA PRINCIPAL */
 .timeline-gallery-grid {
@@ -2126,13 +2031,11 @@ iframe {
   margin-top: 20px;
 }
 
-
 /* TIMELINE STYLES */
 .compact-timeline {
   position: relative;
   padding-left: 40px;
 }
-
 
 .compact-timeline::before {
   content: '';
@@ -2144,12 +2047,10 @@ iframe {
   left: 15px;
 }
 
-
 .timeline-event {
   position: relative;
   margin-bottom: 25px;
 }
-
 
 .event-date {
   font-weight: bold;
@@ -2157,7 +2058,6 @@ iframe {
   margin-bottom: 5px;
   font-size: 0.95em;
 }
-
 
 .event-dot {
   position: absolute;
@@ -2170,7 +2070,6 @@ iframe {
   top: 3px;
 }
 
-
 .event-content {
   background: rgba(255,255,255,0.85);
   border-radius: 8px;
@@ -2179,11 +2078,9 @@ iframe {
   transition: transform 0.3s ease;
 }
 
-
 .event-content:hover {
   transform: translateX(5px);
 }
-
 
 .event-content h4 {
   margin-top: 0;
@@ -2191,13 +2088,11 @@ iframe {
   font-size: 1.1em;
 }
 
-
 .event-content p {
   color: #666;
   margin-bottom: 0;
   font-size: 0.9em;
 }
-
 
 /* GALLERY STYLES */
 .thermal-gallery {
@@ -2206,13 +2101,11 @@ iframe {
   gap: 15px;
 }
 
-
 .gallery-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
-
 
 .gallery-item {
   border-radius: 8px;
@@ -2221,17 +2114,14 @@ iframe {
   transition: all 0.3s ease;
 }
 
-
 .gallery-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-
 .gallery-item:hover img {
   transform: scale(1.05);
 }
-
 
 .gallery-caption {
   padding: 10px;
@@ -2241,7 +2131,6 @@ iframe {
   color: #413224;
   font-weight: bold;
 }
-
 
 /* RESPONSIVE ADJUSTMENTS */
 @media (max-width: 900px) {
@@ -2259,7 +2148,6 @@ iframe {
   }
 }
 
-
 @media (max-width: 480px) {
   .gallery-row {
     grid-template-columns: 1fr;
@@ -2273,97 +2161,328 @@ iframe {
     padding: 12px;
   }
 }
+</style>
 
-  <!-- Video Section -->
-  <div class="context-box">
-    <div class="context-title">Eruption Timeline Visualization</div>
-    <div class="context-text">
-      This timelapse compilation shows the dramatic evolution of Tajogaite volcano from multiple perspectives, capturing key moments in the eruption sequence.
+<!-- Media Gallery Header Section -->
+<div class="hero-banner media-gallery-header">
+    <div class="hero-content">
+        <div class="hero-title">Tajogaite in Motion</div>
+        <div class="hero-subtitle">
+            Visual chronicle of the 2021 eruption through thermal imagery, video documentation, and photographic records
+        </div>
     </div>
-  </div>
-  
-<div class="volcano-content">
-  <div class="video-wrapper">
-    <iframe src="https://www.youtube.com/embed/yDgV1YTPxok" frameborder="0" allowfullscreen></iframe>
-    <p class="video-credit">Tajogaite Volcano Eruption Timelapse - La Palma 2021 (Credit: INVOLCAN)</p>
-  </div>
-  
+</div>
+
+<!-- Video Feature Section -->
+<div class="context-box">
+    <div class="context-title">Volcanic Fury Captured</div>
+    <div class="context-text">
+        The most intense moments of the eruption were documented by scientists, journalists, and local residents. 
+        These videos showcase the raw power of the eruption and its evolving activity patterns.
+    </div>
+    
+    <!-- Video Grid -->
+    <div class="media-grid">
+        <!-- Main Video -->
+        <div class="video-feature-main">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/yDgV1YTPxok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-caption">BBC Earth documentary footage showing the eruption's most violent phase (October 2021)</div>
+        </div>
+        
+        <!-- Secondary Videos -->
+        <div class="video-secondary">
+            <div class="small-video">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/5Q6yjyP4k5E" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">Time-lapse of lava flow advancement (Canary Islands Volcanology Institute)</div>
+            </div>
+            
+            <div class="small-video">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/3uNy5T-tWJw" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">Thermal camera footage showing vent dynamics (IGN Spain)</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <style>
-  .volcano-content {
+.hero-banner {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://estaticos-cdn.prensaiberica.es/clip/256ca343-fefb-4826-974c-d558e4ebcc13_source-aspect-ratio_default_0.webp');
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .video-wrapper {
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff9e7d, #f2d900);
+    border-radius: 2px;
+}
+
+.media-gallery-header .hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.media-gallery-header .hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+/* Video Grid Styles */
+.media-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.video-feature-main {
+    grid-row: span 2;
+}
+
+.video-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
-    margin: 0;
-  }
-  
-  .video-wrapper iframe {
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.video-container iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     border: none;
-  }
-  
-  .video-credit {
-    margin: 5px 0 0 0;
-    padding: 0;
-    font-size: 0.9em;
-    color: #666;
+}
+
+.video-caption {
     text-align: center;
-  }
-  
-  .science-context {
-    margin: 0;
-    padding: 15px;
-    background: #f8f8f8;
-    border-top: 3px solid #e74c3c;
-  }
-  
-  .context-heading {
-    margin: 0 0 10px 0;
-    color: #333;
-  }
-  
-  .context-content {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .findings-list {
-    margin: 10px 0 0 20px;
-    padding: 0;
-  }
-  
-  .findings-list li {
-    margin-bottom: 5px;
-  }
+    color: #666;
+    font-size: 0.85em;
+    padding: 0 10px;
+}
+
+.small-video .video-container {
+    padding-bottom: 60%; /* Slightly different aspect ratio */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .media-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-secondary {
+        flex-direction: row;
+    }
+    
+    .media-gallery-header .hero-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-secondary {
+        flex-direction: column;
+    }
+    
+    .small-video .video-container {
+        padding-bottom: 56.25%;
+    }
+    
+    .media-gallery-header .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .media-gallery-header .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+.context-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.context-title {
+    font-size: 1.5rem;
+    color: #d7512c;
+    margin-bottom: 15px;
+    font-weight: 700;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.context-text {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
 </style>
 
-<!-- Scientific Significance -->
-  <div class="context-box">
-    <div class="context-title">Scientific Legacy</div>
-    <div class="context-text">
-      The Tajogaite eruption provided volcanologists with unprecedented monitoring opportunities:
+
+<div class="simple-carousel">
+    <!-- Imagen Principal con contenedor de créditos -->
+    <div class="main-image-container">
+        <img id="main-carousel-image" src="https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp" alt="Tajogaite Eruption">
+        <div id="photo-credits" class="photo-credits">© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a></div>
     </div>
-    <div class="context-text">
-      • Highest resolution thermal record of any Canarian eruption<br>
-      • Clear documentation of phase transitions<br>
-      • Validation of new predictive models<br>
-      • Insights into basaltic volcanism dynamics<br>
-      • Benchmark for future eruption response protocols
+   
+    <!-- Indicadores de Puntos -->
+    <div class="carousel-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+        <span class="dot" data-index="4"></span>
+        <span class="dot" data-index="5"></span>
+        <span class="dot" data-index="6"></span>
     </div>
-  </div>
-  
+</div>
+
+<style>
+.simple-carousel {
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+}
+
+.main-image-container {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 500px;
+}
+
+#main-carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+.photo-credits {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.photo-credits a {
+    color: #ff9e7d;
+    text-decoration: none;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #d7512c;
+    transform: scale(1.2);
+}
+
+/* Efecto de fade para la transición */
+.fade-out {
+    opacity: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-image-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-image-container {
+        height: 250px;
+    }
+   
+    .dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .photo-credits {
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+}
+</style>
 
   <!-- Credits Footer -->
   <div class="credits-footer">
@@ -2377,6 +2496,21 @@ iframe {
 
 
 ```
+<script>
+// Script para ajuste dinámico si es necesario
+document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('.plot-wrapper iframe');
+  
+  function resizeIframes() {
+    iframes.forEach(iframe => {
+      iframe.style.height = iframe.parentElement.offsetHeight + 'px';
+    });
+  }
+  
+  resizeIframes();
+  window.addEventListener('resize', resizeIframes);
+});
+</script>
 <script>
 function toggleInfo() {
   const popup = document.getElementById("info-popup");
@@ -2397,102 +2531,178 @@ function toggleInfo(id) {
 }
 </script>
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const track = document.querySelector('.carousel-track');
-    const items = document.querySelectorAll('.carousel-item');
-    const mainImage = document.getElementById('main-image');
-    const photoCredits = document.querySelector('.photo-credits');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    
-    let currentIndex = 0;
-    let isAnimating = false;
-    
-    // Initialize
-    updateMainImage();
-    centerActiveItem();
-    
-    // Navigation functions
-    function updateMainImage() {
-        const activeItem = items[currentIndex];
-        mainImage.src = activeItem.dataset.src;
-        photoCredits.innerHTML = activeItem.dataset.credit;
-        
-        // Update active class
-        items.forEach((item, index) => {
-            item.classList.toggle('active', index === currentIndex);
-        });
-    }
-    
-    function centerActiveItem() {
-        if (isAnimating) return;
-        isAnimating = true;
-        
-        const activeItem = items[currentIndex];
-        const containerWidth = track.parentElement.offsetWidth;
-        const itemWidth = activeItem.offsetWidth;
-        const itemOffset = activeItem.offsetLeft;
-        const itemCenter = itemOffset + (itemWidth / 2);
-        const scrollPosition = itemCenter - (containerWidth / 2);
-        
-        track.scrollTo({
-            left: scrollPosition,
-            behavior: 'smooth'
-        });
-        
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500);
-    }
-    
-    // Event listeners
-    prevBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
-        updateMainImage();
-        centerActiveItem();
-    });
-    
-    nextBtn.addEventListener('click', () => {
-        if (isAnimating) return;
-        currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
-        updateMainImage();
-        centerActiveItem();
-    });
-    
-    // Click on thumbnail
-    items.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            if (isAnimating || index === currentIndex) return;
-            currentIndex = index;
-            updateMainImage();
-            centerActiveItem();
-        });
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevBtn.click();
-        } else if (e.key === 'ArrowRight') {
-            nextBtn.click();
+    const images = [
+        {
+            src: "https://media.npr.org/assets/img/2021/12/25/ap21346543334883-e942f2c48324259d57bc960cd29c943dd67667a9.jpg?s=2000&c=85&f=webp",
+            credit: '© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'
+        },
+        {
+            src: "https://media.npr.org/assets/img/2021/12/25/ap21333740073510-5f70d9b23c0b55c9e3964d87928a90879948af59.jpg?s=2000&c=85&f=webp",
+            credit: '© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'
+        },
+        {
+            src: "https://media.npr.org/assets/img/2021/12/25/ap21334562130732-4c641859dbf9a21ac419a673e2e563f9efb1d922.jpg?s=2000&c=85&f=webp",
+            credit: '© <a href="https://www.npr.org/2021/12/25/1068012842/la-palma-volcano-eruption-ends" target="_blank">NPR</a>'
+        },
+        {
+            src: "https://people.com/thmb/c4q0OmUYsR1r6jad-j_TITL5zqQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(986x589:988x591):format(webp)/la-palma-true-story-main-121724-22fa714f85274d5bb8346e9de713e833.jpg",
+            credit: '© <a href="https://people.com/la-palma-true-story-8763080" target="_blank">People</a>'
+        },
+        {
+            src: "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2021-12/211203-la-palma-mb-1336-5c3d37.jpg",
+            credit: '© <a href="https://www.lkz.de/%C3%BCberregionales_artikel,-la-palma-lava-noch-800-meter-von-la-laguna-entfernt-_arid,662809.html" target="_blank">1kz</a>'
+        },
+        {
+            src: "https://www.seguritecnia.es/wp-content/uploads/2022/11/plano-general-zona-exclusion.jpg",
+            credit: '© <a href="https://visitlapalma.es/en/experiences/why-a-new-volcano-appeared-in-la-palma/" target="_blank">Visitlapalma</a>'
+        },
+        {
+            src: "https://static.euronews.com/articles/stories/06/17/54/94/1200x675_cmsv2_33d484f9-787a-568c-8009-58d13ff01985-6175494.jpg",
+            credit: '© <a href="https://www.euronews.com" target="_blank">Euronews</a>'
         }
+    ];
+
+    const mainImage = document.getElementById('main-carousel-image');
+    const photoCredits = document.getElementById('photo-credits');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    let intervalId;
+
+    function updateCarousel(index) {
+        // Aplicar fade-out a la imagen y créditos actuales
+        mainImage.classList.add('fade-out');
+        photoCredits.classList.add('fade-out');
+        
+        // Esperar a que termine la transición de fade-out
+        setTimeout(() => {
+            // Cambiar la imagen y los créditos
+            mainImage.src = images[index].src;
+            photoCredits.innerHTML = images[index].credit;
+            
+            // Quitar fade-out para mostrar el nuevo contenido
+            mainImage.classList.remove('fade-out');
+            photoCredits.classList.remove('fade-out');
+            
+            // Actualizar puntos activos
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            
+            currentIndex = index;
+        }, 300); // Este tiempo debe coincidir con la duración de la transición CSS
+    }
+
+    // Eventos para los puntos
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index'));
+            if (index !== currentIndex) {
+                // Reiniciar el intervalo cuando se hace clic manualmente
+                clearInterval(intervalId);
+                updateCarousel(index);
+                startAutoRotation();
+            }
+        });
     });
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        centerActiveItem();
-    });
+
+    // Función para iniciar la rotación automática
+    function startAutoRotation() {
+        intervalId = setInterval(() => {
+            const nextIndex = (currentIndex + 1) % images.length;
+            updateCarousel(nextIndex);
+        }, 5000);
+    }
+
+    // Iniciar la rotación automática
+    startAutoRotation();
 });
 </script>
+
+<script>
+// Script opcional para ajuste dinámico de altura
+document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('.plot-wrapper iframe');
+  
+  function resizeIframes() {
+    iframes.forEach(iframe => {
+      iframe.style.height = iframe.parentElement.offsetHeight + 'px';
+    });
+  }
+  
+  // Ajustar al cargar y al redimensionar
+  resizeIframes();
+  window.addEventListener('resize', resizeIframes);
+});
+</script>
+
+# TEIDE {#teide}
+```{python}
+
+#| label: teide-carousel
+#| echo: false
+
+from IPython.display import HTML
+
+HTML(f"""
+<div class="homepage">
+  <!-- Carrusel optimizado -->
+  <div class="homepage-header">
+    <div class="carousel-container">
+      
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/teide1.jpg');">
+        <div class="photo-credits">
+          © <a href="https://diariodeavisos.elespanol.com/2020/06/las-fumarolas-del-teide-alimentarian-generadores-termoelectricos/" target="_blank">Diario de Avisos</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background-image: url('B_images/teide2.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://www.eldia.es/buzzeando/2025/04/04/extrana-imagen-teide-dejado-borrasca-dv-116063039.html" target="_blank">El Día</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background-image: url('B_images/teide3.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://tenerifeandoporelmundo.com/2016/11/ascenso-al-pico-del-teide-en-teleferico.html" target="_blank">Tenerifeando por el mundo</a>
+        </div>
+      </div>
+
+      <div class="carousel-overlay"></div>
+
+      <!-- Logo del Teide -->
+      <div class="homepage-logo-container">
+        <div class="teide-logo">
+          <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
+        </div>
+        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+          El Teide
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+""")
+```
+
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
 
-## Visualización principal 
-
-
+```{python}
+#| label: geometry_1
+#| include: false
+import subprocess
+result = subprocess.run(["python", "../A02_utils/geometry.py"], capture_output=True, text=True)
+print(result.stdout)
+if result.stderr:
+    print("Errors:", result.stderr)
+```
 
 ```{python}
 #| label: earthquakes-carousel
@@ -2544,280 +2754,159 @@ HTML(f"""
 ```
 
 
+## Formulario de Entrada
+
+<!-- Formulario HTML para capturar inputs -->
+<div>
+  <label for="date_i">Initial Date:</label>
+  <input type="date" id="date_i" name="date_i">
+</div>
+
+<div>
+  <label for="date_f">Final Date:</label>
+  <input type="date" id="date_f" name="date_f">
+</div>
+
+<div>
+  <label for="latitude">Latitude:</label>
+  <input type="number" id="latitude" name="latitude" step="0.0001">
+</div>
+
+<div>
+  <label for="longitude">Longitude:</label>
+  <input type="number" id="longitude" name="longitude" step="0.0001">
+</div>
+
+
+<div>
+  <label for="radius">Radius (km):</label>
+  <input type="number" id="radius" name="region" min="1">
+</div>
+
+<button onclick="ejecutarPython()">Update Search</button>
+
+<!-- Resultados -->
+<div id="result"></div>
+
+<!-- Script para ejecutar Python con Pyodide -->
+<script type="module">
+async function ejecutarPython() {
+  // Capturar valores del formulario
+  const Initial_date = document.getElementById('date_i').value;
+  const Final_date = document.getElementById('date_f').value;
+  const latitude = parseFloat(document.getElementById('latitude').value);
+  const longitude = parseFloat(document.getElementById('longitude').value);
+  const radius = parseFloat(document.getElementById('radius').value);
+
+ // Cargar Pyodide (solo una vez)
+  if (!window.pyodide) {
+    window.pyodide = await loadPyodide({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+    });
+    await pyodide.loadPackage("micropip");
+  }
+
+  // Instalar paquetes necesarios (si es requerido)
+  await pyodide.runPythonAsync(`
+    import micropip
+    await micropip.install(['pandas', 'numpy'])  # Ejemplo: instalar librerías
+  `);
+
+  
+  // Ejecutar función de Python con los inputs
+  const resultado = await pyodide.runPythonAsync(`
+    def consultar_datos(date_i, date_f, latitude, longitude, radius):
+        # Aquí va tu lógica de Python (ejemplo simplificado)
+        import pandas as pd
+        return f"Consulted data: {date_i} a {date_f}, Coord: ({latitude}, {longitude}), Radius: {radius} km"
+
+    consultar_datos("${Initial_date}", "${Final_date}", ${latitude}, ${longitude}, ${radius})
+  `);
+
+  // Mostrar resultados en el HTML
+  document.getElementById("result").innerHTML = result;
+}
+</script>
+
+## Earthquake Monitoring {.panel-tabset}
+
+### Mapa de Actividad Sísmica
+
 ```{python}
-#| label: geometry_1
-#| include: false
-import subprocess
-result = subprocess.run(["python", "../A02_utils/geometry.py"], capture_output=True, text=True)
-print(result.stdout)
-if result.stderr:
-    print("Errors:", result.stderr)
+#| label: eq-maps-side-by-side
+#| echo: false
+from IPython.display import HTML
+
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Mapa 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+
+  <!-- Mapa 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map_filtered.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+</div>
+'''))
+
+
+```
+```{python}
+#| label: eq-histograms-side-by-side
+#| echo: false
+from IPython.display import HTML
+
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Histograma 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+
+  <!-- Histograma 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_trigger_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+</div>
+'''))
+
+```
+
+```{python}
+#| label: eq-table-fullwidth
+#| echo: false
+from IPython.display import HTML
+
+display(HTML('''
+<div style="width: 100%; max-width: 1200px; margin: 0 auto; margin-top: -10px;">
+  <iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+</div>
+'''))
+
+```
+
+```{python}
+#| label: earthquakes-credits
+#| echo: false
+HTML("""
+
+<!-- Credits Footer -->
+  <div class="credits-footer">
+    <p><strong>Data sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
+    <p>All content presented for educational and scientific research purposes</p>
+  </div>
+</div>
+""")
+
 ```
 
 
 
-## Earthquake Monitoring {.panel-tabset}
 
-<!-- Formulario HTML -->
 
-````{=html}
-<style>
-  /* Estilos principales */
-  .dashboard-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-    display: flex;
-    gap: 30px;
-  }
-  
-  /* Columna izquierda (formulario) */
-  .left-column {
-    flex: 0 0 350px;
-    position: sticky;
-    top: 20px;
-    align-self: flex-start;
-  }
-  
-  .form-container {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  /* Columna derecha (visualizaciones) */
-  .right-column {
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .visualization-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .visualization-item {
-    flex: 1 1 calc(50% - 20px);
-    min-width: 300px;
-  }
-  
-  .visualization-iframe {
-    width: 100%;
-    height: 400px;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-  
-  .full-width-item {
-    flex: 1 1 100%;
-  }
-  
-  @media (max-width: 992px) {
-    .dashboard-container {
-      flex-direction: column;
-    }
-    .left-column {
-      flex: 1 1 100%;
-      position: static;
-    }
-    .visualization-item {
-      flex: 1 1 100%;
-    }
-  }
-</style>
 
-<div class="dashboard-container">
-  <!-- Columna izquierda - Formulario -->
-  <div class="left-column">
-    <div class="form-container">
-      <form id="my-form">
-        <div class="form-group">
-          <label for="date_i">Initial date:</label>
-          <input type="date" id="date_i" name="date_i" class="form-control" max="" required>
 
-          <label for="date_f">Final date:</label>
-          <input type="date" id="date_f" name="date_f" class="form-control" max="" required>
 
-          <label for="latitude">Latitude:</label>
-          <input type="number" id="latitude" step="any" name="latitude" class="form-control" required>
 
-          <label for="longitude">Longitude:</label>
-          <input type="number" id="longitude" step="any" name="longitude" class="form-control" required>
-
-          <label for="radius">Radius of search (km):</label>
-          <input type="number" id="radius" name="radius" class="form-control" min="0.1" step="0.1" required>
-
-          <label for="check_all">Filtered search:</label>
-          <input type="checkbox" id="check_all" name="check_all">
-
-          <button type="submit" class="btn btn-primary">Update displays</button>
-        </div>
-      </form>
-      
-      <!-- Barra de progreso y mensajes -->
-      <div id="progress-container" style="display: none; margin-top: 20px;">
-        <label for="progress-bar">Processing:</label>
-        <progress id="progress-bar" value="0" max="100" style="width: 100%;"></progress>
-      </div>
-      <div id="status-message" class="alert alert-info" style="display:none;"></div>
-    </div>
-  </div>
-
-  <!-- Columna derecha - Visualizaciones -->
-  <div class="right-column">
-    <!-- Mapa de Actividad Sísmica -->
-    <h3>Seismic Activity Maps</h3>
-    <div class="visualization-row">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map.html" class="visualization-iframe"></iframe>
-      </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map_filtered.html" class="visualization-iframe"></iframe>
-      </div>
-    </div>
-
-    <!-- Histogramas -->
-    <h3>Seismic Event Histograms</h3>
-    <div class="visualization-row">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_histogram.html" class="visualization-iframe"></iframe>
-      </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe"></iframe>
-      </div>
-    </div>
-
-    <!-- Tabla -->
-    <h3>Detailed Event Table</h3>
-    <div class="visualization-row">
-      <div class="visualization-item full-width-item">
-        <iframe src="./B_images/eq_table.html" class="visualization-iframe" style="height: 500px;"></iframe>
-      </div>
-    </div>
-
-    <!-- Créditos -->
-    <div class="credits-footer" style="margin-top: 40px; font-size: 0.9em; color: #666;">
-      <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
-      <p><strong>Data source:</strong> Public <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes">USGS Catalog</a></p>
-    </div>
-  </div>
-</div>
-````
-
-````{=html}
-
-<script type="module">
-  const form = document.getElementById('my-form');
-  const progressContainer = document.getElementById("progress-container");
-  const progressBar = document.getElementById("progress-bar");
-  const statusElement = document.getElementById('status-message');
-  const outputElement = document.getElementById('python-output');
-
-  // Limitar fechas máximas
-  const today = new Date().toISOString().split('T')[0];
-  document.getElementById("date_i").max = today;
-  document.getElementById("date_f").max = today;
-
-  async function initializePyodide() {
-    if (!window.pyodide) {
-      statusElement.textContent = "Inicializando Pyodide...";
-      statusElement.style.display = "block";
-
-      window.pyodide = await loadPyodide({
-        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
-      });
-
-      await pyodide.loadPackage(["micropip", "pandas", "numpy"]);
-    }
-  }
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Evita que la página se recargue
-
-    console.log("Formulario enviado. Capturando valores...");
-    const formData = new FormData(form);
-    const date_i = formData.get("date_i");
-    const date_f = formData.get("date_f");
-    const latitude = parseFloat(formData.get("latitude"));
-    const longitude = parseFloat(formData.get("longitude"));
-    const radius = parseFloat(formData.get("radius"));
-    const checkAll = formData.get("check_all") !== null ? "yes" : "no";
-
-    console.log("Valores capturados:");
-    console.log("date_i:", date_i);
-    console.log("date_f:", date_f);
-    console.log("latitude:", latitude);
-    console.log("longitude:", longitude);
-    console.log("radius:", radius);
-    console.log("checkAll:", checkAll);
-
-    if (radius <= 0) {
-        alert("El radio debe ser mayor que 0");
-        return;
-    }
-
-    console.log("Inicializando Pyodide...");
-    await initializePyodide();
-    console.log("Pyodide inicializado.");
-
-    try {
-        console.log("Cargando script de Python desde la URL...");
-        const response = await fetch("https://github.com/Jesus-Javier-code/Practicas_Empresa_CSIC/blob/main/A04_web/dashboard_script_eq.py");
-        const pythonCode = await response.text();
-        console.log("Script de Python cargado correctamente.");
-
-        console.log("Ejecutando script de Python...");
-        await pyodide.runPythonAsync(pythonCode);
-        console.log("Script de Python ejecutado correctamente.");
-
-        console.log("Pasando valores del formulario a Python...");
-        pyodide.globals.set("date_i", date_i);
-        pyodide.globals.set("date_f", date_f);
-        pyodide.globals.set("latitude", latitude);
-        pyodide.globals.set("longitude", longitude);
-        pyodide.globals.set("radius", radius);
-        pyodide.globals.set("check_all", checkAll);
-        console.log("Valores pasados a Python.");
-
-        console.log("Llamando a la función de Python 'get_all_events'...");
-        await pyodide.runPythonAsync(`
-            result = get_all_events(check_all)
-        `);
-        console.log("Función 'get_all_events' ejecutada correctamente.");
-
-        console.log("Mostrando barra de progreso...");
-        progressContainer.style.display = "block";
-        progressBar.value = 0;
-
-        console.log("Progreso: 20%");
-        progressBar.value = 20;
-
-        console.log("Progreso: 50%");
-        progressBar.value = 50;
-
-        console.log("Progreso: 80%");
-        progressBar.value = 80;
-
-        console.log("Progreso: 100%");
-        progressBar.value = 100;
-
-        statusElement.textContent = "Análisis completado";
-    } catch (error) {
-        console.error("Error durante la ejecución:", error);
-        statusElement.textContent = "Ocurrió un error: " + error.message;
-        statusElement.className = "alert alert-danger";
-    } finally {
-        console.log("Ocultando barra de progreso...");
-        setTimeout(() => {
-            progressContainer.style.display = "none";
-            progressBar.value = 0;
-        }, 2000);
-    }
-});
-
-</script>
-````
