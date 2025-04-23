@@ -280,8 +280,6 @@ def generate_histogram(data, output_folder):
             )
         )
 
-
-
         # Guardar el histograma como un archivo HTML
         fig.write_html(hist_html_path, full_html=True)
         print(f"✅ Histogram saved to: {hist_html_path}")
@@ -289,108 +287,69 @@ def generate_histogram(data, output_folder):
         print(f"❌ Error generating histogram: {str(e)}", file=sys.stderr)
         raise
 
-""""
+def count_events_per_month(data):
+    data["time"] = pd.to_datetime(data["time"], errors="coerce")
+    data = data.dropna(subset=["time"])
 
-def plot_events_histogram(file="wrk_df.csv"):
+    monthly_counts = data.resample("ME", on = "time").size().reset_index(name = "event_count")
+    monthly_counts.rename(columns = {"time": "date"}, inplace = True)
+
+    return monthly_counts
+
+def plot_events_histogram(file = "wrk_df.csv"):
     path = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(path, "..", ".."))
 
     file_path = os.path.join(project_root, f"A00_data/B_eq_processed/{file}")
-
     df = pd.read_csv(file_path)
 
-    # Convertir la columna 'time' a tipo datetime
-    df["time"] = pd.to_datetime(df["time"], errors='coerce')
+    df["time"] = pd.to_datetime(df["time"], errors = 'coerce')
+    df = df.dropna(subset = ["time"])
 
-    # Eliminar filas con valores NaT en la columna 'time'
-    df = df.dropna(subset=["time"])
-
-    # Calcular el total de eventos
     total_events = len(df)
+    events_per_month = count_events_per_month(df)
 
-    # Crear el histograma
-    fig = go.Figure(data=[
-        go.Histogram(
-            x=df["time"],
-            nbinsx=30,  # Número de bins en el eje x
-            marker_color="blue"
-        )
-    ])
+    fig = px.bar(
+        events_per_month,
+        x = "date",
+        y = "event_count",
+        title = "Seismic Events Histogram",
+        labels={"date": "Date", "event_count": "Number of events"}
+    )
 
-    # Configurar el diseño del gráfico
     fig.update_layout(
-        title=f"Seismic events histogram (Total: {total_events})",  # Agregar el total al título
-        xaxis_title="Date",
-        yaxis_title="Number of events",
-        xaxis_tickformat="%Y-%m",  # Formato de solo fecha en el eje x
-        xaxis_rangeslider_visible=True,  # Mostrar el rango deslizante
-        barmode="overlay"
+        title_font = dict(size=20),
+        xaxis_title = "Date",
+        yaxis_title = "Number of Events",
+        xaxis = dict(
+            showgrid = True,
+            gridcolor = "lightgray",
+            gridwidth = 0.5,
+            tickformat = "%Y-%m" 
+        ),
+        yaxis = dict(
+            showgrid = True,
+            gridcolor = "lightgray",
+            gridwidth = 0.5,
+        ),
+        bargap = 0.2,
     )
-
-    # Agregar una anotación con el total de eventos
+        
     fig.add_annotation(
-        xref="paper", yref="paper",
-        x=0.5, y=1.1,  # Posición relativa en el gráfico
-        text=f"Total de eventos: {total_events}",
-        showarrow=False,
-        font=dict(size=14, color="black")
+        xref = "paper",
+        yref = "paper",
+        x = 0.5, 
+        y = 1.1,
+        text = f"Total de eventos: {total_events}",
+        showarrow = False,
+        font = dict(size = 14, color = "black")
     )
 
-    # Guardar el gráfico
     output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../A04_web/B_images")
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(output_dir, exist_ok = True)
     output_path = os.path.join(output_dir, "eq_histogram.html")
 
-    pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
-    print(f"Histograma guardado en: {output_path}")
-"""
-
-def plot_events_histogram(file="wrk_df.csv"):
-    path = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.abspath(os.path.join(path, "..", ".."))
-
-    file_path = os.path.join(project_root, f"A00_data/B_eq_processed/{file}")
-
-    df = pd.read_csv(file_path)
-
-    # Convertir la columna 'time' a tipo datetime
-    df["time"] = pd.to_datetime(df["time"], errors='coerce')
-
-    # Eliminar filas con valores NaT en la columna 'time'
-    df = df.dropna(subset=["time"])
-
-    # Calcular el total de eventos
-    total_events = len(df)
-
-    # Crear el histograma con colores alternados
-    fig = go.Figure()
-
-    # Configurar el diseño del gráfico
-    fig.update_layout(
-        title=f"Seismic events histogram (Total: {total_events})",  # Agregar el total al título
-        xaxis_title="Date",
-        yaxis_title="Number of events",
-        xaxis_tickformat="%Y-%m",  # Formato de solo fecha en el eje x
-        xaxis_rangeslider_visible=True,  # Mostrar el rango deslizante
-        barmode="overlay",
-        plot_bgcolor="white",  # Fondo blanco
-    )
-
-    # Agregar una anotación con el total de eventos
-    fig.add_annotation(
-        xref="paper", yref="paper",
-        x=0.5, y=1.1,  # Posición relativa en el gráfico
-        text=f"Total de eventos: {total_events}",
-        showarrow=False,
-        font=dict(size=14, color="black")
-    )
-
-    # Guardar el gráfico
-    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../A04_web/B_images")
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, "eq_histogram.html")
-
-    pio.write_html(fig, output_path, full_html=True, config={'scrollZoom': True})
+    pio.write_html(fig, output_path, full_html=True, config={"scrollZoom": True})
     print(f"✅ Histograma guardado en: {output_path}")
 
 if __name__ == "__main__":

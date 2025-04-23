@@ -1871,80 +1871,113 @@ HTML(f"""
 """)
 ```
 
-
 ## Formulario de Entrada
 
-<!-- Formulario HTML para capturar inputs -->
-<div>
-  <label for="date_i">Initial Date:</label>
-  <input type="date" id="date_i" name="date_i">
-</div>
+## Panel de Control {.sidebar}
 
-<div>
-  <label for="date_f">Final Date:</label>
-  <input type="date" id="date_f" name="date_f">
-</div>
+<!-- Formulario HTML mejorado -->
+## Panel de Control {.sidebar}
 
-<div>
+<!-- Formulario HTML -->
+<div class="form-group">
+  <label for="date_i">Fecha Inicial:</label>
+  <input type="date" id="date_i" class="form-control">
+  
+  <label for="date_f">Fecha Final:</label>
+  <input type="date" id="date_f" class="form-control">
+  
   <label for="latitude">Latitude:</label>
-  <input type="number" id="latitude" name="latitude" step="0.0001">
-</div>
-
-<div>
+  <input type="number" id="latitude" class="form-control">
+  
   <label for="longitude">Longitude:</label>
-  <input type="number" id="longitude" name="longitude" step="0.0001">
+  <input type="number" id="longitude" class="form-control">
+  
+  <label for="radius">Radius of search (km):</label>
+  <input type="number" id="radius" class="form-control" min="0.1" step="0.1">
 </div>
 
+<button id="execute-btn" class="btn btn-primary">Actualizar Datos</button>
+<div id="status-message" class="alert alert-info" style="display:none;"></div>
 
-<div>
-  <label for="radius">Radius (km):</label>
-  <input type="number" id="radius" name="region" min="1">
+<script>
+  // Limitar fechas al día de hoy
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById("date_i").setAttribute("max", today);
+  document.getElementById("date_f").setAttribute("max", today);
+</script>
+
+## Visualización Principal
+
+<div id="result-container" class="card">
+  <div class="card-body">
+    <div id="python-output"></div>
+  </div>
 </div>
 
-<button onclick="ejecutarPython()">Update Search</button>
-
-<!-- Resultados -->
-<div id="result"></div>
-
-<!-- Script para ejecutar Python con Pyodide -->
 <script type="module">
-async function ejecutarPython() {
-  // Capturar valores del formulario
-  const Initial_date = document.getElementById('date_i').value;
-  const Final_date = document.getElementById('date_f').value;
-  const latitude = parseFloat(document.getElementById('latitude').value);
-  const longitude = parseFloat(document.getElementById('longitude').value);
-  const radius = parseFloat(document.getElementById('radius').value);
+const statusElement = document.getElementById('status-message');
+const outputElement = document.getElementById('python-output');
 
- // Cargar Pyodide (solo una vez)
+async function initializePyodide() {
+  statusElement.textContent = "Inicializando Pyodide...";
+  statusElement.style.display = "block";
+
   if (!window.pyodide) {
     window.pyodide = await loadPyodide({
-      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/",
+      stdout: text => {
+        outputElement.innerHTML += `<div>${text}</div>`;
+        outputElement.scrollTop = outputElement.scrollHeight;
+      },
+      stderr: text => {
+        outputElement.innerHTML += `<div class="text-danger">${text}</div>`;
+        outputElement.scrollTop = outputElement.scrollHeight;
+      }
     });
-    await pyodide.loadPackage("micropip");
+    await pyodide.loadPackage(["micropip", "pandas", "numpy"]);
+  }
+}
+
+document.getElementById('execute-btn').addEventListener('click', async () => {
+  const radius = parseFloat(document.getElementById("radius").value);
+  if (radius <= 0) {
+    alert("Radius value must be R > 0");
+    return;
   }
 
-  // Instalar paquetes necesarios (si es requerido)
-  await pyodide.runPythonAsync(`
-    import micropip
-    await micropip.install(['pandas', 'numpy'])  # Ejemplo: instalar librerías
-  `);
+  try {
+    await initializePyodide();
 
-  
-  // Ejecutar función de Python con los inputs
-  const resultado = await pyodide.runPythonAsync(`
-    def consultar_datos(date_i, date_f, latitude, longitude, radius):
-        # Aquí va tu lógica de Python (ejemplo simplificado)
-        import pandas as pd
-        return f"Consulted data: {date_i} a {date_f}, Coord: ({latitude}, {longitude}), Radius: {radius} km"
+    const params = {
+      date_i: document.getElementById('date_i').value,
+      date_f: document.getElementById('date_f').value,
+      lat: parseFloat(document.getElementById('latitude').value),
+      lon: parseFloat(document.getElementById('longitude').value),
+      radius: radius
+    };
 
-    consultar_datos("${Initial_date}", "${Final_date}", ${latitude}, ${longitude}, ${radius})
-  `);
+    statusElement.textContent = "Cargando script Python desde GitHub...";
+    statusElement.className = "alert alert-info";
 
-  // Mostrar resultados en el HTML
-  document.getElementById("result").innerHTML = result;
-}
+    const response = await fetch("https://raw.githubusercontent.com/Jesus-Javier-code/Practicas_Empresa_CSIC/blob/main/A01_source/B01_4_eq_processing/preprocess.py");
+    const pythonCode = await response.text();
+    await pyodide.runPythonAsync(pythonCode);
+
+    // Pasar parámetros a Python
+    for (const [key, value] of Object.entries(params)) {
+      pyodide.globals.set(key, value);
+    }
+
+    statusElement.textContent = "Ejecutando análisis...";
+
+    const result = await pyodide.runPythonAsync(`
+      result = get_all_events(date_i, date_f, lat, lon, radius)
+      result.to_html() if hasattr(result, "to_html") else str(result)
+    `);
+});
+  setTimeout(() => location.reload(), 1000);
 </script>
+
 
 ## Earthquake Monitoring {.panel-tabset}
 
