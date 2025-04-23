@@ -2072,24 +2072,91 @@ grid-auto-rows: minmax(0, 1fr);">
 </div>
 </div></div><aside id="bslib-sidebar-1" class="sidebar html-fill-container html-fill-item"><div class="html-fill-item html-fill-container">
 <!-- Formulario HTML -->
-<div class="form-group">
-<p><label for="date_i">Fecha Inicial:</label> <input type="date" id="date_i" class="form-control"></p>
-<p><label for="date_f">Fecha Final:</label> <input type="date" id="date_f" class="form-control"></p>
-<p><label for="latitude">Latitude:</label> <input type="number" id="latitude" class="form-control"></p>
-<p><label for="longitude">Longitude:</label> <input type="number" id="longitude" class="form-control"></p>
-<p><label for="radius">Radius of search (km):</label> <input type="number" id="radius" class="form-control" min="0.1" step="0.1"></p>
-</div>
-<button id="execute-btn" class="btn btn-primary">
-Actualizar Datos
-</button>
-<div id="status-message" class="alert alert-info" style="display:none;">
+<form id="my-form">
+  <div class="form-group">
+    <label for="date_i">Fecha Inicial:</label>
+    <input type="date" id="date_i" name="date_i" class="form-control" max="" required="">
 
-</div>
-<script>
-  // Limitar fechas al día de hoy
+    <label for="date_f">Fecha Final:</label>
+    <input type="date" id="date_f" name="date_f" class="form-control" max="" required="">
+
+    <label for="latitude">Latitude:</label>
+    <input type="number" id="latitude" name="latitude" class="form-control" required="">
+
+    <label for="longitude">Longitude:</label>
+    <input type="number" id="longitude" name="longitude" class="form-control" required="">
+
+    <label for="radius">Radius of search (km):</label>
+    <input type="number" id="radius" name="radius" class="form-control" min="0.1" step="0.1" required="">
+
+    <label for="check_all">Radius of search (km):</label>
+    <input type="checkbox" id="check_all" name="check_all" required="">
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+  </div>
+</form>
+
+<div id="status-message" class="alert alert-info" style="display:none;"></div>
+<div id="python-output"></div>
+<script type="module">
+  const form = document.getElementById('my-form');
+  const statusElement = document.getElementById('status-message');
+  const outputElement = document.getElementById('python-output');
+
+  // Limitar fechas máximas
   const today = new Date().toISOString().split('T')[0];
-  document.getElementById("date_i").setAttribute("max", today);
-  document.getElementById("date_f").setAttribute("max", today);
+  document.getElementById("date_i").max = today;
+  document.getElementById("date_f").max = today;
+
+  async function initializePyodide() {
+    if (!window.pyodide) {
+      statusElement.textContent = "Inicializando Pyodide...";
+      statusElement.style.display = "block";
+
+      window.pyodide = await loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+      });
+
+      await pyodide.loadPackage(["micropip", "pandas", "numpy"]);
+    }
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); // Evita que la página se recargue
+
+    await initializePyodide();
+
+    const formData = new FormData(form);
+    const date_i = formData.get("date_i");
+    const date_f = formData.get("date_f");
+    const latitude = parseFloat(formData.get("latitude"));
+    const longitude = parseFloat(formData.get("longitude"));
+    const radius = parseFloat(formData.get("radius"));
+    const checkAll = formData.get("check_all") !== null ? "yes" : "no";
+
+    if (radius <= 0) {
+      alert("El radio debe ser mayor que 0");
+      return;
+    }
+
+    statusElement.textContent = "Cargando script...";
+    statusElement.style.display = "block";
+
+    try {
+      const response = await fetch("https://raw.githubusercontent.com/usuario/repositorio/main/script.py");
+      const pythonCode = await response.text();
+
+      await pyodide.runPythonAsync(pythonCode);
+
+      await pyodide.runPythonAsync(`get_all_events("${checkAll}")`);
+
+      statusElement.textContent = "Análisis completado";
+    } catch (error) {
+      console.error(error);
+      statusElement.textContent = "Ocurrió un error: " + error.message;
+      statusElement.className = "alert alert-danger";
+    }
+  });
 </script>
 </div></aside>
 <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="bslib-sidebar-1">
