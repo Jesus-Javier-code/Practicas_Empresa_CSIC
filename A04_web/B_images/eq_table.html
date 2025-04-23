@@ -1,63 +1,29 @@
 
         <html>
         <head>
-            <title>Earthquake Data Table</title>
-            
-<style>
-    .plot-container {
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        background: white;
-        margin: 10px;
-    }
-    .plotly-graph-div {
-        width: 100%;
-        height: 100%;
-        border-radius: 15px;
-    }
-    .modebar {
-        top: 60px !important;
-    }
-</style>
-
+            <title>Earthquake Trigger Index Table</title>
             <style>
                 body {
                     font-family: Arial, sans-serif;
                     padding: 20px;
-                }
-                .table-container {
-                    border-radius: 15px;
-                    overflow: hidden;
-                    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-                    margin: 10px;
                 }
                 .table {
                     width: 100%;
                     border-collapse: collapse;
                 }
                 .table th, .table td {
-                    border: 1px solid #ddd;
+                    border: 1px solid #ccc;
                     padding: 8px;
                     text-align: center;
                 }
                 .table th {
                     background-color: #f2f2f2;
-                    position: sticky;
-                    top: 0;
-                }
-                .table tr:nth-child(even) {
-                    background-color: #f9f9f9;
-                }
-                .table tr:hover {
-                    background-color: #f1f1f1;
                 }
             </style>
         </head>
         <body>
-            <div class="table-container">
-                <h1 style="text-align:center;">Earthquake Data</h1>
-                <table class="dataframe table table-striped">
+            <h1 style="text-align:center;">Earthquake Trigger Index Table</h1>
+            <table class="dataframe table table-striped">
   <thead>
     <tr style="text-align: center;">
       <th>id</th>
@@ -77,7 +43,7 @@
       <td>2021-11-19 01:08:43.667000+00:00</td>
       <td>4.2</td>
       <td>mb</td>
-      <td>35</td>
+      <td>35.00</td>
       <td>28.5580</td>
       <td>-17.8204</td>
       <td>7.618</td>
@@ -88,7 +54,7 @@
       <td>2021-11-13 06:55:57.402000+00:00</td>
       <td>4.2</td>
       <td>mb</td>
-      <td>10</td>
+      <td>10.00</td>
       <td>28.6606</td>
       <td>-17.8628</td>
       <td>5.311</td>
@@ -99,7 +65,7 @@
       <td>2021-11-11 03:37:55.185000+00:00</td>
       <td>4.3</td>
       <td>mb</td>
-      <td>35</td>
+      <td>35.00</td>
       <td>28.5877</td>
       <td>-17.9297</td>
       <td>6.768</td>
@@ -110,7 +76,7 @@
       <td>2021-10-26 16:25:33.055000+00:00</td>
       <td>4.6</td>
       <td>mb</td>
-      <td>10</td>
+      <td>10.00</td>
       <td>28.4947</td>
       <td>-17.8688</td>
       <td>13.173</td>
@@ -121,15 +87,25 @@
       <td>2021-11-23 01:03:24.298000+00:00</td>
       <td>4.6</td>
       <td>mb</td>
-      <td>10</td>
+      <td>10.00</td>
       <td>28.6960</td>
       <td>-17.6878</td>
       <td>19.771</td>
       <td>9.909</td>
     </tr>
+    <tr>
+      <td>usc000lst3</td>
+      <td>2013-12-27 17:46:03.420000+00:00</td>
+      <td>5.4</td>
+      <td>mb</td>
+      <td>7.48</td>
+      <td>27.7975</td>
+      <td>-18.2868</td>
+      <td>99.697</td>
+      <td>19.892</td>
+    </tr>
   </tbody>
 </table>
-            </div>
         </body>
         </html>
         
