@@ -81,6 +81,10 @@ body, html, .dashboard {
   background-image: url('B_images/La_Palma_contorno_naranja.png');
   background-size: 60%;
 }
+#teide-btn { 
+  background-image: url('B_images/Teide_contorno_naranja.png');
+  background-size: 80%;
+}
 #earthquakes-btn { 
   background-image: url('B_images/earthquake-icon-naranja.png');
   background-size: 70%;
@@ -229,6 +233,28 @@ img {
   background-color: rgba(47,45,45,0.8);
   border-radius: 50% !important;
   padding: 5px !important;
+}
+
+.teide-logo {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.teide-logo img {
+  width: 70% !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  object-fit: contain;
 }
 
 /* Contenedor circular */
@@ -503,7 +529,7 @@ img {
 }
 
 /* 4. Eliminar líneas blancas */
-#la-palma, .homepage, #earthquakes {
+#la-palma, .homepage, #teide, #earthquakes {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
@@ -718,6 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Inicializar todos los carruseles
   initCarousel('.homepage .carousel-container');
   initCarousel('#la-palma .carousel-container');
+  initCarousel('#teide .carousel-container');
   initCarousel('#earthquakes .carousel-container');
 });
 </script>
@@ -734,6 +761,7 @@ document.addEventListener('DOMContentLoaded', function() {
   navContainer.innerHTML = `
     <div class="circle-nav-btn" id="homepage-btn" title="Home"></div>
     <div class="circle-nav-btn" id="la-palma-btn" title="La Palma"></div>
+    <div class="circle-nav-btn" id="teide-btn" title="Teide"></div>
     <div class="circle-nav-btn" id="earthquakes-btn" title="Earthquakes"></div>
   `;
   
@@ -743,6 +771,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const homepageBtn = document.getElementById('homepage-btn');
   const laPalmaBtn = document.getElementById('la-palma-btn');
   const earthquakesBtn = document.getElementById('earthquakes-btn');
+  const teideBtn = document.getElementById
+  ('teide-btn')
 
   homepageBtn.addEventListener('click', () => {
     window.location.hash = '#homepage';
@@ -753,7 +783,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.location.hash = '#la-palma';
     updateActiveButton('#la-palma');
   });
-  
+
+  teideBtn.addEventListener('click', () => {
+    window.location.hash = '#teide';
+    updateActiveButton('#teide');
+  });
+
   earthquakesBtn.addEventListener('click', () => {
     window.location.hash = '#earthquakes';
     updateActiveButton('#earthquakes');
@@ -764,6 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset all buttons
     homepageBtn.style.display = 'flex';
     laPalmaBtn.style.display = 'flex';
+    teideBtn.style.display = 'flex';
     earthquakesBtn.style.display = 'flex';
     
     // Hide the active tab button
@@ -773,6 +809,9 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
       case '#la-palma':
         laPalmaBtn.style.display = 'none';
+        break;
+      case '#teide':
+        teideBtn.style.display = 'none';
         break;
       case '#earthquakes':
         earthquakesBtn.style.display = 'none';
@@ -2461,6 +2500,60 @@ document.addEventListener('DOMContentLoaded', function() {
     startAutoRotation();
 });
 </script>
+
+# TEIDE {#teide}
+```{python}
+
+#| label: teide-carousel
+#| echo: false
+
+from IPython.display import HTML
+
+HTML(f"""
+<div class="homepage">
+  <!-- Carrusel optimizado -->
+  <div class="homepage-header">
+    <div class="carousel-container">
+      
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/teide1.jpg');">
+        <div class="photo-credits">
+          © <a href="https://diariodeavisos.elespanol.com/2020/06/las-fumarolas-del-teide-alimentarian-generadores-termoelectricos/" target="_blank">Diario de Avisos</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background-image: url('B_images/teide2.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://www.eldia.es/buzzeando/2025/04/04/extrana-imagen-teide-dejado-borrasca-dv-116063039.html" target="_blank">El Día</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background-image: url('B_images/teide3.jpg');">
+        <div class="photo-credits hidden">
+          © <a href="https://tenerifeandoporelmundo.com/2016/11/ascenso-al-pico-del-teide-en-teleferico.html" target="_blank">Tenerifeando por el mundo</a>
+        </div>
+      </div>
+
+      <div class="carousel-overlay"></div>
+
+      <!-- Logo del Teide -->
+      <div class="homepage-logo-container">
+        <div class="teide-logo">
+          <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
+        </div>
+        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+          El Teide
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+""")
+```
+
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
