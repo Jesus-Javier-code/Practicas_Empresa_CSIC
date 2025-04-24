@@ -321,6 +321,278 @@ def generate_netcdf_visualization(df, output_file):
     
     print(f"Daily radiative power visualization saved to: {output_file}")
 
+
+#TEIDE VISUALIZATION
+
+def load_netcdf_data_TEIDE():
+    """Load and process netCDF data with fallback"""
+    try:
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        
+        # Try multiple possible paths
+        possible_paths = [
+            os.path.join(base_dir, "A00_data", "B_processed", "Teide", "Radiative_Power_by_Year_Month_Day", "radiative_power_teide.nc"),
+            os.path.join(base_dir, "A00_data", "B_raw", "radiative_power_teide.nc"),
+            os.path.join(base_dir, "A00_data", "radiative_power_teide.nc")
+        ]
+        
+        for nc_path in possible_paths:
+            if os.path.exists(nc_path):
+                print(f"Found netCDF file at: {nc_path}")
+                ds = xr.open_dataset(nc_path)
+                df = ds.to_dataframe().reset_index()
+                
+                # Check available columns
+                available_cols = df.columns.tolist()
+                print("Available columns in netCDF:", available_cols)
+                
+                # Prepare result DataFrame
+                result = pd.DataFrame({
+                    'Date': pd.to_datetime(df['time']),
+                    'Radiative_Power': df['FRP'] if 'FRP' in df else df['radiative_power'] if 'radiative_power' in df else df.iloc[:, 1]
+                }).dropna()
+                
+                return result
+        
+        print("No netCDF file found in any of the searched locations")
+        return None
+    
+    except Exception as e:
+        print(f"\nError loading netCDF data: {str(e)}")
+        return None
+
+def generate_netcdf_visualization_teide(df, output_file):
+    """Generate interactive visualization for netCDF data with eruption period"""
+    if df is None or df.empty:
+        print("No data available for visualization")
+        return
+    
+    # Create figure using plotly express for consistent styling
+    fig = px.scatter(df, 
+                    x='Date', 
+                    y='Radiative_Power',
+                    title='<b>Daily Radiative Power</b><br><sup>Fumarolic activity at Mount Teide (2021-Present)</sup>',
+                    template='plotly_white',
+                    labels={
+                        'Date': 'Date',
+                        'Radiative_Power': 'Radiative Power (MW)'
+                    },
+                    hover_data={'Date': '|%d/%m/%Y'},
+                    opacity=0.7,
+                    size_max=10)
+    
+    # Customize markers to match weekly plot
+    fig.update_traces(
+        marker=dict(
+            size=8,
+            color='#3498DB',
+            symbol='circle',
+            line=dict(width=1, color='#413224'),
+            opacity=0.8,
+            sizemode='diameter'
+        ),
+        selector=dict(mode='markers'),
+        name='Radiative Power',
+        showlegend=True
+    )
+    
+    # Add maximum value annotation
+    max_power = df['Radiative_Power'].max()
+    max_date = df.loc[df['Radiative_Power'].idxmax(), 'Date']
+    fig.add_annotation(
+        x=max_date,
+        y=max_power,
+        text=f"Maximum: {max_power:.0f} MW",
+        showarrow=True,
+        arrowhead=1,
+        ax=-50,
+        ay=-40,
+        font=dict(size=12, color="#E74C3C"),
+        bordercolor="#413224",
+        borderwidth=1,
+        borderpad=4,
+        bgcolor="white"
+    )
+    
+    # Update layout to match weekly plot
+    fig.update_layout(
+        xaxis=dict(
+            rangeslider=dict(visible=True),
+            type="date",
+            title_text='Date',
+            gridcolor='#f0f0f0'
+        ),
+        yaxis=dict(
+            title_text='Radiative Power (MW)',
+            gridcolor='#f0f0f0'
+        ),
+        hovermode="x unified",
+        plot_bgcolor='white',
+        margin=dict(l=50, r=50, b=80, t=100),
+        title_x=0.5,
+        title_font=dict(size=20),
+        hoverlabel=dict(
+            bgcolor="white",
+            font_size=12,
+            font_family="Arial"
+        ),
+        legend=dict(
+            orientation="v",
+            yanchor="top",
+            y=0.99,
+            xanchor="right",
+            x=0.99,
+            bgcolor='rgba(255,255,255,0.8)',
+            bordercolor='rgba(0,0,0,0.2)',
+            borderwidth=1,
+            font=dict(size=12),
+            itemclick=False,
+            itemdoubleclick=False
+        )
+    )
+    
+    # Add custom date range selector
+    date_selector_html = """
+    <div class="date-selector-container">
+        <style>
+            .date-selector-container {
+                position: absolute;
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1000;
+                background: rgba(255,255,255,0.9);
+                padding: 8px 15px;
+                border-radius: 20px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                font-family: Arial, sans-serif;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                border: 1px solid #ddd;
+            }
+            .date-selector-container label {
+                font-weight: bold;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+            .date-selector-container input {
+                padding: 5px;
+                width: 120px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 12px;
+            }
+            .date-selector-container button {
+                padding: 5px 12px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 12px;
+                white-space: nowrap;
+                transition: background-color 0.3s;
+            }
+            .date-selector-container button:hover {
+                background-color: #45a049;
+            }
+            .date-selector-container button.reset-btn {
+                background-color: #f44336;
+            }
+            .date-selector-container button.reset-btn:hover {
+                background-color: #d32f2f;
+            }
+        </style>
+        <label>From:</label>
+        <input type="date" id="custom-start-date">
+        <label>To:</label>
+        <input type="date" id="custom-end-date">
+        <button id="custom-apply-dates">Apply</button>
+        <button id="custom-reset-dates" class="reset-btn">Reset</button>
+    </div>
+    <script>
+        // Set default dates (last 180 days)
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setDate(endDate.getDate() - 180);
+        
+        document.getElementById('custom-start-date').valueAsDate = startDate;
+        document.getElementById('custom-end-date').valueAsDate = endDate;
+        
+        // Function to update the plot
+        function updatePlotDateRange() {
+            const start = document.getElementById('custom-start-date').value;
+            const end = document.getElementById('custom-end-date').value;
+            
+            if (start && end) {
+                const plotDiv = document.querySelector('.plotly-graph-div');
+                Plotly.relayout(plotDiv, {
+                    'xaxis.range': [start, end]
+                });
+            }
+        }
+        
+        // Function to reset to full range
+        function resetPlotDateRange() {
+            const plotDiv = document.querySelector('.plotly-graph-div');
+            Plotly.relayout(plotDiv, {
+                'xaxis.autorange': true
+            });
+        }
+        
+        // Event listeners
+        document.getElementById('custom-apply-dates').addEventListener('click', updatePlotDateRange);
+        document.getElementById('custom-reset-dates').addEventListener('click', resetPlotDateRange);
+        
+        // Also apply on Enter key in date inputs
+        document.getElementById('custom-start-date').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') updatePlotDateRange();
+        });
+        document.getElementById('custom-end-date').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') updatePlotDateRange();
+        });
+    </script>
+    """
+    
+    # Generate HTML with rounded corners
+    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'responsive': True})
+    
+    # Add custom CSS for rounded corners
+    custom_css = """
+    <style>
+        .plot-container {
+            border-radius: 15px !important;
+            overflow: hidden !important;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1) !important;
+            position: relative;
+        }
+        .plotly-graph-div {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 15px !important;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    """
+    
+    # Inject our custom CSS and date selector
+    html_content = html_content.replace('<head>', '<head>' + custom_css)
+    html_content = html_content.replace('<div id="', '<div class="plot-container"><div id="')
+    html_content = html_content.replace('</body>', date_selector_html + '</div></body>')
+    
+    # Write the modified HTML to file
+    with open(output_file, 'w') as f:
+        f.write(html_content)
+    
+    print(f"Daily radiative power visualization saved to: {output_file}")
+
+
 def generate_eruption_map(output_file):
     """Generate interactive eruption map focused on La Palma"""
     # Load lava perimeter data
@@ -772,6 +1044,11 @@ def main():
         if nc_data is not None:
             nc_file = os.path.join(output_dir, "radiative_power_daily.html")
             generate_netcdf_visualization(nc_data, nc_file)
+
+        nc_data_teide = load_netcdf_data_TEIDE()
+        if nc_data_teide is not None:
+            nc_file_teide = os.path.join(output_dir, "radiative_power_teide_daily.html")
+            generate_netcdf_visualization_teide(nc_data_teide, nc_file_teide)
         
         # Generate radiative power plot
         df = load_radiative_data()
@@ -784,6 +1061,8 @@ def main():
         print(f"- Eruption map: {map_file}")
         if nc_data is not None:
             print(f"- Daily radiative power: {nc_file}")
+        if nc_data_teide is not None:
+            print(f"- Daily radiative power Teide: {nc_file_teide}")
         if df is not None:
             print(f"- Weekly radiative power plot: {plot_file}")
         
