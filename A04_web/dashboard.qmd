@@ -2747,7 +2747,7 @@ HTML(f"""
     </div>
   </div>
 </div>
-<<<<<<< HEAD
+
 </div>
     </div>
   </div>
@@ -2759,135 +2759,6 @@ HTML(f"""
 </div>
 """)
 
-=======
-
-
-<div class="plots-container">
-  <!-- Gráfica semanal -->
-  <div class="plot-wrapper">
-    <iframe src="B_images/radiative_power_teide_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
-
-    <!-- Info Icon & Tooltip for Plot 1 -->
-    <div class="info-box">
-      <button class="info-button" onclick="toggleInfo('info1')">i</button>
-      <div class="info-popup" id="info1">
-        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
-        <br><br>
-        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
-      </div>
-    </div>
-  </div>
-""")
-
-HTML("""
-
-<style>
-/* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
-.plots-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px; /* Mismo ancho que el contenedor principal */
-  margin: 0 auto;
-  padding: 0;
-}
-
-.plot-wrapper {
-  flex: 1;
-  min-width: 400px;
-  height: 550px; /* Restauramos la altura original */
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px transparent; /* Estilo original */
-  position: relative;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-/* Ajustes para iframes - sin espacios */
-.plot-wrapper iframe {
-  width: 100% !important;
-  height: 100% !important;
-  border: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block;
-}
-
-/* Análisis combinado - estilo mejorado */
-.combined-analysis {
-  width: 100%;
-  padding: 20px;
-  background: #f8f8f8;
-  border-radius: 8px;
-  margin-top: 15px;
-  border-left: 4px solid #d7512c;
-}
-
-.combined-analysis h3 {
-  color: #d7512c;
-  margin-top: 0;
-  font-size: 1.2em;
-}
-
-.combined-analysis p {
-  color: #555;
-  line-height: 1.6;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .plot-wrapper {
-    min-width: 100%;
-    height: 450px; /* Altura ajustada para móviles */
-  }
-}
-
-/* Mantenemos los estilos del info-box como estaban */
-.info-box {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.info-button {
-  background-color: #d7512c;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 16px;
-  text-align: center;
-  line-height: 24px;
-  cursor: pointer;
-}
-
-.info-popup {
-  display: none;
-  position: absolute;
-  top: 35px;
-  right: 10px;
-  background-color: #f9f9f9;
-  color: #333;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 999;
-  width: 600px;
-  font-size: 13.5px;
-  max-width: 90vw;
-}
-</style>
-
-""")
-
-
->>>>>>> c8bdbb3f2631a0b87c8da9bc195d29afa3d1a8e6
 ```
 
 
@@ -2897,35 +2768,7 @@ HTML("""
 
 from IPython.display import HTML
 
-HTML("""
-<div class="main-container">
-
-  <!-- Hero Banner -->
-  <div class="hero-banner">
-    <div class="hero-title">Fumarolic Activity in El Teide</div>
-    <div class="hero-subtitle">
-      The 2021 eruption on La Palma produced one of the most thoroughly documented volcanic events in Canary Islands history. 
-      Explore the thermal evolution and geological impact through interactive visualizations.
-    </div>
-  </div>
-
-
-<div class="plots-container">
-  <!-- Gráfica semanal -->
-  <div class="plot-wrapper">
-    <iframe src="B_images/radiative_power_teide_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
-
-    <!-- Info Icon & Tooltip for Plot 1 -->
-    <div class="info-box">
-      <button class="info-button" onclick="toggleInfo('info1')">i</button>
-      <div class="info-popup" id="info1">
-        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
-        <br><br>
-        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
-      </div>
-    </div>
-  </div>
-</div>
+HTML('''
 <style>
 /* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
 .plots-container {
@@ -2933,7 +2776,7 @@ HTML("""
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
-  max-width: 1200px; /* Mismo ancho que el contenedor principal */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0;
 }
@@ -2941,18 +2784,17 @@ HTML("""
 .plot-wrapper {
   flex: 1;
   min-width: 400px;
-  height: 550px; /* Restauramos la altura original */
+  height: 550px;
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px transparent; /* Estilo original */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   position: relative;
   padding: 0;
   margin: 0;
   border: none;
 }
 
-/* Ajustes para iframes - sin espacios */
 .plot-wrapper iframe {
   width: 100% !important;
   height: 100% !important;
@@ -2962,7 +2804,6 @@ HTML("""
   display: block;
 }
 
-/* Análisis combinado - estilo mejorado */
 .combined-analysis {
   width: 100%;
   padding: 20px;
@@ -2983,15 +2824,13 @@ HTML("""
   line-height: 1.6;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .plot-wrapper {
     min-width: 100%;
-    height: 450px; /* Altura ajustada para móviles */
+    height: 450px;
   }
 }
 
-/* Mantenemos los estilos del info-box como estaban */
 .info-box {
   position: absolute;
   top: 10px;
@@ -3027,11 +2866,139 @@ HTML("""
   font-size: 13.5px;
   max-width: 90vw;
 }
-
 </style>
 
-""")
+<div class="main-container">
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-title">Fumarolic Activity in El Teide</div>
+    <div class="hero-subtitle">
+      El Teide, Spain's highest peak at 3,715 meters, shows persistent fumarolic activity that provides insights into the volcanic system's hydrothermal dynamics.
+    </div>
+  </div>
+
+  <!-- Top Section: Text + Map -->
+  <div class="top-container">
+    <!-- Text Content -->
+    <div class="text-container">
+      <div class="context-box">
+        <div class="context-title">Monitoring Hydrothermal Activity</div>
+        <div class="context-text">
+          The Teide-Pico Viejo volcanic complex exhibits continuous fumarolic emissions, with temperature variations that reflect changes in the hydrothermal system.
+        </div>
+        <div class="context-text">
+          <strong>Key observations:</strong>
+        </div>
+        <div class="context-text">
+          • Persistent low-level thermal anomalies<br>
+          • Seasonal variations in fumarole temperatures<br>
+          • Correlation with seismic activity
+        </div>
+      </div>
+    </div>
+    
+    <!-- Map -->
+    <div class="map-container">
+      <iframe src="B_images/teide_map.html"></iframe>
+    </div>
+  </div>
+
+  <!-- Key Points Grid -->
+  <div class="key-points">
+    <div class="key-point">
+      <div class="key-point-title">3,715 m Altitude</div>
+      <div class="context-text">
+        Highest peak in Spain and third tallest volcanic structure on Earth
+      </div>
+    </div>
+    <div class="key-point">
+      <div class="key-point-title">150+ Fumaroles</div>
+      <div class="context-text">
+        Documented active fumaroles in the summit area
+      </div>
+    </div>
+    <div class="key-point">
+      <div class="key-point-title">86°C Max</div>
+      <div class="context-text">
+        Highest recorded fumarole temperature at summit
+      </div>
+    </div>
+  </div>
+
+  <div class="plots-container">
+    <!-- Daily Thermal Activity -->
+    <div class="plot-wrapper">
+      <iframe src="B_images/radiative_power_teide_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+
+      <!-- Info Icon & Tooltip -->
+      <div class="info-box">
+        <button class="info-button" onclick="toggleInfo('info1')">i</button>
+        <div class="info-popup" id="info1">
+          This graph shows daily thermal anomalies detected at Teide volcano using VIIRS satellite data. The values represent deviations from background thermal conditions, highlighting periods of increased fumarolic activity.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Combined Analysis Section -->
+  <div class="context-box combined-analysis">
+    <div class="context-title">Understanding Teide's Thermal Signals</div>
+    <div class="context-text">
+      <p>The thermal activity at Teide volcano primarily comes from its extensive fumarole fields, where gases escape from the volcanic system at temperatures ranging from ambient to over 86°C.</p>
+      
+      <p>Key factors influencing the thermal signals:</p>
+      
+      <ul style="color: #555; line-height: 1.7; margin-bottom: 15px;">
+        <li>Seasonal temperature variations affecting surface measurements</li>
+        <li>Changes in hydrothermal system pressure</li>
+        <li>Weather conditions impacting satellite observations</li>
+      </ul>
+      
+      <p>While Teide is currently in a dormant phase, continuous monitoring of these thermal signals helps scientists detect any changes that might indicate increasing volcanic activity.</p>
+      
+      <p style="color: #000; font-weight: 500;">This dataset is automatically updated daily using NASA's VIIRS satellite observations.</p>
+    </div>
+  </div>
+
+  <!-- Credits Footer -->
+  <div class="credits-footer">
+    <p><strong>Data sources:</strong> NASA LAADS DAAC • IGN Spain • INVOLCAN</p>
+    <p>All content presented for educational and scientific research purposes</p>
+  </div>
+</div>
+''')
 ```
+
+<script>
+// Solo una definición de toggleInfo que funcione para todos los popups
+function toggleInfo(id) {
+    const popup = document.getElementById(id);
+    const isVisible = popup.style.display === 'block';
+    
+    // Cierra cualquier otro popup abierto
+    document.querySelectorAll('.info-popup').forEach(p => {
+        if(p.id !== id) p.style.display = 'none';
+    });
+
+    // Alterna visibilidad del actual
+    popup.style.display = isVisible ? 'none' : 'block';
+}
+
+// Script para ajuste dinámico si es necesario
+document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('.plot-wrapper iframe');
+  
+  function resizeIframes() {
+    iframes.forEach(iframe => {
+      iframe.style.height = iframe.parentElement.offsetHeight + 'px';
+    });
+  }
+  
+  resizeIframes();
+  window.addEventListener('resize', resizeIframes);
+});
+</script>
+
 # 🕳️ EARTHQUAKES {#earthquakes}
 
 ```{python}
@@ -3241,7 +3208,6 @@ HTML("""
 """)
 
 ```
-
 
 
 
