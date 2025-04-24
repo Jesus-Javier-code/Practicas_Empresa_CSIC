@@ -1477,7 +1477,6 @@ iframe {
   <div class="plot-wrapper">
     <iframe src="B_images/radiative_power_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
   
-
     <!-- Info Icon & Tooltip for Plot 2 -->
     <div class="info-box">
       <button class="info-button" onclick="toggleInfo('info2')">i</button>
@@ -1494,8 +1493,26 @@ iframe {
       </div>
     </div>
   </div>
+  
+<!-- Combined Analysis Section -->
+<div class="context-box combined-analysis">
+    <div class="context-title">Understanding the Thermal Activity Graphs</div>
+    <div class="context-text">
+        <p>This visualization shows the evolution of thermal energy emitted by the Tajogaite volcano following its eruption (September 19 – December 13, 2021). The metric used is Radiative Power (FRP), which estimates the amount of thermal energy radiated into the atmosphere and is directly linked to surface volcanic activity (lava flows, hot gases, fumaroles, etc.).</p>
+        
+        <p>Immediately after the eruption, the volcanic terrain retains extremely high temperatures (e.g. incandescent lava, fresh flows), which results in high FRP values. However, in the following days, the volcanic system begins to cool rapidly due to:</p>
+        
+        <ul style="color: #555; line-height: 1.7; margin-bottom: 15px;">
+            <li>The absence of new magma being emitted</li>
+            <li>Natural dissipation of heat into the atmosphere</li>
+            <li>Solidification and consolidation of volcanic material</li>
+        </ul>
+        
+        <p>Even though the volcano enters a dormant phase, fumaroles, persistent hot spots, and residual geochemical processes may continue to generate weaker but still detectable thermal signals for months or even years after the eruption.</p>
+        
+        <p style="color: #000; font-weight: 500;">This daily dataset is automatically updated every day using thermal observations provided by NASA's remote sensing servers.</p>
+    </div>
 </div>
-
 
 <style>
 /* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
@@ -1533,11 +1550,42 @@ iframe {
   display: block;
 }
 
+/* New Explanation Box Styles */
+.graphics-explanation {
+  width: 100%;
+  background:rgb(255, 255, 255);
+  border-radius: 8px;
+  padding: 25px;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-left: 4px solid #d7512c;
+}
+
+.graphics-explanation h3 {
+  color: #d7512c;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.explanation-content {
+  color: #555;
+  line-height: 1.6;
+}
+
+.explanation-content ul {
+  padding-left: 20px;
+}
+
+.explanation-content li {
+  margin-bottom: 8px;
+}
+
 /* Análisis combinado - estilo mejorado */
 .combined-analysis {
   width: 100%;
   padding: 20px;
-  background: #f8f8f8;
+  background:rgb(255, 255, 255);
   border-radius: 8px;
   margin-top: 15px;
   border-left: 4px solid #d7512c;
@@ -1559,6 +1607,10 @@ iframe {
   .plot-wrapper {
     min-width: 100%;
     height: 450px; /* Altura ajustada para móviles */
+  }
+  
+  .graphics-explanation {
+    padding: 15px;
   }
 }
 
@@ -1587,7 +1639,7 @@ iframe {
   position: absolute;
   top: 35px;
   right: 10px;
-  background-color: #f9f9f9;
+  background-color:rgb(255, 255, 255);
   color: #333;
   padding: 15px;
   border: 1px solid #ccc;
@@ -2162,7 +2214,6 @@ iframe {
   }
 }
 </style>
-
 <!-- Media Gallery Header Section -->
 <div class="hero-banner media-gallery-header">
     <div class="hero-content">
@@ -2277,6 +2328,7 @@ iframe {
 
 .video-feature-main {
     grid-row: span 2;
+    margin-bottom: 0; /* Added to remove extra space */
 }
 
 .video-secondary {
@@ -2308,10 +2360,35 @@ iframe {
     color: #666;
     font-size: 0.85em;
     padding: 0 10px;
+    margin-top: 5px; /* Added for better spacing */
 }
 
 .small-video .video-container {
     padding-bottom: 60%; /* Slightly different aspect ratio */
+}
+
+/* Context Box Styles */
+.context-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.context-title {
+    font-size: 1.5rem;
+    color: #d7512c;
+    margin-bottom: 15px;
+    font-weight: 700;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.context-text {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 /* Responsive Adjustments */
@@ -2345,29 +2422,10 @@ iframe {
     .media-gallery-header .hero-subtitle {
         font-size: 1rem;
     }
-}
-
-.context-box {
-    background: #fff;
-    border-radius: 10px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.context-title {
-    font-size: 1.5rem;
-    color: #d7512c;
-    margin-bottom: 15px;
-    font-weight: 700;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
-}
-
-.context-text {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    
+    .hero-banner {
+        padding: 60px 15px;
+    }
 }
 </style>
 
@@ -2496,6 +2554,7 @@ iframe {
 
 
 ```
+
 <script>
 // Script para ajuste dinámico si es necesario
 document.addEventListener('DOMContentLoaded', function() {
@@ -2637,6 +2696,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
 # TEIDE {#teide}
 ```{python}
 
@@ -2687,6 +2747,19 @@ HTML(f"""
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+</div>
+    </div>
+  </div>
+</div>
+  <!-- Nuevo footer de créditos -->
+  <div class="credits-footer">
+    </p>
+  </div>
+</div>
+""")
+
+=======
 
 
 <div class="plots-container">
@@ -2814,10 +2887,151 @@ HTML("""
 """)
 
 
+>>>>>>> c8bdbb3f2631a0b87c8da9bc195d29afa3d1a8e6
 ```
 
 
+```{python}
+#| label: teide-display
+#| echo: false
 
+from IPython.display import HTML
+
+HTML("""
+<div class="main-container">
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-title">Fumarolic Activity in El Teide</div>
+    <div class="hero-subtitle">
+      The 2021 eruption on La Palma produced one of the most thoroughly documented volcanic events in Canary Islands history. 
+      Explore the thermal evolution and geological impact through interactive visualizations.
+    </div>
+  </div>
+
+
+<div class="plots-container">
+  <!-- Gráfica semanal -->
+  <div class="plot-wrapper">
+    <iframe src="B_images/radiative_power_teide_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+
+    <!-- Info Icon & Tooltip for Plot 1 -->
+    <div class="info-box">
+      <button class="info-button" onclick="toggleInfo('info1')">i</button>
+      <div class="info-popup" id="info1">
+        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
+        <br><br>
+        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+/* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
+.plots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /* Mismo ancho que el contenedor principal */
+  margin: 0 auto;
+  padding: 0;
+}
+
+.plot-wrapper {
+  flex: 1;
+  min-width: 400px;
+  height: 550px; /* Restauramos la altura original */
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px transparent; /* Estilo original */
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Ajustes para iframes - sin espacios */
+.plot-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+
+/* Análisis combinado - estilo mejorado */
+.combined-analysis {
+  width: 100%;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #d7512c;
+}
+
+.combined-analysis h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.combined-analysis p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .plot-wrapper {
+    min-width: 100%;
+    height: 450px; /* Altura ajustada para móviles */
+  }
+}
+
+/* Mantenemos los estilos del info-box como estaban */
+.info-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.info-button {
+  background-color: #d7512c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  width: 600px;
+  font-size: 13.5px;
+  max-width: 90vw;
+}
+
+</style>
+
+""")
+```
 # 🕳️ EARTHQUAKES {#earthquakes}
 
 ```{python}
@@ -3027,6 +3241,16 @@ HTML("""
 """)
 
 ```
+
+
+
+
+
+
+
+
+
+
 
 
 
