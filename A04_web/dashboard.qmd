@@ -2172,43 +2172,34 @@ iframe {
         </div>
     </div>
 </div>
-
-<!-- Video Feature Section -->
-<div class="context-box">
-    <div class="context-title">Volcanic Fury Captured</div>
-    <div class="context-text">
-        The most intense moments of the eruption were documented by scientists, journalists, and local residents. 
-        These videos showcase the raw power of the eruption and its evolving activity patterns.
-    </div>
-    
-    <!-- Video Grid -->
-    <div class="media-grid">
-        <!-- Main Video -->
-        <div class="video-feature-main">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/yDgV1YTPxok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="video-caption">BBC Earth documentary footage showing the eruption's most violent phase (October 2021)</div>
+<!-- Video Grid -->
+<div class="media-grid">
+    <!-- Main Video -->
+    <div class="video-feature-main">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/yDgV1YTPxok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        
-        <!-- Secondary Videos -->
-        <div class="video-secondary">
-            <div class="small-video">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/5Q6yjyP4k5E" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video-caption">Time-lapse of lava flow advancement (Canary Islands Volcanology Institute)</div>
+        <div class="video-caption">BBC Earth documentary footage showing the eruption's most violent phase (October 2021)</div>
+    </div>
+   
+    <!-- Secondary Videos - Ahora centrados -->
+    <div class="video-secondary">
+        <div class="small-video">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/EOIwjeJMNxM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            
-            <div class="small-video">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/3uNy5T-tWJw" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video-caption">Thermal camera footage showing vent dynamics (IGN Spain)</div>
+            <div class="video-caption">Time-lapse of lava flow advancement (Canary Islands Volcanology Institute)</div>
+        </div>
+       
+        <div class="small-video">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/tEYoS3zoV-8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+            <div class="video-caption">Thermal camera footage showing vent dynamics (IGN Spain)</div>
         </div>
     </div>
 </div>
+
 
 <style>
 .hero-banner {
