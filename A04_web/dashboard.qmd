@@ -2687,7 +2687,133 @@ HTML(f"""
     </div>
   </div>
 </div>
+
+
+<div class="plots-container">
+  <!-- Gráfica semanal -->
+  <div class="plot-wrapper">
+    <iframe src="B_images/radiative_power_teide_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+
+    <!-- Info Icon & Tooltip for Plot 1 -->
+    <div class="info-box">
+      <button class="info-button" onclick="toggleInfo('info1')">i</button>
+      <div class="info-popup" id="info1">
+        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
+        <br><br>
+        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
+      </div>
+    </div>
+  </div>
 """)
+
+HTML("""
+
+<style>
+/* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
+.plots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px; /* Mismo ancho que el contenedor principal */
+  margin: 0 auto;
+  padding: 0;
+}
+
+.plot-wrapper {
+  flex: 1;
+  min-width: 400px;
+  height: 550px; /* Restauramos la altura original */
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px transparent; /* Estilo original */
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Ajustes para iframes - sin espacios */
+.plot-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+
+/* Análisis combinado - estilo mejorado */
+.combined-analysis {
+  width: 100%;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #d7512c;
+}
+
+.combined-analysis h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.combined-analysis p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .plot-wrapper {
+    min-width: 100%;
+    height: 450px; /* Altura ajustada para móviles */
+  }
+}
+
+/* Mantenemos los estilos del info-box como estaban */
+.info-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.info-button {
+  background-color: #d7512c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  width: 600px;
+  font-size: 13.5px;
+  max-width: 90vw;
+}
+</style>
+
+""")
+
+
 ```
 
 
