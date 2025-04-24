@@ -39,6 +39,8 @@ def load_lava_perimeter():
             [-17.8660, 28.6095], [-17.8655, 28.6093], [-17.8650, 28.6090]
         ])
 
+#LA PALMA VISUALIZATION
+
 def load_netcdf_data():
     """Load and process netCDF data with fallback"""
     try:
@@ -405,8 +407,8 @@ def generate_netcdf_visualization_teide(df, output_file):
         text=f"Maximum: {max_power:.0f} MW",
         showarrow=True,
         arrowhead=1,
-        ax=-50,
-        ay=-40,
+        ax=-70,
+        ay=-60,
         font=dict(size=12, color="#E74C3C"),
         bordercolor="#413224",
         borderwidth=1,
@@ -593,6 +595,8 @@ def generate_netcdf_visualization_teide(df, output_file):
     print(f"Daily radiative power visualization saved to: {output_file}")
 
 
+#MAPS
+
 def generate_eruption_map(output_file):
     """Generate interactive eruption map focused on La Palma"""
     # Load lava perimeter data
@@ -767,6 +771,90 @@ def generate_eruption_map(output_file):
         f.write(html_content)
     
     print(f"Map generated successfully: {output_file}")
+
+
+import numpy as np
+import plotly.graph_objects as go
+
+def generate_teide_map(output_file):
+    """Generate interactive map of Teide with zoom buttons and enhanced fumarole marker."""
+
+    # Coordenadas de la fumarola del Teide
+    fumarole_lat = 28.2724
+    fumarole_lon = -16.6420
+
+    # Crear figura
+    fig = go.Figure()
+
+    # Fumarola: marcador rojo
+    fig.add_trace(go.Scattermapbox(
+        mode="markers+text",
+        lon=[fumarole_lon],
+        lat=[fumarole_lat],
+        marker=dict(
+            size=18,
+            color='red',
+            symbol='circle',
+            opacity=0.95
+        ),
+        text=["Teide Fumaroles"],
+        textposition="top right",
+        hoverinfo="text",
+        name="Fumaroles",
+        textfont=dict(size=14, color='black')
+    ))
+
+    # Layout del mapa
+    fig.update_layout(
+        mapbox=dict(
+            style="open-street-map",
+            center=dict(lat=28.27, lon=-16.64),
+            zoom=9
+        ),
+        margin=dict(l=0, r=0, t=0, b=0),
+        showlegend=False,
+        updatemenus=[
+            dict(
+                type="buttons",
+                direction="right",
+                x=0.02,
+                y=0.97,
+                showactive=True,
+                buttons=[
+                    dict(
+                        label="General View",
+                        method="relayout",
+                        args=[{
+                            "mapbox.center.lat": 28.27,
+                            "mapbox.center.lon": -16.64,
+                            "mapbox.zoom": 9
+                        }]
+                    ),
+                    dict(
+                        label="Crater View",
+                        method="relayout",
+                        args=[{
+                            "mapbox.center.lat": fumarole_lat,
+                            "mapbox.center.lon": fumarole_lon,
+                            "mapbox.zoom": 13
+                        }]
+                    )
+                ],
+                bgcolor="white",
+                bordercolor="#ccc",
+                borderwidth=1,
+                font=dict(size=12, color="black")
+            )
+        ]
+    )
+
+    # Exportar HTML
+    html = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'scrollZoom': True, 'responsive': True})
+
+    with open(output_file, 'w') as f:
+        f.write(html)
+
+    print(f"Teide map with fumarole view generated: {output_file}")
 
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot with eruption period highlighted"""
@@ -1038,6 +1126,10 @@ def main():
         # Generate eruption map focused on La Palma
         map_file = os.path.join(output_dir, "la_palma_eruption_viewer.html")
         generate_eruption_map(map_file)
+
+        # Generate eruption map focused on TEIDE
+        map_file_teide = os.path.join(output_dir, "teide_map.html")
+        generate_teide_map(map_file_teide)
         
         # Generate netCDF visualization
         nc_data = load_netcdf_data()
