@@ -407,8 +407,8 @@ def generate_netcdf_visualization_teide(df, output_file):
         text=f"Maximum: {max_power:.0f} MW",
         showarrow=True,
         arrowhead=1,
-        ax=-70,
-        ay=-60,
+        ax=-200,
+        ay=10,
         font=dict(size=12, color="#E74C3C"),
         bordercolor="#413224",
         borderwidth=1,
@@ -773,43 +773,40 @@ def generate_eruption_map(output_file):
     print(f"Map generated successfully: {output_file}")
 
 
-import numpy as np
-import plotly.graph_objects as go
 
 def generate_teide_map(output_file):
-    """Generate interactive map of Teide with zoom buttons and enhanced fumarole marker."""
+    # Coordenadas del Teide (fumarola)
+    teide_lat, teide_lon = 28.2724, -16.6425
 
-    # Coordenadas de la fumarola del Teide
-    fumarole_lat = 28.2724
-    fumarole_lon = -16.6420
-
-    # Crear figura
     fig = go.Figure()
 
-    # Fumarola: marcador rojo
+    # Vista general y cráter
+    general_view = dict(lat=28.29, lon=-16.59, zoom=8.3)
+    crater_view = dict(lat=teide_lat, lon=teide_lon, zoom=13)
+
+    # Punto rojo para la fumarola
     fig.add_trace(go.Scattermapbox(
         mode="markers+text",
-        lon=[fumarole_lon],
-        lat=[fumarole_lat],
+        lon=[teide_lon],
+        lat=[teide_lat],
         marker=dict(
-            size=18,
+            size=16,
             color='red',
             symbol='circle',
-            opacity=0.95
+            opacity=0.9
         ),
-        text=["Teide Fumaroles"],
+        text=["Fumarole"],
         textposition="top right",
         hoverinfo="text",
-        name="Fumaroles",
-        textfont=dict(size=14, color='black')
+        name="Fumarole Location",
+        textfont=dict(size=12, color='black')
     ))
 
-    # Layout del mapa
     fig.update_layout(
         mapbox=dict(
             style="open-street-map",
-            center=dict(lat=28.27, lon=-16.64),
-            zoom=9
+            center=dict(lat=general_view['lat'], lon=general_view['lon']),
+            zoom=general_view['zoom']
         ),
         margin=dict(l=0, r=0, t=0, b=0),
         showlegend=False,
@@ -818,43 +815,69 @@ def generate_teide_map(output_file):
                 type="buttons",
                 direction="right",
                 x=0.02,
-                y=0.97,
-                showactive=True,
+                y=0.98,
+                xanchor="left",
+                yanchor="top",
+                pad=dict(t=5, b=5, l=10, r=10),
+                bgcolor="rgba(255,255,255,0.9)",
+                bordercolor="#cccccc",
+                borderwidth=1,
+                font=dict(size=12),
                 buttons=[
                     dict(
                         label="General View",
                         method="relayout",
-                        args=[{
-                            "mapbox.center.lat": 28.27,
-                            "mapbox.center.lon": -16.64,
-                            "mapbox.zoom": 9
-                        }]
+                        args=[{"mapbox.center": dict(lat=general_view['lat'], lon=general_view['lon']),
+                               "mapbox.zoom": general_view['zoom']}]
                     ),
                     dict(
                         label="Crater View",
                         method="relayout",
-                        args=[{
-                            "mapbox.center.lat": fumarole_lat,
-                            "mapbox.center.lon": fumarole_lon,
-                            "mapbox.zoom": 13
-                        }]
+                        args=[{"mapbox.center": dict(lat=crater_view['lat'], lon=crater_view['lon']),
+                               "mapbox.zoom": crater_view['zoom']}]
                     )
-                ],
-                bgcolor="white",
-                bordercolor="#ccc",
-                borderwidth=1,
-                font=dict(size=12, color="black")
+                ]
             )
         ]
     )
 
-    # Exportar HTML
-    html = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'scrollZoom': True, 'responsive': True})
+    # CSS para bordes redondeados
+    custom_css = """
+    <style>
+        .plot-container {
+            border-radius: 15px !important;
+            overflow: hidden !important;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1) !important;
+            position: relative;
+        }
+        .plotly-graph-div {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 15px !important;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    """
 
+    # HTML con CSS
+    html_content = fig.to_html(full_html=True, include_plotlyjs='cdn', config={'responsive': True})
+    html_content = html_content.replace('<head>', '<head>' + custom_css)
+    html_content = html_content.replace('<div id="', '<div class="plot-container"><div id="')
+    html_content = html_content.replace('</body>', '</div></body>')
+
+    # Guardar archivo
     with open(output_file, 'w') as f:
-        f.write(html)
+        f.write(html_content)
 
-    print(f"Teide map with fumarole view generated: {output_file}")
+# Guardar como HTML
+generate_teide_map("teide_map_final.html")
+
+
 
 def generate_radiative_power_plot(df, output_file):
     """Generate the radiative power scatter plot with eruption period highlighted"""
