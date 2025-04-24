@@ -2752,62 +2752,34 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-# TEIDE {#teide}
+# 🏝️ TEIDE {#teide}
 ```{python}
-
 #| label: teide-carousel
 #| echo: false
-#| include: false
-import subprocess
-subprocess.run(["python", "../A02_utils/geometry_2.py"], check=True)
-
-from IPython.display import HTML
-
 HTML(f"""
-<div class="homepage">
-  <!-- Carrusel optimizado -->
-  <div class="homepage-header">
-    <div class="carousel-container">
-      
-      <!-- Slide 1 -->
-      <div class="carousel-slide active" style="background-image: url('B_images/teide1.jpg');">
-        <div class="photo-credits">
-          © <a href="https://diariodeavisos.elespanol.com/2020/06/las-fumarolas-del-teide-alimentarian-generadores-termoelectricos/" target="_blank">Diario de Avisos</a>
-        </div>
+<div class="homepage-header">
+  <div class="carousel-container">
+    <!-- Slide 1 -->
+    <div class="carousel-slide active" style="background-image: url('B_images/teide1.jpg');">
+      <div class="photo-credits">
+        © <a href="https://diariodeavisos.elespanol.com/2020/06/las-fumarolas-del-teide-alimentarian-generadores-termoelectricos/" target="_blank">Diario de Avisos</a>
       </div>
+    </div>
 
-      <!-- Slide 2 -->
-      <div class="carousel-slide" style="background-image: url('B_images/teide2.jpg');">
-        <div class="photo-credits hidden">
-          © <a href="https://www.eldia.es/buzzeando/2025/04/04/extrana-imagen-teide-dejado-borrasca-dv-116063039.html" target="_blank">El Día</a>
-        </div>
+    <!-- Slide 2 -->
+    <div class="carousel-slide" style="background-image: url('B_images/teide2.jpg');">
+      <div class="photo-credits hidden">
+        © <a href="https://www.eldia.es/buzzeando/2025/04/04/extrana-imagen-teide-dejado-borrasca-dv-116063039.html" target="_blank">El Día</a>
       </div>
+    </div>
 
-      <!-- Slide 3 -->
-      <div class="carousel-slide" style="background-image: url('B_images/teide3.jpg');">
-        <div class="photo-credits hidden">
-          © <a href="https://tenerifeandoporelmundo.com/2016/11/ascenso-al-pico-del-teide-en-teleferico.html" target="_blank">Tenerifeando por el mundo</a>
-        </div>
+    <div class="carousel-overlay"></div>
+    <div class="homepage-logo-container">
+      <div class="teide-logo">
+        <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
       </div>
-
-      <div class="carousel-overlay"></div>
-
-      <!-- Logo del Teide -->
-      <div class="homepage-logo-container">
-        <div class="teide-logo">
-          <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
-        </div>
         <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-          El Teide
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-</div>
-    </div>
+    Hydrothermal Activity in the Teide
   </div>
 </div>
   <!-- Nuevo footer de créditos -->
@@ -2829,6 +2801,25 @@ from IPython.display import HTML
 HTML('''
 <style>
 /* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
+/* Estilos simplificados para la sección Teide */
+.teide-section {
+  padding: 0;
+  margin: 0;
+}
+
+.map-container-teide {
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Eliminar espacios innecesarios */
+.credits-footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
 
 /* ESTILOS PARA EL MAPA - NUEVOS */
 .map-containert {
