@@ -2980,6 +2980,56 @@ HTML('''
     <p>All content presented for educational and scientific research purposes</p>
   </div>
 </div>
+
+
+
+<!-- Video Feature Section - Teide -->
+<div class="context-box">
+    <div class="context-title">Volcanic Activity at Teide</div>
+    <div class="context-text">
+        Teide volcano, although currently dormant, displays fumarolic activity and remains an active area of scientific interest. 
+        These videos showcase recent monitoring efforts, thermal imagery, and historical context.
+    </div>
+
+    <!-- 2x2 Video Grid -->
+    <div class="media-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+        <!-- Video 1 -->
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/watch?v=6oXnAwbIQFI" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-caption">Aerial views of El Teide captured by dron</div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/watch?v=BD3C7mA2BAg" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-caption">Fumarolic zone (2023)</div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/watch?v=evq6QsfqAZQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-caption">Aerial footage of Teide</div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/watch?v=LT1Jd4RV8mg" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-caption">Aerial views of volcano El Teide</div>
+        </div>
+
+    </div>
+</div>
+
+
 ''')
 ```
 
