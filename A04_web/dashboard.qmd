@@ -2982,53 +2982,97 @@ HTML('''
 </div>
 
 
+<!-- Video Section: Teide -->
+<style>
+.video-wrapper {
+  width: 100%;
+}
 
-<!-- Video Feature Section - Teide -->
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: black;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+.video-caption {
+  text-align: center;
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 8px;
+  color: #444;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
 <div class="context-box">
-    <div class="context-title">Volcanic Activity at Teide</div>
-    <div class="context-text">
-        Teide volcano, although currently dormant, displays fumarolic activity and remains an active area of scientific interest. 
-        These videos showcase recent monitoring efforts, thermal imagery, and historical context.
+  <div class="context-title">Volcanic Activity at Teide</div>
+  <div class="context-text">
+    Teide volcano, although currently dormant, displays fumarolic activity and remains an active area of scientific interest. 
+    These videos showcase recent monitoring efforts, thermal imagery, and historical context.
+  </div>
+
+  <div class="media-grid">
+    <!-- Video 1 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/6oXnAwbIQFI" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Aerial views of El Teide captured by drone</div>
     </div>
 
-    <!-- 2x2 Video Grid -->
-    <div class="media-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-
-        <!-- Video 1 -->
-        <div class="video-wrapper">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/watch?v=6oXnAwbIQFI" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="video-caption">Aerial views of El Teide captured by dron</div>
-        </div>
-
-        <!-- Video 2 -->
-        <div class="video-wrapper">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/watch?v=BD3C7mA2BAg" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="video-caption">Fumarolic zone (2023)</div>
-        </div>
-
-        <!-- Video 3 -->
-        <div class="video-wrapper">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/watch?v=evq6QsfqAZQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="video-caption">Aerial footage of Teide</div>
-        </div>
-
-        <!-- Video 4 -->
-        <div class="video-wrapper">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/watch?v=LT1Jd4RV8mg" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="video-caption">Aerial views of volcano El Teide</div>
-        </div>
-
+    <!-- Video 2 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/BD3C7mA2BAg" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Fumarolic zone (2023)</div>
     </div>
+
+    <!-- Video 3 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/evq6QsfqAZQ" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Aerial footage of Teide</div>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/LT1Jd4RV8mg" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Aerial views of volcano El Teide</div>
+    </div>
+  </div>
 </div>
-
 
 ''')
 ```
