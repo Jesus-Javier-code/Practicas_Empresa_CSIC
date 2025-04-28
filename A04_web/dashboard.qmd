@@ -2610,6 +2610,7 @@ iframe {
 
 ```
 
+````{=html}
 <script>
 // Script para ajuste dinámico si es necesario
 document.addEventListener('DOMContentLoaded', function() {
@@ -2750,7 +2751,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
-
+````
 
 # 🏝️ TEIDE {#teide}
 ```{python}
@@ -3272,6 +3273,8 @@ HTML('''
 ''')
 ```
 
+````{=html}
+
 <script>
 // Solo una definición de toggleInfo que funcione para todos los popups
 function toggleInfo(id) {
@@ -3395,11 +3398,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-
+````
 
 
 # 🕳️ EARTHQUAKES {#earthquakes}
-
 
 
 ```{python}
@@ -3594,6 +3596,7 @@ HTML(f"""
     </div>
   </div>
 </div>
+
 ````
 
 ````{python}
@@ -3622,21 +3625,3 @@ HTML("""
 """)
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
