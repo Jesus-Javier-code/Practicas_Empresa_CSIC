@@ -2751,9 +2751,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
-
-
-
+````
 
 # 🕳️ EARTHQUAKES {#earthquakes}
 
@@ -2785,6 +2783,13 @@ HTML(f"""
           © <a href="https://temblor.net/" target="_blank">Temblor.net</a>
         </div>
       </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/eq-ice.jpg');">
+        <div class="photo-credits">
+          © <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquake-photo-collections">Earthquake Photo Collections, USGS</a>
+        </div>
+      </div>
       
       <div class="carousel-overlay"></div>
       <div class="homepage-logo-container">
@@ -2805,6 +2810,8 @@ HTML(f"""
 </div>
 """)
 ```
+
+
 
 ````{=html}
 <style>
@@ -2852,7 +2859,7 @@ HTML(f"""
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    width: 100%;
+    width: 1200px;
   }
   
   /* Items de visualización */
@@ -2900,7 +2907,234 @@ HTML(f"""
     }
   }
 </style>
+````
 
+````{python}
+
+from IPython.display import HTML
+
+HTML('''
+<style>
+/* ESTILOS PARA EL CONTENEDOR DE TEXTO */
+.text-containert {
+  flex: 1;
+  min-width: 400px;
+  height: 470px; /* Misma altura que el mapa */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.plots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.plot-wrapper {
+  flex: 1;
+  min-width: 400px;
+  height: 550px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.plot-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+
+.combined-analysis {
+  width: 100%;
+  padding: 20px;
+  background:rgb(255, 255, 255);
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #d7512c;
+}
+
+.combined-analysis h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.combined-analysis p {
+  color: #555;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .plot-wrapper {
+    min-width: 100%;
+    height: 450px;
+  }
+}
+
+.info-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.info-button {
+  background-color: #d7512c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color:rgb(255, 255, 255);
+  color: #333;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  width: 600px;
+  font-size: 13.5px;
+  max-width: 90vw;
+}
+</style>
+
+<div class="main-container">
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-title">Earthquakes</div>
+    <div class="hero-subtitle">
+      
+    </div>
+  </div>
+
+
+  <!-- Top Section: Ahora con mapa a la izquierda y texto a la derecha -->
+  <div class="top-container">
+    <!-- Mapa (ahora a la izquierda visualmente) -->
+     <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/watch?v=Dm0WbAxhRP8" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Explanation of earthquake formation</div>
+    </div>
+    </div>
+    
+    <!-- Text Content (ahora a la derecha visualmente) -->
+    <div class="text-containert">
+      <div class="context-box">
+        <div class="context-title">Volcanic activity</div>
+        <div class="context-text">
+          <p>When starting periods of volcanic activity it is usual to register a larger number of seismic events due to the vibrations caused by the flow of the magma, gases and other fluids that could be present in the magmatic chambers.</p>
+          <p>This events are not considered the cause of the volcanic eruption but a consequence of its activity. These are characterised by their closed range to the volcano. It is accepted that non-volcanic earthquakes are those with an epicenter further than 25km from it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Points Grid -->
+  <div class="key-points">
+    <div class="key-point">
+      <div class="key-point-title">20000 earthquakes </div>
+      <div class="context-text">
+        The USGS locates about 20000 earthquakes per year, or 55 per day approximately
+      </div>
+    </div>
+    <div class="key-point">
+      <div class="key-point-title">Hebey, China 1976</div>
+      <div class="context-text">
+        Althought not the largest magnitude earthquake, it is the deadliest one registered. This tragedy highlight the relevance of studying and preventing earthquakes effects.
+      </div>
+    </div>
+    <div class="key-point">
+      <div class="key-point-title">86°C Max</div>
+      <div class="context-text">
+        Highest recorded fumarole temperature at summit
+      </div>
+    </div>
+  </div>
+<div class="context-box combined-analysis">
+  <div class="context-title"> Seismic-volcanic correlation</div>
+  <div class="context-text">
+    <p>There are several ways earthquakes affect to volcanic activity. The main cases are those related to the dinamic and static stresses that they cause to the magmatic chambers. Althought the event may also tear the chamber if the fault is large enough or if the hypocenter is close enough.</p>
+
+    <p>These are not the only conditions to cause an eruptive period, there has to be a "predisposition" to ignite it. The main things are the material composition of the crust, the viscosity and density of the magma, the bubble flow, if there are temperature changes that affects to the (usually crystal) ceilling of the magmatic chamber...<p>
+
+    <p>Statistically, closed system volcanoes are more likely to trigger due to seismic events than open volcanoes, existing a geological factor that affects to this statistic. Specifically, it is stimated that in Chile and Indonesia 25% of volcanoes are susceptible to earthquakes (Watt et al. 2009) while in other regions is stimated to be only 0.3-0.4% (Linde and Selwyn Sacks, 1998; Manga and Brodsky, 2006; Lemarchand and Grasso, 2007). </p>
+
+    <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years (), due to the studied time-span of stabilization of the volcano afer the different stress-caused mechanisms. It has been seem that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
+
+  </div>
+</div>
+
+
+  <div class="plots-container">
+    <!-- Daily Thermal Activity -->
+    <div class="plot-wrapper">
+      <iframe src="B_images/radiative_power_teide_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+
+      <!-- Info Icon & Tooltip -->
+      <div class="info-box">
+        <button class="info-button" onclick="toggleInfo('info1')">i</button>
+        <div class="info-popup" id="info1">
+          This graph shows daily thermal anomalies detected at Teide volcano using VIIRS satellite data. The values represent deviations from background thermal conditions, highlighting periods of increased fumarolic activity.
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Combined Analysis Section -->
+<div class="context-box combined-analysis">
+  <div class="context-title">Understanding Teide's Thermal Signals</div>
+  <div class="context-text">
+
+    <p>The graph above illustrates the <strong>Daily Radiative Power</strong> (MW) at Teide from 2021 to 2025. It clearly shows a steady increase in fumarolic thermal output starting in early 2022, peaking in late 2024. The highest value recorded was <strong>146 MW</strong> around November 2024, which aligns with the major seismic swarm detected on <strong>November 14, 2024</strong>—an event involving over 500 microearthquakes. This temporal coincidence suggests a possible link between subsurface pressure changes and the intensified thermal anomalies captured in the satellite observations.</p>
+
+    <p>Notably, on November 14, 2024, the National Geographic Institute (IGN) detected an anomalous seismic swarm comprising over 500 microearthquakes southwest of Pico Viejo within a three-hour window. These events, occurring at depths of 8–12 km, suggest increased pressure within Teide's hydrothermal system <a href="https://www.canarianweekly.com/posts/swarm-of-500-earthquakes-detected-at-mount-teide" target="_blank">(Canarian Weekly, 14 Nov 2024)</a>, <a href="https://danews.eu/teide-seismic-swarm-2024" target="_blank">(DA News, 14 Nov 2024)</a>.</p>
+
+    <p>Additionally, since 2023, GPS measurements have indicated a ground uplift of approximately one centimetre, and a slight increase in CO₂ emissions has been observed in various areas of Tenerife, including Teide's crater <a href="https://www.diariodeavisos.com/2025/01/teide-co2-increase/" target="_blank">(Diario de Avisos, 24 Jan 2025)</a>, <a href="https://www.canarianweekly.com/posts/teide-ground-uplift-2025" target="_blank">(Canarian Weekly, 26 Jan 2025)</a>.</p>
+
+    <p>While Teide remains in a dormant phase, continuous monitoring of these thermal signals aids scientists in detecting any changes that might indicate increasing volcanic activity.</p>
+
+    <p style="color: #000; font-weight: 500;">This dataset is automatically updated daily using NASA's VIIRS satellite observations.</p>
+  </div>
+</div>
+
+<!-- Media Gallery Header Section -->
+<div class="hero-banner media-gallery-header">
+    <div class="hero-content">
+        <div class="hero-title"> Teide in Motion</div>
+        <div class="hero-subtitle">
+            Photographic and video evidence of ongoing fumarolic emissions at Mount Teide, showcasing the activity through  drone footage, and ground-level observations. 
+        </div>
+    </div>
+</div>
+''')
+
+````
+
+````{=html}
 <div class="dashboard-wrapper">
   <!-- Columna Izquierda - Formulario -->
   <div class="form-column">
@@ -2915,7 +3149,10 @@ HTML(f"""
     
     <div id="status-message" class="alert alert-info" style="display: none; margin-top: 1rem;"></div>
   </div>
-  
+
+````
+
+````{=html}
   <!-- Columna Derecha - Visualizaciones -->
   <div class="visualization-column">
     <!-- Sección de Mapas -->
@@ -2928,15 +3165,18 @@ HTML(f"""
         <iframe src="./B_images/eq_map_filtered.html" class="visualization-iframe"></iframe>
       </div>
     </div>
-    
+  
+````
+
+````{=html}
     <!-- Sección de Histogramas -->
     <h2 style="color: #333; margin-bottom: 0.5rem;">Event Distribution</h2>
     <div class="visualization-container">
       <div class="visualization-item">
-        <iframe src="./B_images/eq_histogram.html" class="visualization-iframe"></iframe>
+        <iframe src="./B_images/eq_histogram.html" class="visualization-iframe" scrolling="no" ></iframe>
       </div>
       <div class="visualization-item">
-        <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe"></iframe>
+        <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe" scrolling="no"></iframe>
       </div>
     </div>
     
@@ -2951,20 +3191,6 @@ HTML(f"""
 </div>
 ````
 
-````{python}
-#| label: eq-table-fullwidth
-#| echo: false
-from IPython.display import HTML
-
-display(HTML('''
-<div style="width: 100%; max-width: 1200px; margin: 0 auto; margin-top: -10px;">
-  <iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
-</div>
-'''))
-
-````
-
-
 ```{python}
 #| label: earthquakes-credits
 #| echo: false
@@ -2973,10 +3199,13 @@ HTML("""
   <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
   <p><strong>Data source:</strong> Public <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes">USGS Catalog</a> by using the Python library <a href="https://code.usgs.gov/ghsc/esi/libcomcat-python/-/tree/main?ref_type=heads">libcomcat</a> by <a href="https://www.usgs.gov/staff-profiles/michael-hearne#data">Mike Hearne</a></p>
   <p>All content presented for educational and scientific research purposes</p>
+  <p><a href="https://doi.org/10.1007/s11069-023-06090-y">Benito, M.B., Alvarado, G.E., Marchamalo, M. et al. Temporal and spatial evolution of the 2021 eruption in the Tajogaite volcano (Cumbre Vieja rift zone, La Palma, Canary Islands) from geophysical and geodetic parameter analyses. Nat Hazards 118, 2245–2284 (2023). <a>  </p>
 </div>
 """)
 
 ```
+
+
 # 🏝️ TEIDE {#teide}
 ```{python}
 #| label: teide-carousel
@@ -3621,6 +3850,7 @@ document.addEventListener('DOMContentLoaded', function() {
     startTeideAutoRotation();
 });
 </script>
+
 
 
 

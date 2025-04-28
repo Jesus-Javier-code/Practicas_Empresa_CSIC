@@ -159,12 +159,17 @@ def download_optimized(date_i, date_f, center_coords, reg_rad):
 
     return working_df(cumulative_summary_df, cumulative_detail_df), center_coords
 
-"""
-ref = ("2024-01-01 00:00", "2025-03-30 00:00", (32.62691152238639, -116.34553204019909), 500)
-download_all_by_region(*ref)
-"""
+def coordinates_format(lat, lon):
+    coords = (lat, lon)
+    return coords
 
-ref = ("2000-01-01 00:00", "2025-03-30 00:00", (28.61302051993363, -17.866746656292413), 750)
+date_i = "2000-01-01 00:00"
+date_f = "2025-03-30 00:00"
+lat_cent = 28.61302051993363
+lon_cent = -17.866746656292413
+reg_rad = 350
+
+ref = (date_i, date_f, coordinates_format(lat_cent, lon_cent), reg_rad)
 
 #download_all_by_region(*ref)
 #download_optimized(*ref)

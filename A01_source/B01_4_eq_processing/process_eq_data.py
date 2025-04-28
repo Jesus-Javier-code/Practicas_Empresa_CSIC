@@ -144,6 +144,8 @@ def generate_map(data, output_folder, is_filtered=False):
             title=map_title
         )
 
+        
+
         # Coordenadas del volcán (centro de referencia)
         lat_cent, lon_cent = dwl.ref[2]
         reg = dwl.ref[3] + 25
@@ -160,13 +162,13 @@ def generate_map(data, output_folder, is_filtered=False):
                size=15,
               color="red"
             ),
-            text=["Volcán"],
+            text=["Reference Point"],
             textposition="top right",  # Ajustar la posición de la etiqueta
             textfont=dict(
                 size=10,  # Reducir el tamaño de la fuente
                 color="black"
             ),
-            hovertext=["Volcán (Información adicional)"],  # Información al pasar el cursor
+            hovertext=["Reference point"],  # Información al pasar el cursor
             hoverinfo="text"
         )
     )
