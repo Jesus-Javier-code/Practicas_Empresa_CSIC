@@ -41,10 +41,10 @@ def main():
     # Full path for each script that needs to be executed
     download_script_LaPalma = scripts_directory / "B01_1_download" / "La_Palma" / "download_LaPalma.py"
     download_script_Teide = scripts_directory / "B01_1_download" / "Teide" / "download_Teide.py"
-    bt_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "BT" / "BT_auto.py"
-    bt_script_Teide = scripts_directory / "B01_3_processing" /  "Teide" / "BT" / "BT_auto.py"
-    ref_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "REF" / "REF_auto.py"
-    ref_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "REF" / "REF_auto.py"
+    #bt_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "BT" / "BT_auto.py"
+    #bt_script_Teide = scripts_directory / "B01_3_processing" /  "Teide" / "BT" / "BT_auto.py"
+    #ref_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "REF" / "REF_auto.py"
+    #ref_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "REF" / "REF_auto.py"
     rp_script_LaPalma = scripts_directory / "B01_3_processing" / "La_Palma" / "radiative_power" / "RP_auto.py"
     rp_script_Teide = scripts_directory / "B01_3_processing" / "Teide" / "radiative_power" / "RP_auto.py"
 
@@ -55,10 +55,10 @@ def main():
     # Run the scripts in the correct order
     run_script(download_script_LaPalma)  # First, download the data
     run_script(download_script_Teide)
-    run_script(bt_script_LaPalma)        # Then, convert it to brightness temperature (BT)
-    run_script(bt_script_Teide)        # Then, convert it to brightness temperature (BT)
-    run_script(ref_script_LaPalma)       # Next, calculate the REF
-    run_script(ref_script_Teide)       # Next, calculate the REF
+    #run_script(bt_script_LaPalma)        # Then, convert it to brightness temperature (BT)
+    #run_script(bt_script_Teide)        # Then, convert it to brightness temperature (BT)
+    #run_script(ref_script_LaPalma)       # Next, calculate the REF
+    #run_script(ref_script_Teide)       # Next, calculate the REF
     run_script(rp_script_LaPalma)        # Finally, calculate the radiative power (FRP)
     run_script(rp_script_Teide)        # Finally, calculate the radiative power (FRP)
 
