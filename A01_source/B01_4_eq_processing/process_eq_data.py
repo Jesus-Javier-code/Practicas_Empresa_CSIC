@@ -146,7 +146,7 @@ def generate_map(data, output_folder, is_filtered=False):
 
         # Coordenadas del volcán (centro de referencia)
         lat_cent, lon_cent = dwl.ref[2]
-        reg = dwl.ref[3] + 50
+        reg = dwl.ref[3] + 25
         lat_min, lat_max, lon_min, lon_max = utils.limit_region_coords(lat_cent, lon_cent, reg)
 
         # Agregar un marcador para el volcán

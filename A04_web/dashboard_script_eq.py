@@ -445,7 +445,7 @@ def generate_map(data, output_folder, is_filtered=False):
 
         # Coordenadas del volcán (centro de referencia)
         lat_cent, lon_cent = ref[2]
-        reg = ref[3] + 50
+        reg = ref[3] + 25
         lat_min, lat_max, lon_min, lon_max = limit_region_coords(lat_cent, lon_cent, reg)
 
         fig.add_trace(
