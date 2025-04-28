@@ -24,10 +24,6 @@ in other folders must be imported here
 
 ref = ("2000-01-01 00:00", "2025-03-30 00:00", (28.61302051993363, -17.866746656292413), 750)
 
-def update_ref(date_i, date_f, latitude, longitude, reg_rad):
-    ref = (date_i, date_f, (latitude, longitude), reg_rad)
-    return ref
-
 #-------------------------------------------------------------------
 # Download.py
 #-------------------------------------------------------------------
@@ -295,8 +291,7 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     saving_data(result_df, "trigger_index_filtered.csv", folder = "B_eq_processed")
     return result_df
  
-def get_all_events(date_i, date_f, latitude, longitude, radius, answer = "no"):
-    ref = update_ref(date_i, date_f, latitude, longitude, radius)
+def get_all_events(answer = "no"):
     if answer == "yes":
         download_all_by_region(*ref)
         trigger_index(L_method = "Singh", file_name = "all_events_wrk_df.csv")
