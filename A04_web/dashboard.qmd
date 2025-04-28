@@ -3395,7 +3395,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+
+
 # 🕳️ EARTHQUAKES {#earthquakes}
+
+
 
 ```{python}
 #| label: earthquakes-carousel
