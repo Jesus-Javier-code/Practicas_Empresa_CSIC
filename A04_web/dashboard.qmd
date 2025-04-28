@@ -3291,7 +3291,14 @@ HTML('''
     <p style="color: #000; font-weight: 500;">This dataset is automatically updated daily using NASA's VIIRS satellite observations.</p>
   </div>
 </div>
-
+<div class="hero-banner eruption-background">
+    <div class="hero-content">
+        <div class="hero-title">Teide Background</div>
+        <div class="hero-subtitle">
+            A chronological overview of Mount Teide's geological evolution, major eruptive phases, and recent volcanic activity based on historical and scientific records
+        </div>
+    </div>
+</div>
 <!-- Combined Timeline + Gallery Section -->
 <div class="context-box" style="margin-bottom: 25px;">
   <div class="context-title">Eruption Timeline</div>
