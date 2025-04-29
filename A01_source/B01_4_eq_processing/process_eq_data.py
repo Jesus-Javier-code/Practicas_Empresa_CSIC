@@ -16,6 +16,20 @@ from A01_source.B01_2_eq_download import download as dwl
 
 def main():
     try:
+        # This can be deleted in the final version
+        input_ask = input("Do you want to update the data? (yes/no): ").strip().lower()
+        if input_ask == "yes":
+            print("Filtered or non-filtered data")
+            inpust_ask2 = input("Do you want to get all events? If not, it will be used the optimized download method: ").strip().lower()
+            pre.optimized_download(inpust_ask2)
+        if input_ask == "no":
+            print("No data update requested")
+            print("Update of filtered map")
+            inpust_ask3 = input("Do you want to update the filtered map? If yes, only trigger index =< 100 will be taken (yes/no): ").strip().lower()
+            if inpust_ask3 == "yes":    
+                pre.discard_by_max_trigger_index("wrk_df.csv", 100)
+            if inpust_ask3 == "no":
+                print("No filter applied.")
         # Update data to the new parameters
         print("🔄 Loading data...")
         #pre.trigger_index(L_method="Singh")     
@@ -72,15 +86,13 @@ def generate_table(data, output_folder):
     try:
         table_html_path = os.path.join(output_folder, "eq_table.html")
 
-        # Convertir el DataFrame a HTML (solo las primeras 100 filas)
         html_table = data.to_html(
-            index=False,
-            border=0,
-            classes="table table-striped",
-            justify="center"
+            index = False,
+            border = 0,
+            classes = "table table-striped",
+            justify = "center"
         )
 
-        # Envolver en HTML básico
         full_html = f"""
         <html>
         <head>
@@ -123,7 +135,6 @@ def generate_table(data, output_folder):
 
 def generate_map(data, output_folder, is_filtered=False):
     try:
-        # Determinar el nombre del archivo y el título del mapa según el DataFrame
         if is_filtered:
             map_html_path = os.path.join(output_folder, "eq_map_filtered.html")
             map_title = "Filtered Earthquake Trigger Index Map"
@@ -132,93 +143,112 @@ def generate_map(data, output_folder, is_filtered=False):
             map_html_path = os.path.join(output_folder, "eq_map.html")
             map_title = "Earthquake Trigger Index Map"
 
-        # Crear el mapa principal con los datos sísmicos
         fig = px.scatter_geo(
             data,
-            lat="latitude",
-            lon="longitude",
-            size=data["magnitude"]*2,
-            color="trigger_index",
-            color_continuous_scale="Viridis",
-            hover_name="id",
-            title=map_title
+            lat = "latitude",
+            lon = "longitude",
+            size = data["magnitude"]*2,
+            color = "trigger_index",
+            color_continuous_scale = "Viridis",
+            hover_name = "id",
+            title = map_title
         )
 
-        
+        fig.update_layout(
+            title_font = dict(size = 20),
+            margin = {"r": 0, "t": 50, "l": 0, "b": 0},
+            coloraxis_colorbar = dict(
+                title = "Scale", 
+                orientation = "v", 
+                x = -0.1,
+                xanchor = "right", 
+                y = 0.5, 
+                yanchor = "middle", 
+                len = 1,
+                thickness = 10,
+            ),
+            coloraxis_reversescale = True
+        )
 
-        # Coordenadas del volcán (centro de referencia)
         lat_cent, lon_cent = dwl.ref[2]
         reg = dwl.ref[3] + 25
         lat_min, lat_max, lon_min, lon_max = utils.limit_region_coords(lat_cent, lon_cent, reg)
 
-        # Agregar un marcador para el volcán
         fig.add_trace(
             go.Scattergeo(
-                lat=[lat_cent],
-                lon=[lon_cent],
-                mode="markers+text",
-                marker=dict(
-               symbol="triangle-up",
-               size=15,
-              color="red"
+                lat = [lat_cent],
+                lon = [lon_cent],
+                mode = "markers+text",
+                marker = dict(
+                symbol = "triangle-up",
+                size = 15,
+                color = "red"
             ),
-            text=["Reference Point"],
-            textposition="top right",  # Ajustar la posición de la etiqueta
-            textfont=dict(
-                size=10,  # Reducir el tamaño de la fuente
-                color="black"
+            text = [None],
+            textposition = None, 
+            textfont = dict(
+                size = 10, 
+                color = "black",
             ),
-            hovertext=["Reference point"],  # Información al pasar el cursor
-            hoverinfo="text"
+            hovertext = ["Reference point"],  
+            hoverinfo = "text",
+            name = "Marker"
         )
     )
 
         fig.add_trace(
             go.Scattergeo(
-                lat=[lat_min, lat_min, lat_max, lat_max, lat_min],
-                lon=[lon_min, lon_max, lon_max, lon_min, lon_min],
-                mode="lines",
-                line=dict(color="red", width=2),
-                name="Search Area",
-                showlegend=False
+                lat = [lat_min, lat_min, lat_max, lat_max, lat_min],
+                lon = [lon_min, lon_max, lon_max, lon_min, lon_min],
+                mode = "lines",
+                line = dict(color="red", width=2),
+                name = "Search Area",
+                showlegend = False
             )
         )
 
-        # Configurar los límites y la proyección del mapa
         fig.update_geos(
-            projection_type="mercator",
-            center={"lat": lat_cent, "lon": lon_cent},
-            fitbounds="locations",
-            lataxis={"range": [lat_min, lat_max]},
-            lonaxis={"range": [lon_min, lon_max]},
-            visible=True,
-            showland=True,
-            landcolor="lightgray",
-            showocean=True,
-            oceancolor="lightblue",
-            showcountries=True,
-            countrycolor="black",
-            showcoastlines=True,
-            coastlinecolor="black",
-            coastlinewidth=1,
-            showrivers=True,
-            rivercolor="blue",
-            showlakes=True,
-            lakecolor="blue",
-            riverwidth=1,
-            resolution=50
+            projection_type = "mercator",
+            center = {"lat": lat_cent, "lon": lon_cent},
+            fitbounds = "locations",
+            lataxis = {"range": [lat_min, lat_max]},
+            lonaxis = {"range": [lon_min, lon_max]},
+            visible = True,
+            showland = True,
+            landcolor = "lightgray",
+            showocean = True,
+            oceancolor = "lightblue",
+            showcountries = True,
+            countrycolor = "black",
+            showcoastlines = True,
+            coastlinecolor = "black",
+            coastlinewidth = 1,
+            showrivers = True,
+            rivercolor = "blue",
+            showlakes = True,
+            lakecolor = "blue",
+            riverwidth = 1,
+            resolution = 50
         )
 
-        fig.update_geos(lataxis_showgrid=True, lonaxis_showgrid=True)
+        fig.update_geos(lataxis_showgrid = True, lonaxis_showgrid = True)
 
-        # Configurar el diseño del mapa
+
         fig.update_layout(
-            title_font=dict(size=20),
-            margin={"r": 0, "t": 50, "l": 0, "b": 0}
+            title_font = dict(size = 20),
+            margin = {"r": 0, "t": 50, "l": 0, "b": 0}
+        )
+
+        fig.update_geos(
+            projection_type = "mercator", 
+            center = {"lat": lat_cent, "lon": lon_cent}, 
+            fitbounds = "locations",
+            lataxis = {"range": [lat_min, lat_max]}, 
+            lonaxis = {"range": [lon_min, lon_max]}, 
         )
         
-        os.makedirs(output_folder, exist_ok=True)  # Asegurarse de que la carpeta exista
-        fig.write_html(map_html_path, full_html=True)
+        os.makedirs(output_folder, exist_ok = True) 
+        fig.write_html(map_html_path, full_html = True)
         print(f"✅ Map saved to: {map_html_path}")
 
         if os.path.exists(map_html_path):
@@ -254,31 +284,29 @@ def generate_histogram(data, output_folder):
 
         fig = px.histogram(
             data,
-            x="date",
-            nbins=60,
-            title="Trigger Index Histogram",
-            marginal="rug"
+            x = "time",
+            title = "Trigger Index Histogram"
         )
 
         # Configurar el diseño del histograma
         fig.update_layout(
-            title_font=dict(size=20),
-            xaxis_title="Trigger Index",
-            yaxis_title="Frequency",
-            bargap= 0.2,
-            coloraxis_colorbar=dict(
-                title="Trigger Index",  # Título de la barra de colores
-                tickvals=[data["trigger_index"].min(), data["trigger_index"].max()],
-                ticktext=["Low", "High"]),
+            title_font = dict(size=20),
+            xaxis_title = "Trigger Index",
+            yaxis_title = "Frequency",
+            bargap = 0.2,
+            coloraxis_colorbar = dict(
+                title = "Trigger Index",  # Título de la barra de colores
+                tickvals = [data["trigger_index"].min(), data["trigger_index"].max()],
+                ticktext = ["Low", "High"]),
             xaxis = dict(
-                showgrid=True,
-                gridcolor="lightgray",
-                gridwidth=0.5,
+                showgrid = True,
+                gridcolor = "lightgray",
+                gridwidth = 0.5,
             ),
             yaxis = dict(
-                showgrid=True,
-                gridcolor="lightgray",
-                gridwidth=0.5,
+                showgrid = True,
+                gridcolor = "lightgray",
+                gridwidth = 0.5,
             )
         )
 

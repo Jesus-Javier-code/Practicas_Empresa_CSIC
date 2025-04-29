@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from A01_source.B01_2_eq_download import utils as utils
+from A01_source.B01_2_eq_download import utils as utils # To avoid circular import issues 
 from A01_source.B01_2_eq_download import download as dwl
 from A01_source.B01_2_eq_download.download import ref
 
@@ -78,16 +78,12 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
     utils.saving_data(result_df, "trigger_index_filtered.csv", folder="B_eq_processed")
     return result_df
  
-def get_all_events(answer="no"):
+def optimized_download(answer="no"):
     if answer == "yes":
         dwl.download_all_by_region(*ref)
-        trigger_index(L_method="Singh", file_name="all_events_wrk_df.csv")
-        discard_by_max_trigger_index("all_events_wrk_df.csv", 40)
-        return print("All vents downloaded in 'all_events_wrk_df.csv'")
+        trigger_index(L_method="Singh", file_name="wrk_df.csv")
+        return print("All vents downloaded in 'wrk_df.csv'")
     elif answer == "no":
         dwl.download_optimized(*ref)
         trigger_index(L_method="Singh")
-        discard_by_max_trigger_index("wrk_df.csv", 40)
-        return print("Only relevants events downloaded in 'wrk_df.csv'")
-
-get_all_events("no")
+        return print("Only relevants events downloaded in 'trigger_index_filtered.csv'")

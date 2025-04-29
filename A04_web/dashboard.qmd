@@ -3090,36 +3090,6 @@ HTML('''
 </div>
 
 
-  <div class="plots-container">
-    <!-- Daily Thermal Activity -->
-    <div class="plot-wrapper">
-      <iframe src="B_images/radiative_power_teide_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
-
-      <!-- Info Icon & Tooltip -->
-      <div class="info-box">
-        <button class="info-button" onclick="toggleInfo('info1')">i</button>
-        <div class="info-popup" id="info1">
-          This graph shows daily thermal anomalies detected at Teide volcano using VIIRS satellite data. The values represent deviations from background thermal conditions, highlighting periods of increased fumarolic activity.
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- Combined Analysis Section -->
-<div class="context-box combined-analysis">
-  <div class="context-title">Understanding Teide's Thermal Signals</div>
-  <div class="context-text">
-
-    <p>The graph above illustrates the <strong>Daily Radiative Power</strong> (MW) at Teide from 2021 to 2025. It clearly shows a steady increase in fumarolic thermal output starting in early 2022, peaking in late 2024. The highest value recorded was <strong>146 MW</strong> around November 2024, which aligns with the major seismic swarm detected on <strong>November 14, 2024</strong>—an event involving over 500 microearthquakes. This temporal coincidence suggests a possible link between subsurface pressure changes and the intensified thermal anomalies captured in the satellite observations.</p>
-
-    <p>Notably, on November 14, 2024, the National Geographic Institute (IGN) detected an anomalous seismic swarm comprising over 500 microearthquakes southwest of Pico Viejo within a three-hour window. These events, occurring at depths of 8–12 km, suggest increased pressure within Teide's hydrothermal system <a href="https://www.canarianweekly.com/posts/swarm-of-500-earthquakes-detected-at-mount-teide" target="_blank">(Canarian Weekly, 14 Nov 2024)</a>, <a href="https://danews.eu/teide-seismic-swarm-2024" target="_blank">(DA News, 14 Nov 2024)</a>.</p>
-
-    <p>Additionally, since 2023, GPS measurements have indicated a ground uplift of approximately one centimetre, and a slight increase in CO₂ emissions has been observed in various areas of Tenerife, including Teide's crater <a href="https://www.diariodeavisos.com/2025/01/teide-co2-increase/" target="_blank">(Diario de Avisos, 24 Jan 2025)</a>, <a href="https://www.canarianweekly.com/posts/teide-ground-uplift-2025" target="_blank">(Canarian Weekly, 26 Jan 2025)</a>.</p>
-
-    <p>While Teide remains in a dormant phase, continuous monitoring of these thermal signals aids scientists in detecting any changes that might indicate increasing volcanic activity.</p>
-
-    <p style="color: #000; font-weight: 500;">This dataset is automatically updated daily using NASA's VIIRS satellite observations.</p>
-  </div>
-</div>
 
 <!-- Media Gallery Header Section -->
 <div class="hero-banner media-gallery-header">
