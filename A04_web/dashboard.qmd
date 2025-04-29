@@ -909,7 +909,7 @@ HTML(f"""
     <!-- Post-it 1 -->
     <div class="post-it yellow">
       <h3>Thermal Analysis</h3>
-      <p>Analyze <strong>brightness temperature</strong> and <strong>radiance patterns</strong>, model post-eruption lava cooling curves and monitor the fumarole fields of Teide volcano using thermal infrared data.</p>
+      <p>Analyze <strong>brightness temperature</strong> and <strong>radiance patterns</strong>, monitoring the fumarole fields of Teide volcano, the Tajogaite Volcano in La Palma and Timanfaya in Lanzarote using thermal infrared data.</p>
     </div>
    
     <!-- Post-it 2 -->
@@ -1400,6 +1400,8 @@ iframe {
 
 </style>
 
+
+
 <div class="main-container">
 
   <!-- Hero Banner -->
@@ -1463,37 +1465,566 @@ iframe {
   <div class="plot-wrapper">
     <iframe src="B_images/radiative_power_plot.html" style="height: 100%; width: 100%; border: none;"></iframe>
 
-    <!-- Info Icon & Tooltip for Plot 1 -->
-    <div class="info-box">
+    <!-- Info Buttons Container -->
+    <div class="info-buttons-container">
+      <!-- FRP Explanation Button -->
       <button class="info-button" onclick="toggleInfo('info1')">i</button>
       <div class="info-popup" id="info1">
-        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
-        <br><br>
-        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
+        <h3>Fire Radiative Power (FRP) Explanation</h3>
+        <p>This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.</p>
+        <p>Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.</p>
+      </div>
+      
+      <!-- Stats Table Button -->
+      <button class="info-button" onclick="toggleInfo('stats-info1')">📊</button>
+      <div class="info-popup" id="stats-info1">
+        <h3>Statistical Analysis (MW)</h3>
+        <div class="table-container">
+          <table class="stats-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Period</th>
+                <th>Mean</th>
+                <th>Median</th>
+                <th>Std Dev</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Eruption</td>
+                <td>1-11 Dec 2021</td>
+                <td>2249.52</td>
+                <td>2249.52</td>
+                <td>0.00</td>
+              </tr>
+              <tr>
+                <td>Cooling</td>
+                <td>11 Dec 2021 - 2 Feb 2022</td>
+                <td>1190.16</td>
+                <td>1199.89</td>
+                <td>370.86</td>
+              </tr>
+              <tr>
+                <td>2 Background </td>
+                <td>2 Feb 2022 - end</td>
+                <td>288.23</td>
+                <td>241.08</td>
+                <td>171.95</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="plot-wrapper">
-    <iframe src="B_images/radiative_power_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
-  
-    <!-- Info Icon & Tooltip for Plot 2 -->
-    <div class="info-box">
-      <button class="info-button" onclick="toggleInfo('info2')">i</button>
-      <div class="info-popup" id="info2">
-        This graph displays the estimated daily Fire Radiative Power (FRP) over the volcano, derived from satellite-based brightness temperature (BT) measurements using the VIIRS sensor (channel I05, 11.45 µm).
-        <br><br>
-        For each day, the observed BT is compared to a monthly thermal reference (REF), representing the typical background temperature when there is no volcanic activity. Only valid pixels within the defined volcanic area are considered.
-        <br><br>
-        The FRP for each pixel is calculated using the Stefan–Boltzmann law:
-        <br><br>
-        FRP = σ · ((T_obs)⁴ - (T_ref)⁴) · A
-        <br><br>
-        where σ is the Stefan–Boltzmann constant (5.67×10⁻⁸ W·m⁻²·K⁻⁴), T_obs is the observed brightness temperature (K), T_ref is the reference temperature (K), and A is the area per pixel (140,625 m²).
+<style>
+.plots-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.plot-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.info-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.info-button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #2c82d7;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.info-button:hover {
+  background-color: #1a6fbd;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 600px;
+  max-width: 80vw;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  z-index: 1001;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f5f5f5;
+}
+
+.info-popup::-webkit-scrollbar {
+  width: 6px;
+}
+
+.info-popup::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.info-popup::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.info-popup h3 {
+  margin-top: 0;
+  color: #2c82d7;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.stats-table th, .stats-table td {
+  padding: 8px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.stats-table th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.stats-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.stats-table tr:hover {
+  background-color: #f0f4f8;
+}
+</style>
+
+
+<!-- Thermal Reference Images Section -->
+<div class="ref-section-container">
+  <!-- Text Content (Left) -->
+  <div class="ref-text-box">
+    <div class="ref-text-content">
+      <h3>Thermal Reference Images</h3>
+      <p>
+        Reference images (REF) represent the expected thermal state of the terrain under normal conditions, 
+        without volcanic activity. These monthly composites are generated by selecting the coldest pixels 
+        observed during each period.
+      </p>
+      
+      <div class="ref-selector-box">
+        <label for="monthSelect">Select Month:</label>
+        <select id="monthSelect" onchange="changeRefImage()">
+          <optgroup label="2021">
+            <option value="B_images/REF/plots/Ref_2021_12.jpg">December 2021</option>
+          </optgroup>
+          <optgroup label="2022">
+            <option value="B_images/REF/plots/Ref_2022_01.jpg">January 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_02.jpg">February 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_03.jpg">March 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_04.jpg">April 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_05.jpg">May 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_06.jpg">June 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_07.jpg">July 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_08.jpg">August 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_09.jpg">September 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_10.jpg">October 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_11.jpg">November 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_12.jpg">December 2022</option>
+          </optgroup>
+          <optgroup label="2023">
+            <option value="B_images/REF/plots/Ref_2023_01.jpg">January 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_02.jpg">February 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_03.jpg">March 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_04.jpg">April 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_05.jpg">May 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_06.jpg">June 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_07.jpg">July 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_08.jpg">August 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_09.jpg">September 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_10.jpg">October 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_11.jpg">November 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_12.jpg">December 2023</option>
+          </optgroup>
+          <optgroup label="2024">
+            <option value="B_images/REF/plots/Ref_2024_01.jpg">January 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_02.jpg">February 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_03.jpg">March 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_04.jpg">April 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_05.jpg">May 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_06.jpg">June 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_07.jpg">July 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_08.jpg">August 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_09.jpg">September 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_10.jpg">October 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_11.jpg">November 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_12.jpg">December 2024</option>
+          </optgroup>
+          <optgroup label="2025">
+            <option value="B_images/REF/plots/Ref_2025_01.jpg">January 2025</option>
+            <option value="B_images/REF/plots/Ref_2025_02.jpg">February 2025</option>
+            <option value="B_images/REF/plots/Ref_2025_03.jpg">March 2025</option>
+            <option value="B_images/REF/plots/Ref_2025_04.jpg">April 2025</option>
+          </optgroup>
+        </select>
+      </div>
+      
+      <div class="ref-features">
+        <strong>Key features:</strong>
+        <ul>
+          <li>Data obtained from VIIRS satellite (I05 channel)</li>
+          <li>Monthly composites minimize atmospheric effects</li>
+          <li>375 m spatial resolution</li>
+        </ul>
       </div>
     </div>
   </div>
   
+  <!-- Image (Right) -->
+  <div class="ref-image-container">
+    <img id="currentRefImage" src="B_images/REF/plots/Ref_2021_12.jpg" alt="Monthly Reference Image">
+  </div>
+</div>
+
+<style>
+/* Reference Section Styles */
+.ref-section-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  align-items: flex-start;
+}
+
+.ref-text-box {
+  background:rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.ref-text-content h3 {
+  color: #333;
+  margin-top: 0;
+  font-size: 1.5em;
+  border-bottom: 2px solid #d7512c;
+  padding-bottom: 10px;
+}
+
+.ref-text-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.ref-features {
+  margin-top: 20px;
+}
+
+.ref-features strong {
+  color: #333;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.ref-features ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.ref-features li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.ref-image-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee;
+}
+
+.ref-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.ref-selector-box {
+  margin: 20px 0;
+}
+
+.ref-selector-box label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.ref-selector-box select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #d7512c;
+  border-radius: 6px;
+  background: white;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d7512c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+}
+
+.ref-selector-box select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(215, 81, 44, 0.2);
+  border-color: #b34024;
+}
+
+@media (max-width: 768px) {
+  .ref-section-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .ref-image-container {
+    height: 400px;
+    order: 2;
+  }
+  
+  .ref-text-box {
+    order: 1;
+  }
+}
+</style>
+
+
+
+
+<div class="plot-wrapper">
+  <iframe src="B_images/radiative_power_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+  
+  <!-- Info Buttons Container -->
+  <div class="info-buttons-container">
+    <!-- FRP Explanation Button -->
+    <button class="info-button" onclick="toggleInfo('frp-info')">i</button>
+    <div class="info-popup" id="frp-info">
+      <h3>Fire Radiative Power (FRP) Explanation</h3>
+      <p>This graph displays the estimated daily Fire Radiative Power (FRP) over the volcano, derived from satellite-based brightness temperature (BT) measurements using the VIIRS sensor.</p>
+      <p>For each day, the observed BT is compared to a monthly thermal reference (REF), representing the typical background temperature when there is no volcanic activity. Only valid pixels within the defined volcanic area are considered.</p>
+      <p>The FRP for each pixel is calculated using the Stefan–Boltzmann law:</p>
+      <p class="formula">FRP = σ · ((T<sub>obs</sub>)⁴ - (T<sub>ref</sub>)⁴) · A</p>
+      <p>where σ is the Stefan–Boltzmann constant (5.67×10⁻⁸ W·m⁻²·K⁻⁴), T<sub>obs</sub> is the observed brightness temperature (K), T<sub>ref</sub> is the reference temperature (K), and A is the area per pixel (140,625 m²).</p>
+    </div>
+    
+    <!-- Stats Table Button -->
+    <button class="info-button" onclick="toggleInfo('stats-info')">📊 </button>
+    <div class="info-popup" id="stats-info">
+      <h3>Statistical Analysis (MW)</h3>
+      <div class="table-container">
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Period</th>
+              <th>Mean</th>
+              <th>Median</th>
+              <th>Std Dev</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Eruption</td>
+              <td>1-11 Dec 2021</td>
+              <td>2755.34</td>
+              <td>2753.74</td>
+              <td>130.54</td>
+            </tr>
+            <tr>
+              <td>Cooling</td>
+              <td>11 Dec 2021 - 2 Feb 2022</td>
+              <td>1309.59</td>
+              <td>1217.94</td>
+              <td>567.24</td>
+            </tr>
+            <tr>
+              <td>Background</td>
+              <td>2 Feb 2022 - end</td>
+              <td>151.75</td>
+              <td>158.24</td>
+              <td>82.06</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.plot-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.info-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.info-button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #2c82d7;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.info-button:hover {
+  background-color: #1a6fbd;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 500px;
+  max-width: 80vw;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  z-index: 1001;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f5f5f5;
+}
+
+/* Scrollbar styles */
+.info-popup::-webkit-scrollbar {
+  width: 6px;
+}
+
+.info-popup::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.info-popup::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.info-popup h3 {
+  margin-top: 0;
+  color: #2c82d7;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.formula {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.stats-table th, .stats-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.stats-table th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.stats-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.stats-table tr:hover {
+  background-color: #f0f4f8;
+}
+</style>
+
+
 <!-- Combined Analysis Section -->
 <div class="context-box combined-analysis">
     <div class="context-title">Understanding the Thermal Activity Graphs</div>
@@ -1646,7 +2177,7 @@ iframe {
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   z-index: 999;
-  width: 600px;
+  width: 800px;
   font-size: 13.5px;
   max-width: 90vw;
 }
@@ -2641,6 +3172,14 @@ iframe {
 ```
 
 <script>
+function changeRefImage() {
+  const select = document.getElementById('monthSelect');
+  const image = document.getElementById('currentRefImage');
+  image.src = select.value;
+}
+</script>
+
+<script>
 // Script para ajuste dinámico si es necesario
 document.addEventListener('DOMContentLoaded', function() {
   const iframes = document.querySelectorAll('.plot-wrapper iframe');
@@ -2655,25 +3194,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
-<script>
-function toggleInfo() {
-  const popup = document.getElementById("info-popup");
-  popup.style.display = (popup.style.display === "block") ? "none" : "block";
-}
-</script>
 
-<script>
-function toggleInfo(id) {
-    const popup = document.getElementById(id);
-    const isVisible = popup.style.display === 'block';
-    
-    // Cierra cualquier otro popup abierto
-    document.querySelectorAll('.info-popup').forEach(p => p.style.display = 'none');
-
-    // Alterna visibilidad del actual
-    popup.style.display = isVisible ? 'none' : 'block';
-}
-</script>
 
 
 <script>
@@ -2780,7 +3301,29 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
-````
+
+
+<script>
+function toggleInfo(id) {
+  // Close all popups first
+  document.querySelectorAll('.info-popup').forEach(popup => {
+    if (popup.id !== id) popup.style.display = 'none';
+  });
+  
+  // Toggle the requested popup
+  const popup = document.getElementById(id);
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close popups when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.info-button') && !e.target.closest('.info-popup')) {
+    document.querySelectorAll('.info-popup').forEach(popup => {
+      popup.style.display = 'none';
+    });
+  }
+});
+</script>
 
 # 🕳️ EARTHQUAKES {#earthquakes}
 
@@ -2822,13 +3365,6 @@ HTML(f"""
           © <a href="https://temblor.net/" target="_blank">Temblor.net</a>
         </div>
       </div>
-
-      <!-- Slide 4 -->
-      <div class="carousel-slide active" style="background-image: url('B_images/eq-ice.jpg');">
-        <div class="photo-credits">
-          © <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquake-photo-collections">Earthquake Photo Collections, USGS</a>
-        </div>
-      </div>
       
       <div class="carousel-overlay"></div>
       <div class="homepage-logo-container">
@@ -2851,370 +3387,153 @@ HTML(f"""
 ```
 
 
+## Formulario de Entrada
 
-````{=html}
-<style>
-  /* Reset y estilos base */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Contenedor principal flex */
-  .dashboard-wrapper {
-    display: flex;
-    min-height: 100vh;
-    gap: 2rem;
-    padding: 1rem;
-    max-width: 1800px;
-    margin: 0 auto;
-  }
-  
-  /* Columna del formulario (izquierda) */
-  .form-column {
-    width: 350px;
-    position: sticky;
-    top: 1rem;
-    align-self: flex-start;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    height: fit-content;
-  }
-  
-  /* Columna de visualización (derecha) */
-  .visualization-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    min-width: 0; /* Necesario para el correcto funcionamiento de flex */
-  }
-  
-  /* Contenedor de mapas/histogramas */
-  .visualization-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    width: 1200px;
-  }
-  
-  /* Items de visualización */
-  .visualization-item {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    overflow: hidden;
-  }
-  
-  /* Iframes responsivos */
-  .visualization-iframe {
-    width: 100%;
-    height: 450px;
-    border: none;
-    display: block;
-  }
-  
-  /* Tabla (ancho completo) */
-  .full-width {
-    grid-column: 1 / -1;
-  }
-  
-  /* Responsive para tablets */
-  @media (max-width: 1200px) {
-    .dashboard-wrapper {
-      flex-direction: column;
-    }
-    
-    .form-column {
-      width: 100%;
-      position: static;
-      margin-bottom: 2rem;
-    }
-  }
-  
-  /* Responsive para móviles */
-  @media (max-width: 768px) {
-    .visualization-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .visualization-iframe {
-      height: 400px;
-    }
-  }
-</style>
-````
+<!-- Formulario HTML para capturar inputs -->
+<div>
+  <label for="date_i">Initial Date:</label>
+  <input type="date" id="date_i" name="date_i">
+</div>
 
-````{python}
+<div>
+  <label for="date_f">Final Date:</label>
+  <input type="date" id="date_f" name="date_f">
+</div>
 
+<div>
+  <label for="latitude">Latitude:</label>
+  <input type="number" id="latitude" name="latitude" step="0.0001">
+</div>
+
+<div>
+  <label for="longitude">Longitude:</label>
+  <input type="number" id="longitude" name="longitude" step="0.0001">
+</div>
+
+
+<div>
+  <label for="radius">Radius (km):</label>
+  <input type="number" id="radius" name="region" min="1">
+</div>
+
+<button onclick="ejecutarPython()">Update Search</button>
+
+<!-- Resultados -->
+<div id="result"></div>
+
+<!-- Script para ejecutar Python con Pyodide -->
+<script type="module">
+async function ejecutarPython() {
+  // Capturar valores del formulario
+  const Initial_date = document.getElementById('date_i').value;
+  const Final_date = document.getElementById('date_f').value;
+  const latitude = parseFloat(document.getElementById('latitude').value);
+  const longitude = parseFloat(document.getElementById('longitude').value);
+  const radius = parseFloat(document.getElementById('radius').value);
+
+ // Cargar Pyodide (solo una vez)
+  if (!window.pyodide) {
+    window.pyodide = await loadPyodide({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+    });
+    await pyodide.loadPackage("micropip");
+  }
+
+  // Instalar paquetes necesarios (si es requerido)
+  await pyodide.runPythonAsync(`
+    import micropip
+    await micropip.install(['pandas', 'numpy'])  # Ejemplo: instalar librerías
+  `);
+
+  
+  // Ejecutar función de Python con los inputs
+  const resultado = await pyodide.runPythonAsync(`
+    def consultar_datos(date_i, date_f, latitude, longitude, radius):
+        # Aquí va tu lógica de Python (ejemplo simplificado)
+        import pandas as pd
+        return f"Consulted data: {date_i} a {date_f}, Coord: ({latitude}, {longitude}), Radius: {radius} km"
+
+    consultar_datos("${Initial_date}", "${Final_date}", ${latitude}, ${longitude}, ${radius})
+  `);
+
+  // Mostrar resultados en el HTML
+  document.getElementById("result").innerHTML = result;
+}
+</script>
+
+## Earthquake Monitoring {.panel-tabset}
+
+### Mapa de Actividad Sísmica
+
+```{python}
+#| label: eq-maps-side-by-side
+#| echo: false
 from IPython.display import HTML
 
-HTML('''
-<style>
-/* ESTILOS PARA EL CONTENEDOR DE TEXTO */
-.text-containert {
-  flex: 1;
-  min-width: 400px;
-  height: 470px; /* Misma altura que el mapa */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.plots-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-.plot-wrapper {
-  flex: 1;
-  min-width: 400px;
-  height: 550px;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: relative;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-.plot-wrapper iframe {
-  width: 100% !important;
-  height: 100% !important;
-  border: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block;
-}
-
-.combined-analysis {
-  width: 100%;
-  padding: 20px;
-  background:rgb(255, 255, 255);
-  border-radius: 8px;
-  margin-top: 15px;
-  border-left: 4px solid #d7512c;
-}
-
-.combined-analysis h3 {
-  color: #d7512c;
-  margin-top: 0;
-  font-size: 1.2em;
-}
-
-.combined-analysis p {
-  color: #555;
-  line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-  .plot-wrapper {
-    min-width: 100%;
-    height: 450px;
-  }
-}
-
-.info-box {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.info-button {
-  background-color: #d7512c;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  font-size: 16px;
-  text-align: center;
-  line-height: 24px;
-  cursor: pointer;
-}
-
-.info-popup {
-  display: none;
-  position: absolute;
-  top: 35px;
-  right: 10px;
-  background-color:rgb(255, 255, 255);
-  color: #333;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 999;
-  width: 600px;
-  font-size: 13.5px;
-  max-width: 90vw;
-}
-</style>
-
-<div class="main-container">
-  <!-- Hero Banner -->
-  <div class="hero-banner">
-    <div class="hero-title">Earthquakes</div>
-    <div class="hero-subtitle">
-      
-    </div>
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Mapa 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 
-
-  <!-- Top Section: Ahora con mapa a la izquierda y texto a la derecha -->
-  <div class="top-container">
-    <!-- Mapa (ahora a la izquierda visualmente) -->
-     <div class="video-wrapper">
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/watch?v=Dm0WbAxhRP8" allowfullscreen></iframe>
-      </div>
-      <div class="video-caption">Explanation of earthquake formation</div>
-    </div>
-    </div>
-    
-    <!-- Text Content (ahora a la derecha visualmente) -->
-    <div class="text-containert">
-      <div class="context-box">
-        <div class="context-title">Volcanic activity</div>
-        <div class="context-text">
-          <p>When starting periods of volcanic activity it is usual to register a larger number of seismic events due to the vibrations caused by the flow of the magma, gases and other fluids that could be present in the magmatic chambers.</p>
-          <p>This events are not considered the cause of the volcanic eruption but a consequence of its activity. These are characterised by their closed range to the volcano. It is accepted that non-volcanic earthquakes are those with an epicenter further than 25km from it.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Key Points Grid -->
-  <div class="key-points">
-    <div class="key-point">
-      <div class="key-point-title">20000 earthquakes </div>
-      <div class="context-text">
-        The USGS locates about 20000 earthquakes per year, or 55 per day approximately
-      </div>
-    </div>
-    <div class="key-point">
-      <div class="key-point-title">Hebey, China 1976</div>
-      <div class="context-text">
-        Althought not the largest magnitude earthquake, it is the deadliest one registered. This tragedy highlight the relevance of studying and preventing earthquakes effects.
-      </div>
-    </div>
-    <div class="key-point">
-      <div class="key-point-title">86°C Max</div>
-      <div class="context-text">
-        Highest recorded fumarole temperature at summit
-      </div>
-    </div>
-  </div>
-<div class="context-box combined-analysis">
-  <div class="context-title"> Seismic-volcanic correlation</div>
-  <div class="context-text">
-    <p>There are several ways earthquakes affect to volcanic activity. The main cases are those related to the dinamic and static stresses that they cause to the magmatic chambers. Althought the event may also tear the chamber if the fault is large enough or if the hypocenter is close enough.</p>
-
-    <p>These are not the only conditions to cause an eruptive period, there has to be a "predisposition" to ignite it. The main things are the material composition of the crust, the viscosity and density of the magma, the bubble flow, if there are temperature changes that affects to the (usually crystal) ceilling of the magmatic chamber...<p>
-
-    <p>Statistically, closed system volcanoes are more likely to trigger due to seismic events than open volcanoes, existing a geological factor that affects to this statistic. Specifically, it is stimated that in Chile and Indonesia 25% of volcanoes are susceptible to earthquakes (Watt et al. 2009) while in other regions is stimated to be only 0.3-0.4% (Linde and Selwyn Sacks, 1998; Manga and Brodsky, 2006; Lemarchand and Grasso, 2007). </p>
-
-    <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years (), due to the studied time-span of stabilization of the volcano afer the different stress-caused mechanisms. It has been seem that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
-
+  <!-- Mapa 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map_filtered.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 </div>
+'''))
 
 
+```
+```{python}
+#| label: eq-histograms-side-by-side
+#| echo: false
+from IPython.display import HTML
 
-<!-- Media Gallery Header Section -->
-<div class="hero-banner media-gallery-header">
-    <div class="hero-content">
-        <div class="hero-title"> Teide in Motion</div>
-        <div class="hero-subtitle">
-            Photographic and video evidence of ongoing fumarolic emissions at Mount Teide, showcasing the activity through  drone footage, and ground-level observations. 
-        </div>
-    </div>
-</div>
-''')
-
-````
-
-````{=html}
-<div class="dashboard-wrapper">
-  <!-- Columna Izquierda - Formulario -->
-  <div class="form-column">
-    <form id="my-form">
-      <!-- Tus campos de formulario aquí -->
-    </form>
-    
-    <div id="progress-container" style="display: none; margin-top: 1.5rem;">
-      <label for="progress-bar">Processing:</label>
-      <progress id="progress-bar" value="0" max="100" style="width: 100%;"></progress>
-    </div>
-    
-    <div id="status-message" class="alert alert-info" style="display: none; margin-top: 1rem;"></div>
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Histograma 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 
-````
-
-````{=html}
-  <!-- Columna Derecha - Visualizaciones -->
-  <div class="visualization-column">
-    <!-- Sección de Mapas -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Seismic Activity Maps</h2>
-    <div class="visualization-container">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map.html" class="visualization-iframe"></iframe>
-      </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map_filtered.html" class="visualization-iframe"></iframe>
-      </div>
-    </div>
-  
-````
-
-````{=html}
-    <!-- Sección de Histogramas -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Event Distribution</h2>
-    <div class="visualization-container">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_histogram.html" class="visualization-iframe" scrolling="no" ></iframe>
-      </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe" scrolling="no"></iframe>
-      </div>
-    </div>
-    
-    <!-- Sección de Tabla -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Detailed Event Data</h2>
-    <div class="visualization-container">
-      <div class="visualization-item full-width">
-        <iframe src="./B_images/eq_table.html" class="visualization-iframe" style="height: 500px;"></iframe>
-      </div>
-    </div>
+  <!-- Histograma 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_trigger_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 </div>
-````
+'''))
+
+```
+
+```{python}
+#| label: eq-table-fullwidth
+#| echo: false
+from IPython.display import HTML
+
+display(HTML('''
+<div style="width: 100%; max-width: 1200px; margin: 0 auto; margin-top: -10px;">
+  <iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+</div>
+'''))
+
+```
 
 ```{python}
 #| label: earthquakes-credits
 #| echo: false
 HTML("""
-<div class="credits-footer">
-  <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
-  <p><strong>Data source:</strong> Public <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes">USGS Catalog</a> by using the Python library <a href="https://code.usgs.gov/ghsc/esi/libcomcat-python/-/tree/main?ref_type=heads">libcomcat</a> by <a href="https://www.usgs.gov/staff-profiles/michael-hearne#data">Mike Hearne</a></p>
-  <p>All content presented for educational and scientific research purposes</p>
-  <p><a href="https://doi.org/10.1007/s11069-023-06090-y">Benito, M.B., Alvarado, G.E., Marchamalo, M. et al. Temporal and spatial evolution of the 2021 eruption in the Tajogaite volcano (Cumbre Vieja rift zone, La Palma, Canary Islands) from geophysical and geodetic parameter analyses. Nat Hazards 118, 2245–2284 (2023). <a>  </p>
+
+<!-- Credits Footer -->
+  <div class="credits-footer">
+    <p><strong>Data sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
+    <p>All content presented for educational and scientific research purposes</p>
+  </div>
 </div>
 """)
 
 ```
-
-
 
 
 # 🏝️ TEIDE {#teide}
@@ -3985,6 +4304,40 @@ HTML('''
     </div>
   </div>
 </div>
+<div class="teide-gallery-intro">
+  <h3>Teide Gallery</h3>
+  <div class="intro-content">
+    <p>Mount Teide is not only Spain’s highest peak but also a breathtaking volcanic landscape dominating Tenerife. These images capture its steaming fumaroles and its sulfur peak.</p>
+  </div>
+</div>
+
+
+<style>
+.teide-gallery-intro {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #d7512c;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+
+.teide-gallery-intro h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.4em;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+}
+
+
+.intro-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+</style>
 
 <div class="teide-carousel">
     <!-- Imagen Principal con contenedor de créditos -->
@@ -4234,21 +4587,4 @@ document.addEventListener('DOMContentLoaded', function() {
     startTeideAutoRotation();
 });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
