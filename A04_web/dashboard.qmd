@@ -3268,13 +3268,15 @@ HTML('''
 
       <!-- Info Icon & Tooltip -->
       <div class="info-box">
-        <button class="info-button" onclick="toggleInfo('info1')">i</button>
-        <div class="info-popup" id="info1">
+        <button class="info-button" onclick="toggleInfo('info3')">i</button>
+        <div class="info-popup" id="info3">
           This graph shows daily thermal anomalies detected at Teide volcano using VIIRS satellite data. The values represent deviations from background thermal conditions, highlighting periods of increased fumarolic activity.
         </div>
       </div>
     </div>
   </div>
+
+
 <!-- Combined Analysis Section -->
 <div class="context-box combined-analysis">
   <div class="context-title">Understanding Teide's Thermal Signals</div>
@@ -3882,20 +3884,6 @@ HTML('''
 ```
 
 <script>
-// Solo una definición de toggleInfo que funcione para todos los popups
-function toggleInfo(id) {
-    const popup = document.getElementById(id);
-    const isVisible = popup.style.display === 'block';
-    
-    // Cierra cualquier otro popup abierto
-    document.querySelectorAll('.info-popup').forEach(p => {
-        if(p.id !== id) p.style.display = 'none';
-    });
-
-    // Alterna visibilidad del actual
-    popup.style.display = isVisible ? 'none' : 'block';
-}
-
 // Script para ajuste dinámico si es necesario
 document.addEventListener('DOMContentLoaded', function() {
   const iframes = document.querySelectorAll('.plot-wrapper iframe');
@@ -3910,6 +3898,26 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
+<script>
+function toggleInfo() {
+  const popup = document.getElementById("info-popup");
+  popup.style.display = (popup.style.display === "block") ? "none" : "block";
+}
+</script>
+
+<script>
+function toggleInfo(id) {
+    const popup = document.getElementById(id);
+    const isVisible = popup.style.display === 'block';
+    
+    // Cierra cualquier otro popup abierto
+    document.querySelectorAll('.info-popup').forEach(p => p.style.display = 'none');
+
+    // Alterna visibilidad del actual
+    popup.style.display = isVisible ? 'none' : 'block';
+}
+</script>
+
 
 
 
