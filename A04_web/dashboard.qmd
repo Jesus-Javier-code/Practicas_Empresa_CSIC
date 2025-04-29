@@ -2224,7 +2224,7 @@ iframe {
     </div>
 </div>
 
-<!-- Video Section: Teide -->
+<!-- Video Section: La Palma -->
 <style>
 .video-wrapper {
   width: 100%;
@@ -2275,10 +2275,9 @@ iframe {
 </style>
 
 <div class="context-box">
-  <div class="context-title">Volcanic Activity at Teide</div>
+  <div class="context-title">Volcanic Activity at the Tajogaite volcano</div>
   <div class="context-text">
-    Teide volcano, although currently dormant, displays fumarolic activity and remains an active area of scientific interest. 
-    These videos showcase recent monitoring efforts, thermal imagery, and historical context.
+    Through these aerial and ground footage videos, explore the raw force of the eruption—from its beginnings to the aftermath. See how lava flows devoured land, how ash transformed the underwater world, and how scientists documented this historic geologic event.
   </div>
 
   <div class="media-grid">
@@ -2287,31 +2286,31 @@ iframe {
       <div class="video-container">
         <iframe src="https://www.youtube.com/embed/yDgV1YTPxok" allowfullscreen></iframe>
       </div>
-      <div class="video-caption">Aerial views of El Teide captured by drone</div>
+      <div class="video-caption">Aerial views of the Tajogaite volcano captured by drone</div>
     </div>
 
     <!-- Video 2 -->
     <div class="video-wrapper">
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/5Q6yjyP4k5E" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/EOIwjeJMNxM" allowfullscreen></iframe>
       </div>
-      <div class="video-caption">Fumarolic zone (2023)</div>
+      <div class="video-caption">Tajogaite volcano eruption</div>
     </div>
 
     <!-- Video 3 -->
     <div class="video-wrapper">
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/3uNy5T-tWJw" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/azuDbokA7Wc" allowfullscreen></iframe>
       </div>
-      <div class="video-caption">Aerial footage of Teide</div>
+      <div class="video-caption">Underwater conditions after the volcanic eruption </div>
     </div>
 
     <!-- Video 4 -->
     <div class="video-wrapper">
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/LT1Jd4RV8mg" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/JxrAcUHsWzs" allowfullscreen></iframe>
       </div>
-      <div class="video-caption">Aerial views of volcano El Teide</div>
+      <div class="video-caption">Consequences of the Tajogaite volcano eruption</div>
     </div>
   </div>
 </div>
@@ -2484,6 +2483,37 @@ iframe {
 }
 </style>
 
+<div class="eruption-gallery-intro">
+  <h3>Tajogaite's Eruption Gallery</h3>
+  <div class="intro-content">
+    <p>These images capture the dramatic changes to La Palma's landscape during the 2021 Tajogaite eruption. Witness how 85 days of volcanic activity reshaped the island.</p>
+  </div>
+</div>
+
+<style>
+.eruption-gallery-intro {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #d7512c;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.eruption-gallery-intro h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.4em;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+}
+
+.intro-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+</style>
 
 <div class="simple-carousel">
     <!-- Imagen Principal con contenedor de créditos -->
@@ -2610,7 +2640,6 @@ iframe {
 
 ```
 
-````{=html}
 <script>
 // Script para ajuste dinámico si es necesario
 document.addEventListener('DOMContentLoaded', function() {
@@ -2756,6 +2785,16 @@ document.addEventListener('DOMContentLoaded', function() {
 # 🕳️ EARTHQUAKES {#earthquakes}
 
 ```{python}
+#| label: geometry_1
+#| include: false
+import subprocess
+result = subprocess.run(["python", "../A02_utils/geometry.py"], capture_output=True, text=True)
+print(result.stdout)
+if result.stderr:
+    print("Errors:", result.stderr)
+```
+
+```{python}
 #| label: earthquakes-carousel
 #| echo: false
 HTML(f"""
@@ -2797,7 +2836,7 @@ HTML(f"""
     <img src="B_images/earthquake-icon-naranja.png" alt="Earthquake Icon" class="earthquake-logo">
   </div>
   <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-    Volcanic-Seismic Correlation
+    Volcanic-Seismic Relation
   </div>
 </div>
     </div>
@@ -3176,6 +3215,8 @@ HTML("""
 ```
 
 
+
+
 # 🏝️ TEIDE {#teide}
 ```{python}
 #| label: teide-carousel
@@ -3450,13 +3491,15 @@ HTML('''
 
       <!-- Info Icon & Tooltip -->
       <div class="info-box">
-        <button class="info-button" onclick="toggleInfo('info1')">i</button>
-        <div class="info-popup" id="info1">
+        <button class="info-button" onclick="toggleInfo('info3')">i</button>
+        <div class="info-popup" id="info3">
           This graph shows daily thermal anomalies detected at Teide volcano using VIIRS satellite data. The values represent deviations from background thermal conditions, highlighting periods of increased fumarolic activity.
         </div>
       </div>
     </div>
   </div>
+
+
 <!-- Combined Analysis Section -->
 <div class="context-box combined-analysis">
   <div class="context-title">Understanding Teide's Thermal Signals</div>
@@ -3473,6 +3516,373 @@ HTML('''
     <p style="color: #000; font-weight: 500;">This dataset is automatically updated daily using NASA's VIIRS satellite observations.</p>
   </div>
 </div>
+<div class="hero-banner eruption-background">
+    <div class="hero-content">
+        <div class="hero-title">Teide Background</div>
+        <div class="hero-subtitle">
+            A chronological overview of Mount Teide's geological evolution, major eruptive phases, and recent volcanic activity based on historical and scientific records
+        </div>
+    </div>
+</div>
+<!-- Combined Timeline + Gallery Section -->
+<div class="context-box" style="margin-bottom: 25px;">
+  <div class="context-title">Eruption Timeline</div>
+  <div class="timeline-gallery-grid">
+    <!-- Timeline Column -->
+    <div class="timeline-column">
+      <div class="compact-timeline">
+        <!-- Event 1 -->
+        <div class="timeline-event">
+          <div class="event-date">Sep 19, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Submarine Stage (10 million years ago)</h4>
+            <p>Tenerife began as underwater volcanic eruptions along oceanic fractures, building up layers of pillow lava that eventually emerged from the Atlantic.</p>
+          </div>
+        </div>
+       
+        <!-- Event 2 -->
+        <div class="timeline-event">
+          <div class="event-date">Sep 28, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Ancient Shield Volcanoes (Miocene-Pliocene)</h4>
+            <p>Three massive shield volcanoes—Anaga, Teno, and Adeje—dominated the island, flooding the terrain with fluid basaltic lava flows.</p>
+          </div>
+        </div>
+       
+        <!-- Event 3 -->
+        <div class="timeline-event">
+          <div class="event-date">Oct 15, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Erosive Pause (~3 million years ago)</h4>
+            <p>A million-year pause in volcanic activity allowed wind, rain, and erosion to carve deep ravines and valleys into the landscape.</p>
+          </div>
+        </div>
+       
+        <!-- Event 4 -->
+        <div class="timeline-event">
+          <div class="event-date">Dec 13, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Las Cañadas Edifice (Early Pleistocene)</h4>
+            <p>A new central volcano grew, reaching ~4,500m before collapsing in a massive landslide, forming the Las Cañadas caldera.</p>
+          </div>
+        </div>
+
+        <!-- Event 5 -->
+        <div class="timeline-event">
+          <div class="event-date">Oct 15, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Teide-Pico Viejo Birth (150,000 years ago)</h4>
+            <p>After a catastrophic eruption emptied the magma chamber, the current stratovolcano began forming inside the caldera, with alternating explosive and effusive eruptions.</p>
+          </div>
+        </div>
+
+        <!-- Event 6 -->
+        <div class="timeline-event">
+          <div class="event-date">Dec 13, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Recent Activity (Last 800,000 years)</h4>
+            <p>Giant landslides shaped the Orotava and Güímar valleys, while rift zone eruptions (like Chinyero in 1909) continued modifying the island.</p>
+          </div>
+        </div>
+
+        <!-- Event 7 -->
+        <div class="timeline-event">
+          <div class="event-date">Dec 13, 2021</div>
+          <div class="event-dot"></div>
+          <div class="event-content">
+            <h4>Present-Day (Hydrothermal System)</h4>
+            <p>Teide remains dormant but active, with over 150 fumaroles (82–86°C) and periodic seismic swarms (e.g., 500 quakes in 2024), indicating magma movement at depth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <!-- Gallery Column -->
+    <div class="gallery-column">
+      <div class="thermal-gallery">
+        <div class="gallery-row">
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Nur05018-Pillow_lavas_off_Hawaii.jpg/330px-Nur05018-Pillow_lavas_off_Hawaii.jpg" alt="Submarine Stage (10 million years ago)">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Submarine Stage (10 million years ago)</div>
+              <p class="image-description">Underwater eruptions created pillow lava formations as Tenerife began emerging from the  Ocean floor. </p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://pbs.twimg.com/media/D_CW9S6WkAAyZQW?format=jpg&name=4096x4096" alt="Ancient Shield Volcanoes (Miocene-Pliocene)">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Ancient Shield Volcanoes (Miocene-Pliocene)</div>
+              <p class="image-description">Three massive shield volcanoes - Anaga, Teno and Adeje - dominated Tenerife's landscape.</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-row">
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://www.casiaventurilla.com/wp-content/uploads/2009/02/Barranco-de-Masca.jpg" alt="Erosive Pause (~3 million years ago)">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Erosive Pause (~3 million years ago)</div>
+              <p class="image-description">During a period of volcanic dormancy, erosion carved  landscapes like Barranco de Masca, exposing the island's  layers.</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://www.wonderfultenerife.com/images/resize.php?path=articles/&file=Image-e949d84a35.jpg&size=image&w=480" alt="Las Cañadas Edifice (Early Pleistocene)">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Las Cañadas Edifice (Early Pleistocene)</div>
+              <p class="image-description">Las Cañadas volcano collapsed, creating the spectacular caldera that would later host Teide.</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-row">
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://c3.staticflickr.com/6/5515/31115611570_1d809049a2_b.jpg" alt="Teide-Pico Viejo Birth (150,000 years ago)">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Teide-Pico Viejo Birth (150,000 years ago)</div>
+              <p class="image-description">The modern Pico Viejo began forming within the caldera, building up through explosive and effusive eruptions.</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://3.bp.blogspot.com/_gyVV4u4HbTU/TAk5Q3LkoiI/AAAAAAAACGo/JcYd3Jk47bM/s1600/Dibujo.JPG" alt="Recent Activity (Last 800,000 years)">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Recent Activity (Last 800,000 years)</div>
+              <p class="image-description">The 1909 Chinyero eruption is Tenerife's most recent volcanic event, showing its geological evolution.</p>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-row">
+          <div class="gallery-item">
+            <div class="image-container">
+              <img src="https://sense.hdhotels.com/cms/uploads/webp/TEIDE3-900-r7hx77.webp" alt="Present-Day (Hydrothermal System)">
+            </div>
+            <div class="gallery-text">
+              <div class="gallery-caption">Present-Day (Hydrothermal System)</div>
+              <p class="image-description">Today, Teide's summit fumaroles and periodic seismic swarms reveal an active volcanic system beneath the surface, monitored closely.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* SOLUCIÓN DEFINITIVA PARA LAS IMÁGENES */
+.image-container {
+  width: 100%;
+  height: 100px; /* Altura fija */
+  overflow: hidden; /* Recorta el exceso */
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta manteniendo proporciones */
+  object-position: center; /* Centrado por defecto */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Ajustes específicos para cada imagen */
+.gallery-row:nth-child(1) .gallery-item:nth-child(1) img {
+  object-position: 60% 30%; /* Ajuste para primera imagen */
+}
+
+.gallery-row:nth-child(2) .gallery-item:nth-child(1) img {
+  object-position: 70% center; /* Ajuste especial para la tercera imagen problemática */
+}
+
+/* Contenedor de texto */
+.gallery-text {
+  padding: 12px 15px;
+  background: rgba(255,255,255,0.95);
+}
+
+/* Texto descriptivo */
+.image-description {
+  color: #555;
+  text-align: center;
+  font-size: 0.8em;
+  line-height: 1.4;
+  margin: 8px 0 0 0;
+}
+
+/* Ajuste para el título */
+.gallery-caption {
+  font-size: 0.9em;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+  color: #d7512c;
+}
+
+/* Reestructuración del ítem */
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ajuste de altura de imagen */
+.image-container {
+  height: 150px; /* Reducida para compensar el texto */
+}
+
+/* ESTRUCTURA PRINCIPAL */
+.timeline-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* TIMELINE STYLES */
+.compact-timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.compact-timeline::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: #d7512c;
+  top: 10px;
+  bottom: 10px;
+  left: 15px;
+}
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.event-date {
+  font-weight: bold;
+  color: #d7512c;
+  margin-bottom: 5px;
+  font-size: 0.95em;
+}
+
+.event-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border: 3px solid #d7512c;
+  border-radius: 50%;
+  left: -38px;
+  top: 3px;
+}
+
+.event-content {
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.event-content:hover {
+  transform: translateX(5px);
+}
+
+.event-content h4 {
+  margin-top: 0;
+  color: #413224;
+  font-size: 1.1em;
+}
+
+.event-content p {
+  color: #666;
+  margin-bottom: 0;
+  font-size: 0.9em;
+}
+
+/* GALLERY STYLES */
+.thermal-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.gallery-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-caption {
+  padding: 10px;
+  background: rgba(255,255,255,0.9);
+  text-align: center;
+  font-size: 0.85em;
+  color: #413224;
+  font-weight: bold;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 900px) {
+  .timeline-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .compact-timeline {
+    padding-left: 30px;
+    margin-bottom: 30px;
+  }
+ 
+  .event-dot {
+    left: -28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-row {
+    grid-template-columns: 1fr;
+  }
+ 
+  .image-container {
+    height: 180px;
+  }
+ 
+  .event-content {
+    padding: 12px;
+  }
+}
+</style>
 
 <!-- Media Gallery Header Section -->
 <div class="hero-banner media-gallery-header">
@@ -3696,23 +4106,7 @@ HTML('''
 ''')
 ```
 
-````{=html}
-
 <script>
-// Solo una definición de toggleInfo que funcione para todos los popups
-function toggleInfo(id) {
-    const popup = document.getElementById(id);
-    const isVisible = popup.style.display === 'block';
-    
-    // Cierra cualquier otro popup abierto
-    document.querySelectorAll('.info-popup').forEach(p => {
-        if(p.id !== id) p.style.display = 'none';
-    });
-
-    // Alterna visibilidad del actual
-    popup.style.display = isVisible ? 'none' : 'block';
-}
-
 // Script para ajuste dinámico si es necesario
 document.addEventListener('DOMContentLoaded', function() {
   const iframes = document.querySelectorAll('.plot-wrapper iframe');
@@ -3727,6 +4121,26 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
+<script>
+function toggleInfo() {
+  const popup = document.getElementById("info-popup");
+  popup.style.display = (popup.style.display === "block") ? "none" : "block";
+}
+</script>
+
+<script>
+function toggleInfo(id) {
+    const popup = document.getElementById(id);
+    const isVisible = popup.style.display === 'block';
+    
+    // Cierra cualquier otro popup abierto
+    document.querySelectorAll('.info-popup').forEach(p => p.style.display = 'none');
+
+    // Alterna visibilidad del actual
+    popup.style.display = isVisible ? 'none' : 'block';
+}
+</script>
+
 
 
 
