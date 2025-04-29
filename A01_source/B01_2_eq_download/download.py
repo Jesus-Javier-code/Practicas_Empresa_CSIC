@@ -2,7 +2,6 @@ from libcomcat.search import search
 from libcomcat.dataframes import get_summary_data_frame, get_detail_data_frame
 from datetime import datetime
 import pandas as pd
-import numpy as np
 try:
     from . import utils as utils
 except ImportError:
@@ -162,6 +161,10 @@ def coordinates_format(lat, lon):
     coords = (lat, lon)
     return coords
 
+def update_ref(date_i, date_f, coords, region):
+    ref = ref(date_i, date_f, coords, region)
+    return ref
+
 date_i = "1973-01-01 00:00"
 date_f = "2025-04-29 00:00"
 lat_cent = 28.27305
@@ -169,6 +172,8 @@ lon_cent = -16.6394
 reg_rad = 350
 
 ref = (date_i, date_f, coordinates_format(lat_cent, lon_cent), reg_rad)
+
+
 
 #download_all_by_region(*ref)
 #download_optimized(*ref)

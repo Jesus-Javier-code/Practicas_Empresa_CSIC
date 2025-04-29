@@ -3,8 +3,6 @@ import pandas as pd
 import plotly.express as px
 import os
 import sys
-import dash
-from dash import dash_table, html
 import plotly.graph_objects as go
 import plotly.io as pio
 
@@ -17,19 +15,20 @@ from A01_source.B01_2_eq_download import download as dwl
 def main():
     try:
         # This can be deleted in the final version
-        input_ask = input("Do you want to update the data? (yes/no): ").strip().lower()
-        if input_ask == "yes":
-            print("Filtered or non-filtered data")
-            inpust_ask2 = input("Do you want to get all events? If not, it will be used the optimized download method: ").strip().lower()
-            pre.optimized_download(inpust_ask2)
-        if input_ask == "no":
-            print("No data update requested")
-            print("Update of filtered map")
-            inpust_ask3 = input("Do you want to update the filtered map? If yes, only trigger index =< 100 will be taken (yes/no): ").strip().lower()
-            if inpust_ask3 == "yes":    
-                pre.discard_by_max_trigger_index("wrk_df.csv", 100)
-            if inpust_ask3 == "no":
-                print("No filter applied.")
+        #input_ask = input("Do you want to update the data? (yes/no): ").strip().lower()
+        #if input_ask == "yes":
+           # print("Filtered or non-filtered data")
+          #  inpust_ask2 = input("Do you want to get all events? If not, it will be used the optimized download method: ").strip().lower()
+         #   pre.optimized_download(inpust_ask2)
+        #if input_ask == "no":
+            #print("No data update requested")
+            #print("Update of filtered map")
+            #inpust_ask3 = input("Do you want to update the filtered map? If yes, only trigger index =< 100 will be taken (yes/no): ").strip().lower()
+            #if inpust_ask3 == "yes":    
+             #   pre.discard_by_max_trigger_index("wrk_df.csv", 100)
+            #if inpust_ask3 == "no":
+                #print("No filter applied.")
+
         # Update data to the new parameters
         print("🔄 Loading data...")
         #pre.trigger_index(L_method="Singh")     
