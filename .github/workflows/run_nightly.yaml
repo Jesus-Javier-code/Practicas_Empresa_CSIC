@@ -32,6 +32,12 @@ jobs:
 
       - name: Ejecutar main.py
         run: python main.py
+      
+      - name: Comprobar existencia y cambios en archivos .nc
+        run: |
+          ls -lh A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/
+          ls -lh A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/
+          git status
 
       - name: Commit y push de los .nc
         run: |
