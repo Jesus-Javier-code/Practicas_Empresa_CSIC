@@ -3327,8 +3327,6 @@ document.addEventListener('click', function(e) {
 
 # 🕳️ EARTHQUAKES {#earthquakes}
 
-
-
 ```{python}
 #| label: geometry_1
 #| include: false
@@ -3458,7 +3456,7 @@ HTML('''
     <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years (), due to the studied time-span of stabilization of the volcano afer the different stress-caused mechanisms. It has been seem that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
 
   </div>
-</div>
+  </div>
 
 
 <div class="background-section">
@@ -3491,20 +3489,12 @@ HTML('''
     </div>
 </div>
 
-<!-- Hero Banner -->
-  <div class="hero-banner">
-    <div class="hero-title">Earthquake searcher</div>
-    <div class="hero-subtitle">
-      Interactive tool to search for earthquakes, indicating a reference point (intended to be a volcan). With the results it is shown the triggering index of the events taking into account their distance to the volcano
-    </div>
-  </div>
-
   <!-- Key Points Grid -->
 <div class="key-points">
   <div class="key-point">
     <div class="key-point-title">20000 earthquakes </div>
     <div class="context-text">
-      The USGS locates about 20000 earthquakes per year, or 55 per day approximately
+      The USGS locates about 20000 earthquakes per year, or 55 per day approximately. It is expected to have 16 major earthqaukes (maagnitude over 7) in any given year in the world but in 2010 there were 23 registered major events
     </div>
    </div>
   <div class="key-point">
@@ -3514,46 +3504,33 @@ HTML('''
           </div>
   </div>
   <div class="key-point">
-    <div class="key-point-title">86°C Max</div>
+    <div class="key-point-title">Seismic waves</div>
     <div class="context-text">
-      Highest recorded fumarole temperature at summit
+      <p>There are four mainly differentiated: <strong>P waves</strong> and <strong>S waves</strong> as body waves and  <strong>Love waves</strong> and <strong> Rayleigh waves</strong> as surface waves</p>
     </div>
     </div>
   </div>
 </div>
+
+
+<!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-title">Earthquake searcher</div>
+    <div class="hero-subtitle">
+      Interactive tool to search for earthquakes, indicating a reference point (intended to be a volcan). With the results it is shown the triggering index of the events taking into account their distance to the volcano
+    </div>
+  </div>
+
+
 ''')
 ````
-
-
-
-
 ````{python}
-#| echo: false
-#| context: server
-
-from shiny import ui
-
-ui.panel_well(
-    ui.input_date("start_date", "Initial Date (YYYY-MM-DD)", value="2000-01-01"),
-    ui.input_date("end_date", "Final Date (YYYY-MM-DD)", value="2024-12-31"),
-    ui.input_numeric("latitude", "Latitude", value=28.5, step=0.0000000001),
-    ui.input_numeric("longitude", "Longitude", value=-17.8, step=0.0000000001),
-    ui.input_numeric("radius", "Radius (km)", value=50, step=1),
-    ui.input_action_button("submit_btn", "Submit", class_="btn btn-warning mt-2")
-)
-
-````
-
-````{python}
-
-#| label: eq-query
-#| echo: false
-#| context: server
-
-from shiny import reactive, render, req
-import datetime
+#| context = server
+from shiny import reactive, render, req, ui, App
 import sys
 import os
+import asyncio
+from datetime import datetime
 
 current_dir = os.getcwd()
 sys.path.append(os.path.abspath(os.path.join(current_dir, "..")))
@@ -3563,28 +3540,70 @@ from A01_source.B01_2_eq_download import utils as utils
 from A01_source.B01_4_eq_processing import preprocess as pre
 from A01_source.B01_4_eq_processing import process_eq_data as pro
 
-@reactive.effect
-@reactive.event(lambda: input.submit_btn())  
-def _():
-    print("✅ ¡Formulario enviado! Ejecutando función...")
 
-    start = str(input.start_date())
-    end = str(input.end_date())
-    lat = input.latitude()
-    lon = input.longitude()
-    radius = input.radius()
+# === UI ===
+form = ui.panel_well(
+    ui.input_date("start_date", "Initial Date (YYYY-MM-DD)", value="2000-01-01"),
+    ui.input_date("end_date", "Final Date (YYYY-MM-DD)", value="2024-12-31"),
+    ui.input_numeric("latitude", "Latitude", value=28.5, step=0.0000000001),
+    ui.input_numeric("longitude", "Longitude", value=-17.8, step=0.0000000001),
+    ui.input_numeric("radius", "Radius (km)", value=50, step=1),
+    ui.input_action_button("submit_btn", "Submit", class_="btn btn-warning mt-2")
+)
+# === SERVER ===
+def server(input, output, session):
+    trigger = reactive.Value(0)  # Este valor se usará para actualizar el plot
 
-    coords = dwl.coordinates_format(lat, lon)
-    dwl.update_ref(start, end, coords, radius)
+    @reactive.effect
+    @reactive.event(input.submit_btn)
+    def _():
+        print("✅ ¡Formulario enviado! Ejecutando función...")
 
-    pro.main()
+        start = str(input.start_date())
+        end = str(input.end_date())
+        lat = input.latitude()
+        lon = input.longitude()
+        radius = input.radius()
 
+        coords = dwl.coordinates_format(lat, lon)
+        dwl.update_ref(start, end, coords, radius)
+        pro.main()
+
+        trigger.set(trigger.get() + 1)  # Señal para actualizar visualización
+
+    @output
+    @render.plot
+    def plot_output():
+        trigger.get()  # Para hacerla reactiva al cambio
+        import matplotlib.pyplot as plt
+        import pandas as pd
+
+        # Carga los datos procesados
+        df = pd.read_csv("A02_outputs/processed_data.csv")  # Ajusta ruta si necesario
+
+        fig, ax = plt.subplots()
+        ax.plot(df["date"], df["magnitude"])
+        ax.set_title("Magnitudes en el tiempo")
+        ax.set_xlabel("Fecha")
+        ax.set_ylabel("Magnitud")
+        return fig
+
+# === APP ===
+app_ui = ui.page_fluid(
+    form,
+    ui.output_plot("plot_output")
+)
+
+app = App(app_ui, server)
 
 ````
-
+```{python}
+#| context: ui
+app_ui
+```
 
 ````{python}
-HTML('''
+HTML("""
 <style>
   /* Reset y estilos base */
   * {
@@ -3680,62 +3699,49 @@ HTML('''
 </style>
 
   <!-- Columna Derecha - Visualizaciones -->
-  <div class="visualization-column">
-    <!-- Sección de Mapas -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Seismic Activity Maps</h2>
-    <div class="visualization-container">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map.html" class="visualization-iframe"></iframe>
+<div class="visualization-column">
+  <!-- Sección de Mapas -->
+  <h2 style="color: #333; margin-bottom: 0.5rem;">Seismic Activity Maps</h2>
+  <div class="visualization-container">
+    <div class="visualization-item">
+      <iframe src="./B_images/eq_map.html"class="visualization-iframe"></iframe>
       </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map_filtered.html" class="visualization-iframe"></iframe>
+    <div class="visualization-item">
+      <iframe src="./B_images/eq_map_filtered.html"class="visualization-iframe"></iframe>
       </div>
-    </div>
+  </div>
   
     <!-- Sección de Histogramas -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Event Distribution</h2>
-    <div class="visualization-container">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_histogram.html" class="visualization-iframe" scrolling="no" ></iframe>
-      </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe" scrolling="no"></iframe>
-      </div>
+  <h2 style="color: #333; margin-bottom: 0.5rem;">Event Distribution</h2>
+  <div class="visualization-container">
+    <div class="visualization-item">
+      <iframe src="./B_images/eq_histogram.html"class="visualization-iframe" scrolling="no" ></iframe>
     </div>
+    <div class="visualization-item">
+      <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe" scrolling="no"></iframe>
+    </div>
+  </div>
     
     <!-- Sección de Tabla -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Detailed Event Data</h2>
-    <div class="visualization-container">
-      <div class="visualization-item full-width">
-        <iframe src="./B_images/eq_table.html" class="visualization-iframe" style="height: 500px;"></iframe>
-      </div>
+  <h2 style="color: #333; margin-bottom: 0.5rem;">Detailed Event Data</h2>
+  <div class="visualization-container">
+    <div class="visualization-item full-width">
+      <iframe src="./B_images/eq_table.html"class="visualization-iframe" style="height: 500px;"></iframe>
     </div>
   </div>
 </div>
 
-''')
-````
-
-```{python}
-#| label: earthquakes-credits
-#| echo: false
-HTML("""
-
-<!-- Credits Footer -->
-  <div class="credits-footer">
-    <p><strong>Data sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
-    <p>All content presented for educational and scientific research purposes</p>
-  </div>
+<div class="credits-footer">
+  <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
+  <p><strong>Data source:</strong> Public <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes">USGS Catalog</a> by using the Python library <a href="https://code.usgs.gov/ghsc/esi/libcomcat-python/-/tree/main?ref_type=heads">libcomcat</a> by <a href="https://www.usgs.gov/staff-profiles/michael-hearne#data">Mike Hearne</a></p>
+  <p>All content presented for educational and scientific research purposes</p>
+  <p><a href="https://doi.org/10.1007/s11069-023-06090-y">Benito, M.B., Alvarado, G.E., Marchamalo, M. et al. Temporal and spatial evolution of the 2021 eruption in the Tajogaite volcano (Cumbre Vieja rift zone, La Palma, Canary Islands) from geophysical and geodetic parameter analyses. Nat Hazards 118, 2245–2284 (2023). <a>  </p>
 </div>
 """)
 
-```
-
-
-
+````
 
 # 🏝️ TEIDE {#teide}
-
 
 ```{python}
 #| label: teide-carousel
@@ -3768,12 +3774,14 @@ HTML(f"""
 </div>
   <!-- Nuevo footer de créditos -->
   <div class="credits-footer">
-    </p>
+    <p></p>
   </div>
 </div>
 """)
 
 ```
+
+
 
 
 ```{python}
