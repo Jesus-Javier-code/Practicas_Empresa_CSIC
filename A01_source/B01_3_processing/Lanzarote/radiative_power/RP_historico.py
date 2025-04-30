@@ -14,15 +14,17 @@ script_path = Path(__file__).resolve()
 project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
 # Define paths for input data and output NetCDF file
-base_path = project_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
-output_nc = project_dir / "A00_data" / "B_processed" / "Teide" / "Radiative_Power_by_Year_Month_Day" / "radiative_power_teide.nc"
+base_path = project_dir / "A00_data" / "B_processed" / "Lanzarote" / "BT_daily_pixels"
+output_nc = project_dir / "A00_data" / "B_processed" / "Lanzarote" / "Radiative_Power_by_Year_Month_Day" / "radiative_power_lanzarote.nc"
 
 # Stefan-Boltzmann constant (W/m²·K⁴)
 sigma = 5.67e-8  
 
-# Define the geographic bounding box for the region of interest (Teide)
-lat_min, lat_max = 28.2717, 28.2744
-lon_min, lon_max = -16.6408, -16.6380
+# Define the geographic bounding box for the region of interest (Lanzarote)
+lat_min, lat_max = 28.95, 29.01
+lon_min, lon_max = -13.76, -13.70
+
+
 
 # === DATE RANGE TO PROCESS ===
 # Set the start, cutoff, and end dates for processing
