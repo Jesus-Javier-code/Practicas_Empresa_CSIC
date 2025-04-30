@@ -3327,8 +3327,6 @@ document.addEventListener('click', function(e) {
 
 # 🕳️ EARTHQUAKES {#earthquakes}
 
-
-
 ```{python}
 #| label: geometry_1
 #| include: false
@@ -3388,333 +3386,139 @@ HTML(f"""
 """)
 ```
 
-````{python}
 
-HTML('''
-<style>
-.activity-container {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start; /* Cambiado de stretch a flex-start para mejor alineación */
-  margin-bottom: 20px;
-  width: 100%; /* Asegura que ocupe todo el ancho disponible */
-}
+## Formulario de Entrada
 
-.text-containert {
-  flex: 1;
-  min-width: 0; /* Importante para que flex funcione correctamente con texto largo */
-}
+<!-- Formulario HTML para capturar inputs -->
+<div>
+  <label for="date_i">Initial Date:</label>
+  <input type="date" id="date_i" name="date_i">
+</div>
 
-.video-wrapper {
-  flex: 1;
-  min-width: 0; /* Importante para flex */
-}
+<div>
+  <label for="date_f">Final Date:</label>
+  <input type="date" id="date_f" name="date_f">
+</div>
 
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: black;
-}
+<div>
+  <label for="latitude">Latitude:</label>
+  <input type="number" id="latitude" name="latitude" step="0.0001">
+</div>
 
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+<div>
+  <label for="longitude">Longitude:</label>
+  <input type="number" id="longitude" name="longitude" step="0.0001">
+</div>
 
-.video-caption {
-  text-align: center;
-  font-style: italic;
-  font-size: 14px;
-  margin-top: 8px;
-  color: #444;
-}
 
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-  .activity-container {
-    flex-direction: column; /* Cambia a diseño vertical en pantallas pequeñas */
+<div>
+  <label for="radius">Radius (km):</label>
+  <input type="number" id="radius" name="region" min="1">
+</div>
+
+<button onclick="ejecutarPython()">Update Search</button>
+
+<!-- Resultados -->
+<div id="result"></div>
+
+<!-- Script para ejecutar Python con Pyodide -->
+<script type="module">
+async function ejecutarPython() {
+  // Capturar valores del formulario
+  const Initial_date = document.getElementById('date_i').value;
+  const Final_date = document.getElementById('date_f').value;
+  const latitude = parseFloat(document.getElementById('latitude').value);
+  const longitude = parseFloat(document.getElementById('longitude').value);
+  const radius = parseFloat(document.getElementById('radius').value);
+
+ // Cargar Pyodide (solo una vez)
+  if (!window.pyodide) {
+    window.pyodide = await loadPyodide({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+    });
+    await pyodide.loadPackage("micropip");
   }
+
+  // Instalar paquetes necesarios (si es requerido)
+  await pyodide.runPythonAsync(`
+    import micropip
+    await micropip.install(['pandas', 'numpy'])  # Ejemplo: instalar librerías
+  `);
+
+  
+  // Ejecutar función de Python con los inputs
+  const resultado = await pyodide.runPythonAsync(`
+    def consultar_datos(date_i, date_f, latitude, longitude, radius):
+        # Aquí va tu lógica de Python (ejemplo simplificado)
+        import pandas as pd
+        return f"Consulted data: {date_i} a {date_f}, Coord: ({latitude}, {longitude}), Radius: {radius} km"
+
+    consultar_datos("${Initial_date}", "${Final_date}", ${latitude}, ${longitude}, ${radius})
+  `);
+
+  // Mostrar resultados en el HTML
+  document.getElementById("result").innerHTML = result;
 }
-</style>
+</script>
 
-<div class="context-box combined-analysis">
-  <div class="context-title"> Seismic-volcanic correlation</div>
-  <div class="context-text">
-    <p>There are several ways earthquakes affect to volcanic activity. The main cases are those related to the dinamic and static stresses that they cause to the magmatic chambers. Althought the event may also tear the chamber if the fault is large enough or if the hypocenter is close enough.</p>
+## Earthquake Monitoring {.panel-tabset}
 
-    <p>These are not the only conditions to cause an eruptive period, there has to be a "predisposition" to ignite it. The main things are the material composition of the crust, the viscosity and density of the magma, the bubble flow, if there are temperature changes that affects to the (usually crystal) ceilling of the magmatic chamber...<p>
+### Mapa de Actividad Sísmica
 
-    <p>Statistically, closed system volcanoes are more likely to trigger due to seismic events than open volcanoes, existing a geological factor that affects to this statistic. Specifically, it is stimated that in Chile and Indonesia 25% of volcanoes are susceptible to earthquakes (Watt et al. 2009) while in other regions is stimated to be only 0.3-0.4% (Linde and Selwyn Sacks, 1998; Manga and Brodsky, 2006; Lemarchand and Grasso, 2007). </p>
-
-    <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years (), due to the studied time-span of stabilization of the volcano afer the different stress-caused mechanisms. It has been seem that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
-
-  </div>
-</div>
-
-
-<div class="background-section">
-    <!-- Video de YouTube en lugar del video local -->
-<div class="video-feature" style="--video-height: 500px">
-    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe 
-            src="https://www.youtube.com/embed/Dm0WbAxhRP8" 
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 40%; border: none;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-    <div class="photo-credits">
-        Video de YouTube © <a href="https://www.youtube.com" target="_blank">YouTube</a>
-    </div>
-</div>
-    
-    <!-- Text content -->
-    <div class="text-content">
-        <div class="context-box">
-            <div class="context-title">Volcanic activity</div>
-            <div class="context-text">
-                <p>When starting periods of volcanic activity, it is usual to register a larger number of seismic events due to the vibrations caused by the flow of magma, gases, and other fluids present in the magmatic chambers.</p>
-                <p>These events are not considered the cause of the volcanic eruption but a consequence of its activity. These are characterized by their proximity to the volcano. 
-                <p> It is usually seem that non-volcanic earthquakes are those with an epicenter further than 25 km from it.</p>
-                <p> In our case, there will be no discrimination at the time of showing the data in the maps due to the lack of registers in some regions, the catalog of the USGS service does not have earthquakes with a certain minimum magnitude.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Hero Banner -->
-  <div class="hero-banner">
-    <div class="hero-title">Earthquake searcher</div>
-    <div class="hero-subtitle">
-      Interactive tool to search for earthquakes, indicating a reference point (intended to be a volcan). With the results it is shown the triggering index of the events taking into account their distance to the volcano
-    </div>
-  </div>
-
-  <!-- Key Points Grid -->
-<div class="key-points">
-  <div class="key-point">
-    <div class="key-point-title">20000 earthquakes </div>
-    <div class="context-text">
-      The USGS locates about 20000 earthquakes per year, or 55 per day approximately
-    </div>
-   </div>
-  <div class="key-point">
-    <div class="key-point-title">Hebey, China 1976</div>
-    <div class="context-text">
-      Althought not the largest magnitude earthquake, it is the deadliest one registered. This tragedy highlight the relevance of studying and preventing earthquakes effects.
-          </div>
-  </div>
-  <div class="key-point">
-    <div class="key-point-title">86°C Max</div>
-    <div class="context-text">
-      Highest recorded fumarole temperature at summit
-    </div>
-    </div>
-  </div>
-</div>
-''')
-````
-
-
-
-
-````{python}
+```{python}
+#| label: eq-maps-side-by-side
 #| echo: false
-#| context: server
+from IPython.display import HTML
 
-from shiny import ui
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Mapa 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
 
-ui.panel_well(
-    ui.input_date("start_date", "Initial Date (YYYY-MM-DD)", value="2000-01-01"),
-    ui.input_date("end_date", "Final Date (YYYY-MM-DD)", value="2024-12-31"),
-    ui.input_numeric("latitude", "Latitude", value=28.5, step=0.0000000001),
-    ui.input_numeric("longitude", "Longitude", value=-17.8, step=0.0000000001),
-    ui.input_numeric("radius", "Radius (km)", value=50, step=1),
-    ui.input_action_button("submit_btn", "Submit", class_="btn btn-warning mt-2")
-)
-
-````
-
-````{python}
-
-#| label: eq-query
-#| echo: false
-#| context: server
-
-from shiny import reactive, render, req
-import datetime
-import sys
-import os
-
-current_dir = os.getcwd()
-sys.path.append(os.path.abspath(os.path.join(current_dir, "..")))
-
-from A01_source.B01_2_eq_download import download as dwl
-from A01_source.B01_2_eq_download import utils as utils
-from A01_source.B01_4_eq_processing import preprocess as pre
-from A01_source.B01_4_eq_processing import process_eq_data as pro
-
-@reactive.effect
-@reactive.event(lambda: input.submit_btn())  
-def _():
-    print("✅ ¡Formulario enviado! Ejecutando función...")
-
-    start = str(input.start_date())
-    end = str(input.end_date())
-    lat = input.latitude()
-    lon = input.longitude()
-    radius = input.radius()
-
-    coords = dwl.coordinates_format(lat, lon)
-    dwl.update_ref(start, end, coords, radius)
-
-    pro.main()
-
-
-````
-
-
-````{python}
-HTML('''
-<style>
-  /* Reset y estilos base */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Contenedor principal flex */
-  .dashboard-wrapper {
-    display: flex;
-    min-height: 100vh;
-    gap: 2rem;
-    padding: 1rem;
-    max-width: 1800px;
-    margin: 0 auto;
-  }
-  
-  /* Columna del formulario (izquierda) */
-  .form-column {
-    width: 350px;
-    position: sticky;
-    top: 1rem;
-    align-self: flex-start;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    height: fit-content;
-  }
-  
-  /* Columna de visualización (derecha) */
-  .visualization-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    min-width: 0; /* Necesario para el correcto funcionamiento de flex */
-  }
-  
-  /* Contenedor de mapas/histogramas */
-  .visualization-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    width: 1200px;
-  }
-  
-  /* Items de visualización */
-  .visualization-item {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    overflow: hidden;
-  }
-  
-  /* Iframes responsivos */
-  .visualization-iframe {
-    width: 100%;
-    height: 450px;
-    border: none;
-    display: block;
-  }
-  
-  /* Tabla (ancho completo) */
-  .full-width {
-    grid-column: 1 / -1;
-  }
-  
-  /* Responsive para tablets */
-  @media (max-width: 1200px) {
-    .dashboard-wrapper {
-      flex-direction: column;
-    }
-    
-    .form-column {
-      width: 100%;
-      position: static;
-      margin-bottom: 2rem;
-    }
-  }
-  
-  /* Responsive para móviles */
-  @media (max-width: 768px) {
-    .visualization-container {
-      grid-template-columns: 1fr;
-    }
-    
-    .visualization-iframe {
-      height: 400px;
-    }
-  }
-</style>
-
-  <!-- Columna Derecha - Visualizaciones -->
-  <div class="visualization-column">
-    <!-- Sección de Mapas -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Seismic Activity Maps</h2>
-    <div class="visualization-container">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map.html" class="visualization-iframe"></iframe>
-      </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_map_filtered.html" class="visualization-iframe"></iframe>
-      </div>
-    </div>
-  
-    <!-- Sección de Histogramas -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Event Distribution</h2>
-    <div class="visualization-container">
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_histogram.html" class="visualization-iframe" scrolling="no" ></iframe>
-      </div>
-      <div class="visualization-item">
-        <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe" scrolling="no"></iframe>
-      </div>
-    </div>
-    
-    <!-- Sección de Tabla -->
-    <h2 style="color: #333; margin-bottom: 0.5rem;">Detailed Event Data</h2>
-    <div class="visualization-container">
-      <div class="visualization-item full-width">
-        <iframe src="./B_images/eq_table.html" class="visualization-iframe" style="height: 500px;"></iframe>
-      </div>
-    </div>
+  <!-- Mapa 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_map_filtered.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
   </div>
 </div>
+'''))
 
-''')
-````
+
+```
+```{python}
+#| label: eq-histograms-side-by-side
+#| echo: false
+from IPython.display import HTML
+
+display(HTML('''
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 20px; flex-wrap: nowrap; margin-bottom: 30px;">
+  <!-- Histograma 1 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+
+  <!-- Histograma 2 -->
+  <div style="width: 50%;">
+    <iframe src="./B_images/eq_trigger_histogram.html" width="100%" height="100%" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" scrolling="no"></iframe>
+  </div>
+</div>
+'''))
+
+```
+
+```{python}
+#| label: eq-table-fullwidth
+#| echo: false
+from IPython.display import HTML
+
+display(HTML('''
+<div style="width: 100%; max-width: 1200px; margin: 0 auto; margin-top: -10px;">
+  <iframe src="./B_images/eq_table.html" width="100%" height="500" style="border:none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>
+</div>
+'''))
+
+```
 
 ```{python}
 #| label: earthquakes-credits
@@ -3732,15 +3536,101 @@ HTML("""
 ```
 
 
-
-
 # 🏝️ TEIDE {#teide}
-
-
 ```{python}
 #| label: teide-carousel
 #| echo: false
 HTML(f"""
+<style>
+.teide-carousel {{
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+}}
+
+.teide-carousel .main-image-container {{
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 500px;
+}}
+
+.teide-carousel #teide-main-image {{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}}
+
+.teide-carousel .photo-credits {{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}}
+
+.teide-carousel .photo-credits a {{
+    color: #ff9e7d;
+    text-decoration: none;
+}}
+
+.teide-carousel .carousel-dots {{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}}
+
+.teide-carousel .dot {{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}}
+
+.teide-carousel .dot.active {{
+    background: #2c6fd7;
+    transform: scale(1.2);
+}}
+
+.teide-carousel .fade-out {{
+    opacity: 0 !important;
+}}
+
+@media (max-width: 768px) {{
+    .teide-carousel .main-image-container {{
+        height: 350px;
+    }}
+}}
+
+@media (max-width: 480px) {{
+    .teide-carousel .main-image-container {{
+        height: 250px;
+    }}
+   
+    .teide-carousel .dot {{
+        width: 12px;
+        height: 12px;
+    }}
+    
+    .teide-carousel .photo-credits {{
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }}
+}}
+</style>
+
 <div class="homepage-header">
   <div class="carousel-container">
     <!-- Slide 1 -->
@@ -3762,8 +3652,10 @@ HTML(f"""
       <div class="teide-logo">
         <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
       </div>
-        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-    Hydrothermal Activity in the Teide
+      <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+        Hydrothermal Activity in the Teide
+      </div>
+    </div>
   </div>
 </div>
   <!-- Nuevo footer de créditos -->
@@ -4733,14 +4625,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Elementos específicos del carrusel del Teide
+    // Verificar que los elementos existen antes de manipularlos
     const teideMainImage = document.getElementById('teide-main-image');
     const teidePhotoCredits = document.getElementById('teide-photo-credits');
     const teideDots = document.querySelectorAll('.teide-carousel .dot');
+    
+    if (!teideMainImage || !teidePhotoCredits || teideDots.length === 0) {
+        console.error('No se encontraron elementos esenciales del carrusel del Teide');
+        return;
+    }
+
     let teideCurrentIndex = 0;
     let teideIntervalId;
 
     function updateTeideCarousel(index) {
+        // Validar índice
+        if (index < 0 || index >= teideImages.length) return;
+        
         // Aplicar fade-out
         teideMainImage.classList.add('fade-out');
         teidePhotoCredits.classList.add('fade-out');
@@ -4765,9 +4666,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Eventos para los puntos del Teide
     teideDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const index = parseInt(dot.getAttribute('data-index'));
-            if (index !== teideCurrentIndex) {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            if (!isNaN(index) {
                 clearInterval(teideIntervalId);
                 updateTeideCarousel(index);
                 startTeideAutoRotation();
@@ -4777,6 +4678,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para iniciar rotación automática del Teide
     function startTeideAutoRotation() {
+        clearInterval(teideIntervalId); // Limpiar intervalo existente
         teideIntervalId = setInterval(() => {
             const nextIndex = (teideCurrentIndex + 1) % teideImages.length;
             updateTeideCarousel(nextIndex);
@@ -4785,6 +4687,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Iniciar rotación automática del Teide
     startTeideAutoRotation();
+
+    // Pausar al pasar el ratón
+    const teideCarousel = document.querySelector('.teide-carousel');
+    if (teideCarousel) {
+        teideCarousel.addEventListener('mouseenter', () => {
+            clearInterval(teideIntervalId);
+        });
+        
+        teideCarousel.addEventListener('mouseleave', () => {
+            startTeideAutoRotation();
+        });
+    }
 });
 </script>
+
 
