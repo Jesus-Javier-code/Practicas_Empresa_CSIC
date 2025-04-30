@@ -3,15 +3,13 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 # === CONFIGURACIÓN ===
-ruta_refs = Path('/Users/moni/Desktop/Practicas_Empresa_CSIC-1/A00_data/B_processed/La_Palma/REF')
+ruta_refs = Path('/Users/moni/Desktop/Practicas_Empresa_CSIC-1/A00_data/B_processed/Teide/REF')
 ruta_salida = ruta_refs / "plots"
 ruta_salida.mkdir(parents=True, exist_ok=True)
 
 # Coordenadas de interés (La Palma)
-lat_min = 28.45
-lat_max = 28.85
-lon_min = -18.10
-lon_max = -17.75
+lat_min, lat_max = 28, 29.28
+lon_min, lon_max = -16, -15
 
 # Colormap para los plots
 colormap = 'turbo'
