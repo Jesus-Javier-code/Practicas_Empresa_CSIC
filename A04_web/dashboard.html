@@ -952,7 +952,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Post-it 1 -->
     <div class="post-it yellow html-fill-item html-fill-container">
       <h3>Thermal Analysis</h3>
-      <p>Analyze <strong>brightness temperature</strong> and <strong>radiance patterns</strong>, model post-eruption lava cooling curves and monitor the fumarole fields of Teide volcano using thermal infrared data.</p>
+      <p>Analyze <strong>brightness temperature</strong> and <strong>radiance patterns</strong>, monitoring the fumarole fields of Teide volcano, the Tajogaite Volcano in La Palma and Timanfaya in Lanzarote using thermal infrared data.</p>
     </div>
 
     <!-- Post-it 2 -->
@@ -1079,7 +1079,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div id="setup-potencia" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="5">
+<div id="setup-potencia" class="cell-output cell-output-display html-fill-item html-fill-container no-overflow-x" data-execution_count="5">
 
 <style>
 /* Main container */
@@ -1442,6 +1442,8 @@ iframe {
 
 </style>
 
+
+
 <div class="main-container html-fill-item html-fill-container">
 
   <!-- Hero Banner -->
@@ -1505,36 +1507,569 @@ iframe {
   <div class="plot-wrapper html-fill-item html-fill-container">
     <iframe src="B_images/radiative_power_plot.html" style="height: 100%; width: 100%; border: none;"></iframe>
 
-    <!-- Info Icon & Tooltip for Plot 1 -->
-    <div class="info-box html-fill-item html-fill-container">
+    <!-- Info Buttons Container -->
+    <div class="info-buttons-container html-fill-item html-fill-container">
+      <!-- FRP Explanation Button -->
       <button class="info-button" onclick="toggleInfo('info1')">i</button>
       <div class="info-popup html-fill-item html-fill-container" id="info1">
-        This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.
-        <br><br>
-        Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.
+        <h3>Fire Radiative Power (FRP) Explanation</h3>
+        <p>This graph shows weekly Fire Radiative Power (FRP) calculated from data provided by Simone Salvatore Aveni. The values, originally derived from satellite infrared measurements, were aggregated and visualized here to reflect the evolution of surface thermal activity at the volcano. FRP values are expressed in megawatts (MW) and represent the intensity of emitted heat over time.</p>
+        <p>Higher values indicate stronger thermal activity, while decreasing or low values suggest surface cooling or inactivity.</p>
+      </div>
+
+      <!-- Stats Table Button -->
+      <button class="info-button" onclick="toggleInfo('stats-info1')">📊</button>
+      <div class="info-popup html-fill-item html-fill-container" id="stats-info1">
+        <h3>Statistical Analysis (MW)</h3>
+        <div class="table-container html-fill-item html-fill-container">
+          
+<table class="stats-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Phase</th>
+<th data-quarto-table-cell-role="th">Period</th>
+<th data-quarto-table-cell-role="th">Mean</th>
+<th data-quarto-table-cell-role="th">Median</th>
+<th data-quarto-table-cell-role="th">Std Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eruption</td>
+<td>1-11 Dec 2021</td>
+<td>2249.52</td>
+<td>2249.52</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td>Cooling</td>
+<td>11 Dec 2021 - 2 Feb 2022</td>
+<td>1190.16</td>
+<td>1199.89</td>
+<td>370.86</td>
+</tr>
+<tr class="odd">
+<td>2 Background</td>
+<td>2 Feb 2022 - end</td>
+<td>288.23</td>
+<td>241.08</td>
+<td>171.95</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.plots-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.plot-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.info-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.info-button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #2c82d7;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.info-button:hover {
+  background-color: #1a6fbd;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 600px;
+  max-width: 80vw;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  z-index: 1001;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f5f5f5;
+}
+
+.info-popup::-webkit-scrollbar {
+  width: 6px;
+}
+
+.info-popup::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.info-popup::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.info-popup h3 {
+  margin-top: 0;
+  color: #2c82d7;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.stats-table th, .stats-table td {
+  padding: 8px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.stats-table th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.stats-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.stats-table tr:hover {
+  background-color: #f0f4f8;
+}
+</style>
+
+
+<!-- Thermal Reference Images Section -->
+<div class="ref-section-container html-fill-item html-fill-container">
+  <!-- Text Content (Left) -->
+  <div class="ref-text-box html-fill-item html-fill-container">
+    <div class="ref-text-content html-fill-item html-fill-container">
+      <h3>Thermal Reference Images</h3>
+      <p>
+        Reference images (REF) represent the expected thermal state of the terrain under normal conditions, 
+        without volcanic activity. These monthly composites are generated by selecting the coldest pixels 
+        observed during each period.
+      </p>
+
+      <div class="ref-selector-box html-fill-item html-fill-container">
+        <label for="monthSelect">Select Month:</label>
+        <select id="monthSelect" onchange="changeRefImage()">
+          <optgroup label="2021">
+            <option value="B_images/REF/plots/Ref_2021_12.jpg">December 2021</option>
+          </optgroup>
+          <optgroup label="2022">
+            <option value="B_images/REF/plots/Ref_2022_01.jpg">January 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_02.jpg">February 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_03.jpg">March 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_04.jpg">April 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_05.jpg">May 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_06.jpg">June 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_07.jpg">July 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_08.jpg">August 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_09.jpg">September 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_10.jpg">October 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_11.jpg">November 2022</option>
+            <option value="B_images/REF/plots/Ref_2022_12.jpg">December 2022</option>
+          </optgroup>
+          <optgroup label="2023">
+            <option value="B_images/REF/plots/Ref_2023_01.jpg">January 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_02.jpg">February 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_03.jpg">March 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_04.jpg">April 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_05.jpg">May 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_06.jpg">June 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_07.jpg">July 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_08.jpg">August 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_09.jpg">September 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_10.jpg">October 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_11.jpg">November 2023</option>
+            <option value="B_images/REF/plots/Ref_2023_12.jpg">December 2023</option>
+          </optgroup>
+          <optgroup label="2024">
+            <option value="B_images/REF/plots/Ref_2024_01.jpg">January 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_02.jpg">February 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_03.jpg">March 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_04.jpg">April 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_05.jpg">May 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_06.jpg">June 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_07.jpg">July 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_08.jpg">August 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_09.jpg">September 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_10.jpg">October 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_11.jpg">November 2024</option>
+            <option value="B_images/REF/plots/Ref_2024_12.jpg">December 2024</option>
+          </optgroup>
+          <optgroup label="2025">
+            <option value="B_images/REF/plots/Ref_2025_01.jpg">January 2025</option>
+            <option value="B_images/REF/plots/Ref_2025_02.jpg">February 2025</option>
+            <option value="B_images/REF/plots/Ref_2025_03.jpg">March 2025</option>
+            <option value="B_images/REF/plots/Ref_2025_04.jpg">April 2025</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="ref-features html-fill-item html-fill-container">
+        <strong>Key features:</strong>
+        <ul>
+          <li>Data obtained from VIIRS satellite (I05 channel)</li>
+          <li>Monthly composites minimize atmospheric effects</li>
+          <li>375 m spatial resolution</li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <div class="plot-wrapper html-fill-item html-fill-container">
-    <iframe src="B_images/radiative_power_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+  <!-- Image (Right) -->
+  <div class="ref-image-container html-fill-item html-fill-container">
+    <img id="currentRefImage" src="B_images/REF/plots/Ref_2021_12.jpg" alt="Monthly Reference Image">
+  </div>
+</div>
 
-    <!-- Info Icon & Tooltip for Plot 2 -->
-    <div class="info-box html-fill-item html-fill-container">
-      <button class="info-button" onclick="toggleInfo('info2')">i</button>
-      <div class="info-popup html-fill-item html-fill-container" id="info2">
-        This graph displays the estimated daily Fire Radiative Power (FRP) over the volcano, derived from satellite-based brightness temperature (BT) measurements using the VIIRS sensor (channel I05, 11.45 µm).
-        <br><br>
-        For each day, the observed BT is compared to a monthly thermal reference (REF), representing the typical background temperature when there is no volcanic activity. Only valid pixels within the defined volcanic area are considered.
-        <br><br>
-        The FRP for each pixel is calculated using the Stefan–Boltzmann law:
-        <br><br>
-        FRP = σ · ((T_obs)⁴ - (T_ref)⁴) · A
-        <br><br>
-        where σ is the Stefan–Boltzmann constant (5.67×10⁻⁸ W·m⁻²·K⁻⁴), T_obs is the observed brightness temperature (K), T_ref is the reference temperature (K), and A is the area per pixel (140,625 m²).
+<style>
+/* Reference Section Styles */
+.ref-section-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  align-items: flex-start;
+}
+
+.ref-text-box {
+  background:rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.ref-text-content h3 {
+  color: #333;
+  margin-top: 0;
+  font-size: 1.5em;
+  border-bottom: 2px solid #d7512c;
+  padding-bottom: 10px;
+}
+
+.ref-text-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.ref-features {
+  margin-top: 20px;
+}
+
+.ref-features strong {
+  color: #333;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.ref-features ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.ref-features li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.ref-image-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee;
+}
+
+.ref-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.ref-selector-box {
+  margin: 20px 0;
+}
+
+.ref-selector-box label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.ref-selector-box select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #d7512c;
+  border-radius: 6px;
+  background: white;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d7512c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+}
+
+.ref-selector-box select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(215, 81, 44, 0.2);
+  border-color: #b34024;
+}
+
+@media (max-width: 768px) {
+  .ref-section-container {
+    grid-template-columns: 1fr;
+  }
+
+  .ref-image-container {
+    height: 400px;
+    order: 2;
+  }
+
+  .ref-text-box {
+    order: 1;
+  }
+}
+</style>
+
+
+
+
+<div class="plot-wrapper html-fill-item html-fill-container">
+  <iframe src="B_images/radiative_power_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+
+  <!-- Info Buttons Container -->
+  <div class="info-buttons-container html-fill-item html-fill-container">
+    <!-- FRP Explanation Button -->
+    <button class="info-button" onclick="toggleInfo('frp-info')">i</button>
+    <div class="info-popup html-fill-item html-fill-container" id="frp-info">
+      <h3>Fire Radiative Power (FRP) Explanation</h3>
+      <p>This graph displays the estimated daily Fire Radiative Power (FRP) over the volcano, derived from satellite-based brightness temperature (BT) measurements using the VIIRS sensor.</p>
+      <p>For each day, the observed BT is compared to a monthly thermal reference (REF), representing the typical background temperature when there is no volcanic activity. Only valid pixels within the defined volcanic area are considered.</p>
+      <p>The FRP for each pixel is calculated using the Stefan–Boltzmann law:</p>
+      <p class="formula">FRP = σ · ((T<sub>obs</sub>)⁴ - (T<sub>ref</sub>)⁴) · A</p>
+      <p>where σ is the Stefan–Boltzmann constant (5.67×10⁻⁸ W·m⁻²·K⁻⁴), T<sub>obs</sub> is the observed brightness temperature (K), T<sub>ref</sub> is the reference temperature (K), and A is the area per pixel (140,625 m²).</p>
+    </div>
+
+    <!-- Stats Table Button -->
+    <button class="info-button" onclick="toggleInfo('stats-info')">📊 </button>
+    <div class="info-popup html-fill-item html-fill-container" id="stats-info">
+      <h3>Statistical Analysis (MW)</h3>
+      <div class="table-container html-fill-item html-fill-container">
+        
+<table class="stats-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Phase</th>
+<th data-quarto-table-cell-role="th">Period</th>
+<th data-quarto-table-cell-role="th">Mean</th>
+<th data-quarto-table-cell-role="th">Median</th>
+<th data-quarto-table-cell-role="th">Std Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eruption</td>
+<td>1-11 Dec 2021</td>
+<td>2755.34</td>
+<td>2753.74</td>
+<td>130.54</td>
+</tr>
+<tr class="even">
+<td>Cooling</td>
+<td>11 Dec 2021 - 2 Feb 2022</td>
+<td>1309.59</td>
+<td>1217.94</td>
+<td>567.24</td>
+</tr>
+<tr class="odd">
+<td>Background</td>
+<td>2 Feb 2022 - end</td>
+<td>151.75</td>
+<td>158.24</td>
+<td>82.06</td>
+</tr>
+</tbody>
+</table>
+
       </div>
     </div>
   </div>
+</div>
+
+<style>
+.plot-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.info-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.info-button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #2c82d7;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.info-button:hover {
+  background-color: #1a6fbd;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 500px;
+  max-width: 80vw;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  z-index: 1001;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f5f5f5;
+}
+
+/* Scrollbar styles */
+.info-popup::-webkit-scrollbar {
+  width: 6px;
+}
+
+.info-popup::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.info-popup::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+.info-popup h3 {
+  margin-top: 0;
+  color: #2c82d7;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.formula {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.stats-table th, .stats-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.stats-table th {
+  background-color: #f5f7fa;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.stats-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.stats-table tr:hover {
+  background-color: #f0f4f8;
+}
+</style>
+
 
 <!-- Combined Analysis Section -->
 <div class="context-box combined-analysis html-fill-item html-fill-container">
@@ -1688,7 +2223,7 @@ iframe {
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   z-index: 999;
-  width: 600px;
+  width: 800px;
   font-size: 13.5px;
   max-width: 90vw;
 }
@@ -2679,7 +3214,19 @@ iframe {
 
 </div>
 </div>
-</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<script>
+function changeRefImage() {
+  const select = document.getElementById('monthSelect');
+  const image = document.getElementById('currentRefImage');
+  image.src = select.value;
+}
+</script>
 <script>
 // Script para ajuste dinámico si es necesario
 document.addEventListener('DOMContentLoaded', function() {
@@ -2694,24 +3241,6 @@ document.addEventListener('DOMContentLoaded', function() {
   resizeIframes();
   window.addEventListener('resize', resizeIframes);
 });
-</script>
-<script>
-function toggleInfo() {
-  const popup = document.getElementById("info-popup");
-  popup.style.display = (popup.style.display === "block") ? "none" : "block";
-}
-</script>
-<script>
-function toggleInfo(id) {
-    const popup = document.getElementById(id);
-    const isVisible = popup.style.display === 'block';
-    
-    // Cierra cualquier otro popup abierto
-    document.querySelectorAll('.info-popup').forEach(p => p.style.display = 'none');
-
-    // Alterna visibilidad del actual
-    popup.style.display = isVisible ? 'none' : 'block';
-}
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -2774,7 +3303,6 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = index;
         }, 300); // Este tiempo debe coincidir con la duración de la transición CSS
     }
-
     // Eventos para los puntos
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
@@ -2816,14 +3344,30 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<script>
+function toggleInfo(id) {
+  // Close all popups first
+  document.querySelectorAll('.info-popup').forEach(popup => {
+    if (popup.id !== id) popup.style.display = 'none';
+  });
+  
+  // Toggle the requested popup
+  const popup = document.getElementById(id);
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close popups when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.info-button') && !e.target.closest('.info-popup')) {
+    document.querySelectorAll('.info-popup').forEach(popup => {
+      popup.style.display = 'none';
+    });
+  }
+});
+</script>
 </div>
-<div id="earthquakes" class="dashboard-page bslib-grid-item html-fill-item tab-pane grid-skip html-fill-container" data-orientation="rows" aria-labelledby="tab-earthquakes">
+</div>
+<div id="earthquakes" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-earthquakes">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
@@ -2853,6 +3397,7 @@ document.addEventListener('DOMContentLoaded', function() {
           © <a href="https://temblor.net/" target="_blank">Temblor.net</a>
         </div>
       </div>
+
 
       <!-- Slide 4 -->
       <div class="carousel-slide active html-fill-item html-fill-container" style="background-image: url('B_images/eq-ice.jpg');">
@@ -2899,10 +3444,12 @@ document.addEventListener('DOMContentLoaded', function() {
   width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
+
 .text-containert {
   flex: 1;
   min-width: 0; /* Importante para que flex funcione correctamente con texto largo */
 }
+
 
 .video-wrapper {
   flex: 1;
@@ -2929,6 +3476,7 @@ document.addEventListener('DOMContentLoaded', function() {
   border: none;
 }
 
+
 .video-caption {
   text-align: center;
   font-style: italic;
@@ -2936,6 +3484,7 @@ document.addEventListener('DOMContentLoaded', function() {
   margin-top: 8px;
   color: #444;
 }
+
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
@@ -2950,15 +3499,18 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="context-text html-fill-item html-fill-container">
     <p>There are several ways earthquakes affect to volcanic activity. The main cases are those related to the dinamic and static stresses that they cause to the magmatic chambers. Althought the event may also tear the chamber if the fault is large enough or if the hypocenter is close enough.</p>
 
+
     <p>These are not the only conditions to cause an eruptive period, there has to be a "predisposition" to ignite it. The main things are the material composition of the crust, the viscosity and density of the magma, the bubble flow, if there are temperature changes that affects to the (usually crystal) ceilling of the magmatic chamber...</p><p>
+
 
     </p><p>Statistically, closed system volcanoes are more likely to trigger due to seismic events than open volcanoes, existing a geological factor that affects to this statistic. Specifically, it is stimated that in Chile and Indonesia 25% of volcanoes are susceptible to earthquakes (Watt et al. 2009) while in other regions is stimated to be only 0.3-0.4% (Linde and Selwyn Sacks, 1998; Manga and Brodsky, 2006; Lemarchand and Grasso, 2007). </p>
 
+
     <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years (), due to the studied time-span of stabilization of the volcano afer the different stress-caused mechanisms. It has been seem that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
+
 
   </div>
 </div>
-
 
 <div class="background-section html-fill-item html-fill-container">
     <!-- Video de YouTube en lugar del video local -->
@@ -2978,13 +3530,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="context-title html-fill-item html-fill-container">Volcanic activity</div>
             <div class="context-text html-fill-item html-fill-container">
                 <p>When starting periods of volcanic activity, it is usual to register a larger number of seismic events due to the vibrations caused by the flow of magma, gases, and other fluids present in the magmatic chambers.</p>
-                <p>These events are not considered the cause of the volcanic eruption but a consequence of its activity. These are characterized by their proximity to the volcano. 
+                <p>These events are not considered the cause of the volcanic eruption but a consequence of its activity. These are characterized by their proximity to the volcano.
                 </p><p> It is usually seem that non-volcanic earthquakes are those with an epicenter further than 25 km from it.</p>
                 <p> In our case, there will be no discrimination at the time of showing the data in the maps due to the lack of registers in some regions, the catalog of the USGS service does not have earthquakes with a certain minimum magnitude.</p>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Hero Banner -->
   <div class="hero-banner html-fill-item html-fill-container">
@@ -2993,6 +3546,7 @@ document.addEventListener('DOMContentLoaded', function() {
       Interactive tool to search for earthquakes, indicating a reference point (intended to be a volcan). With the results it is shown the triggering index of the events taking into account their distance to the volcano
     </div>
   </div>
+
 
   <!-- Key Points Grid -->
 <div class="key-points html-fill-item html-fill-container">
@@ -3017,45 +3571,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-<div class="card cell bslib-grid-item html-fill-item bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="9">
-<div class="well html-fill-item html-fill-container">
-  <div id="start_date" class="shiny-date-input form-group shiny-input-container html-fill-item html-fill-container">
-    <label class="control-label" id="start_date-label" for="start_date">Initial Date</label><input class="form-control" type="text" aria-labelledby="start_date-label" title="Date format: yyyy-mm-dd" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="month" data-initial-date="2022-01-01" data-date-autoclose="true" data-date-dates-disabled="null" data-date-days-of-week-disabled="null">
-  </div>
-  <div id="end_date" class="shiny-date-input form-group shiny-input-container html-fill-item html-fill-container">
-    <label class="control-label" id="end_date-label" for="end_date">Final Date</label><input class="form-control" type="text" aria-labelledby="end_date-label" title="Date format: yyyy-mm-dd" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="month" data-initial-date="2024-12-31" data-date-autoclose="true" data-date-dates-disabled="null" data-date-days-of-week-disabled="null">
-  </div>
-  <div class="form-group shiny-input-container html-fill-item html-fill-container">
-    <label class="control-label" id="latitude-label" for="latitude">Latitude</label><input id="latitude" type="number" class="shiny-input-number form-control" value="28.5" step="0.01" data-update-on="change">
-  </div>
-  <div class="form-group shiny-input-container html-fill-item html-fill-container">
-    <label class="control-label" id="longitude-label" for="longitude">Longitude</label><input id="longitude" type="number" class="shiny-input-number form-control" value="-17.8" step="0.01" data-update-on="change">
-  </div>
-  <div class="form-group shiny-input-container html-fill-item html-fill-container">
-    <label class="control-label" id="radius-label" for="radius">Radius (km)</label><input id="radius" type="number" class="shiny-input-number form-control" value="50" step="1" data-update-on="change">
-  </div>
-  <button class="btn btn-default action-button btn btn-warning mt-2" id="submit_btn" type="button">Submit</button>
-</div>
-</div>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<div class="card cell bslib-grid-item html-fill-item bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="11">
+<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="8">
 
 <style>
   /* Reset y estilos base */
@@ -3151,6 +3667,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 </style>
 
+
   <!-- Columna Derecha - Visualizaciones -->
   <div class="visualization-column html-fill-item html-fill-container">
     <!-- Sección de Mapas -->
@@ -3185,17 +3702,6 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-<div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div id="earthquakes-credits" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="12">
 
 <div class="credits-footer html-fill-item html-fill-container">
   <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
@@ -3203,21 +3709,111 @@ document.addEventListener('DOMContentLoaded', function() {
   <p>All content presented for educational and scientific research purposes</p>
   <p><a href="https://doi.org/10.1007/s11069-023-06090-y">Benito, M.B., Alvarado, G.E., Marchamalo, M. et al. Temporal and spatial evolution of the 2021 eruption in the Tajogaite volcano (Cumbre Vieja rift zone, La Palma, Canary Islands) from geophysical and geodetic parameter analyses. Nat Hazards 118, 2245–2284 (2023). </a><a href="">  </a></p><a href="">
 </a></div><a href="">
-</a></div><a href="">
-</a></div><a href="">
 </a><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
     <span class="bslib-full-screen-enter badge rounded-pill">
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><a href="">
+</a></div><a href="">
+
 
 
 </a><div id="teide" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-teide"><a href="">
 </a><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);"><a href="">
 </a><div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false"><a href="">
 </a><div class="card-body html-fill-item html-fill-container"><a href="">
-</a><div id="teide-carousel" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="13"><a href="">
+</a><div id="teide-carousel" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="9"><a href="">
+
+<style>
+.teide-carousel {
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+}
+
+.teide-carousel .main-image-container {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 500px;
+}
+
+.teide-carousel #teide-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+.teide-carousel .photo-credits {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.teide-carousel .photo-credits a {
+    color: #ff9e7d;
+    text-decoration: none;
+}
+
+.teide-carousel .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.teide-carousel .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.teide-carousel .dot.active {
+    background: #2c6fd7;
+    transform: scale(1.2);
+}
+
+.teide-carousel .fade-out {
+    opacity: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .teide-carousel .main-image-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .teide-carousel .main-image-container {
+        height: 250px;
+    }
+
+    .teide-carousel .dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .teide-carousel .photo-credits {
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+}
+</style>
 
 </a><div class="homepage-header html-fill-item html-fill-container"><a href="">
   </a><div class="carousel-container html-fill-item html-fill-container"><a href="">
@@ -3240,8 +3836,10 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="teide-logo html-fill-item html-fill-container">
         <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
       </div>
-        <div class="volcana-title html-fill-item html-fill-container" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-    Hydrothermal Activity in the Teide
+      <div class="volcana-title html-fill-item html-fill-container" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+        Hydrothermal Activity in the Teide
+      </div>
+    </div>
   </div>
 </div>
   <!-- Nuevo footer de créditos -->
@@ -3250,11 +3848,16 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </div>
 </div>
-</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div id="teide-display" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="14">
+<div id="teide-display" class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="10">
 
 <style>
 /* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
@@ -3977,6 +4580,40 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
+<div class="teide-gallery-intro html-fill-item html-fill-container">
+  <h3>Teide Gallery</h3>
+  <div class="intro-content html-fill-item html-fill-container">
+    <p>Mount Teide is not only Spain’s highest peak but also a breathtaking volcanic landscape dominating Tenerife. These images capture its steaming fumaroles and its sulfur peak.</p>
+  </div>
+</div>
+
+
+<style>
+.teide-gallery-intro {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #d7512c;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+
+.teide-gallery-intro h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.4em;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+}
+
+
+.intro-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+</style>
 
 <div class="teide-carousel html-fill-item html-fill-container">
     <!-- Imagen Principal con contenedor de créditos -->
@@ -4172,14 +4809,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Elementos específicos del carrusel del Teide
+    // Verificar que los elementos existen antes de manipularlos
     const teideMainImage = document.getElementById('teide-main-image');
     const teidePhotoCredits = document.getElementById('teide-photo-credits');
     const teideDots = document.querySelectorAll('.teide-carousel .dot');
+    
+    if (!teideMainImage || !teidePhotoCredits || teideDots.length === 0) {
+        console.error('No se encontraron elementos esenciales del carrusel del Teide');
+        return;
+    }
+
     let teideCurrentIndex = 0;
     let teideIntervalId;
 
     function updateTeideCarousel(index) {
+        // Validar índice
+        if (index < 0 || index >= teideImages.length) return;
+        
         // Aplicar fade-out
         teideMainImage.classList.add('fade-out');
         teidePhotoCredits.classList.add('fade-out');
@@ -4204,9 +4850,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Eventos para los puntos del Teide
     teideDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const index = parseInt(dot.getAttribute('data-index'));
-            if (index !== teideCurrentIndex) {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            if (!isNaN(index) {
                 clearInterval(teideIntervalId);
                 updateTeideCarousel(index);
                 startTeideAutoRotation();
@@ -4216,6 +4862,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para iniciar rotación automática del Teide
     function startTeideAutoRotation() {
+        clearInterval(teideIntervalId); // Limpiar intervalo existente
         teideIntervalId = setInterval(() => {
             const nextIndex = (teideCurrentIndex + 1) % teideImages.length;
             updateTeideCarousel(nextIndex);
@@ -4224,19 +4871,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Iniciar rotación automática del Teide
     startTeideAutoRotation();
+
+    // Pausar al pasar el ratón
+    const teideCarousel = document.querySelector('.teide-carousel');
+    if (teideCarousel) {
+        teideCarousel.addEventListener('mouseenter', () => {
+            clearInterval(teideIntervalId);
+        });
+        
+        teideCarousel.addEventListener('mouseleave', () => {
+            startTeideAutoRotation();
+        });
+    }
 });
 </script>
 <div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
 
 </div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
-</div>
+
+
 
 
 <script id="quarto-html-after-body" type="application/javascript">

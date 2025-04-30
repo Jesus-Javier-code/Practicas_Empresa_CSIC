@@ -5,6 +5,7 @@ import os
 import sys
 import plotly.graph_objects as go
 import plotly.io as pio
+import time
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
@@ -380,6 +381,7 @@ def plot_events_histogram(file = "wrk_df.csv"):
 
     pio.write_html(fig, output_path, full_html=True, config={"scrollZoom": True})
     print(f"✅ Histograma guardado en: {output_path}")
+
 
 if __name__ == "__main__":
     sys.exit(main())
