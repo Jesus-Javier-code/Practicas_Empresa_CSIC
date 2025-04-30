@@ -3023,7 +3023,7 @@ iframe {
 
 <style>
 .eruption-gallery-intro {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255);
   border-radius: 10px;
   padding: 20px;
   margin: 20px 0;
@@ -3595,28 +3595,30 @@ iframe {
       </div>
     </div>
 
-    <!-- Key Points Grid -->
-    <div class="key-points">
-      <div class="key-point">
-        <div class="key-point-title">20000 earthquakes</div>
-        <div class="context-text">
-          The USGS locates about 20000 earthquakes per year, or 55 per day approximately
-        </div>
-      </div>
-      <div class="key-point">
-        <div class="key-point-title">Hebei, China 1976</div>
-        <div class="context-text">
-          Although not the largest magnitude earthquake, it is the deadliest one registered. This tragedy highlights the relevance of studying and preventing earthquakes effects.
-        </div>
-      </div>
-      <div class="key-point">
-        <div class="key-point-title">86°C Max</div>
-        <div class="context-text">
-          Highest recorded fumarole temperature at summit
-        </div>
-      </div>
+   <!-- Key Points Grid -->
+<div class="key-points">
+  <div class="key-point">
+    <div class="key-point-title">20000 earthquakes </div>
+    <div class="context-text">
+      The USGS locates about 20000 earthquakes per year, or 55 per day approximately. It is expected to have 16 major earthquakes (with magnitude over 7) in any given year in the world.
+    </div>
+   </div>
+  <div class="key-point">
+    <div class="key-point-title">Hebey, China 1976</div>
+    <div class="context-text">
+      Althought not the largest magnitude earthquake, it is the deadliest one registered. This tragedy highlight the relevance of studying and preventing earthquakes effects.
+          </div>
+  </div>
+  <div class="key-point">
+    <div class="key-point-title">Seismic waves</div>
+    <div class="context-text">
+      <p>There are four mainly differentiated: <strong>P </strong> and <strong>S </strong>, as body waves, and <strong>Love </strong> and <strong> Rayleigh </strong> as surface waves</p>
+
+
     </div>
   </div>
+</div>
+
 <!-- Seismic Activity Visualization -->
 <div class="context-box">
   <div class="context-title">Seismic Activity Visualization</div>
@@ -3627,7 +3629,7 @@ iframe {
   <div class="visualization-grid">
     <!-- Maps Section -->
     <div class="visualization-section">
-      <h3 class="section-subtitle">SSeismic Activity Maps</h3>
+      <h3 class="section-subtitle">Seismic Activity Maps</h3>
       <div class="grid-container">
         <div class="map-container">
           <iframe src="./B_images/eq_map.html"></iframe>
@@ -4119,7 +4121,7 @@ HTML('''
         Documented active fumaroles in the summit area
       </div>
     </div>
-    <div class="key-point">
+     <div class="key-point">
       <div class="key-point-title">86°C Max</div>
       <div class="context-text">
         Highest recorded fumarole temperature at summit
@@ -4887,44 +4889,6 @@ HTML('''
 ```
 
 <script>
-// Script para ajuste dinámico si es necesario
-document.addEventListener('DOMContentLoaded', function() {
-  const iframes = document.querySelectorAll('.plot-wrapper iframe');
-  
-  function resizeIframes() {
-    iframes.forEach(iframe => {
-      iframe.style.height = iframe.parentElement.offsetHeight + 'px';
-    });
-  }
-  
-  resizeIframes();
-  window.addEventListener('resize', resizeIframes);
-});
-</script>
-<script>
-function toggleInfo() {
-  const popup = document.getElementById("info-popup");
-  popup.style.display = (popup.style.display === "block") ? "none" : "block";
-}
-</script>
-
-<script>
-function toggleInfo(id) {
-    const popup = document.getElementById(id);
-    const isVisible = popup.style.display === 'block';
-    
-    // Cierra cualquier otro popup abierto
-    document.querySelectorAll('.info-popup').forEach(p => p.style.display = 'none');
-
-    // Alterna visibilidad del actual
-    popup.style.display = isVisible ? 'none' : 'block';
-}
-</script>
-
-
-
-
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     // Configuración específica para el carrusel del Teide
     const teideImages = [
@@ -4960,56 +4924,61 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
+
     // Verificar que los elementos existen antes de manipularlos
     const teideMainImage = document.getElementById('teide-main-image');
     const teidePhotoCredits = document.getElementById('teide-photo-credits');
     const teideDots = document.querySelectorAll('.teide-carousel .dot');
-    
+   
     if (!teideMainImage || !teidePhotoCredits || teideDots.length === 0) {
         console.error('No se encontraron elementos esenciales del carrusel del Teide');
         return;
     }
 
+
     let teideCurrentIndex = 0;
     let teideIntervalId;
+
 
     function updateTeideCarousel(index) {
         // Validar índice
         if (index < 0 || index >= teideImages.length) return;
-        
+       
         // Aplicar fade-out
         teideMainImage.classList.add('fade-out');
         teidePhotoCredits.classList.add('fade-out');
-        
+       
         setTimeout(() => {
             // Cambiar contenido
             teideMainImage.src = teideImages[index].src;
             teideMainImage.alt = teideImages[index].alt;
             teidePhotoCredits.innerHTML = teideImages[index].credit;
-            
+           
             // Quitar fade-out
             teideMainImage.classList.remove('fade-out');
             teidePhotoCredits.classList.remove('fade-out');
-            
+           
             // Actualizar puntos
             teideDots.forEach(dot => dot.classList.remove('active'));
             teideDots[index].classList.add('active');
-            
+           
             teideCurrentIndex = index;
         }, 300);
     }
 
-    // Eventos para los puntos del Teide
+
+    // Eventos para los puntos del Teide (CORRECCIÓN APLICADA AQUÍ)
     teideDots.forEach(dot => {
         dot.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-index'));
-            if (!isNaN(index) {
+            if (!isNaN(index)) {
                 clearInterval(teideIntervalId);
                 updateTeideCarousel(index);
                 startTeideAutoRotation();
             }
         });
     });
+
 
     // Función para iniciar rotación automática del Teide
     function startTeideAutoRotation() {
@@ -5020,8 +4989,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
+
     // Iniciar rotación automática del Teide
     startTeideAutoRotation();
+
 
     // Pausar al pasar el ratón
     const teideCarousel = document.querySelector('.teide-carousel');
@@ -5029,20 +5000,10 @@ document.addEventListener('DOMContentLoaded', function() {
         teideCarousel.addEventListener('mouseenter', () => {
             clearInterval(teideIntervalId);
         });
-        
+       
         teideCarousel.addEventListener('mouseleave', () => {
             startTeideAutoRotation();
         });
     }
 });
 </script>
-
-
-<script>
-function changeTeideRefImage() {
-  const select = document.getElementById('monthSelectTeide');
-  const image = document.getElementById('currentTeideRefImage');
-  image.src = select.value;
-}
-</script>
-
