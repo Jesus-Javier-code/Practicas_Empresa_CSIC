@@ -3458,21 +3458,9 @@ HTML('''
   </div>
   </div>
 
-
-<div class="background-section">
-    <!-- Video de YouTube en lugar del video local -->
-<div class="video-feature" style="--video-height: 500px">
-    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe 
-            src="https://www.youtube.com/embed/Dm0WbAxhRP8" 
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 40%; border: none;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
-    <div class="photo-credits">
-        Video de YouTube © <a href="https://www.youtube.com" target="_blank">YouTube</a>
-    </div>
+<div>
+  <label for="date_f">Final Date:</label>
+  <input type="date" id="date_f" name="date_f">
 </div>
     
     <!-- Text content -->
@@ -3747,6 +3735,96 @@ HTML("""
 #| label: teide-carousel
 #| echo: false
 HTML(f"""
+<style>
+.teide-carousel {{
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+}}
+
+.teide-carousel .main-image-container {{
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 500px;
+}}
+
+.teide-carousel #teide-main-image {{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}}
+
+.teide-carousel .photo-credits {{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}}
+
+.teide-carousel .photo-credits a {{
+    color: #ff9e7d;
+    text-decoration: none;
+}}
+
+.teide-carousel .carousel-dots {{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}}
+
+.teide-carousel .dot {{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}}
+
+.teide-carousel .dot.active {{
+    background: #2c6fd7;
+    transform: scale(1.2);
+}}
+
+.teide-carousel .fade-out {{
+    opacity: 0 !important;
+}}
+
+@media (max-width: 768px) {{
+    .teide-carousel .main-image-container {{
+        height: 350px;
+    }}
+}}
+
+@media (max-width: 480px) {{
+    .teide-carousel .main-image-container {{
+        height: 250px;
+    }}
+   
+    .teide-carousel .dot {{
+        width: 12px;
+        height: 12px;
+    }}
+    
+    .teide-carousel .photo-credits {{
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }}
+}}
+</style>
+
 <div class="homepage-header">
   <div class="carousel-container">
     <!-- Slide 1 -->
@@ -3768,8 +3846,10 @@ HTML(f"""
       <div class="teide-logo">
         <img src="B_images/Teide_contorno_naranja.png" alt="Teide Logo">
       </div>
-        <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-    Hydrothermal Activity in the Teide
+      <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+        Hydrothermal Activity in the Teide
+      </div>
+    </div>
   </div>
 </div>
   <!-- Nuevo footer de créditos -->
@@ -4741,14 +4821,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Elementos específicos del carrusel del Teide
+    // Verificar que los elementos existen antes de manipularlos
     const teideMainImage = document.getElementById('teide-main-image');
     const teidePhotoCredits = document.getElementById('teide-photo-credits');
     const teideDots = document.querySelectorAll('.teide-carousel .dot');
+    
+    if (!teideMainImage || !teidePhotoCredits || teideDots.length === 0) {
+        console.error('No se encontraron elementos esenciales del carrusel del Teide');
+        return;
+    }
+
     let teideCurrentIndex = 0;
     let teideIntervalId;
 
     function updateTeideCarousel(index) {
+        // Validar índice
+        if (index < 0 || index >= teideImages.length) return;
+        
         // Aplicar fade-out
         teideMainImage.classList.add('fade-out');
         teidePhotoCredits.classList.add('fade-out');
@@ -4773,9 +4862,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Eventos para los puntos del Teide
     teideDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const index = parseInt(dot.getAttribute('data-index'));
-            if (index !== teideCurrentIndex) {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            if (!isNaN(index) {
                 clearInterval(teideIntervalId);
                 updateTeideCarousel(index);
                 startTeideAutoRotation();
@@ -4785,6 +4874,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para iniciar rotación automática del Teide
     function startTeideAutoRotation() {
+        clearInterval(teideIntervalId); // Limpiar intervalo existente
         teideIntervalId = setInterval(() => {
             const nextIndex = (teideCurrentIndex + 1) % teideImages.length;
             updateTeideCarousel(nextIndex);
@@ -4793,6 +4883,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Iniciar rotación automática del Teide
     startTeideAutoRotation();
+
+    // Pausar al pasar el ratón
+    const teideCarousel = document.querySelector('.teide-carousel');
+    if (teideCarousel) {
+        teideCarousel.addEventListener('mouseenter', () => {
+            clearInterval(teideIntervalId);
+        });
+        
+        teideCarousel.addEventListener('mouseleave', () => {
+            startTeideAutoRotation();
+        });
+    }
 });
 </script>
+
 
