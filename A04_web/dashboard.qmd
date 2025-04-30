@@ -3194,9 +3194,6 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', resizeIframes);
 });
 </script>
-
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const images = [
@@ -3258,7 +3255,6 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = index;
         }, 300); // Este tiempo debe coincidir con la duración de la transición CSS
     }
-
     // Eventos para los puntos
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
@@ -3284,7 +3280,6 @@ document.addEventListener('DOMContentLoaded', function() {
     startAutoRotation();
 });
 </script>
-
 <script>
 // Script opcional para ajuste dinámico de altura
 document.addEventListener('DOMContentLoaded', function() {
@@ -3324,9 +3319,7 @@ document.addEventListener('click', function(e) {
   }
 });
 </script>
-
 # 🕳️ EARTHQUAKES {#earthquakes}
-
 ```{python}
 #| label: geometry_1
 #| include: false
@@ -3335,8 +3328,21 @@ result = subprocess.run(["python", "../A02_utils/geometry.py"], capture_output=T
 print(result.stdout)
 if result.stderr:
     print("Errors:", result.stderr)
-```
 
+from shiny import reactive, render, req
+import datetime
+import sys
+import os
+
+current_dir = os.getcwd()
+sys.path.append(os.path.abspath(os.path.join(current_dir, "..")))
+
+from A01_source.B01_2_eq_download import download as dwl
+from A01_source.B01_2_eq_download import utils as utils
+from A01_source.B01_4_eq_processing import preprocess as pre
+from A01_source.B01_4_eq_processing import process_eq_data as pro
+
+```
 ```{python}
 #| label: earthquakes-carousel
 #| echo: false
@@ -3351,21 +3357,29 @@ HTML(f"""
           © <a href="https://seismo.berkeley.edu/blog/2016/11/23/an-earthquake-of-two-flavors.html" target="_blank">Berkeley Seismology Lab</a>
         </div>
       </div>
-      
+     
       <!-- Slide 2 -->
       <div class="carousel-slide" style="background-image: url('B_images/earthquake3.jpg');">
         <div class="photo-credits hidden">
           © <a href="http://www.thulescientific.com/media.htm" target="_blank">Thule Scientific</a>
         </div>
       </div>
-      
+     
       <!-- Slide 3 -->
       <div class="carousel-slide" style="background-image: url('B_images/earthquake4.jpg');">
         <div class="photo-credits hidden">
           © <a href="https://temblor.net/" target="_blank">Temblor.net</a>
         </div>
       </div>
-      
+
+
+      <!-- Slide 4 -->
+      <div class="carousel-slide active" style="background-image: url('B_images/eq-ice.jpg');">
+        <div class="photo-credits">
+          © <a href="https://www.usgs.gov/programs/earthquake-hazards/earthquake-photo-collections">Earthquake Photo Collections, USGS</a>
+        </div>
+      </div>
+     
       <div class="carousel-overlay"></div>
       <div class="homepage-logo-container">
   <div class="earthquake-logo-wrapper">
@@ -3385,8 +3399,8 @@ HTML(f"""
 </div>
 """)
 ```
-
 ````{python}
+
 
 HTML('''
 <style>
@@ -3398,10 +3412,12 @@ HTML('''
   width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
+
 .text-containert {
   flex: 1;
   min-width: 0; /* Importante para que flex funcione correctamente con texto largo */
 }
+
 
 .video-wrapper {
   flex: 1;
@@ -3428,6 +3444,7 @@ HTML('''
   border: none;
 }
 
+
 .video-caption {
   text-align: center;
   font-style: italic;
@@ -3435,6 +3452,7 @@ HTML('''
   margin-top: 8px;
   color: #444;
 }
+
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
@@ -3449,55 +3467,47 @@ HTML('''
   <div class="context-text">
     <p>There are several ways earthquakes affect to volcanic activity. The main cases are those related to the dinamic and static stresses that they cause to the magmatic chambers. Althought the event may also tear the chamber if the fault is large enough or if the hypocenter is close enough.</p>
 
+
     <p>These are not the only conditions to cause an eruptive period, there has to be a "predisposition" to ignite it. The main things are the material composition of the crust, the viscosity and density of the magma, the bubble flow, if there are temperature changes that affects to the (usually crystal) ceilling of the magmatic chamber...<p>
+
 
     <p>Statistically, closed system volcanoes are more likely to trigger due to seismic events than open volcanoes, existing a geological factor that affects to this statistic. Specifically, it is stimated that in Chile and Indonesia 25% of volcanoes are susceptible to earthquakes (Watt et al. 2009) while in other regions is stimated to be only 0.3-0.4% (Linde and Selwyn Sacks, 1998; Manga and Brodsky, 2006; Lemarchand and Grasso, 2007). </p>
 
+
     <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years (), due to the studied time-span of stabilization of the volcano afer the different stress-caused mechanisms. It has been seem that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
 
-  </div>
-  </div>
 
-<div>
-  <label for="date_f">Final Date:</label>
-  <input type="date" id="date_f" name="date_f">
+  </div>
 </div>
-    
+
+<div class="background-section">
+    <!-- Video de YouTube en lugar del video local -->
+<div class="video-feature" style="--video-height: 500px">
+    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe
+            src="https://www.youtube.com/embed/Dm0WbAxhRP8"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 40%; border: none;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+    <div class="photo-credits">
+        Video de YouTube © <a href="https://www.youtube.com" target="_blank">YouTube</a>
+    </div>
+</div>
+   
     <!-- Text content -->
     <div class="text-content">
         <div class="context-box">
             <div class="context-title">Volcanic activity</div>
             <div class="context-text">
                 <p>When starting periods of volcanic activity, it is usual to register a larger number of seismic events due to the vibrations caused by the flow of magma, gases, and other fluids present in the magmatic chambers.</p>
-                <p>These events are not considered the cause of the volcanic eruption but a consequence of its activity. These are characterized by their proximity to the volcano. 
+                <p>These events are not considered the cause of the volcanic eruption but a consequence of its activity. These are characterized by their proximity to the volcano.
                 <p> It is usually seem that non-volcanic earthquakes are those with an epicenter further than 25 km from it.</p>
                 <p> In our case, there will be no discrimination at the time of showing the data in the maps due to the lack of registers in some regions, the catalog of the USGS service does not have earthquakes with a certain minimum magnitude.</p>
             </div>
         </div>
     </div>
-</div>
-
-  <!-- Key Points Grid -->
-<div class="key-points">
-  <div class="key-point">
-    <div class="key-point-title">20000 earthquakes </div>
-    <div class="context-text">
-      The USGS locates about 20000 earthquakes per year, or 55 per day approximately. It is expected to have 16 major earthqaukes (maagnitude over 7) in any given year in the world but in 2010 there were 23 registered major events
-    </div>
-   </div>
-  <div class="key-point">
-    <div class="key-point-title">Hebey, China 1976</div>
-    <div class="context-text">
-      Althought not the largest magnitude earthquake, it is the deadliest one registered. This tragedy highlight the relevance of studying and preventing earthquakes effects.
-          </div>
-  </div>
-  <div class="key-point">
-    <div class="key-point-title">Seismic waves</div>
-    <div class="context-text">
-      <p>There are four mainly differentiated: <strong>P waves</strong> and <strong>S waves</strong> as body waves and  <strong>Love waves</strong> and <strong> Rayleigh waves</strong> as surface waves</p>
-    </div>
-    </div>
-  </div>
 </div>
 
 
@@ -3510,88 +3520,31 @@ HTML('''
   </div>
 
 
+  <!-- Key Points Grid -->
+<div class="key-points">
+  <div class="key-point">
+    <div class="key-point-title">20000 earthquakes </div>
+    <div class="context-text">
+      The USGS locates about 20000 earthquakes per year, or 55 per day approximately
+    </div>
+   </div>
+  <div class="key-point">
+    <div class="key-point-title">Hebey, China 1976</div>
+    <div class="context-text">
+      Althought not the largest magnitude earthquake, it is the deadliest one registered. This tragedy highlight the relevance of studying and preventing earthquakes effects.
+          </div>
+  </div>
+  <div class="key-point">
+    <div class="key-point-title">86°C Max</div>
+    <div class="context-text">
+      Highest recorded fumarole temperature at summit
+    </div>
+    </div>
+  </div>
+</div>
 ''')
-````
-````{python}
-#| context = server
-from shiny import reactive, render, req, ui, App
-import sys
-import os
-import asyncio
-from datetime import datetime
 
-current_dir = os.getcwd()
-sys.path.append(os.path.abspath(os.path.join(current_dir, "..")))
-
-from A01_source.B01_2_eq_download import download as dwl
-from A01_source.B01_2_eq_download import utils as utils
-from A01_source.B01_4_eq_processing import preprocess as pre
-from A01_source.B01_4_eq_processing import process_eq_data as pro
-
-
-# === UI ===
-form = ui.panel_well(
-    ui.input_date("start_date", "Initial Date (YYYY-MM-DD)", value="2000-01-01"),
-    ui.input_date("end_date", "Final Date (YYYY-MM-DD)", value="2024-12-31"),
-    ui.input_numeric("latitude", "Latitude", value=28.5, step=0.0000000001),
-    ui.input_numeric("longitude", "Longitude", value=-17.8, step=0.0000000001),
-    ui.input_numeric("radius", "Radius (km)", value=50, step=1),
-    ui.input_action_button("submit_btn", "Submit", class_="btn btn-warning mt-2")
-)
-# === SERVER ===
-def server(input, output, session):
-    trigger = reactive.Value(0)  # Este valor se usará para actualizar el plot
-
-    @reactive.effect
-    @reactive.event(input.submit_btn)
-    def _():
-        print("✅ ¡Formulario enviado! Ejecutando función...")
-
-        start = str(input.start_date())
-        end = str(input.end_date())
-        lat = input.latitude()
-        lon = input.longitude()
-        radius = input.radius()
-
-        coords = dwl.coordinates_format(lat, lon)
-        dwl.update_ref(start, end, coords, radius)
-        pro.main()
-
-        trigger.set(trigger.get() + 1)  # Señal para actualizar visualización
-
-    @output
-    @render.plot
-    def plot_output():
-        trigger.get()  # Para hacerla reactiva al cambio
-        import matplotlib.pyplot as plt
-        import pandas as pd
-
-        # Carga los datos procesados
-        df = pd.read_csv("A02_outputs/processed_data.csv")  # Ajusta ruta si necesario
-
-        fig, ax = plt.subplots()
-        ax.plot(df["date"], df["magnitude"])
-        ax.set_title("Magnitudes en el tiempo")
-        ax.set_xlabel("Fecha")
-        ax.set_ylabel("Magnitud")
-        return fig
-
-# === APP ===
-app_ui = ui.page_fluid(
-    form,
-    ui.output_plot("plot_output")
-)
-
-app = App(app_ui, server)
-
-````
-```{python}
-#| context: ui
-app_ui
-```
-
-````{python}
-HTML("""
+HTML('''
 <style>
   /* Reset y estilos base */
   * {
@@ -3599,7 +3552,7 @@ HTML("""
     margin: 0;
     padding: 0;
   }
-  
+ 
   /* Contenedor principal flex */
   .dashboard-wrapper {
     display: flex;
@@ -3609,7 +3562,7 @@ HTML("""
     max-width: 1800px;
     margin: 0 auto;
   }
-  
+ 
   /* Columna del formulario (izquierda) */
   .form-column {
     width: 350px;
@@ -3622,7 +3575,7 @@ HTML("""
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     height: fit-content;
   }
-  
+ 
   /* Columna de visualización (derecha) */
   .visualization-column {
     flex: 1;
@@ -3631,7 +3584,7 @@ HTML("""
     gap: 2rem;
     min-width: 0; /* Necesario para el correcto funcionamiento de flex */
   }
-  
+ 
   /* Contenedor de mapas/histogramas */
   .visualization-container {
     display: grid;
@@ -3639,7 +3592,7 @@ HTML("""
     gap: 1.5rem;
     width: 1200px;
   }
-  
+ 
   /* Items de visualización */
   .visualization-item {
     background: white;
@@ -3647,7 +3600,7 @@ HTML("""
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow: hidden;
   }
-  
+ 
   /* Iframes responsivos */
   .visualization-iframe {
     width: 100%;
@@ -3655,69 +3608,72 @@ HTML("""
     border: none;
     display: block;
   }
-  
+ 
   /* Tabla (ancho completo) */
   .full-width {
     grid-column: 1 / -1;
   }
-  
+ 
   /* Responsive para tablets */
   @media (max-width: 1200px) {
     .dashboard-wrapper {
       flex-direction: column;
     }
-    
+   
     .form-column {
       width: 100%;
       position: static;
       margin-bottom: 2rem;
     }
   }
-  
+ 
   /* Responsive para móviles */
   @media (max-width: 768px) {
     .visualization-container {
       grid-template-columns: 1fr;
     }
-    
+   
     .visualization-iframe {
       height: 400px;
     }
   }
 </style>
 
+
   <!-- Columna Derecha - Visualizaciones -->
-<div class="visualization-column">
-  <!-- Sección de Mapas -->
-  <h2 style="color: #333; margin-bottom: 0.5rem;">Seismic Activity Maps</h2>
-  <div class="visualization-container">
-    <div class="visualization-item">
-      <iframe src="./B_images/eq_map.html"class="visualization-iframe"></iframe>
+  <div class="visualization-column">
+    <!-- Sección de Mapas -->
+    <h2 style="color: #333; margin-bottom: 0.5rem;">Seismic Activity Maps</h2>
+    <div class="visualization-container">
+      <div class="visualization-item">
+        <iframe src="./B_images/eq_map.html" class="visualization-iframe"></iframe>
       </div>
-    <div class="visualization-item">
-      <iframe src="./B_images/eq_map_filtered.html"class="visualization-iframe"></iframe>
+      <div class="visualization-item">
+        <iframe src="./B_images/eq_map_filtered.html" class="visualization-iframe"></iframe>
       </div>
-  </div>
-  
+    </div>
+ 
     <!-- Sección de Histogramas -->
-  <h2 style="color: #333; margin-bottom: 0.5rem;">Event Distribution</h2>
-  <div class="visualization-container">
-    <div class="visualization-item">
-      <iframe src="./B_images/eq_histogram.html"class="visualization-iframe" scrolling="no" ></iframe>
+    <h2 style="color: #333; margin-bottom: 0.5rem;">Event Distribution</h2>
+    <div class="visualization-container">
+      <div class="visualization-item">
+        <iframe src="./B_images/eq_histogram.html" class="visualization-iframe" scrolling="no" ></iframe>
+      </div>
+      <div class="visualization-item">
+        <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe" scrolling="no"></iframe>
+      </div>
     </div>
-    <div class="visualization-item">
-      <iframe src="./B_images/eq_trigger_histogram.html" class="visualization-iframe" scrolling="no"></iframe>
-    </div>
-  </div>
-    
+   
     <!-- Sección de Tabla -->
-  <h2 style="color: #333; margin-bottom: 0.5rem;">Detailed Event Data</h2>
-  <div class="visualization-container">
-    <div class="visualization-item full-width">
-      <iframe src="./B_images/eq_table.html"class="visualization-iframe" style="height: 500px;"></iframe>
+    <h2 style="color: #333; margin-bottom: 0.5rem;">Detailed Event Data</h2>
+    <div class="visualization-container">
+      <div class="visualization-item full-width">
+        <iframe src="./B_images/eq_table.html" class="visualization-iframe" style="height: 500px;"></iframe>
+      </div>
     </div>
   </div>
 </div>
+
 
 <div class="credits-footer">
   <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
@@ -3725,12 +3681,9 @@ HTML("""
   <p>All content presented for educational and scientific research purposes</p>
   <p><a href="https://doi.org/10.1007/s11069-023-06090-y">Benito, M.B., Alvarado, G.E., Marchamalo, M. et al. Temporal and spatial evolution of the 2021 eruption in the Tajogaite volcano (Cumbre Vieja rift zone, La Palma, Canary Islands) from geophysical and geodetic parameter analyses. Nat Hazards 118, 2245–2284 (2023). <a>  </p>
 </div>
-""")
-
+''')
 ````
-
 # 🏝️ TEIDE {#teide}
-
 ```{python}
 #| label: teide-carousel
 #| echo: false
