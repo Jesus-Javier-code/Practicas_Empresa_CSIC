@@ -2,6 +2,7 @@ from libcomcat.search import search
 from libcomcat.dataframes import get_summary_data_frame, get_detail_data_frame
 from datetime import datetime
 import pandas as pd
+import os
 try:
     from . import utils as utils
 except ImportError:
@@ -165,15 +166,31 @@ def update_ref(date_i, date_f, coords, region):
     ref = ref(date_i, date_f, coords, region)
     return ref
 
+def process_ign_file(file_name, file_path):
+    path = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(path, "..", ".."))
+    file_path = os.path.join(project_root, f"A00_data/B_eq_raw/{file_name}")
+
+    try:
+        text_file = pd.read_table(f'{file_name}', sep='\t')
+        text_file.to_csv(f'{file_name}', index=False) # index=False para evitar que se agregue una columna de índice
+        print(f"Succeed conversion '{file_name}' to CSV")
+    except FileNotFoundError:
+        print("File not found.")
+    except pd.errors.ParserError as e:
+        print(f"Error: {e}")
+    
+    
+    return id
+
+
 date_i = "1973-01-01 00:00"
 date_f = "2025-04-29 00:00"
-lat_cent = 28.27305
-lon_cent = -16.6394
+lat_cent = 28.612777777778
+lon_cent = -17.866111111111
 reg_rad = 350
 
 ref = (date_i, date_f, coordinates_format(lat_cent, lon_cent), reg_rad)
-
-
 
 #download_all_by_region(*ref)
 #download_optimized(*ref)

@@ -1,7 +1,8 @@
 id,time,location,latitude,longitude,depth,magnitude,alert,url,eventtype,significance
-us7000fvbu,2021-11-19 01:08:43.667000+00:00,"7 km SW of Mazo, Spain",28.558,-17.8204,35.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fvbu,earthquake,271
-us7000fv4s,2021-11-13 06:55:57.402000+00:00,"2 km ENE of El Paso, Spain",28.6606,-17.8628,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fv4s,earthquake,271
-us7000ft4n,2021-11-11 03:37:55.185000+00:00,"6 km S of Tazacorte, Spain",28.5877,-17.9297,35.0,4.3,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000ft4n,earthquake,284
-us7000fpu4,2021-10-26 16:25:33.055000+00:00,"2 km W of Fuencaliente de la Palma, Spain",28.4947,-17.8688,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fpu4,earthquake,326
-us7000fxa4,2021-11-23 01:03:24.298000+00:00,"6 km SE of Puntallana, Spain",28.696,-17.6878,10.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us7000fxa4,earthquake,326
+usp000cusg,2004-05-11 20:31:11.240000+00:00,"3 km SSW of Icod de los Vinos, Spain",28.344,-16.732,2.7,3.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000cusg,earthquake,138
+usp000e4q0,2005-11-22 11:32:22.630000+00:00,"21 km NNW of San Juan de la Rambla, Spain",28.584,-16.708,38.6,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e4q0,earthquake,259
+usp0003v2e,1989-05-09 02:30:37.860000+00:00,"33 km ESE of Fasnia, Spain",28.071,-16.156,23.3,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0003v2e,earthquake,385
+usp000ec7s,2006-03-15 17:03:42.950000+00:00,"Canary Islands, Spain region",28.978,-16.76,59.9,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ec7s,earthquake,259
+usp000fpye,2007-10-05 17:31:59.140000+00:00,"57 km S of Alajeró, Spain",27.548,-17.265,26.1,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fpye,earthquake,326
+us2000j5kz,2019-01-18 06:36:50.660000+00:00,"33 km NW of Agaete, Spain",28.2989,-15.9541,10.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/us2000j5kz,earthquake,298
 usc000lst3,2013-12-27 17:46:03.420000+00:00,"28 km W of Frontera, Spain",27.7975,-18.2868,7.48,5.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usc000lst3,earthquake,453

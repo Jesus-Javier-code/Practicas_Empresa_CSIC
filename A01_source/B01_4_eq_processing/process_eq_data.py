@@ -5,7 +5,6 @@ import os
 import sys
 import plotly.graph_objects as go
 import plotly.io as pio
-import time
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
@@ -15,23 +14,10 @@ from A01_source.B01_2_eq_download import download as dwl
 
 def main():
     try:
-        input_ask1 = input("Do you want to update the data? (yes/no): ").strip().lower()
-        if input_ask1 == "yes":
-            print("Filtered or non-filtered data")
-            inpust_ask2 = input("Do you want to get all events? If not, it will be used the optimized download method: ").strip().lower()
-            pre.optimized_download(inpust_ask2)
-        if input_ask1 == "no":
-            print("No data update requested")
-            print("Update of filtered map")
-            inpust_ask3 = input("Do you want to update the filtered map? If yes, only trigger index =< 100 will be taken (yes/no): ").strip().lower()
-            if inpust_ask3 == "yes":    
-                pre.discard_by_max_trigger_index("wrk_df.csv", 100)
-            if inpust_ask3 == "no":
-                print("No filter applied.")
-
+        ask_for_data_update()
+        
         # Update data to the new parameters
-        print("🔄 Loading data...")
-        #pre.trigger_index(L_method="Singh")     
+        print("🔄 Processing data...")   
 
         # Configure paths
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -80,6 +66,43 @@ def main():
     except Exception as e:
         print(f"❌ Unexpected error: {str(e)}", file=sys.stderr)
         return 1
+
+def ask_for_data_update():
+    input_ask1 = input("Do you want to update the data? (yes/no): ").strip().lower()
+    input_ask2 = input("Do you want to use the optimized download method? If not, it will be downloaded all events in the catalog (yes/no): ").strip().lower()
+    input_ask3 = input("Do you want to update the filtered map? If yes, only trigger index =< 100 will be taken (yes/no): ").strip().lower()
+        
+    print("Processing inputs...")
+
+    if input_ask1 == "yes":
+        print("Updating data...")
+        if input_ask2 == "yes":
+            print("Download method: optimized (not getting all events)") 
+
+            if input_ask3 == "yes":
+                print("Dowloading only events with trigger index <= 100...")
+                pre.optimized_download(dwl_opt= input_ask2, discard_trigger_index= input_ask3)
+            if input_ask3 == "no":
+                print("Downloading all events")
+                pre.optimized_download(dwl_opt= input_ask2, discard_trigger_index= input_ask3)       
+            
+        if input_ask2 == "no":
+            print("Download method: not optimized (getting all events)")  
+            if input_ask3 == "yes":
+                print("Dowloading only events with trigger index <= 100...")
+                pre.optimized_download(dwl_opt= input_ask2, discard_trigger_index= input_ask3)
+            if input_ask3 == "no":
+                print("Downloading all events")
+                pre.optimized_download(dwl_opt= input_ask2, discard_trigger_index= input_ask3)
+
+    if input_ask1 == "no":
+        print("No updates applied.")
+        if input_ask2 == "yes" or input_ask2 == "no":
+            if input_ask3 == "yes":
+                print("Applying filter to trigger index...")
+                pre.discard_by_max_trigger_index("wrk_df.csv", 100)
+            if input_ask3 == "no":
+                print("No filter applied.")
 
 def generate_table(data, output_folder):
     try:
@@ -146,7 +169,8 @@ def generate_map(data, output_folder, is_filtered=False):
             data,
             lat = "latitude",
             lon = "longitude",
-            size = data["magnitude"]*2,
+            hover_data= "distance",
+            size = data["magnitude"],
             color = "trigger_index",
             color_continuous_scale = "Viridis",
             hover_name = "id",
@@ -189,9 +213,9 @@ def generate_map(data, output_folder, is_filtered=False):
                 size = 10, 
                 color = "black",
             ),
-            hovertext = ["Reference point"],  
+            hovertext = ["Reference Point"],  
             hoverinfo = "text",
-            name = "Marker"
+            name = "Ref. Point"
         )
     )
 
@@ -231,7 +255,6 @@ def generate_map(data, output_folder, is_filtered=False):
         )
 
         fig.update_geos(lataxis_showgrid = True, lonaxis_showgrid = True)
-
 
         fig.update_layout(
             title_font = dict(size = 20),
@@ -283,7 +306,7 @@ def generate_histogram(data, output_folder):
 
         fig = px.histogram(
             data,
-            x = "time",
+            x = "trigger_index",
             title = None
         )
 
@@ -369,7 +392,7 @@ def plot_events_histogram(file = "wrk_df.csv"):
         yref = "paper",
         x = 0.5, 
         y = 1.1,
-        text = f"Total de eventos: {total_events}",
+        text = f"Total events: {total_events}",
         showarrow = False,
         font = dict(size = 14, color = "black")
     )
@@ -380,7 +403,6 @@ def plot_events_histogram(file = "wrk_df.csv"):
 
     pio.write_html(fig, output_path, full_html=True, config={"scrollZoom": True})
     print(f"✅ Histograma guardado en: {output_path}")
-
 
 if __name__ == "__main__":
     sys.exit(main())

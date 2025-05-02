@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import sys
 import os
+import shutil
 from tqdm import tqdm
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -58,9 +59,9 @@ def trigger_index(L_method="Singh", file_name="wrk_df.csv"):
     utils.saving_data(result_df, "wrk_df.csv", folder="B_eq_processed")
     return result_df
 
-def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
+def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 100.0):
     
-    trigger_index(L_method="Singh")
+    trigger_index(L_method="Singh", file_name=file)
     
     path = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.abspath(os.path.join(path, "..", ".."))
@@ -77,13 +78,26 @@ def discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index= 40.0):
 
     utils.saving_data(result_df, "trigger_index_filtered.csv", folder="B_eq_processed")
     return result_df
- 
-def optimized_download(answer="no"):
-    if answer == "yes":
+
+def optimized_download(dwl_opt="no", discard_trigger_index="no"):
+
+    if dwl_opt == "no":
         dwl.download_all_by_region(*ref)
-        trigger_index(L_method="Singh", file_name="wrk_df.csv")
+        if discard_trigger_index == "yes":
+            discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index=100.0)
+        if discard_trigger_index == "no":
+            trigger_index(L_method="Singh")
         return print("All vents downloaded in 'wrk_df.csv'")
-    elif answer == "no":
+    
+    elif dwl_opt == "yes":
         dwl.download_optimized(*ref)
-        trigger_index(L_method="Singh")
+        if discard_trigger_index == "yes":
+            discard_by_max_trigger_index(file="wrk_df.csv", max_trigger_index=100.0)
+        if discard_trigger_index == "no":
+            trigger_index(L_method="Singh")
+
         return print("Only relevants events downloaded in 'trigger_index_filtered.csv'")
+
+
+
+        print(f"❌ Error al mover el archivo: {e}")

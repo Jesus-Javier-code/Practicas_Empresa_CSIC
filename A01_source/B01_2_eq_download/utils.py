@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-
+import shutil
 # Constants
 R_earth = 6378.1 # km | Equatorial radius (source: NASA's Earth Fact Sheet)
 
@@ -78,3 +78,25 @@ def simulate_min_mag_by_radius(radius, max_trigger_index = 100.0, L_method = "Si
             raise ValueError("Invalid L_method. Choose 'Singh' or 'USGS'.")
 
     return min_magnitude, distance_list
+
+def move_file_to_project(file_name, output_file_name="external_data.csv"):
+    
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(script_dir, "..", ".."))
+
+    destination_folder = os.path.join(project_root, "A00_data", "B_eq_raw")
+
+    os.makedirs(destination_folder, exist_ok=True)
+
+    source_path = os.path.abspath(file_name)
+
+    destination_file_path = os.path.join(destination_folder, output_file_name)
+
+    try:
+        # Mover el archivo
+        shutil.move(source_path, destination_file_path)
+        print(f"✅ Archivo movido a: {destination_file_path}")
+    except FileNotFoundError:
+        print(f"❌ Error: El archivo '{file_name}' no se encontró.")
+    except Exception as e:
+        print(f"❌ Error al mover el archivo: {e}")

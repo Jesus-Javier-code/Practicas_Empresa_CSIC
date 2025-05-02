@@ -1,5 +1,5 @@
 id,time,location,latitude,longitude,depth,magnitude,alert,url,eventtype,significance
-usp0002mcj,1985-11-01 20:44:02.800000+00:00,"204 km N of Punta de Mujeres, Spain",30.988,-13.265,10.0,4.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0002mcj,earthquake,354
+usp0000mr7,1977-02-26 22:43:48.900000+00:00,"280 km W of Puntagorda, Spain",28.529,-20.835,10.0,4.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0000mr7,earthquake,340
 usp0003v2e,1989-05-09 02:30:37.860000+00:00,"33 km ESE of Fasnia, Spain",28.071,-16.156,23.3,5.0,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0003v2e,earthquake,385
 usp0003zk0,1989-09-14 19:41:19.130000+00:00,"206 km NW of Tinajo, Spain",30.546,-14.963,10.0,3.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0003zk0,earthquake,199
 usp0004410,1990-01-08 21:23:08.200000+00:00,"9 km SW of Buenavista del Norte, Spain",28.313,-16.925,10.0,3.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp0004410,earthquake,158
@@ -228,6 +228,7 @@ usp000dzm2,2005-09-17 16:23:32.880000+00:00,"36 km ESE of Lomo de Arico, Spain",
 usp000e4pk,2005-11-22 05:20:54.990000+00:00,"103 km WNW of Yaiza, Spain",29.443,-14.676,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e4pk,earthquake,104
 usp000e4q0,2005-11-22 11:32:22.630000+00:00,"21 km NNW of San Juan de la Rambla, Spain",28.584,-16.708,38.6,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e4q0,earthquake,259
 usp000e5pu,2005-12-07 06:02:00.660000+00:00,"113 km NNW of Tegueste, Spain",29.458,-16.765,77.5,3.9,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e5pu,earthquake,234
+usp000e82d,2006-01-11 23:09:56.600000+00:00,"107 km S of São Martinho, Portugal",31.675,-16.88,0.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000e82d,earthquake,271
 usp000eayc,2006-02-27 01:28:55.270000+00:00,"15 km NNE of Valverde, Spain",27.939,-17.868,7.4,2.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000eayc,earthquake,96
 usp000ec7s,2006-03-15 17:03:42.950000+00:00,"Canary Islands, Spain region",28.978,-16.76,59.9,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ec7s,earthquake,259
 usp000ed3d,2006-03-28 00:17:36.330000+00:00,"87 km WNW of El Cotillo, Spain",29.096,-14.77,52.1,3.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ed3d,earthquake,178
@@ -247,9 +248,11 @@ usp000f1ke,2007-01-02 21:32:16.930000+00:00,"23 km ESE of Lomo de Arico, Spain",
 usp000f1sp,2007-01-06 01:41:34.270000+00:00,"47 km N of Tegueste, Spain",28.943,-16.294,59.2,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000f1sp,earthquake,112
 usp000f9g3,2007-04-12 02:19:52.260000+00:00,"0 km SSW of Agüimes, Spain",27.897,-15.448,55.0,3.3,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000f9g3,earthquake,168
 usp000fda4,2007-06-03 17:48:31.860000+00:00,"31 km ESE of Lomo de Arico, Spain",28.05,-16.193,25.2,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fda4,earthquake,148
+usp000feny,2007-06-23 20:00:52.870000+00:00,"Canary Islands, Spain region",28.215,-21.073,0.0,4.4,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000feny,earthquake,298
 usp000ffcb,2007-07-03 11:39:53.600000+00:00,"218 km SSE of Caniço, Portugal",30.778,-16.108,47.3,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000ffcb,earthquake,259
 usp000fhmx,2007-08-02 02:09:01.340000+00:00,"19 km NNW of Frontera, Spain",27.924,-18.07,32.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fhmx,earthquake,104
 usp000fj22,2007-08-06 21:40:34.650000+00:00,"189 km NNE of Tegueste, Spain",30.185,-15.886,69.8,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fj22,earthquake,148
+usp000fkqg,2007-08-26 09:16:53.970000+00:00,"240 km W of Frontera, Spain",27.782,-20.448,0.0,3.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fkqg,earthquake,148
 usp000fnr5,2007-09-20 01:26:11.100000+00:00,"32 km ESE of Fasnia, Spain",28.103,-16.139,22.8,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fnr5,earthquake,104
 usp000fppf,2007-10-02 04:02:04.110000+00:00,"134 km NW of El Cotillo, Spain",29.532,-15.0,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fppf,earthquake,104
 usp000fpws,2007-10-05 02:19:40.350000+00:00,"33 km SE of Fasnia, Spain",28.064,-16.155,28.6,2.8,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000fpws,earthquake,121
@@ -266,6 +269,7 @@ usp000g35w,2008-04-05 19:00:38.020000+00:00,"154 km WNW of Tinajo, Spain",29.831
 usp000g6h7,2008-05-13 07:45:29.590000+00:00,"23 km E of Santa Cruz de Tenerife, Spain",28.437,-16.014,30.3,3.5,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000g6h7,earthquake,188
 usp000g7s0,2008-05-25 16:37:28.870000+00:00,"106 km NNE of Tegueste, Spain",29.403,-15.907,76.0,2.7,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000g7s0,earthquake,112
 usp000gats,2008-06-28 07:15:30.940000+00:00,"13 km ENE of Telde, Spain",28.025,-15.283,41.0,3.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gats,earthquake,158
+usp000gfby,2008-08-23 21:31:45.670000+00:00,"279 km W of Puntagorda, Spain",28.448,-20.814,0.0,4.1,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gfby,earthquake,259
 usp000gh62,2008-09-16 20:33:28.130000+00:00,"26 km SSE of Playa del Ingles, Spain",27.551,-15.443,0.0,2.6,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gh62,earthquake,104
 usp000gr3r,2008-12-21 12:05:04.980000+00:00,"163 km S of Costa Calma, Spain",26.686,-14.315,10.0,4.2,,https://earthquake.usgs.gov/earthquakes/eventpage/usp000gr3r,earthquake,271
 us2013ngb8,2013-03-27 15:07:56+00:00,"25 km W of Frontera, Spain",27.716,-18.263,19.0,4.6,,https://earthquake.usgs.gov/earthquakes/eventpage/us2013ngb8,earthquake,326
