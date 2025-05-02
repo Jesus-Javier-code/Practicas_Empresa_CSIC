@@ -32,6 +32,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Configurar Git y hacer pull antes de ejecutar main.py
+        run: |
+          echo "Configurando Git..."
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+          echo "Haciendo pull de main (antes de generar cambios)..."
+          git pull origin main --no-rebase || { echo 'Error al hacer pull'; exit 1; }
+
       - name: Ejecutar main.py
         run: |
           echo "Ejecutando main.py..."
@@ -46,13 +55,6 @@ jobs:
 
       - name: Commit y push de los .nc
         run: |
-          echo "Configurando Git..."
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
-          echo "Haciendo pull de main (sin rebase)..."
-          git pull origin main --no-rebase || { echo 'Error al hacer pull'; exit 1; }
-
           echo "Agregando archivos modificados..."
           git add -f A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc || echo "Archivo La Palma no encontrado"
           git add -f A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || echo "Archivo Teide no encontrado"
