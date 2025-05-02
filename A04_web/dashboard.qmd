@@ -5632,6 +5632,50 @@ HTML('''
   font-size: 13.5px;
   max-width: 90vw;
 }
+.info-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.info-button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color:rgb(234, 97, 52);
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.info-button:hover {
+  background-color: #1a6fbd;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 500px;
+  max-width: 80vw;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  z-index: 1001;
+  max-height: 70vh;
+  overflow-y: auto;
+}
 </style>
 
 <div class="main-container">
@@ -5709,23 +5753,23 @@ HTML('''
   </div>
 </div>
 
+<div class="plots-container">
+  <!-- Daily Thermal Activity -->
+  <div class="plot-wrapper">
+    <iframe src="B_images/radiative_power_lanzarote_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
 
-  <div class="plots-container">
-    <!-- Daily Thermal Activity -->
-    <div class="plot-wrapper">
-      <iframe src="B_images/radiative_power_lanzarote_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
-
-      <!-- Info Icon & Tooltip -->
-      <div class="info-box">
-        <button class="info-button" onclick="toggleInfo('info3')">i</button>
-        <div class="info-popup" id="info3">
-          This graph shows daily thermal anomalies detected at Timanfaya volcano using VIIRS satellite data. The values represent deviations from background thermal conditions, highlighting periods of increased fumarolic activity.
-        </div>
+    <!-- Info Buttons Container -->
+    <div class="info-buttons-container">
+      <!-- FRP Explanation Button -->
+      <button class="info-button" onclick="toggleInfo('frp-info-lanzarote')">i</button>
+      <div class="info-popup" id="frp-info-lanzarote">
+        <h3>Fire Radiative Power (FRP) Explanation</h3>
+        <p>This graph shows daily Fire Radiative Power (FRP) calculated from satellite infrared measurements over the Timanfaya region. The values represent the intensity of emitted heat over time.</p>
+        <p>Higher values indicate stronger thermal activity, while stable values suggest consistent geothermal emissions from the young lava fields.</p>
       </div>
     </div>
   </div>
-
-
+</div>
 
 <!-- Combined Analysis Section -->
 <div class="context-box combined-analysis">
@@ -5813,9 +5857,35 @@ function changeLanzaroteRefImage() {
 ```
 
 
+<script>
+// Función para mostrar/ocultar los info boxes
+function toggleInfo(id) {
+  // Cerrar todos los popups primero
+  document.querySelectorAll('.info-popup').forEach(popup => {
+    if (popup.id !== id) popup.style.display = 'none';
+  });
+  
+  // Alternar el popup solicitado
+  const popup = document.getElementById(id);
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+}
 
+// Cerrar popups al hacer clic fuera
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.info-button') && !e.target.closest('.info-popup')) {
+    document.querySelectorAll('.info-popup').forEach(popup => {
+      popup.style.display = 'none';
+    });
+  }
+});
 
-
-
-
+// Función para cambiar imágenes de referencia
+function changeLanzaroteRefImage() {
+  const selector = document.getElementById("monthSelectLanzarote");
+  const image = document.getElementById("lanzaroteRefImage");
+  if (selector && image) {
+    image.src = selector.value;
+  }
+}
+</script>
 
