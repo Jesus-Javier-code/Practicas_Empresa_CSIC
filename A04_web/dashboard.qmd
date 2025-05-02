@@ -5744,15 +5744,6 @@ HTML('''
   </div>
 </div>
 
-<div class="hero-banner eruption-background">
-  <div class="hero-content">
-    <div class="hero-title">Timanfaya Background</div>
-    <div class="hero-subtitle">
-      A geological overview of the Timanfaya region in Lanzarote, shaped by centuries of volcanic activity and characterized by one of the longest historical eruptions in the Canary Islands
-    </div>
-  </div>
-</div>
-
 
 
 
