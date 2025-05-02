@@ -89,6 +89,10 @@ body, html, .dashboard {
   background-image: url('B_images/earthquake-icon-naranja.png');
   background-size: 70%;
 }
+#lanzarote-btn { 
+  background-image: url('B_images/Lanzarote_contorno_naranja.png');
+  background-size: 70%;
+}
 
 /* ===== HEADER ===== */
 @import url('https://fonts.cdnfonts.com/css/hippo-lettro');
@@ -248,6 +252,28 @@ img {
 }
 
 .teide-logo img {
+  width: 70% !important;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  object-fit: contain;
+}
+
+.lanzarote-logo {
+  width: 150px !important;
+  height: 150px !important;
+  margin: 0 auto !important;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3) !important;
+  background-color: rgba(47, 45, 45, 0.8);
+  border-radius: 50% !important;
+  padding: 5px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.lanzarote-logo img {
   width: 70% !important;
   height: auto !important;
   position: absolute;
@@ -746,6 +772,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initCarousel('#la-palma .carousel-container');
   initCarousel('#teide .carousel-container');
   initCarousel('#earthquakes .carousel-container');
+  initCarousel('#lanzarote .carousel-container');
 });
 </script>
 
@@ -762,6 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="circle-nav-btn" id="homepage-btn" title="Home"></div>
     <div class="circle-nav-btn" id="la-palma-btn" title="La Palma"></div>
     <div class="circle-nav-btn" id="teide-btn" title="Teide"></div>
+    <div class="circle-nav-btn" id="lanzarote-btn" title="Lanzarote"></div>
     <div class="circle-nav-btn" id="earthquakes-btn" title="Earthquakes"></div>
   `;
   
@@ -771,6 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const homepageBtn = document.getElementById('homepage-btn');
   const laPalmaBtn = document.getElementById('la-palma-btn');
   const earthquakesBtn = document.getElementById('earthquakes-btn');
+  const lanzaroteBtn = document.getElementById('lanzarote-btn');
   const teideBtn = document.getElementById
   ('teide-btn')
 
@@ -782,6 +811,11 @@ document.addEventListener('DOMContentLoaded', function() {
   laPalmaBtn.addEventListener('click', () => {
     window.location.hash = '#la-palma';
     updateActiveButton('#la-palma');
+  });
+
+  lanzaroteBtn.addEventListener('click', () => {
+    window.location.hash = '#lanzarote';
+    updateActiveButton('#lanzarote');
   });
 
   teideBtn.addEventListener('click', () => {
@@ -800,6 +834,7 @@ document.addEventListener('DOMContentLoaded', function() {
     homepageBtn.style.display = 'flex';
     laPalmaBtn.style.display = 'flex';
     teideBtn.style.display = 'flex';
+    lanzaroteBtn.style.display = 'flex';
     earthquakesBtn.style.display = 'flex';
     
     // Hide the active tab button
@@ -815,6 +850,9 @@ document.addEventListener('DOMContentLoaded', function() {
         break;
       case '#earthquakes':
         earthquakesBtn.style.display = 'none';
+        break;
+      case '#lanzarote':
+        lanzaroteBtn.style.display = 'none';
         break;
     }
   }
@@ -3472,8 +3510,10 @@ HTML(f"""
 """)
 ```
 
+
 ````{python}
 HTML('''
+
 
 <style>
 
@@ -3728,6 +3768,8 @@ iframe {
   </div>
 
 
+
+
   <!-- Video and text section -->
   <div class="content-section">
     <div class="grid-container">
@@ -3789,6 +3831,7 @@ iframe {
     <p>The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and the triggering potential of seismic events.</p>
   </div>
  
+ 
   <div class="visualization-grid">
     <!-- Maps Section -->
     <div class="visualization-section">
@@ -3797,9 +3840,11 @@ iframe {
         <div class="histogram-container">
           <iframe src="./B_images/eq_map.html"></iframe>
           <div class="visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
+          <div class="visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
         </div>
         <div class="histogram-container">
           <iframe src="./B_images/eq_map_filtered.html"></iframe>
+          <div class = "visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
           <div class = "visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
         </div>
       </div>
@@ -3812,9 +3857,11 @@ iframe {
         <div class="histogram-container">
           <iframe src="./B_images/eq_histogram.html" scrolling="no"></iframe>
           <div class="visualization-caption">Registered earthquakes histogram.</div>
+          <div class="visualization-caption">Registered earthquakes histogram.</div>
         </div>
         <div class="histogram-container">
           <iframe src="./B_images/eq_trigger_histogram.html" scrolling="no"></iframe>
+          <div class="visualization-caption">Triggering index values distribution.<br>The closer to zero the more likely to propitiate an eruption.</div>
           <div class="visualization-caption">Triggering index values distribution.<br>The closer to zero the more likely to propitiate an eruption.</div>
         </div>
       </div>
@@ -3946,6 +3993,7 @@ iframe {
     <iframe src="./B_images/eq_table.html" class="ded-iframe"></iframe>
   </div>
   <div class="visualization-caption">Registered data table of the events shown.<br>Note: Earthquakes within a distance of 25km are considered caused by the volcanic activity and not the cause of it.</div>
+  <div class="visualization-caption">Registered data table of the events shown.<br>Note: Earthquakes within a distance of 25km are considered caused by the volcanic activity and not the cause of it.</div>
 </div>
 
 <style>
@@ -4007,6 +4055,8 @@ iframe {
 </div>
 ''')
 ````
+
+
 
 
 
@@ -5294,3 +5344,607 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+# 🏝️ LANZAROTE {#lanzarote}
+
+
+```{python}
+#| label: lanzarote-carousel
+#| echo: false
+HTML(f"""
+<style>
+.lanzarote-carousel {{
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+}}
+
+.lanzarote-carousel .main-image-container {{
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 500px;
+}}
+
+.lanzarote-carousel #lanzarote-main-image {{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}}
+
+.lanzarote-carousel .photo-credits {{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}}
+
+.lanzarote-carousel .photo-credits a {{
+    color: #ff9e7d;
+    text-decoration: none;
+}}
+
+.lanzarote-carousel .carousel-dots {{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}}
+
+.lanzarote-carousel .dot {{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}}
+
+.lanzarote-carousel .dot.active {{
+    background: #2c6fd7;
+    transform: scale(1.2);
+}}
+
+.lanzarote-carousel .fade-out {{
+    opacity: 0 !important;
+}}
+
+@media (max-width: 768px) {{
+    .lanzarote-carousel .main-image-container {{
+        height: 350px;
+    }}
+}}
+
+@media (max-width: 480px) {{
+    .lanzarote-carousel .main-image-container {{
+        height: 250px;
+    }}
+   
+    .lanzarote-carousel .dot {{
+        width: 12px;
+        height: 12px;
+    }}
+    
+    .lanzarote-carousel .photo-credits {{
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }}
+}}
+</style>
+
+<div class="homepage-header">
+  <div class="carousel-container">
+    <!-- Slide 1 -->
+    <div class="carousel-slide active" style="background-image: url('B_images/lanza-1.jpg');">
+      <div class="photo-credits">
+        © <a href="https://www.canariasviaja.com/viajaresvivir/volcan-caldera-blanca-el-crater-perfecto/" target="_blank">Canarias Viaja</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-slide" style="background-image: url('B_images/lanza-2.jpg');">
+      <div class="photo-credits hidden">
+        © <a href="https://lanzarotesportsdestination.com/en-busca-de-los-pueblos-sepultados-por-los-volcanes/" target="_blank">Lanzarote Sport Destination</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-slide" style="background-image: url('B_images/lanza-3.jpg');">
+      <div class="photo-credits hidden">
+        © <a href="https://lanzarotesportsdestination.com/en-busca-de-los-pueblos-sepultados-por-los-volcanes/" target="_blank">Lanzarote Sport Destination</a>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="carousel-slide" style="background-image: url('B_images/lanza-4.jpg');">
+      <div class="photo-credits hidden">
+        © <a href="https://lanzarotesportsdestination.com/en-busca-de-los-pueblos-sepultados-por-los-volcanes/" target="_blank">Lanzarote Sport Destination</a>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="carousel-slide" style="background-image: url('B_images/lanza-5.jpg');">
+      <div class="photo-credits hidden">
+        © <a href="https://lanzarotesportsdestination.com/en-busca-de-los-pueblos-sepultados-por-los-volcanes/" target="_blank">Lanzarote Sport Destination</a>
+      </div>
+    </div>
+
+    <div class="carousel-overlay"></div>
+    <div class="homepage-logo-container">
+      <div class="lanzarote-logo">
+        <img src="B_images/Lanzarote_contorno_naranja.png" alt="Lanzarote Logo">
+      </div>
+      <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
+        Thermal signals in Timanfaya
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Nuevo footer de créditos -->
+  <div class="credits-footer">
+    </p>
+  </div>
+</div>
+
+""")
+```
+
+
+```{python}
+#| label: lanzarote-display
+#| echo: false
+
+from IPython.display import HTML
+
+HTML('''
+<style>
+/* ESTILOS DEFINITIVOS - CONSISTENTES CON EL DISEÑO ORIGINAL */
+/* Estilos simplificados para la sección Lanzarote */
+.lanzarote-section {
+  padding: 0;
+  margin: 0;
+}
+
+.map-container-lanzarote {
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Eliminar espacios innecesarios */
+.credits-footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+/* ESTILOS PARA EL MAPA - NUEVOS */
+.map-containert {
+  flex: 1;
+  min-width: 400px;
+  height: 450px; /* Misma altura que el texto */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.map-containert iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+}
+
+/* ESTILOS PARA EL CONTENEDOR DE TEXTO */
+.text-containert {
+  flex: 1;
+  min-width: 400px;
+  height: 470px; /* Misma altura que el mapa */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.plots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.plot-wrapper {
+  flex: 1;
+  min-width: 400px;
+  height: 550px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.plot-wrapper iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+
+.combined-analysis {
+  width: 100%;
+  padding: 20px;
+  background:rgb(255, 255, 255);
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 4px solid #d7512c;
+}
+
+.combined-analysis h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.combined-analysis p {
+  color: #555;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .plot-wrapper {
+    min-width: 100%;
+    height: 450px;
+  }
+}
+
+.info-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.info-button {
+  background-color: #d7512c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background-color:rgb(255, 255, 255);
+  color: #333;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+  width: 600px;
+  font-size: 13.5px;
+  max-width: 90vw;
+}
+.info-buttons-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.info-button {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color:rgb(234, 97, 52);
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.info-button:hover {
+  background-color: #1a6fbd;
+}
+
+.info-popup {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 500px;
+  max-width: 80vw;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  z-index: 1001;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+</style>
+
+<div class="main-container">
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <div class="hero-title">Fumarolic Activity in the Timanfaya</div>
+    <div class="hero-subtitle">
+      Lanzarote, shaped by intense volcanic activity, is home to the Timanfaya region, where residual geothermal heat and young basaltic formations offer a unique window into the island’s recent eruptive history and subsurface magmatic processes.
+    </div>
+  </div>
+
+
+  <!-- Top Section: Ahora con mapa a la izquierda y texto a la derecha -->
+  <div class="top-container">
+    <!-- Mapa (ahora a la izquierda visualmente) -->
+    <div class="map-containert">
+      <iframe src="B_images/lanzarote_map.html"></iframe>
+    </div>
+    
+    <!-- Text Content (ahora a la derecha visualmente) -->
+    <div class="text-containert">
+      <div class="context-box">
+        <div class="context-title">Monitoring Hydrothermal Activity</div>
+        <div class="context-text">
+          The Timanfaya volcanic features residual geothermal activity, where localized ground heating and gas emissions hint at lingering magmatic heat and evolving hydrothermal conditions beneath the surface.
+        </div>
+        <div class="context-text">
+          <strong>Key observations:</strong>
+        </div>
+        <div class="context-text">
+          • Persistent low-level thermal anomalies<br>
+          • Seasonal variations in fumarole temperatures<br>
+          • Correlation with seismic activity
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Key Points Grid -->
+<div class="key-points">
+  <div class="key-point">
+    <div class="key-point-title">1730–1736 Eruption</div>
+    <div class="context-text">
+      One of the longest historical eruptions in the Canary Islands
+    </div>
+  </div>
+  <div class="key-point">
+    <div class="key-point-title">Timanfaya National Park</div>
+    <div class="context-text">
+      Over 25 volcanic cones and widespread lava fields shaped by recent eruptions
+    </div>
+  </div>
+  <div class="key-point">
+    <div class="key-point-title">>100°C Ground Heat</div>
+    <div class="context-text">
+      Residual geothermal activity visible in surface vents and soil
+    </div>
+  </div>
+</div>
+
+<div class="context-box combined-analysis">
+  <div class="context-title">Timanfaya's Thermal Footprint</div>
+  <div class="context-text">
+    <p>Thermal signals in Timanfaya stem from residual geothermal activity beneath the young volcanic terrain, where ground temperatures exceed 100°C in certain surface vents.</p>
+
+    <p>From July 2024 to January 2025, satellite observations indicated localized thermal anomalies across lava fields, suggesting persistent subsurface heat and shallow magmatic influence.</p>
+
+    <p>Key factors influencing the observed thermal footprint:</p>
+
+    <ul style="color: #555; line-height: 1.7; margin-bottom: 15px;">
+      <li>Soil permeability and heat retention across different lava flows</li>
+      <li>Subsurface magmatic heat diffusion from historic eruptions</li>
+      <li>Atmospheric interference affecting thermal satellite data</li>
+    </ul>
+  </div>
+</div>
+
+<div class="plots-container">
+  <!-- Daily Thermal Activity -->
+  <div class="plot-wrapper">
+    <iframe src="B_images/radiative_power_lanzarote_daily.html" style="height: 100%; width: 100%; border: none;"></iframe>
+
+    <!-- Info Buttons Container -->
+    <div class="info-buttons-container">
+      <!-- FRP Explanation Button -->
+      <button class="info-button" onclick="toggleInfo('frp-info-lanzarote')">i</button>
+      <div class="info-popup" id="frp-info-lanzarote">
+        <h3>Fire Radiative Power (FRP) Explanation</h3>
+        <p>This graph shows daily Fire Radiative Power (FRP) calculated from satellite infrared measurements over the Timanfaya region. The values represent the intensity of emitted heat over time.</p>
+        <p>Higher values indicate stronger thermal activity, while stable values suggest consistent geothermal emissions from the young lava fields.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Combined Analysis Section -->
+<div class="context-box combined-analysis">
+  <div class="context-title">Understanding Lanzarote's Thermal Signals</div>
+  <div class="context-text">
+
+    <p>The graph above displays the <strong>Daily Radiative Power</strong> (MW) detected over the Timanfaya region of Lanzarote from 2021 to 2025. Unlike other volcanic areas with abrupt spikes, Lanzarote shows a remarkably <strong>consistent radiative power output averaging around 300 MW</strong> throughout the entire period.</p>
+
+    <p>This stable thermal emission is largely attributed to the island's <strong>extensive young basaltic lava fields</strong> and residual geothermal heat from the 1730–1736 eruption sequence. The broad, low-relief lava plains of Timanfaya retain surface heat efficiently, especially under clear-sky conditions typical of the region, contributing to persistent satellite-detected thermal signals.</p>
+
+    <p>Rather than indicating new magmatic activity, the elevated but steady thermal profile suggests a <strong>long-lived geothermal surface anomaly</strong>, maintained by shallow subsurface heat and enhanced solar absorption by dark volcanic rock. This is supported by field observations showing temperatures exceeding 100°C just a few centimeters below ground level in several areas of the park.</p>
+
+    <p>Importantly, no significant seismic activity or ground deformation has been recorded in recent years around Timanfaya, reinforcing the interpretation of a stable geothermal source rather than reawakening volcanic unrest.</p>
+
+    <p style="color: #000; font-weight: 500;">This dataset is automatically updated daily using NASA's VIIRS satellite observations.</p>
+  </div>
+</div>
+
+
+
+
+
+<!-- Thermal Reference Images Section for Timanfaya, Lanzarote -->
+<div class="ref-section-container">
+  <!-- Text Content (Left) -->
+  <div class="ref-text-box">
+    <div class="ref-text-content">
+      <h3>Thermal Reference Images (Timanfaya)</h3>
+      <p>
+        Reference images (REF) represent the expected thermal state of the Timanfaya volcanic area under normal conditions, 
+        without volcanic activity. These monthly composites are generated by selecting the coldest pixels 
+        observed during each period.
+      </p>
+      
+      <div class="ref-selector-box">
+        <label for="monthSelectLanzarote">Select Month:</label>
+        <select id="monthSelectLanzarote" onchange="changeLanzaroteRefImage()">
+          <optgroup label="2025">
+            <option value="B_images/REF/plots_lanzarote/Ref_2025_01.jpg">January 2025</option>
+            <option value="B_images/REF/plots_lanzarote/Ref_2025_02.jpg">February 2025</option>
+            <option value="B_images/REF/plots_lanzarote/Ref_2025_03.jpg">March 2025</option>
+            <option value="B_images/REF/plots_lanzarote/Ref_2025_04.jpg">April 2025</option>
+          </optgroup>
+        </select>
+      </div>
+      
+      <div class="ref-features">
+        <strong>Key features:</strong>
+        <ul>
+          <li>Data obtained from VIIRS satellite (I05 channel)</li>
+          <li>Monthly composites minimize atmospheric effects</li>
+          <li>375 m spatial resolution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Image (Right) -->
+  <div class="ref-image-container">
+    <img id="lanzaroteRefImage" src="B_images/REF/plots_lanzarote/Ref_2025_01.jpg" alt="Monthly Reference Image for Timanfaya, Lanzarote" style="width:100%; max-width:600px; border-radius:10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  </div>
+</div>
+
+<!-- Image switch script -->
+<script>
+function changeLanzaroteRefImage() {
+  const selector = document.getElementById("monthSelectLanzarote");
+  const image = document.getElementById("lanzaroteRefImage");
+  image.src = selector.value;
+}
+</script>
+
+<div class="context-box">
+  <div class="context-title">Volcanic Activity at Timanfaya</div>
+  <div class="context-text">
+    The Timanfaya National Park, located in Lanzarote, is home to one of the most striking volcanic landscapes in the Canary Islands. Although its last eruption occurred in the 18th century, residual geothermal activity persists beneath the surface.  
+    These videos offer aerial views, geothermal demonstrations, and insights into the ongoing scientific interest in the region.
+  </div>
+
+  <div class="media-grid">
+    <!-- Video 1 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/JyRyrcHHvfA" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">3D model of Timanfaya</div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/YsxxqyaX7Dw" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Fumaroles</div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/B76ZD1-DaSg" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Footage of Timanfaya</div>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/YX_OiXw-bKY" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Timanfaya tour guide</div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Credits Footer -->
+  <div class="credits-footer">
+    <p><strong>Image sources:</strong> Lanzarote Sport Destination • Canarias Viaja </p>
+    <p>All content presented for educational and scientific research purposes</p>
+  </div>
+</div>
+
+
+''')
+
+```
+
+
+<script>
+// Función para mostrar/ocultar los info boxes
+function toggleInfo(id) {
+  // Cerrar todos los popups primero
+  document.querySelectorAll('.info-popup').forEach(popup => {
+    if (popup.id !== id) popup.style.display = 'none';
+  });
+  
+  // Alternar el popup solicitado
+  const popup = document.getElementById(id);
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+}
+
+// Cerrar popups al hacer clic fuera
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.info-button') && !e.target.closest('.info-popup')) {
+    document.querySelectorAll('.info-popup').forEach(popup => {
+      popup.style.display = 'none';
+    });
+  }
+});
+
+// Función para cambiar imágenes de referencia
+function changeLanzaroteRefImage() {
+  const selector = document.getElementById("monthSelectLanzarote");
+  const image = document.getElementById("lanzaroteRefImage");
+  if (selector && image) {
+    image.src = selector.value;
+  }
+}
+</script>
+

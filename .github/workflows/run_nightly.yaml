@@ -22,33 +22,46 @@ jobs:
 
       - name: Instalar dependencias del sistema para netCDF4
         run: |
+          echo "Instalando dependencias del sistema..."
           sudo apt-get update
           sudo apt-get install -y libhdf5-dev libnetcdf-dev libjpeg-dev build-essential
 
       - name: Instalar dependencias del proyecto
         run: |
+          echo "Instalando dependencias del proyecto..."
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Ejecutar main.py
-        run: python main.py
-      
-      - name: Comprobar existencia y cambios en archivos .nc
+      - name: Configurar Git y hacer pull antes de ejecutar main.py
         run: |
-          ls -lh A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/
-          ls -lh A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/
-          git status
-
-          
-      - name: Commit y push de los .nc
-        run: |
+          echo "Configurando Git..."
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-  
-          git pull origin main --rebase
-  
-          git add -f A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc || true
-          git add -f A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || true
-  
-          git diff --cached --quiet || git commit -m "Actualización diaria automática de FRP"
-          git push origin HEAD:main
+
+          echo "Haciendo pull de main (antes de generar cambios)..."
+          git pull origin main --no-rebase || { echo 'Error al hacer pull'; exit 1; }
+
+      - name: Ejecutar main.py
+        run: |
+          echo "Ejecutando main.py..."
+          python main.py || { echo 'Error al ejecutar main.py'; exit 1; }
+
+      - name: Comprobar existencia y cambios en archivos .nc
+        run: |
+          echo "Verificando archivos generados..."
+          ls -lh A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/ || echo "Directorio de La Palma no encontrado"
+          ls -lh A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/ || echo "Directorio de Teide no encontrado"
+          git status
+
+      - name: Commit y push de los .nc
+        run: |
+          echo "Agregando archivos modificados..."
+          git add -f A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc || echo "Archivo La Palma no encontrado"
+          git add -f A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || echo "Archivo Teide no encontrado"
+
+          echo "Revisando si hay cambios para commitear..."
+          git diff --cached --quiet && echo "No hay cambios para commitear." || (
+            echo "Commit y push de los cambios..."
+            git commit -m "Actualización diaria automática de FRP"
+            git push origin HEAD:main || { echo 'Error al hacer push'; exit 1; }
+          )

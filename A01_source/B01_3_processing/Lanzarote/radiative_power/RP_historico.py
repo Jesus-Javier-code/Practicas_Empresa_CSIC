@@ -11,7 +11,7 @@ import pandas as pd
 script_path = Path(__file__).resolve()
 
 # Locate the root project directory dynamically based on its name
-project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
+project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC-1")
 
 # Define paths for input data and output NetCDF file
 base_path = project_dir / "A00_data" / "B_processed" / "Lanzarote" / "BT_daily_pixels"
@@ -73,9 +73,9 @@ while date <= end_date:
 
     if date > cutoff_date:
         t = (date - cutoff_date).days
-        t_floor = 270 
-        area = 750_000 
-        scale = 1.5 
+        t_floor = 265 
+        area = 1_250_000 
+        scale = 2.5
 
     # If the average BT is less than or equal to the calculated temperature floor, set FRP to 0
     if np.isnan(t_mean) or t_mean <= t_floor:

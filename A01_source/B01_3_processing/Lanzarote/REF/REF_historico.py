@@ -4,167 +4,137 @@ import numpy as np
 import xarray as xr
 import rioxarray
 from tqdm import tqdm
-from datetime import datetime
+from rasterio.enums import Resampling
+from datetime import datetime, timedelta
 import calendar
 from pathlib import Path
 from dateutil.relativedelta import relativedelta
 
-# === CONFIGURATION ===
-# Resolve the current script's path
+# === CONFIGURACIÓN ===
 script_path = Path(__file__).resolve()
-
-# Dynamically locate the root project directory based on its name
-project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
-
-# Define input and output directories for brightness temperature data and REF results
-base_path = project_dir / "A00_data" / "B_processed" / "Lanzarote" / "BT_daily_pixels"
-output_dir = project_dir / "A00_data" / "B_processed" / "Lanzarote" / "REF"
+proyecto_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC-1")
+base_path = proyecto_dir / "A00_data" / "B_processed" / "Lanzarote" / "BT_daily_pixels"
+output_dir = proyecto_dir / "A00_data" / "B_processed" / "Lanzarote" / "REF"
 output_dir.mkdir(parents=True, exist_ok=True)
 
-# Define the geographic bounding box for the region of interest (Teide)
-lat_min, lat_max = 28.95, 29.01
-lon_min, lon_max = -13.76, -13.70
+# === FECHAS A PROCESAR ===
+fecha_inicio = datetime(2025, 1, 1)
+fecha_fin = datetime(2025, 4, 29)
+fecha_actual = fecha_inicio
 
-# === DATE RANGE TO PROCESS ===
-# Set the initial and final dates for which REF files should be generated
-start_date = datetime(2025, 1, 1)
-end_date = datetime(2025, 4, 29)
-current_date = start_date
-
-# === MAIN LOOP: iterate month by month ===
-while current_date <= end_date:
-    year_ref = current_date.year
-    month_ref = current_date.month
+while fecha_actual <= fecha_fin:
+    año_ref = fecha_actual.year
+    mes_ref = fecha_actual.month
 
     try:
-        print(f"\n=== Generating REF for {year_ref}-{month_ref:02d} ===")
+        print(f"\n=== Generando REF para {año_ref}-{mes_ref:02d} ===")
 
-        # Calculate Julian day range for the current month
-        first_day = datetime(year_ref, month_ref, 1)
-        last_day = datetime(year_ref, month_ref, calendar.monthrange(year_ref, month_ref)[1])
-        julian_start = first_day.timetuple().tm_yday
-        julian_end = last_day.timetuple().tm_yday
+        primer_dia = datetime(año_ref, mes_ref, 1)
+        ultimo_dia = datetime(año_ref, mes_ref, calendar.monthrange(año_ref, mes_ref)[1])
+        julian_inicio = primer_dia.timetuple().tm_yday
+        julian_final = ultimo_dia.timetuple().tm_yday
 
-        # === FIND DAILY FILES ===
-        # Collect all brightness temperature files for the current month
-        files = []
-        for julian_day in range(julian_start, julian_end + 1):
-            folder = os.path.join(base_path, f"{year_ref}_{julian_day:03d}")
-            files += glob.glob(os.path.join(folder, f"BT_Lanzarote_VJ102IMG_{year_ref}_*.nc"))
+        archivos = []
+        for dia_juliano in range(julian_inicio, julian_final + 1):
+            carpeta = os.path.join(base_path, f"{año_ref}_{dia_juliano:03d}")
+            archivos += glob.glob(os.path.join(carpeta, f"BT_LaPalma_VJ102IMG_{año_ref}_*.nc"))
 
-        print(f"Files found: {len(files)}")
+        print(f"Archivos encontrados: {len(archivos)}")
 
-        # Skip this month if no files are available
-        if len(files) == 0:
-            print("No files. Skipping this month.")
-            current_date += relativedelta(months=1)
+        if len(archivos) == 0:
+            print("No hay archivos. Se salta este mes.")
+            fecha_actual += relativedelta(months=1)
             continue
 
-        # === CREATE TEMPLATE GRID FROM FIRST FILE ===
-        # Use the first file as a template to define the grid and CRS for reprojection
-        ds_ref = xr.open_dataset(files[0])
+        # === PASO 2: Plantilla con la primera escena ===
+        ds_ref = xr.open_dataset(archivos[0])
         bt = ds_ref["BT_I05"]
+        lat = ds_ref["latitude"]
+        lon = ds_ref["longitude"]
+
+        lat1d = lat[:, 0].values
+        lon1d = lon[0, :].values
+
         bt_template = xr.DataArray(
             data=bt.data,
-            dims=("y", "x"),
-            coords={"y": np.arange(bt.shape[0]), "x": np.arange(bt.shape[1])},
+            dims=("latitude", "longitude"),
+            coords={"latitude": lat1d, "longitude": lon1d},
             name="brightness_temperature"
         )
-        bt_template.rio.set_spatial_dims(x_dim="x", y_dim="y", inplace=True)
+        bt_template.rio.set_spatial_dims(x_dim="longitude", y_dim="latitude", inplace=True)
         bt_template.rio.write_crs("EPSG:4326", inplace=True)
 
-        # === PROCESS EACH SCENE ===
-        # For each file: reproject, clip to volcano region, filter by quality
-        stack_reprojected = []
-        valid_files = []
+        # === PASO 3: Reproyectar y filtrar ===
+        stack_reproyectado = []
+        archivos_buenos = []
 
-        for file in tqdm(files):
-            ds = xr.open_dataset(file)
+        for archivo in tqdm(archivos):
+            ds = xr.open_dataset(archivo)
             bt = ds["BT_I05"]
             lat = ds["latitude"]
             lon = ds["longitude"]
 
-            # Build a new DataArray with proper spatial metadata
+            lat1d = lat[:, 0].values
+            lon1d = lon[0, :].values
+
             bt_scene = xr.DataArray(
                 data=bt.data,
-                dims=("y", "x"),
-                coords={"y": np.arange(bt.shape[0]), "x": np.arange(bt.shape[1])},
+                dims=("latitude", "longitude"),
+                coords={"latitude": lat1d, "longitude": lon1d},
                 name="brightness_temperature"
             )
-            bt_scene.rio.set_spatial_dims(x_dim="x", y_dim="y", inplace=True)
+            bt_scene.rio.set_spatial_dims(x_dim="longitude", y_dim="latitude", inplace=True)
             bt_scene.rio.write_crs("EPSG:4326", inplace=True)
 
-            # Reproject to match the template grid
             bt_aligned = bt_scene.rio.reproject_match(bt_template)
 
-            # Use latitude and longitude arrays to identify the area of interest
-            lat_vals = lat.values
-            lon_vals = lon.values
-            mask = (
-                (lat_vals >= lat_min) & (lat_vals <= lat_max) &
-                (lon_vals >= lon_min) & (lon_vals <= lon_max)
-            )
-
-            if not np.any(mask):
-                print(f"{os.path.basename(file)} → Cropped area is empty. Skipping.")
-                continue
-
-            # Get the bounding box of the masked region
-            y_indices, x_indices = np.where(mask)
-            y_min, y_max = y_indices.min(), y_indices.max()
-            x_min, x_max = x_indices.min(), x_indices.max()
-
-            # Clip the brightness temperature scene to the volcano area
-            y_dim, x_dim = bt_aligned.dims
-            bt_clipped = bt_aligned.isel(
-                **{y_dim: slice(y_min, y_max + 1), x_dim: slice(x_min, x_max + 1)}
-            )
-
-            # Apply quality filters based on statistics
-            minval = np.nanmin(bt_clipped.values)
-            stdval = np.nanstd(bt_clipped.values)
+            minval = np.nanmin(bt_aligned.values)
+            stdval = np.nanstd(bt_aligned.values)
             if stdval > 3 and minval > 210:
-                stack_reprojected.append(bt_clipped)
-                valid_files.append(os.path.basename(file))
-                print(f"{os.path.basename(file)} OK (min={minval:.2f}, std={stdval:.2f})")
+                stack_reproyectado.append(bt_aligned)
+                archivos_buenos.append(os.path.basename(archivo))
+                print(f"{os.path.basename(archivo)} OK (min={minval:.2f}, std={stdval:.2f})")
             else:
-                print(f"{os.path.basename(file)} DISCARDED (min={minval:.2f}, std={stdval:.2f})")
+                print(f"{os.path.basename(archivo)} DESCARTADA (min={minval:.2f}, std={stdval:.2f})")
 
-        print(f"Accepted scenes: {len(stack_reprojected)} / {len(files)}")
+        print(f"Escenas aceptadas: {len(stack_reproyectado)} / {len(archivos)}")
 
-        if len(stack_reprojected) == 0:
-            print("No valid scenes. Skipping this month.")
-            current_date += relativedelta(months=1)
+        if len(stack_reproyectado) == 0:
+            print("No hay escenas útiles. Se salta este mes.")
+            fecha_actual += relativedelta(months=1)
             continue
 
-        # === COMPUTE MONTHLY MEAN (REF) ===
-        stack = xr.concat(stack_reprojected, dim="time")
-        stack["time"] = np.arange(len(stack_reprojected))
+        # === PASO 4: Apilar y calcular REF
+        stack = xr.concat(stack_reproyectado, dim="time")
+        stack["time"] = np.arange(len(stack_reproyectado))
         ref = stack.mean(dim="time", skipna=True)
 
-        # === SAVE REF DATASET ===
+        # === PASO 6: Guardar NetCDF
         ref_ds = ref.to_dataset(name="brightness_temperature_REF")
         ref_ds["brightness_temperature_REF"].attrs["units"] = "K"
-        ref_ds.attrs["description"] = "Monthly reference over volcano area (std > 3 and min > 210)"
-        ref_ds.attrs["used_files"] = ", ".join(valid_files)
+        ref_ds.attrs["descripcion"] = "REF mensual con escenas filtradas (std > 3 y min > 210)"
+        ref_ds.attrs["archivos_usados"] = ", ".join(archivos_buenos)
+        ref_ds = ref_ds.assign_coords({
+            "latitude": (("latitude",), lat1d),
+            "longitude": (("longitude",), lon1d)
+        })
 
-        # Save the NetCDF file
-        output_filename = f"Ref_{year_ref}_{month_ref:02d}.nc"
-        output_path_final = output_dir / output_filename
+        output_filename = f"Ref_{año_ref}_{mes_ref:02d}.nc"
+        output_path = output_dir / output_filename
 
         try:
-            if output_path_final.exists():
-                output_path_final.unlink()
-            ref_ds.to_netcdf(output_path_final, mode="w")
-            print(f"REF saved to: {output_path_final}")
+            if output_path.exists():
+                output_path.unlink()
+            ref_ds.to_netcdf(output_path, mode="w")
+            print(f"¡REF guardada en: {output_path}")
         except PermissionError:
-            # If the file is in use, save an alternative version
-            alt_path = output_dir / f"Ref_{year_ref}_{month_ref:02d}_v2.nc"
-            ref_ds.to_netcdf(alt_path, mode="w")
-            print(f"REF saved as alternative version: {alt_path}")
+            print("No se pudo sobrescribir el archivo. ¿Está abierto en otro programa?")
+            alt_output_path = output_dir / f"Ref_{año_ref}_{mes_ref:02d}_v2.nc"
+            ref_ds.to_netcdf(alt_output_path, mode="w")
+            print(f"REF guardada como versión alternativa: {alt_output_path}")
 
     except Exception as e:
-        print(f"Error processing {year_ref}-{month_ref:02d}: {e}")
+        print(f"Error al procesar {año_ref}-{mes_ref:02d}: {e}")
 
-    # Move to the next month
-    current_date += relativedelta(months=1)
+    # Avanzar al mes siguiente
+    fecha_actual += relativedelta(months=1)
