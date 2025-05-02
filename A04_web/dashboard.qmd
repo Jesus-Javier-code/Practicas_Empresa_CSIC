@@ -5467,7 +5467,7 @@ HTML(f"""
         <img src="B_images/Lanzarote_contorno_naranja.png" alt="Lanzarote Logo">
       </div>
       <div class="volcana-title" style="color: #d7512c; font-size: 2.5em; font-weight: bold; margin-top: 10px;">
-        Timanfaya, Lanzarote
+        Thermal signals in Timanfaya
       </div>
     </div>
   </div>
@@ -5700,7 +5700,7 @@ HTML('''
       <div class="context-box">
         <div class="context-title">Monitoring Hydrothermal Activity</div>
         <div class="context-text">
-          The Timanfaya volcanic region in Lanzarote features residual geothermal activity, where localized ground heating and gas emissions hint at lingering magmatic heat and evolving hydrothermal conditions beneath the surface.
+          The Timanfaya volcanic features residual geothermal activity, where localized ground heating and gas emissions hint at lingering magmatic heat and evolving hydrothermal conditions beneath the surface.
         </div>
         <div class="context-text">
           <strong>Key observations:</strong>
@@ -5739,7 +5739,7 @@ HTML('''
 <div class="context-box combined-analysis">
   <div class="context-title">Timanfaya's Thermal Footprint</div>
   <div class="context-text">
-    <p>Thermal signals in the Timanfaya region of Lanzarote stem from residual geothermal activity beneath the young volcanic terrain, where ground temperatures exceed 100°C in certain surface vents.</p>
+    <p>Thermal signals in Timanfaya stem from residual geothermal activity beneath the young volcanic terrain, where ground temperatures exceed 100°C in certain surface vents.</p>
 
     <p>From July 2024 to January 2025, satellite observations indicated localized thermal anomalies across lava fields, suggesting persistent subsurface heat and shallow magmatic influence.</p>
 
