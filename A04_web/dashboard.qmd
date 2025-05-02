@@ -2448,13 +2448,24 @@ iframe {
 </style>
 
 
+
 <!-- Seismic Activity Visualization -->
 <div class="context-box">
   <div class="context-title">Seismic Activity Visualization</div>
   <div class="context-text">
-    <p>The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and triggering potential of seismic events.</p>
+    <p>The USGS service does not register all seismic events in all regions of the world due to the various limitations this would entail.
+    </p>
+    <p>
+      It has some regions of interest with more precise databases where a larger quantity of earthquakes can be found, but in other regions such as the Canary Islands, the USGS does not provide a complete catalog for all the swarms that occur, as mentioned before.
+    </p>
+    <p>
+      The shown catalog is filtered by looking for more detailed information in densely populated regions and historically active regions. It also has technical limitations such as a magnitude threshold, ambiguous signals, poorly located events, among other factors.
+    </p>
+    <p>
+      The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and the triggering potential of seismic events.
+    </p>
   </div>
- 
+
   <div class="visualization-grid">
     <!-- Maps Section -->
     <div class="visualization-section">
@@ -2502,6 +2513,8 @@ iframe {
 <!-- Combined Timeline + Gallery Section -->
 <div class="context-box" style="margin-bottom: 25px;">
   <div class="context-title">Eruption Timeline</div>
+  <p style="margi-top: 5px; margin-bottom: 20px; color: #555;">
+  The 2021 Tajogaite eruption unfolded through distinct phases, each marked by significant volcanic events. This timeline highlights key moments from the initial fissure opening to the eventual cessation of activity, accompanied by visual documentation of the eruption's progression.<p>
   <div class="timeline-gallery-grid">
     <!-- Timeline Column -->
     <div class="timeline-column">
@@ -3378,6 +3391,7 @@ document.addEventListener('click', function(e) {
 </script>
 
 # 🕳️ EARTHQUAKES {#earthquakes}
+
 ```{python}
 #| label: geometry_1
 #| include: false
@@ -3457,6 +3471,7 @@ HTML(f"""
 </div>
 """)
 ```
+
 ````{python}
 HTML('''
 
@@ -3755,11 +3770,8 @@ iframe {
   </div>
   <div class="key-point">
     <div class="key-point-title">Seismic waves</div>
-    <div class="key-point-title">Seismic waves</div>
     <div class="context-text">
       <p>There are four mainly differentiated: <strong>P</strong> and <strong>S</strong> as body waves and  <strong>Love</strong> and <strong> Rayleigh</strong> as surface waves</p>
-
-
     </div>
   </div>
 </div>
@@ -4482,9 +4494,19 @@ HTML('''
 <div class="context-box">
   <div class="context-title">Seismic Activity Visualization</div>
   <div class="context-text">
-    <p>The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and triggering potential of seismic events.</p>
+    <p>The USGS service does not register all seismic events in all regions of the world due to the various limitations this would entail.
+    </p>
+    <p>
+      It has some regions of interest with more precise databases where a larger quantity of earthquakes can be found, but in other regions such as the Canary Islands, the USGS does not provide a complete catalog for all the swarms that occur, as mentioned before.
+    </p>
+    <p>
+      The shown catalog is filtered by looking for more detailed information in densely populated regions and historically active regions. It also has technical limitations such as a magnitude threshold, ambiguous signals, poorly located events, among other factors.
+    </p>
+    <p>
+      The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and the triggering potential of seismic events.
+    </p>
   </div>
- 
+
   <div class="visualization-grid">
     <!-- Maps Section -->
     <div class="visualization-section">
@@ -4531,6 +4553,9 @@ HTML('''
 <!-- Combined Timeline + Gallery Section -->
 <div class="context-box" style="margin-bottom: 25px;">
   <div class="context-title">Eruption Timeline</div>
+  <p style="margin-top: 5px; margin-bottom: 20px; color: #555;">
+  The geological formation of Teide occurred in seven distinct phases over 10 million years: initial submarine volcanism, construction of three shield volcanoes, erosional periods, caldera collapse, stratovolcano formation, and recent eruptive activity. This timeline documents the key events that shaped Tenerife's volcanic system, which remains active with fumarolic emissions and seismic swarms.</p>
+
   <div class="timeline-gallery-grid">
     <!-- Timeline Column -->
     <div class="timeline-column">
