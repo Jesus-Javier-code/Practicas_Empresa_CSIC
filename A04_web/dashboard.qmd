@@ -3407,6 +3407,7 @@ HTML(f"""
 ```
 ````{python}
 HTML('''
+
 <style>
 
 /* Contenedor principal */
@@ -3422,23 +3423,6 @@ HTML('''
   margin-bottom: 40px;
 }
 
-HTML('''
-<style>
-
-/* Contenedor principal */
-.main-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Sección de contenido */
-.content-section {
-  margin-bottom: 40px;
-}
-
-<style>
 .hero-banner {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://estaticos-cdn.prensaiberica.es/clip/256ca343-fefb-4826-974c-d558e4ebcc13_source-aspect-ratio_default_0.webp');
     background-size: cover;
@@ -3666,42 +3650,17 @@ iframe {
       <div class="context-title">Seismic-volcanic correlation</div>
       <div class="context-text">
         <p>There are several ways earthquakes affect volcanic activity. The main cases are those related to the dynamic and static stresses that they cause to the magmatic chambers. Although the event may also tear the chamber if the fault is large enough or if the hypocenter is close enough.</p>
-<div class="main-container">
-  <!-- Seismic-volcanic correlation -->
-  <div class="content-section">
-    <div class="context-box combined-analysis">
-      <div class="context-title">Seismic-volcanic correlation</div>
-      <div class="context-text">
-        <p>There are several ways earthquakes affect volcanic activity. The main cases are those related to the dynamic and static stresses that they cause to the magmatic chambers. Although the event may also tear the chamber if the fault is large enough or if the hypocenter is close enough.</p>
 
         <p>These are not the only conditions to cause an eruptive period, there has to be a "predisposition" to ignite it. The main things are the material composition of the crust, the viscosity and density of the magma, the bubble flow, if there are temperature changes that affects to the (usually crystal) ceiling of the magmatic chamber...</p>
-        <p>These are not the only conditions to cause an eruptive period, there has to be a "predisposition" to ignite it. The main things are the material composition of the crust, the viscosity and density of the magma, the bubble flow, if there are temperature changes that affects to the (usually crystal) ceiling of the magmatic chamber...</p>
 
-        <p>Statistically, closed system volcanoes are more likely to trigger due to seismic events than open volcanoes, existing a geological factor that affects to this statistic. Specifically, it is estimated that in Chile and Indonesia 25% of volcanoes are susceptible to earthquakes (Watt et al. 2009) while in other regions is estimated to be only 0.3-0.4% (Linde and Selwyn Sacks, 1998; Manga and Brodsky, 2006; Lemarchand and Grasso, 2007).</p>
         <p>Statistically, closed system volcanoes are more likely to trigger due to seismic events than open volcanoes, existing a geological factor that affects to this statistic. Specifically, it is estimated that in Chile and Indonesia 25% of volcanoes are susceptible to earthquakes (Watt et al. 2009) while in other regions is estimated to be only 0.3-0.4% (Linde and Selwyn Sacks, 1998; Manga and Brodsky, 2006; Lemarchand and Grasso, 2007).</p>
 
         <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years, due to the studied time-span of stabilization of the volcano after the different stress-caused mechanisms. It has been seen that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
       </div>
     </div>
   </div>
-        <p>Usually the time-span accepted to consider an earthquake the cause of an eruption is up to 5 years, due to the studied time-span of stabilization of the volcano after the different stress-caused mechanisms. It has been seen that in this range the number of volcanoes activated by earthquakes is larger than looking up to 2 years and smaller periods.</p>
-      </div>
-    </div>
-  </div>
 
-  <!-- Video and text section -->
-  <div class="content-section">
-    <div class="grid-container">
-      <div class="video-feature">
-        <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/Dm0WbAxhRP8" allowfullscreen></iframe>
-        </div>
-        <div class="photo-credits">
-          Video de YouTube © <a href="https://www.youtube.com" target="_blank">YouTube</a>
-        </div>
-      </div>
-      
-      <div class="text-content">
+
   <!-- Video and text section -->
   <div class="content-section">
     <div class="grid-container">
@@ -3733,7 +3692,6 @@ iframe {
   <div class="key-point">
     <div class="key-point-title">20000 earthquakes </div>
     <div class="context-text">
-      The USGS locates about 20000 earthquakes per year, or 55 per day approximately. It is expected to have 16 major earthquakes (with magnitude over 7) in any given year in the world.
       The USGS locates about 20000 earthquakes per year, or 55 per day approximately. It is expected to have 16 major earthquakes (with magnitude over 7) in any given year in the world.
     </div>
    </div>
@@ -3768,11 +3726,12 @@ iframe {
       <div class="grid-container">
         <div class="histogram-container">
           <iframe src="./B_images/eq_map.html"></iframe>
-          <div class="visualization-caption">Registered earthquakes registered by the USGS in the selected period of time</div>
+          <div class="visualization-caption">Registered earthquakes in the USGS catalog in the selected area and period of time.</div>
         </div>
         <div class="histogram-container">
           <iframe src="./B_images/eq_map_filtered.html"></iframe>
           <div class="visualization-caption"></div>
+          <div class = "visualization-caption">Registered earthquakes in the USGS catalog< in the selected area and period of time./div>
         </div>
       </div>
     </div>
@@ -3783,11 +3742,11 @@ iframe {
       <div class="grid-container">
         <div class="histogram-container">
           <iframe src="./B_images/eq_histogram.html" scrolling="no"></iframe>
-          <div class="visualization-caption">Events frequency over time</div>
+          <div class="visualization-caption">Registered earthquakes histogram.</div>
         </div>
         <div class="histogram-container">
           <iframe src="./B_images/eq_trigger_histogram.html" scrolling="no"></iframe>
-          <div class="visualization-caption">Triggering index values distribution</div>
+          <div class="visualization-caption">Triggering index values distribution.<br>The closer to zero the more likely to propitiate an eruption.</div>
         </div>
       </div>
     </div>
@@ -3917,70 +3876,7 @@ iframe {
   <div class="ded-table-container">
     <iframe src="./B_images/eq_table.html" class="ded-iframe"></iframe>
   </div>
-</div>
-
-<style>
-  /* Unique styles for Detailed Event Data section */
-  .detailed-event-data-section {
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .ded-section-title {
-    color:rgb(209, 84, 30);
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px rgba(230, 135, 67, 0.1);
-  }
-  
-  .ded-table-container {
-    width: 100%;
-    overflow: hidden;
-    background: white;
-    border-radius: 6px;
-    border: 1px solid #e0e0e0;
-  }
-  
-  .ded-iframe {
-    width: 100%;
-    height: 500px;
-    border: none;
-    display: block;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .ded-iframe {
-      height: 400px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .ded-iframe {
-      height: 300px;
-    }
-    .ded-section-title {
-      font-size: 1.3rem;
-    }
-  }
-</style>
-
-  <!-- Credits Footer -->
-  <div class="credits-footer">
-    <p><strong>Image sources:</strong> Berkeley Seismology Lab • Thule Scientific • Temblor.net</p>
-    <p>All content presented for educational and scientific research purposes</p>
-    <p><a href="https://doi.org/10.1007/s11069-023-06090-y">Benito, M.B., Alvarado, G.E., Marchamalo, M. et al. Temporal and spatial evolution of the 2021 eruption in the Tajogaite volcano (Cumbre Vieja rift zone, La Palma, Canary Islands) from geophysical and geodetic parameter analyses. Nat Hazards 118, 2245-2284 (2023).</a></p>
-  </div>
-<!-- Detailed Event Data Section -->
-<div class="detailed-event-data-section">
-  <h2 class="ded-section-title">Detailed Event Data</h2>
-  <div class="ded-table-container">
-    <iframe src="./B_images/eq_table.html" class="ded-iframe"></iframe>
-  </div>
+  <div class="visualization-caption">Registered data table of the events shown.<br>Note: Earthquakes within a distance of 25km are considered caused by the volcanic activity and not the cause of it.</div>
 </div>
 
 <style>
