@@ -931,15 +931,14 @@ HTML(f"""
     </div>
   </div>
 </div>
-  
-  <div class="homepage-section">
+ <div class="homepage-section">
     <h2>Data Sources</h2>
     <p class="homepage-text">
       The primary data sources for this project include:
       <ul>
-        <li><strong>NASA LAADS DAAC</strong> (MODIS/VIIRS data)</li>
-        <li><strong>Copernicus Open Access Hub</strong> (Sentinel satellite data)</li>
-        <li><strong>a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes">USGS Catalog</a></strong> (Seismic and volcanic data)</li>
+        <li><strong><a href="https://ladsweb.modaps.eosdis.nasa.gov/" target="_blank">NASA LAADS DAAC</a></strong> (MODIS/VIIRS data)</li>
+        <li><strong><a href="https://scihub.copernicus.eu/" target="_blank">Copernicus Open Access Hub</a></strong> (Sentinel satellite data)</li>
+        <li><strong><a href="https://www.usgs.gov/programs/earthquake-hazards/earthquakes" target="_blank">USGS Earthquake Catalog</a></strong> (Seismic and volcanic data)</li>
       </ul>
     </p>
   </div>
@@ -2447,9 +2446,75 @@ iframe {
     }
 }
 </style>
+
+
+
+<!-- Seismic Activity Visualization -->
+<div class="context-box">
+  <div class="context-title">Seismic Activity Visualization</div>
+  <div class="context-text">
+    <p>The USGS service does not register all seismic events in all regions of the world due to the various limitations this would entail.
+    </p>
+    <p>
+      It has some regions of interest with more precise databases where a larger quantity of earthquakes can be found, but in other regions such as the Canary Islands, the USGS does not provide a complete catalog for all the swarms that occur, as mentioned before.
+    </p>
+    <p>
+      The shown catalog is filtered by looking for more detailed information in densely populated regions and historically active regions. It also has technical limitations such as a magnitude threshold, ambiguous signals, poorly located events, among other factors.
+    </p>
+    <p>
+      The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and the triggering potential of seismic events.
+    </p>
+  </div>
+
+  <div class="visualization-grid">
+    <!-- Maps Section -->
+    <div class="visualization-section">
+      <h3 class="section-subtitle">Seismic Activity Maps</h3>
+      <div class="grid-container">
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_map-lapalma.html"></iframe>
+          <div class="visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
+        </div>
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_map_filtered-lapalma.html"></iframe>
+          <div class = "visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Histograms Section -->
+    <div class="visualization-section">
+      <h3 class="section-subtitle">Earthquakes Histograms</h3>
+      <div class="grid-container">
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_histogram-lapalma.html" scrolling="no"></iframe>
+          <div class="visualization-caption">Registered earthquakes histogram.</div>
+        </div>
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_trigger_histogram-lapalma.html" scrolling="no"></iframe>
+          <div class="visualization-caption">Triggering index values distribution.<br>The closer to zero the more likely to propitiate an eruption.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Detailed Event Data Section -->
+<div class="detailed-event-data-section">
+  <h2 class="ded-section-title">Detailed Event Data</h2>
+  <div class="ded-table-container">
+    <iframe src="./B_images/eq_table-lapama.html" class="ded-iframe"></iframe>
+  </div>
+  <div class="visualization-caption">Registered data table of the events shown.<br>Note: Earthquakes within a distance of 25km are considered caused by the volcanic activity and not the cause of it.</div>
+</div>
+
+
 <!-- Combined Timeline + Gallery Section -->
 <div class="context-box" style="margin-bottom: 25px;">
   <div class="context-title">Eruption Timeline</div>
+  <p style="margi-top: 5px; margin-bottom: 20px; color: #555;">
+  The 2021 Tajogaite eruption unfolded through distinct phases, each marked by significant volcanic events. This timeline highlights key moments from the initial fissure opening to the eventual cessation of activity, accompanied by visual documentation of the eruption's progression.<p>
   <div class="timeline-gallery-grid">
     <!-- Timeline Column -->
     <div class="timeline-column">
@@ -3326,6 +3391,7 @@ document.addEventListener('click', function(e) {
 </script>
 
 # 🕳️ EARTHQUAKES {#earthquakes}
+
 ```{python}
 #| label: geometry_1
 #| include: false
@@ -3405,6 +3471,7 @@ HTML(f"""
 </div>
 """)
 ```
+
 ````{python}
 HTML('''
 
@@ -3703,11 +3770,8 @@ iframe {
   </div>
   <div class="key-point">
     <div class="key-point-title">Seismic waves</div>
-    <div class="key-point-title">Seismic waves</div>
     <div class="context-text">
       <p>There are four mainly differentiated: <strong>P</strong> and <strong>S</strong> as body waves and  <strong>Love</strong> and <strong> Rayleigh</strong> as surface waves</p>
-
-
     </div>
   </div>
 </div>
@@ -3716,9 +3780,15 @@ iframe {
 <div class="context-box">
   <div class="context-title">Seismic Activity Visualization</div>
   <div class="context-text">
-    <p>The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and triggering potential of seismic events.</p>
-  </div>
+    <p>The USGS service does not register all seismic events in all regions of the world due to the various limitations this would entail.</p>
 
+    <p>It has some regions of interest with more precise databases where a larger quantity of earthquakes can be found, but in other regions such as the Canary Islands, the USGS does not provide a complete catalog for all the swarms that occur, as mentioned before.</p>
+
+    <p>The shown catalog is filtered by looking for more detailed information in densely populated regions and historically active regions. It also has technical limitations such as a magnitude threshold, ambiguous signals, poorly located events, among other factors.</p>
+
+    <p>The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and the triggering potential of seismic events.</p>
+  </div>
+ 
   <div class="visualization-grid">
     <!-- Maps Section -->
     <div class="visualization-section">
@@ -3726,12 +3796,11 @@ iframe {
       <div class="grid-container">
         <div class="histogram-container">
           <iframe src="./B_images/eq_map.html"></iframe>
-          <div class="visualization-caption">Registered earthquakes in the USGS catalog in the selected area and period of time.</div>
+          <div class="visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
         </div>
         <div class="histogram-container">
           <iframe src="./B_images/eq_map_filtered.html"></iframe>
-          <div class="visualization-caption"></div>
-          <div class = "visualization-caption">Registered earthquakes in the USGS catalog< in the selected area and period of time./div>
+          <div class = "visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
         </div>
       </div>
     </div>
@@ -3938,6 +4007,8 @@ iframe {
 </div>
 ''')
 ````
+
+
 
 # 🏝️ TEIDE {#teide}
 ```{python}
@@ -4423,9 +4494,74 @@ HTML('''
         </div>
     </div>
 </div>
+
+
+<!-- Seismic Activity Visualization -->
+<div class="context-box">
+  <div class="context-title">Seismic Activity Visualization</div>
+  <div class="context-text">
+    <p>The USGS service does not register all seismic events in all regions of the world due to the various limitations this would entail.
+    </p>
+    <p>
+      It has some regions of interest with more precise databases where a larger quantity of earthquakes can be found, but in other regions such as the Canary Islands, the USGS does not provide a complete catalog for all the swarms that occur, as mentioned before.
+    </p>
+    <p>
+      The shown catalog is filtered by looking for more detailed information in densely populated regions and historically active regions. It also has technical limitations such as a magnitude threshold, ambiguous signals, poorly located events, among other factors.
+    </p>
+    <p>
+      The following visualizations show earthquake activity around the volcanic region. The maps display spatial distribution while the histograms reveal temporal patterns and the triggering potential of seismic events.
+    </p>
+  </div>
+
+  <div class="visualization-grid">
+    <!-- Maps Section -->
+    <div class="visualization-section">
+      <h3 class="section-subtitle">Seismic Activity Maps</h3>
+      <div class="grid-container">
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_map-tenerife.html"></iframe>
+          <div class="visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
+        </div>
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_map_filtered-tenerife.html"></iframe>
+          <div class = "visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Histograms Section -->
+    <div class="visualization-section">
+      <h3 class="section-subtitle">Earthquakes Histograms</h3>
+      <div class="grid-container">
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_histogram-tenerife.html" scrolling="no"></iframe>
+          <div class="visualization-caption">Registered earthquakes histogram.</div>
+        </div>
+        <div class="histogram-container">
+          <iframe src="./B_images/eq_trigger_histogram-tenerife.html" scrolling="no"></iframe>
+          <div class="visualization-caption">Triggering index values distribution.<br>The closer to zero the more likely to propitiate an eruption.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Detailed Event Data Section -->
+<div class="detailed-event-data-section">
+  <h2 class="ded-section-title">Detailed Event Data</h2>
+  <div class="ded-table-container">
+    <iframe src="./B_images/eq_table-tenerife.html" class="ded-iframe"></iframe>
+  </div>
+  <div class="visualization-caption">Registered data table of the events shown.<br>Note: Earthquakes within a distance of 25km are considered caused by the volcanic activity and not the cause of it.</div>
+</div>
+
 <!-- Combined Timeline + Gallery Section -->
 <div class="context-box" style="margin-bottom: 25px;">
   <div class="context-title">Eruption Timeline</div>
+  <p style="margin-top: 5px; margin-bottom: 20px; color: #555;">
+  The geological formation of Teide occurred in seven distinct phases over 10 million years: initial submarine volcanism, construction of three shield volcanoes, erosional periods, caldera collapse, stratovolcano formation, and recent eruptive activity. This timeline documents the key events that shaped Tenerife's volcanic system, which remains active with fumarolic emissions and seismic swarms.</p>
+
   <div class="timeline-gallery-grid">
     <!-- Timeline Column -->
     <div class="timeline-column">
@@ -4892,17 +5028,9 @@ HTML('''
   </div>
 </div>
 
-<div class="context-box">
-  <div class="context-title">Seismic background</div>
-  <div class="context-text">
-
-
-  </div>
-</div>
-
 <style>
 .teide-gallery-intro {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255);
   border-radius: 10px;
   padding: 20px;
   margin: 20px 0;
