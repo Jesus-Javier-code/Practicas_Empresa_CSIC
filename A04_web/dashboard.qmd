@@ -5842,6 +5842,47 @@ function changeLanzaroteRefImage() {
 }
 </script>
 
+<div class="context-box">
+  <div class="context-title">Volcanic Activity at Timanfaya</div>
+  <div class="context-text">
+    The Timanfaya National Park, located in Lanzarote, is home to one of the most striking volcanic landscapes in the Canary Islands. Although its last eruption occurred in the 18th century, residual geothermal activity persists beneath the surface.  
+    These videos offer aerial views, geothermal demonstrations, and insights into the ongoing scientific interest in the region.
+  </div>
+
+  <div class="media-grid">
+    <!-- Video 1 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/JyRyrcHHvfA" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">3D model of Timanfaya</div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/YsxxqyaX7Dw" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Fumaroles</div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/B76ZD1-DaSg" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Footage of Timanfaya</div>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-wrapper">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/YX_OiXw-bKY" allowfullscreen></iframe>
+      </div>
+      <div class="video-caption">Timanfaya tour guide</div>
+    </div>
+  </div>
+</div>
 
 
   <!-- Credits Footer -->
