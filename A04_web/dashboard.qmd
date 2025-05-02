@@ -5681,7 +5681,7 @@ HTML('''
 <div class="main-container">
   <!-- Hero Banner -->
   <div class="hero-banner">
-    <div class="hero-title">Fumarolic Activity in the Timanfaya, Lanzarote</div>
+    <div class="hero-title">Fumarolic Activity in the Timanfaya</div>
     <div class="hero-subtitle">
       Lanzarote, shaped by intense volcanic activity, is home to the Timanfaya region, where residual geothermal heat and young basaltic formations offer a unique window into the island’s recent eruptive history and subsurface magmatic processes.
     </div>
