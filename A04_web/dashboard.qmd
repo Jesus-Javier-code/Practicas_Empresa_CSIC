@@ -907,9 +907,9 @@ HTML(f"""
       </div>
       
       <!-- Slide 3 -->
-      <div class="carousel-slide" style="background-image: url('B_images/volcano3.jpeg');">
+      <div class="carousel-slide" style="background-image: url('B_images/volcano 3.webp');">
         <div class="photo-credits hidden">
-          © <a href="https://www.nationalgeographic.com.es/fotografia/erupcion-palma-imagenes_17364" target="_blank">National Geographic</a>
+          © <a href="https://www.eldia.es/sociedad/2021/09/29/pasa-ahora-lava-volcan-palma-57810630.html" target="_blank">National Geographic</a>
         </div>
       </div>
       
