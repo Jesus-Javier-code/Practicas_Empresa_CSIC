@@ -51,6 +51,7 @@ jobs:
           echo "Verificando archivos generados..."
           ls -lh A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/ || echo "Directorio de La Palma no encontrado"
           ls -lh A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/ || echo "Directorio de Teide no encontrado"
+          ls -lh A00_data/B_processed/Lanzarote/Radiative_Power_by_Year_Month_Day/ || echo "Directorio de Lanzarote no encontrado"
           git status
 
       - name: Commit y push de los .nc
@@ -58,6 +59,7 @@ jobs:
           echo "Agregando archivos modificados..."
           git add -f A00_data/B_processed/La_Palma/Radiative_Power_by_Year_Month_Day/radiative_power.nc || echo "Archivo La Palma no encontrado"
           git add -f A00_data/B_processed/Teide/Radiative_Power_by_Year_Month_Day/radiative_power_teide.nc || echo "Archivo Teide no encontrado"
+          git add -f A00_data/B_processed/Lanzarote/Radiative_Power_by_Year_Month_Day/radiative_power_lanzarote.nc || echo "Archivo Lanzarote no encontrado"
 
           echo "Revisando si hay cambios para commitear..."
           git diff --cached --quiet && echo "No hay cambios para commitear." || (
