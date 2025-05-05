@@ -5,26 +5,36 @@ from netCDF4 import Dataset
 from pathlib import Path
 from datetime import datetime, timedelta
 
-# === RUTAS ===
+# === PATH SETUP ===
+# Get the absolute path of this script and locate the root project directory
 script_path = Path(__file__).resolve()
-proyecto_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
+project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
-input_base_path = proyecto_dir / "A00_data" / "B_raw" / "Teide"
-output_dir_bt = proyecto_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
+# Define input and output directories for Teide data
+input_base_path = project_dir / "A00_data" / "B_raw" / "Teide"
+output_dir_bt = project_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
 output_dir_bt.mkdir(parents=True, exist_ok=True)
 
-# === CONSTANTES ===
-wavelength = 11.45
-c1 = 1.191042e8   # W·µm⁴/m²/sr
-c2 = 1.4387752e4  # µm·K
+# === PHYSICAL CONSTANTS ===
+wavelength = 11.45  # µm (channel wavelength)
+c1 = 1.191042e8     # First radiation constant (W·µm⁴/m²/sr)
+c2 = 1.4387752e4    # Second radiation constant (µm·K)
 
 def radiance_to_bt(radiance):
+    """
+    Convert radiance to brightness temperature using the inverse Planck function.
+    Invalid or non-positive radiance values are set to NaN.
+    """
     with np.errstate(divide='ignore', invalid='ignore'):
         bt = c2 / (wavelength * np.log((c1 / (radiance * wavelength**5)) + 1))
         bt = np.where((radiance > 0) & np.isfinite(bt), bt, np.nan)
     return bt
 
 def process_to_monthly(nc_file, file_date):
+    """
+    Process a NetCDF file containing radiance data and convert it to brightness temperature.
+    Returns a DataArray with coordinates and metadata.
+    """
     with Dataset(nc_file) as nc:
         obs = nc.groups['observation_data']
         i05 = obs["I05"][:]
@@ -53,58 +63,61 @@ def process_to_monthly(nc_file, file_date):
     )
     return da
 
-# === FECHA DE AYER ===
-ayer = datetime.now() - timedelta(days=1)
-año = ayer.year
-mes = ayer.month
-dia_juliano = ayer.timetuple().tm_yday
+# === YESTERDAY'S DATE ===
+yesterday = datetime.now() - timedelta(days=1)
+year = yesterday.year
+month = yesterday.month
+julian_day = yesterday.timetuple().tm_yday
 
-print(f"\n=== Procesando BT para {ayer.strftime('%Y-%m-%d')} ===")
+print(f"\n=== Processing BT for {yesterday.strftime('%Y-%m-%d')} ===")
 
-# === ELIMINAR ARCHIVO DEL MES ANTERIOR SI ES DÍA 1 ===
-if ayer.day == 1:
-    mes_anterior = (ayer - timedelta(days=1)).strftime("%Y_%m")
-    archivo_anterior = output_dir_bt / f"BT_Teide_VJ102IMG_{mes_anterior.replace('_', '_')}.nc"
-    if archivo_anterior.exists():
-        archivo_anterior.unlink()
-        print(f"→ Archivo acumulado anterior eliminado: {archivo_anterior.name}")
+# === DELETE PREVIOUS MONTH'S FILE IF IT'S THE FIRST DAY ===
+if yesterday.day == 1:
+    previous_month = (yesterday - timedelta(days=1)).strftime("%Y_%m")
+    old_file = output_dir_bt / f"BT_Teide_VJ102IMG_{previous_month}.nc"
+    if old_file.exists():
+        old_file.unlink()
+        print(f"→ Previous monthly file deleted: {old_file.name}")
 
-# === PROCESAR ARCHIVO DEL DÍA ===
-input_folder = input_base_path / f"{año}_{dia_juliano:03d}"
-archivos = list(input_folder.glob("VJ102IMG.A*.nc"))
+# === PROCESS FILE FOR YESTERDAY ===
+input_folder = input_base_path / f"{year}_{julian_day:03d}"
+files = list(input_folder.glob("VJ102IMG.A*.nc"))
 
-if not archivos:
-    print("No hay archivos para procesar.")
+if not files:
+    print("No files available to process.")
     exit()
 
-archivo_bt = archivos[0]
-print(f"→ Procesando archivo: {archivo_bt.name}")
-bt_da = process_to_monthly(archivo_bt, ayer)
+nc_file = files[0]
+print(f"→ Processing file: {nc_file.name}")
+bt_da = process_to_monthly(nc_file, yesterday)
 bt_mean = float(np.nanmean(bt_da.values))
-print(f"→ BT media del {ayer.strftime('%Y-%m-%d')}: {bt_mean:.2f} K")
+print(f"→ Mean BT for {yesterday.strftime('%Y-%m-%d')}: {bt_mean:.2f} K")
 
-# === GUARDAR / ACUMULAR EN ARCHIVO MENSUAL ===
-nombre_nc = f"BT_Teide_VJ102IMG_{año}_{mes:02d}.nc"
-ruta_nc = output_dir_bt / nombre_nc
+# === SAVE OR APPEND TO MONTHLY NETCDF FILE ===
+monthly_filename = f"BT_Teide_VJ102IMG_{year}_{month:02d}.nc"
+monthly_path = output_dir_bt / monthly_filename
 
+# Define compression and data type settings
 encoding = {
     "BT_I05": {"zlib": True, "complevel": 4, "dtype": "float32"},
     "latitude": {"zlib": True, "dtype": "float32"},
     "longitude": {"zlib": True, "dtype": "float32"},
 }
 
-if ruta_nc.exists():
-    existente = xr.open_dataset(ruta_nc)
-    combinado = xr.concat([existente, bt_da.to_dataset()], dim="time")
-    combinado = combinado.sortby("time")
-    existente.close()  # << importante para evitar bloqueo del archivo
+# If monthly file exists, append to it; otherwise, create a new one
+if monthly_path.exists():
+    existing = xr.open_dataset(monthly_path)
+    combined = xr.concat([existing, bt_da.to_dataset()], dim="time")
+    combined = combined.sortby("time")
+    existing.close()  # Important: close file before writing to avoid lock
 else:
-    combinado = bt_da.to_dataset()
+    combined = bt_da.to_dataset()
 
+# Save final NetCDF file
 try:
-    combinado.to_netcdf(ruta_nc, encoding=encoding)
-    print(f"✔︎ Actualizado: {ruta_nc.name}")
+    combined.to_netcdf(monthly_path, encoding=encoding)
+    print(f"✔︎ Updated: {monthly_path.name}")
 except PermissionError:
-    alt_path = ruta_nc.parent / f"{ruta_nc.stem}_v2.nc"
-    combinado.to_netcdf(alt_path, encoding=encoding)
-    print(f"✔︎ Guardado como versión alternativa: {alt_path.name}")
+    alt_path = monthly_path.parent / f"{monthly_path.stem}_v2.nc"
+    combined.to_netcdf(alt_path, encoding=encoding)
+    print(f"✔︎ Saved as alternative version: {alt_path.name}")
