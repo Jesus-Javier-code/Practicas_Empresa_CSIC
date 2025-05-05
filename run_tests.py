@@ -4,7 +4,7 @@ from pathlib import Path
 # === CONFIGURACIÓN ===
 # Establece el directorio base del proyecto
 project_root = Path(__file__).resolve().parent
-tests_dir = project_root / "A05_tests"
+tests_dir = project_root / "A04_tests"
 
 # === EJECUTAR TODOS LOS TESTS ===
 def run_all_tests():
