@@ -1145,8 +1145,6 @@ def generate_lanzarote_map(output_file):
     with open(output_file, 'w') as f:
         f.write(html_content)
 
-# Guardar como HTML
-generate_lanzarote_map("/Users/moni/Desktop/Practicas_Empresa_CSIC-1/A04_web/lanzarote_map_final.html")
 
 
 def generate_teide_map(output_file):
@@ -1248,10 +1246,6 @@ def generate_teide_map(output_file):
     # Guardar archivo
     with open(output_file, 'w') as f:
         f.write(html_content)
-
-# Guardar como HTML
-generate_teide_map("/Users/moni/Desktop/Practicas_Empresa_CSIC-1/A04_web/teide_map_final.html")
-
 
 
 

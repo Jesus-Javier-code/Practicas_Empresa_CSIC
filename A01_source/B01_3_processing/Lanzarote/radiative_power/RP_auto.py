@@ -1,102 +1,98 @@
 import os
 import numpy as np
 import xarray as xr
+import matplotlib.pyplot as plt
 from pathlib import Path
 from datetime import datetime, timedelta
+import pandas as pd
 
-# === CONFIGURACIÓN ===
+# === CONFIGURATION ===
+# Resolve the current script path
 script_path = Path(__file__).resolve()
+
+# Locate the root project directory based on its name
 project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
-bt_dir = project_dir / "A00_data" / "B_processed" / "Teide" / "BT_daily_pixels"
-output_nc = project_dir / "A00_data" / "B_processed" / "Teide" / "Radiative_Power_by_Year_Month_Day" / "radiative_power_teide.nc"
-output_nc.parent.mkdir(parents=True, exist_ok=True)
+# Set input and output paths
+base_path = project_dir / "A00_data" / "B_processed" / "Lanzarote" / "BT_daily_pixels"
+output_nc = project_dir / "A00_data" / "B_processed" / "Lanzarote" / "Radiative_Power_by_Year_Month_Day" / "radiative_power_lanzarote.nc"
 
-sigma = 5.67e-8  # Constante de Stefan-Boltzmann
+# Physical constant: Stefan-Boltzmann constant (W/m²·K⁴)
+sigma = 5.67e-8  
 
-# === REGIÓN DE INTERÉS (Lanzarote) ===
+# Geographic region of interest (bounding box around Lanzarote volcano)
 lat_min, lat_max = 28.95, 29.01
 lon_min, lon_max = -13.76, -13.70
 
+# === DATE RANGE TO PROCESS ===
+start_date = datetime(2025, 1, 1)       # Start date for processing
+cutoff_date = datetime(1900, 2, 1)      # Reference cutoff date (fixed)
+end_date = datetime.utcnow()            # End date is the current UTC time
 
-# === FECHA DE AYER ===
-ayer = datetime.now() - timedelta(days=1)
-año = ayer.year
-mes = ayer.month
-fecha_str = ayer.strftime("%Y-%m-%d")
+# Initialize results lists
+frp_results = []
+new_dates = []
 
-print(f"\n=== CALCULANDO FRP PARA {fecha_str} ===")
+print("\n=== GENERATING VOLCANIC COOLING CURVE ===")
 
-# === CARGAR ARCHIVO MENSUAL ===
-archivo_bt = bt_dir / f"BT_Teide_VJ102IMG_{año}_{mes:02d}.nc"
-if not archivo_bt.exists():
-    print(f"{fecha_str} → Archivo mensual no encontrado: {archivo_bt.name}")
-    exit()
+# Iterate over each date in the date range
+date = start_date
+while date <= end_date:
+    year = date.year
+    julian_day = date.timetuple().tm_yday
+    date_str = date.strftime("%Y-%m-%d")
 
-ds = xr.open_dataset(archivo_bt)
+    # Locate the folder corresponding to the current day
+    day_folder = base_path / f"{year}_{julian_day:03d}"
+    files = sorted(day_folder.glob("*.nc"))
 
-if "BT_I05" not in ds:
-    print(f"{fecha_str} → Variable BT_I05 no encontrada.")
-    exit()
+    if not files:
+        print(f"{date_str} → No data available")
+        date += timedelta(days=1)
+        continue
 
-# === COMPROBAR QUE EXISTE LA FECHA ===
-time_target = np.datetime64(ayer.date())
-if time_target not in ds.time.values:
-    print(f"{fecha_str} → No hay datos para este día en el archivo.")
-    exit()
+    # Open the first available NetCDF file
+    file = files[0]
+    ds = xr.open_dataset(file)
+    bt = ds["brightness_temperature"] if "brightness_temperature" in ds else ds["BT_I05"]
+    lat = ds["latitude"].values
+    lon = ds["longitude"].values
 
-# === EXTRAER ESCENA Y APLICAR MÁSCARA GEOGRÁFICA ===
-bt = ds["BT_I05"].sel(time=time_target)
-lat = ds["latitude"]
-lon = ds["longitude"]
+    # === APPLY GEOGRAPHIC MASK ===
+    geo_mask = (lat >= lat_min) & (lat <= lat_max) & (lon >= lon_min) & (lon <= lon_max)
+    bt = bt.where(geo_mask)
 
-mascara_geo = (lat >= lat_min) & (lat <= lat_max) & (lon >= lon_min) & (lon <= lon_max)
-bt = bt.where(mascara_geo)
+    # === CALCULATE AVERAGE BRIGHTNESS TEMPERATURE (BT) ===
+    t_mean = float(np.nanmean(bt.values))
 
-# === CÁLCULO DE FRP ===
-t_mean = float(np.nanmean(bt.values))
+    if date > cutoff_date:
+        t = (date - cutoff_date).days
+        t_floor = 265         # Threshold temperature in Kelvin
+        area = 1_250_000      # Area in m²
+        scale = 2.5           # Scaling factor for FRP
 
-cutoff = datetime(2022, 2, 1)
-if ayer >= cutoff:
-    t = (ayer - cutoff).days
-    total = (datetime.utcnow() - cutoff).days
-    f2 = t / total
-    t_floor = 265 + 5 * f2
-    area = 1_000_000 - 500_000 * f2
-    scale = 1.5 - 1.0 * f2
-else:
-    print(f"{fecha_str} → Antes del inicio de la fase 2. No se calcula.")
-    exit()
-
-if np.isnan(t_mean) or t_mean <= t_floor:
-    frp = 0.0
-    print(f"{fecha_str} → BTmean={t_mean:.2f} K <= floor={t_floor:.2f} → FRP=0")
-else:
-    frp_raw = sigma * (t_mean**4 - t_floor**4) * area
-    frp = (frp_raw / 1e6) * scale
-    print(f"{fecha_str} → BTmean={t_mean:.2f} K, FRP={frp:.2f} MW")
-
-# === FILTRO DE CALIDAD ===
-if frp > 400:
-    print(f"✘ {fecha_str} → FRP fuera de rango esperado. Valor descartado.")
-    exit()
-
-# === CREAR Y GUARDAR ===
-nuevo_ds = xr.Dataset(
-    {"FRP": (["time"], [frp])},
-    coords={"time": [time_target]}
-)
-nuevo_ds["FRP"].attrs["units"] = "MW"
-
-if output_nc.exists():
-    acumulado = xr.open_dataset(output_nc)
-    if time_target in acumulado.time.values:
-        print(f"{fecha_str} → Ya existe en el archivo. No se sobrescribe.")
+    # === FRP CALCULATION ===
+    if np.isnan(t_mean) or t_mean <= t_floor:
+        frp = 0.0
+        print(f"{date_str} → BTmean={t_mean:.2f} K <= floor={t_floor:.2f} → FRP=0")
     else:
-        combinado = xr.concat([acumulado, nuevo_ds], dim="time").sortby("time")
-        acumulado.close()
-        combinado.to_netcdf(output_nc, mode="w")
-        print(f"✔︎ FRP añadido a {output_nc.name}")
-else:
-    nuevo_ds.to_netcdf(output_nc)
-    print(f"✔︎ NetCDF creado: {output_nc.name}")
+        frp_raw = sigma * (t_mean**4 - t_floor**4) * area
+        frp = (frp_raw / 1e6) * scale  # Convert to MW and scale
+        print(f"{date_str} → BTmean={t_mean:.2f} K, FRP={frp:.2f} MW")
+
+    # Save result for this date
+    frp_results.append(frp)
+    new_dates.append(np.datetime64(date.date()))
+    date += timedelta(days=1)
+
+# === SAVE RESULTS TO NETCDF ===
+final_ds = xr.Dataset(
+    {"FRP": (["time"], frp_results)},
+    coords={"time": new_dates}
+)
+final_ds["FRP"].attrs["units"] = "MW"
+
+# Ensure output directory exists, then save file
+output_nc.parent.mkdir(parents=True, exist_ok=True)
+final_ds.to_netcdf(output_nc)
+print(f"\n✔︎ Final curve saved as: {output_nc.name}")

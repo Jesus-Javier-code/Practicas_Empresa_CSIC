@@ -13,7 +13,7 @@ logo-alt: "CSIC logo."
 ---
 
 <style>
-/* ===== VARIABLES Y RESET GENERAL ===== */
+/* General Style */
 :root {
   --volcano-color: #413224;
   --earthquake-color: #413224;
@@ -35,7 +35,7 @@ body, html, .dashboard {
   background-blend-mode: overlay;
 }
 
-/* ===== NAVEGACIÓN CIRCULAR ===== */
+/* Circular Navegation*/
 .navbar {
   display: none !important;
 }
@@ -72,7 +72,7 @@ body, html, .dashboard {
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-/* Iconos de navegación */
+/* Navegation icons */
 #homepage-btn { 
   background-image: url('B_images/Logo_Volcana_circular.jpeg');
   background-size: 50%;
@@ -128,7 +128,7 @@ body, html, .dashboard {
   background-color: rgba(65,50,36,0.1) !important;
 }
 
-/* ===== CONTENIDOS TRANSPARENTES ===== */
+/* Transparent Icons */
 .dashboard, .panel-card, .cell, .panel-card-body, 
 .panel-tabset, .quarto-figure, iframe {
   background: transparent !important;
@@ -153,7 +153,7 @@ img {
   margin: 0 auto !important;
 }
 
-/* ===== ESTILOS HOMEPAGE ===== */
+/* Homepage */
 .homepage {
   text-align: center;
   padding: 2rem 1rem;
@@ -169,7 +169,7 @@ img {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
 }
 
-/* ===== CARRUSEL PRINCIPAL ===== */
+/* Main carrusel */
 .homepage-header, .earthquakes-carousel {
   position: relative;
   width: 100%;
@@ -283,7 +283,7 @@ img {
   object-fit: contain;
 }
 
-/* Contenedor circular */
+/* Circular content */
 .earthquake-logo-wrapper {
   width: 150px !important;
   height: 150px !important;
@@ -338,7 +338,7 @@ img {
   object-fit: contain !important;
 }
 
-/* ===== CRÉDITOS FOTOS ===== */
+/* Photo credits */
 .photo-credits {
   position: absolute;
   bottom: 15px;
@@ -363,7 +363,7 @@ img {
 
 .photo-credits a:hover { text-decoration: underline; }
 
-/* ===== LOGOS INSTITUCIONALES ===== */
+/* Institutional logos */
 .institutional-logos-container {
   display: flex;
   justify-content: center;
@@ -392,7 +392,7 @@ img {
   filter: grayscale(0%) drop-shadow(0 5px 5px rgba(0,0,0,0.2));
 }
 
-/* ===== POST-ITS ===== */
+/* Postits*/
 .post-it-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -453,7 +453,7 @@ img {
   color: #5E1A54;
 }
 
-/* ===== FOOTER ===== */
+/* Footer */
 .credits-footer {
   margin: 0 !important;
   padding: 0.5rem !important;
@@ -467,7 +467,7 @@ img {
   margin: 0 3px;
 }
 
-/* ===== ESTILOS ESPECÍFICOS LA PALMA ===== */
+
 #la-palma .panel-tabset,
 #la-palma .tab-content,
 #la-palma .tab-pane,
@@ -488,7 +488,7 @@ img {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* ===== ESTILOS TERREMOTOS ===== */
+
 #earthquakes .panel-tabset {
   background: transparent !important;
   border: none !important;
@@ -526,8 +526,7 @@ img {
   height: 100%;
 }
 
-/* ===== CORRECCIONES SOLICITADAS ===== */
-/* 1. Mapa ocupando todo el espacio */
+
 .map-container iframe {
   width: 100% !important;
   height: 100% !important;
@@ -536,7 +535,7 @@ img {
   display: block;
 }
 
-/* 2. Eliminar espacios transparentes */
+
 .main-container > * {
   margin-top: 0 !important;
   margin-bottom: 20px !important;
@@ -549,12 +548,12 @@ img {
   margin: 0 !important;
 }
 
-/* 3. Quitar scroll bar */
+
 .plot-wrapper iframe, iframe[src*="radiative_power_daily"] {
   overflow: hidden !important;
 }
 
-/* 4. Eliminar líneas blancas */
+
 #la-palma, .homepage, #teide, #earthquakes {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
@@ -566,7 +565,7 @@ img {
   outline: none !important;
 }
 
-/* Asegurar que no hay espacios residuales */
+
 .dashboard > .grid {
   gap: 0 !important;
   margin: 0 !important;
@@ -578,19 +577,19 @@ img {
   gap: 0 !important;
 }
 
-/* Limpieza específica para el banner */
+
 .homepage-header {
   margin-bottom: 0 !important;
 }
 
-/* Eliminar sombras/bordes residuales de las celdas */
+
 .cell {
   box-shadow: none !important;
   border: none !important;
   outline: none !important;
 }
 
-/* ELIMINAR BORDE INFERIOR DE .tab-content */
+
 .tab-content {
   border-bottom: none !important;
   border-left: 1px solid transparent !important;
@@ -598,7 +597,7 @@ img {
   padding: 1em 1em 0 1em !important;
 }
 
-/* ===== ESTILOS PARA LA SECCIÓN DE LA PALMA ===== */
+
 .main-container {
   width: 100%;
   max-width: 1200px;
@@ -708,7 +707,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let intervalId;
 
-    // Función para actualizar visibilidad
+  
     function updateVisibility() {
       slides.forEach((slide, index) => {
         const isActive = index === currentIndex;
@@ -722,13 +721,13 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // Inicializar
+ 
     updateVisibility();
 
     function showNextSlide() {
       console.log("🔄 Cambiando slide...");
       
-      // Oculta el slide actual
+
       slides[currentIndex].style.opacity = '0';
       slides[currentIndex].classList.remove('active');
       if (credits[currentIndex]) {
@@ -736,11 +735,11 @@ document.addEventListener('DOMContentLoaded', function() {
         credits[currentIndex].classList.add('hidden');
       }
 
-      // Calcula nuevo índice
+
       currentIndex = (currentIndex + 1) % slides.length;
       console.log(`🎯 Nuevo índice: ${currentIndex}`);
 
-      // Muestra nuevo slide
+
       slides[currentIndex].style.opacity = '1';
       slides[currentIndex].classList.add('active');
       if (credits[currentIndex]) {
@@ -749,12 +748,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
-    // Iniciar solo si hay más de 1 slide
+
     if (slides.length > 1) {
       console.log("⏱️ Iniciando intervalo...");
       intervalId = setInterval(showNextSlide, 5000);
 
-      // Pausar al interactuar
       container.addEventListener('mouseenter', () => {
         console.log("⏸️ Pausando carrusel");
         clearInterval(intervalId);
@@ -767,7 +765,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Inicializar todos los carruseles
+
   initCarousel('.homepage .carousel-container');
   initCarousel('#la-palma .carousel-container');
   initCarousel('#teide .carousel-container');
@@ -781,7 +779,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Crear botones de navegación
+
   const navContainer = document.createElement('div');
   navContainer.className = 'circle-nav-container';
   
@@ -795,7 +793,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   document.body.appendChild(navContainer);
 
-  // Funcionalidad de los botones
+
   const homepageBtn = document.getElementById('homepage-btn');
   const laPalmaBtn = document.getElementById('la-palma-btn');
   const earthquakesBtn = document.getElementById('earthquakes-btn');
@@ -828,7 +826,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateActiveButton('#earthquakes');
   });
 
-  // Función para actualizar botones visibles
+
   function updateActiveButton(activeTab) {
     // Reset all buttons
     homepageBtn.style.display = 'flex';
@@ -857,19 +855,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Actualizar al cargar la página
+
   function handleHashChange() {
     const currentHash = window.location.hash || '#homepage';
     updateActiveButton(currentHash);
   }
 
-  // Escuchar cambios en el hash
+
   window.addEventListener('hashchange', handleHashChange);
   
-  // Inicializar
+
   handleHashChange();
-  
-  // Añadir clase al body para estilos CSS
+
   document.body.setAttribute('data-has-circular-nav', 'true');
 });
 </script>
@@ -896,7 +893,7 @@ HTML(f"""
   <div class="homepage-header">
     <div class="carousel-container">
       <!-- Slide 1 -->
-      <div class="carousel-slide active" style="background-image: url('B_images/volcano1.jpg');">
+      <div class="carousel-slide active" style="background-image: url('B_images/volcano3.jpeg');">
         <div class="photo-credits">
           © <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta</a>
         </div>
@@ -910,9 +907,9 @@ HTML(f"""
       </div>
       
       <!-- Slide 3 -->
-      <div class="carousel-slide" style="background-image: url('B_images/volcano3.jpeg');">
+      <div class="carousel-slide" style="background-image: url('B_images/volcano 3.webp');">
         <div class="photo-credits hidden">
-          © <a href="https://www.nationalgeographic.com.es/fotografia/erupcion-palma-imagenes_17364" target="_blank">National Geographic</a>
+          © <a href="https://www.eldia.es/sociedad/2021/09/29/pasa-ahora-lava-volcan-palma-57810630.html" target="_blank">National Geographic</a>
         </div>
       </div>
       
@@ -928,15 +925,15 @@ HTML(f"""
     <h2>About the Project</h2>
     <p class="homepage-text">
       This research project, developed by the CSIC, focuses on the monitoring and analysis of volcanic activity in the Canary Islands. 
-      The project particularly investigates the Tajogaite volcano eruption in La Palma in 2021, as well as continuous monitoring of the Teide volcano in Tenerife.
+      The project particularly investigates the Tajogaite volcano eruption in La Palma in 2021, the fumarole activity of Timanfaya in Lanzarote, as well as continuous monitoring of the Teide volcano in Tenerife and the study of the correlation between earthquakes and the beginning of volcanic eruptive processes.
     </p>
     <p class="homepage-text">
-      <strong>We are Physics students from the University of La Laguna</strong>, currently undertaking our <strong>company internship program (Prácticas de Empresa)</strong>. 
+      <strong>We are physics students from the University of La Laguna</strong>, currently undertaking our <strong>company internship program</strong>. 
       This project is part of our training and academic development.
     </p>
     <p class="homepage-text">
       Our team, in collaboration with the <a href="https://www.csic.es/es" target="_blank">CSIC</a> and the <a href="https://www.ull.es/" target="_blank">University of La Laguna</a>, combines various techniques such as remote sensing, data analysis, 
-      and scientific visualization to better understand volcanic processes and improve early warning systems.
+      and scientific visualization to better understand volcanic processes.
     </p>
   </div>
   
@@ -965,7 +962,7 @@ HTML(f"""
     <!-- Post-it 4 -->
     <div class="post-it pink">
       <h3>Technical Development</h3>
-      <p>Create Python tools for satellite data processing, automated visualization pipelines and ML models for eruption prediction.</p>
+      <p>Create Python tools for satellite data processing and automated visualization pipelines.</p>
     </div>
   </div>
 </div>
@@ -1463,8 +1460,8 @@ iframe {
           <strong>Visualization highlights:</strong>
         </div>
         <div class="context-text">
-          • Red-shaded period marks official eruption duration<br>
-          • Clear phase transitions visible at different temporal scales
+          • Red-shaded period marks official eruption duration.<br>
+          • Clear phase transitions visible at different temporal scales.
         </div>
       </div>
     </div>
@@ -1743,9 +1740,9 @@ iframe {
       <div class="ref-features">
         <strong>Key features:</strong>
         <ul>
-          <li>Data obtained from VIIRS satellite (I05 channel)</li>
-          <li>Monthly composites minimize atmospheric effects</li>
-          <li>375 m spatial resolution</li>
+          <li>Data obtained from VIIRS satellite (I-5 channel).</li>
+          <li>Monthly composites minimize atmospheric effects.</li>
+          <li>375 m spatial resolution.</li>
         </ul>
       </div>
     </div>
@@ -2071,9 +2068,9 @@ iframe {
         <p>Immediately after the eruption, the volcanic terrain retains extremely high temperatures (e.g. incandescent lava, fresh flows), which results in high FRP values. However, in the following days, the volcanic system begins to cool rapidly due to:</p>
         
         <ul style="color: #555; line-height: 1.7; margin-bottom: 15px;">
-            <li>The absence of new magma being emitted</li>
-            <li>Natural dissipation of heat into the atmosphere</li>
-            <li>Solidification and consolidation of volcanic material</li>
+            <li>The absence of new magma being emitted.</li>
+            <li>Natural dissipation of heat into the atmosphere.</li>
+            <li>Solidification and consolidation of volcanic material.</li>
         </ul>
         
         <p>Even though the volcano enters a dormant phase, fumaroles, persistent hot spots, and residual geochemical processes may continue to generate weaker but still detectable thermal signals for months or even years after the eruption.</p>
@@ -2853,7 +2850,7 @@ iframe {
     <div class="hero-content">
         <div class="hero-title">Tajogaite in Motion</div>
         <div class="hero-subtitle">
-            Visual chronicle of the 2021 eruption through thermal imagery, video documentation, and photographic records
+            Visual record of the 2021 eruption through thermal imagery, video documentation, and photographic records
         </div>
     </div>
 </div>
@@ -2911,7 +2908,7 @@ iframe {
 <div class="context-box">
   <div class="context-title">Volcanic Activity at the Tajogaite volcano</div>
   <div class="context-text">
-    Through these aerial and ground footage videos, explore the raw force of the eruption—from its beginnings to the aftermath. See how lava flows devoured land, how ash transformed the underwater world, and how scientists documented this historic geologic event.
+    Through these aerial and ground footage videos, explore the force of the eruption—from its beginnings to the aftermath. See how lava flows devoured land, how ash transformed the underwater world, and how scientists documented this historic geologic event.
   </div>
 
   <div class="media-grid">
@@ -3283,7 +3280,7 @@ function changeRefImage() {
 </script>
 
 <script>
-// Script para ajuste dinámico si es necesario
+// Script 
 document.addEventListener('DOMContentLoaded', function() {
   const iframes = document.querySelectorAll('.plot-wrapper iframe');
   
@@ -3340,34 +3337,34 @@ document.addEventListener('DOMContentLoaded', function() {
     let intervalId;
 
     function updateCarousel(index) {
-        // Aplicar fade-out a la imagen y créditos actuales
+
         mainImage.classList.add('fade-out');
         photoCredits.classList.add('fade-out');
         
-        // Esperar a que termine la transición de fade-out
+
         setTimeout(() => {
-            // Cambiar la imagen y los créditos
+
             mainImage.src = images[index].src;
             photoCredits.innerHTML = images[index].credit;
             
-            // Quitar fade-out para mostrar el nuevo contenido
+
             mainImage.classList.remove('fade-out');
             photoCredits.classList.remove('fade-out');
             
-            // Actualizar puntos activos
+            
             dots.forEach(dot => dot.classList.remove('active'));
             dots[index].classList.add('active');
             
             currentIndex = index;
-        }, 300); // Este tiempo debe coincidir con la duración de la transición CSS
+        }, 300); 
     }
 
-    // Eventos para los puntos
+    
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             const index = parseInt(dot.getAttribute('data-index'));
             if (index !== currentIndex) {
-                // Reiniciar el intervalo cuando se hace clic manualmente
+                
                 clearInterval(intervalId);
                 updateCarousel(index);
                 startAutoRotation();
@@ -3375,7 +3372,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Función para iniciar la rotación automática
+    
     function startAutoRotation() {
         intervalId = setInterval(() => {
             const nextIndex = (currentIndex + 1) % images.length;
@@ -3383,13 +3380,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // Iniciar la rotación automática
+    
     startAutoRotation();
 });
 </script>
 
 <script>
-// Script opcional para ajuste dinámico de altura
+
 document.addEventListener('DOMContentLoaded', function() {
   const iframes = document.querySelectorAll('.plot-wrapper iframe');
   
@@ -3399,7 +3396,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Ajustar al cargar y al redimensionar
+  
   resizeIframes();
   window.addEventListener('resize', resizeIframes);
 });
@@ -3840,11 +3837,9 @@ iframe {
         <div class="histogram-container">
           <iframe src="./B_images/eq_map.html"></iframe>
           <div class="visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
-          <div class="visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
         </div>
         <div class="histogram-container">
           <iframe src="./B_images/eq_map_filtered.html"></iframe>
-          <div class = "visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
           <div class = "visualization-caption">Registered earthquakes in the USGS catalog <br> in the selected area and period of time.</div>
         </div>
       </div>
@@ -3857,11 +3852,9 @@ iframe {
         <div class="histogram-container">
           <iframe src="./B_images/eq_histogram.html" scrolling="no"></iframe>
           <div class="visualization-caption">Registered earthquakes histogram.</div>
-          <div class="visualization-caption">Registered earthquakes histogram.</div>
         </div>
         <div class="histogram-container">
           <iframe src="./B_images/eq_trigger_histogram.html" scrolling="no"></iframe>
-          <div class="visualization-caption">Triggering index values distribution.<br>The closer to zero the more likely to propitiate an eruption.</div>
           <div class="visualization-caption">Triggering index values distribution.<br>The closer to zero the more likely to propitiate an eruption.</div>
         </div>
       </div>
@@ -4019,7 +4012,7 @@ iframe {
     overflow: hidden;
     background: white;
     border-radius: 6px;
-    border: 1px solid #e0e0e0;
+    border: 1px solidrgb(255, 255, 255);
   }
   
   .ded-iframe {
@@ -4372,9 +4365,9 @@ HTML('''
           <strong>Key observations:</strong>
         </div>
         <div class="context-text">
-          • Persistent low-level thermal anomalies<br>
-          • Seasonal variations in fumarole temperatures<br>
-          • Correlation with seismic activity
+          • Persistent low-level thermal anomalies.<br>
+          • Seasonal variations in fumarole temperatures.<br>
+          • Correlation with seismic activity.
         </div>
       </div>
     </div>
@@ -4406,14 +4399,12 @@ HTML('''
   <div class="context-text">
     <p>The thermal activity at Teide volcano primarily originates from its extensive fumarole fields, where gases escape from the volcanic system at temperatures ranging from ambient to over 86°C.</p>
 
-    <p>Between July 2024 and January 2025, satellite data revealed elevated thermal emissions from these fumaroles, corresponding with increased seismic and geodetic activity in the region.</p>
-
     <p>Key factors influencing the thermal signals:</p>
 
     <ul style="color: #555; line-height: 1.7; margin-bottom: 15px;">
-      <li>Seasonal temperature variations affecting surface measurements</li>
-      <li>Changes in hydrothermal system pressure</li>
-      <li>Weather conditions impacting satellite observations</li>
+      <li>Seasonal temperature variations affecting surface measurements.</li>
+      <li>Changes in hydrothermal system pressure.</li>
+      <li>Weather conditions impacting satellite observations.</li>
     </ul>
   </div>
 </div>
@@ -4449,7 +4440,31 @@ HTML('''
       <div class="ref-selector-box">
         <label for="monthSelectTeide">Select Month:</label>
         <select id="monthSelectTeide" onchange="changeTeideRefImage()">
+        <optgroup label="2020">
+            <option value="B_images/REF/plots_teide/Ref_2020_02.jpg">February 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_03.jpg">March 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_04.jpg">April 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_05.jpg">May 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_06.jpg">June 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_07.jpg">July 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_08.jpg">August 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_09.jpg">September 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_10.jpg">October 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_11.jpg">November 2020</option>
+            <option value="B_images/REF/plots_teide/Ref_2020_12.jpg">December 2020</option>
+          </optgroup>
           <optgroup label="2021">
+            <option value="B_images/REF/plots_teide/Ref_2021_01.jpg">January 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_02.jpg">February 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_03.jpg">March 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_04.jpg">April 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_05.jpg">May 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_06.jpg">June 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_07.jpg">July 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_08.jpg">August 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_09.jpg">September 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_10.jpg">October 2021</option>
+            <option value="B_images/REF/plots_teide/Ref_2021_11.jpg">November 2021</option>
             <option value="B_images/REF/plots_teide/Ref_2021_12.jpg">December 2021</option>
           </optgroup>
           <optgroup label="2022">
@@ -4506,9 +4521,9 @@ HTML('''
       <div class="ref-features">
         <strong>Key features:</strong>
         <ul>
-          <li>Data obtained from VIIRS satellite (I05 channel)</li>
-          <li>Monthly composites minimize atmospheric effects</li>
-          <li>375 m spatial resolution</li>
+          <li>Data obtained from VIIRS satellite (I-5 channel).</li>
+          <li>Monthly composites minimize atmospheric effects.</li>
+          <li>375 m spatial resolution.</li>
         </ul>
       </div>
     </div>
@@ -4522,20 +4537,19 @@ HTML('''
 
 <!-- Combined Analysis Section -->
 <div class="context-box combined-analysis">
-  <div class="context-title">Understanding Teide's Thermal Signals</div>
+  <div class="context-title">Understanding Teide's Seasonal Thermal Pattern</div>
   <div class="context-text">
 
-    <p>The graph above illustrates the <strong>Daily Radiative Power</strong> (MW) at Teide from 2021 to 2025. It clearly shows a steady increase in fumarolic thermal output starting in early 2022, peaking in late 2024. The highest value recorded was <strong>146 MW</strong> around November 2024, which aligns with the major seismic swarm detected on <strong>November 14, 2024</strong>—an event involving over 500 microearthquakes. This temporal coincidence suggests a possible link between subsurface pressure changes and the intensified thermal anomalies captured in the satellite observations.</p>
+    <p>The graph above illustrates the <strong>Daily Radiative Power (FRP)</strong> (MW) at Teide (Tenerife), revealing a generally low thermal output with a clear sinusoidal pattern. The FRP values oscillate between approximately <strong>20 MW</strong> and <strong>120 MW</strong>, displaying a cyclical behavior that repeats consistently each year. Notably, the peaks tend to occur every August, while the lowest values are observed during winter months, particularly around January and early February—indicating a seasonal dynamic with summer highs and winter lows.</p>
 
-    <p>Notably, on November 14, 2024, the National Geographic Institute (IGN) detected an anomalous seismic swarm comprising over 500 microearthquakes southwest of Pico Viejo within a three-hour window. These events, occurring at depths of 8–12 km, suggest increased pressure within Teide's hydrothermal system <a href="https://www.canarianweekly.com/posts/swarm-of-500-earthquakes-detected-at-mount-teide" target="_blank">(Canarian Weekly, 14 Nov 2024)</a>, <a href="https://danews.eu/teide-seismic-swarm-2024" target="_blank">(DA News, 14 Nov 2024)</a>.</p>
+    <p>The dataset spans five years, from 2020 to 2025, which allows for the identification of five distinct summer peaks. As the cold season ends, a progressive increase in FRP is observed, which may be linked to rising ambient temperatures and their influence on the volcano's hydrothermal system.</p>
 
-    <p>Additionally, since 2023, GPS measurements have indicated a ground uplift of approximately one centimetre, and a slight increase in CO₂ emissions has been observed in various areas of Tenerife, including Teide's crater <a href="https://www.diariodeavisos.com/2025/01/teide-co2-increase/" target="_blank">(Diario de Avisos, 24 Jan 2025)</a>, <a href="https://www.canarianweekly.com/posts/teide-ground-uplift-2025" target="_blank">(Canarian Weekly, 26 Jan 2025)</a>.</p>
-
-    <p>While Teide remains in a dormant phase, continuous monitoring of these thermal signals aids scientists in detecting any changes that might indicate increasing volcanic activity.</p>
+    <p>Additionally, several seismic swarms were recorded on Tenerife, including beneath Teide and the Pico Viejo complex in November 2024. However, when comparing thermal activity during those dates to other years, no significant anomaly or deviation is apparent in the FRP pattern. Therefore, based on these data alone, no clear correlation can be established between the seismic activity and changes in Teide’s hydrothermal output.</p>
 
     <p style="color: #000; font-weight: 500;">This dataset is automatically updated daily using NASA's VIIRS satellite observations.</p>
   </div>
 </div>
+
 <div class="hero-banner eruption-background">
     <div class="hero-content">
         <div class="hero-title">Teide Background</div>
@@ -5033,7 +5047,7 @@ HTML('''
   <div class="context-title">Volcanic Activity at Teide</div>
   <div class="context-text">
     Teide volcano, although currently dormant, displays fumarolic activity and remains an active area of scientific interest. 
-    These videos showcase recent monitoring efforts, thermal imagery, and historical context.
+    These videos showcase recent monitoring efforts, aerial views, and historical context.
   </div>
 
   <div class="media-grid">
@@ -5056,7 +5070,7 @@ HTML('''
     <!-- Video 3 -->
     <div class="video-wrapper">
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/evq6QsfqAZQ" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/n_bwBxzxWwE" allowfullscreen></iframe>
       </div>
       <div class="video-caption">Aerial footage of Teide</div>
     </div>
@@ -5227,7 +5241,7 @@ HTML('''
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Configuración específica para el carrusel del Teide
+    // Teide Carrusel
     const teideImages = [
         {
             src: "https://cdn.diariodeavisos.com/wp-content/uploads/2019/06/RS621621_sm-teide-fumarolas.jpg",
@@ -5262,7 +5276,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
 
-    // Verificar que los elementos existen antes de manipularlos
     const teideMainImage = document.getElementById('teide-main-image');
     const teidePhotoCredits = document.getElementById('teide-photo-credits');
     const teideDots = document.querySelectorAll('.teide-carousel .dot');
@@ -5278,24 +5291,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function updateTeideCarousel(index) {
-        // Validar índice
+        // Validate index
         if (index < 0 || index >= teideImages.length) return;
        
-        // Aplicar fade-out
+        //  fade-out
         teideMainImage.classList.add('fade-out');
         teidePhotoCredits.classList.add('fade-out');
        
         setTimeout(() => {
-            // Cambiar contenido
+            // Change content
             teideMainImage.src = teideImages[index].src;
             teideMainImage.alt = teideImages[index].alt;
             teidePhotoCredits.innerHTML = teideImages[index].credit;
            
-            // Quitar fade-out
+            // off fade-out
             teideMainImage.classList.remove('fade-out');
             teidePhotoCredits.classList.remove('fade-out');
            
-            // Actualizar puntos
+
             teideDots.forEach(dot => dot.classList.remove('active'));
             teideDots[index].classList.add('active');
            
@@ -5304,7 +5317,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Eventos para los puntos del Teide (CORRECCIÓN APLICADA AQUÍ)
+
     teideDots.forEach(dot => {
         dot.addEventListener('click', function() {
             const index = parseInt(this.getAttribute('data-index'));
@@ -5317,9 +5330,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // Función para iniciar rotación automática del Teide
     function startTeideAutoRotation() {
-        clearInterval(teideIntervalId); // Limpiar intervalo existente
+        clearInterval(teideIntervalId); 
         teideIntervalId = setInterval(() => {
             const nextIndex = (teideCurrentIndex + 1) % teideImages.length;
             updateTeideCarousel(nextIndex);
@@ -5327,11 +5339,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Iniciar rotación automática del Teide
+
     startTeideAutoRotation();
 
 
-    // Pausar al pasar el ratón
+
     const teideCarousel = document.querySelector('.teide-carousel');
     if (teideCarousel) {
         teideCarousel.addEventListener('mouseenter', () => {
@@ -5344,7 +5356,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+<script>
 
+function changeTeideRefImage() {
+  const selector = document.getElementById("monthSelectTeide");
+  const image = document.getElementById("currentTeideRefImage");
+  if (selector && image) {
+    image.src = selector.value;
+    console.log("Changed image to:", selector.value); 
+  } else {
+    console.error("Elementos no encontrados:");
+    console.log("Selector:", selector);
+    console.log("Image:", image);
+  }
+}
+
+console.log("Ruta inicial:", document.getElementById("currentTeideRefImage").src);
+
+
+function toggleInfo(id) {
+
+  document.querySelectorAll('.info-popup').forEach(popup => {
+    if (popup.id !== id) popup.style.display = 'none';
+  });
+  
+
+  const popup = document.getElementById(id);
+  popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+}
+
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.info-button') && !e.target.closest('.info-popup')) {
+    document.querySelectorAll('.info-popup').forEach(popup => {
+      popup.style.display = 'none';
+    });
+  }
+});
+</script>
 # 🏝️ LANZAROTE {#lanzarote}
 
 
@@ -5724,9 +5773,9 @@ HTML('''
           <strong>Key observations:</strong>
         </div>
         <div class="context-text">
-          • Persistent low-level thermal anomalies<br>
-          • Seasonal variations in fumarole temperatures<br>
-          • Correlation with seismic activity
+          • Persistent low-level thermal anomalies.<br>
+          • Seasonal variations in fumarole temperatures.<br>
+          • Correlation with seismic activity.
         </div>
       </div>
     </div>
@@ -5764,9 +5813,9 @@ HTML('''
     <p>Key factors influencing the observed thermal footprint:</p>
 
     <ul style="color: #555; line-height: 1.7; margin-bottom: 15px;">
-      <li>Soil permeability and heat retention across different lava flows</li>
-      <li>Subsurface magmatic heat diffusion from historic eruptions</li>
-      <li>Atmospheric interference affecting thermal satellite data</li>
+      <li>Soil permeability and heat retention across different lava flows.</li>
+      <li>Subsurface magmatic heat diffusion from historic eruptions.</li>
+      <li>Atmospheric interference affecting thermal satellite data.</li>
     </ul>
   </div>
 </div>
@@ -5837,9 +5886,9 @@ HTML('''
       <div class="ref-features">
         <strong>Key features:</strong>
         <ul>
-          <li>Data obtained from VIIRS satellite (I05 channel)</li>
-          <li>Monthly composites minimize atmospheric effects</li>
-          <li>375 m spatial resolution</li>
+          <li>Data obtained from VIIRS satellite (I-5 channel).</li>
+          <li>Monthly composites minimize atmospheric effects.</li>
+          <li>375 m spatial resolution.</li>
         </ul>
       </div>
     </div>
@@ -5881,7 +5930,7 @@ function changeLanzaroteRefImage() {
       <div class="video-container">
         <iframe src="https://www.youtube.com/embed/YsxxqyaX7Dw" allowfullscreen></iframe>
       </div>
-      <div class="video-caption">Fumaroles</div>
+      <div class="video-caption">Steam erupts as water meets Timanfaya's volcanic heat</div>
     </div>
 
     <!-- Video 3 -->
@@ -5901,6 +5950,165 @@ function changeLanzaroteRefImage() {
     </div>
   </div>
 </div>
+<div class="lanzarote-gallery-intro">
+  <h3>Timanfaya Gallery</h3>
+  <div class="intro-content">
+    <p>Timanfaya National Park in Lanzarote showcases a volcanic landscape shaped by recent eruptions and vivid colors. This gallery captures tge articial geysers and the Montañas de Fuego that reminds of the Canary Island's volcanic origins.</p>
+  </div>
+</div>
+
+
+<style>
+.lanzarote-gallery-intro {
+  background: rgba(255, 255, 255);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #d7512c;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+
+
+
+.lanzarote-gallery-intro h3 {
+  color: #d7512c;
+  margin-top: 0;
+  font-size: 1.4em;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 10px;
+}
+
+
+
+
+.intro-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+</style>
+
+
+<div class="lanzarote-carousel">
+    <!-- Imagen Principal con contenedor de créditos -->
+    <div class="main-image-container">
+        <img id="lanzarote-main-image" src="https://cdn.diariodeavisos.com/wp-content/uploads/2019/06/RS621621_sm-teide-fumarolas.jpg" alt="Fumarolas del Teide">
+        <div id="lanzarote-photo-credits" class="photo-credits">© <a href="https://www.diariodeavisos.com" target="_blank">Diario de Avisos</a></div>
+    </div>
+   
+    <!-- Indicadores de Puntos -->
+    <div class="carousel-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+    </div>
+</div>
+
+
+<style>
+.lanzarote-carousel {
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+    position: relative;
+}
+
+
+.lanzarote-carousel .main-image-container {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 500px;
+}
+
+
+.lanzarote-carousel #lanzarote-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+
+.lanzarote-carousel .photo-credits {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+
+.lanzarote-carousel .photo-credits a {
+    color: #ff9e7d;
+    text-decoration: none;
+}
+
+
+.lanzarote-carousel .carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+
+.lanzarote-carousel .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.lanzarote-carousel .dot.active {
+    background:rgb(158, 84, 35); /* Azul para diferenciar del rojo de La Palma */
+    transform: scale(1.2);
+}
+
+
+/* Efecto de fade para la transición */
+.lanzarote-carousel .fade-out {
+    opacity: 0 !important;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lanzarote-carousel .main-image-container {
+        height: 350px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .lanzarote-carousel .main-image-container {
+        height: 250px;
+    }
+   
+    .lanzarote-carousel .dot {
+        width: 12px;
+        height: 12px;
+    }
+   
+    .lanzarote-carousel .photo-credits {
+        font-size: 0.7em;
+        padding: 5px 10px;
+    }
+}
+</style>
 
 
   <!-- Credits Footer -->
@@ -5917,19 +6125,19 @@ function changeLanzaroteRefImage() {
 
 
 <script>
-// Función para mostrar/ocultar los info boxes
+
 function toggleInfo(id) {
-  // Cerrar todos los popups primero
+
   document.querySelectorAll('.info-popup').forEach(popup => {
     if (popup.id !== id) popup.style.display = 'none';
   });
   
-  // Alternar el popup solicitado
+
   const popup = document.getElementById(id);
   popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
 }
 
-// Cerrar popups al hacer clic fuera
+
 document.addEventListener('click', function(e) {
   if (!e.target.closest('.info-button') && !e.target.closest('.info-popup')) {
     document.querySelectorAll('.info-popup').forEach(popup => {
@@ -5938,7 +6146,7 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Función para cambiar imágenes de referencia
+
 function changeLanzaroteRefImage() {
   const selector = document.getElementById("monthSelectLanzarote");
   const image = document.getElementById("lanzaroteRefImage");
@@ -5947,4 +6155,124 @@ function changeLanzaroteRefImage() {
   }
 }
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const lanzaroteImages = [
+        {
+            src: "https://es.lowcosttourslanzarote.com/templateEditor/kcfinder/upload/images/Timanfaya%20geiser%2002_LR.jpg",
+            credit: '© <a href="https://es.lowcosttourslanzarote.com/blog/imprescendibles-lanzarote/1-parque-nacional-de-timanfaya" target="_blank">LCT Europe</a>'
+        },
+        {
+            src: "https://es.lowcosttourslanzarote.com/templateEditor/kcfinder/upload/images/MONTA%C3%91AS%20DEL%20FUEGO_LR.jpg",
+            credit: '© <a href="https://es.lowcosttourslanzarote.com/blog/imprescendibles-lanzarote/1-parque-nacional-de-timanfaya" target="_blank">LCT Europe</a>'
+        },
+        {
+            src: "https://estaticos-cdn.prensaiberica.es/clip/825fb726-1b75-45a8-91db-a130023f0d46_16-9-aspect-ratio_default_0.webp",
+            credit: '© <a href="https://www.laprovincia.es/sociedad/2017/08/10/timanfaya-escudo-volcanes-vivos-9654196.html" target="_blank">La Provincia</a>'
+        },
+        {
+            src: "https://calimasurf.com/wp-content/uploads/2023/05/1619526186-timanfaya-lanzarote.jpg",
+            credit: '© <a href="https://calimasurf.com/es/noticias/parque-nacional-de-timanfaya-lanzarote" target="_blank">Calima Surf</a>'
+        }
+    ];
+
+
+
+
+
+    const lanzaroteMainImage = document.getElementById('lanzarote-main-image');
+    const lanzarotePhotoCredits = document.getElementById('lanzarote-photo-credits');
+    const lanzaroteDots = document.querySelectorAll('.lanzarote-carousel .dot');
+   
+    if (!lanzaroteMainImage || !lanzarotePhotoCredits || lanzaroteDots.length === 0) {
+        console.error('No se encontraron elementos esenciales del carrusel del Teide');
+        return;
+    }
+
+
+
+
+    let lanzaroteCurrentIndex = 0;
+    let lanzaroteIntervalId;
+
+
+
+
+    function updateLanzaroteCarousel(index) {
+
+        if (index < 0 || index >= lanzaroteImages.length) return;
+       
+
+        lanzaroteMainImage.classList.add('fade-out');
+        lanzarotePhotoCredits.classList.add('fade-out');
+       
+        setTimeout(() => {
+
+            lanzaroteMainImage.src = lanzaroteImages[index].src;
+            lanzaroteMainImage.alt = lanzaroteImages[index].alt;
+            lanzarotePhotoCredits.innerHTML = lanzaroteImages[index].credit;
+           
+
+            lanzaroteMainImage.classList.remove('fade-out');
+            lanzarotePhotoCredits.classList.remove('fade-out');
+           
+
+            lanzaroteDots.forEach(dot => dot.classList.remove('active'));
+            lanzaroteDots[index].classList.add('active');
+           
+            lanzaroteCurrentIndex = index;
+        }, 300);
+    }
+
+
+
+
+
+    lanzaroteDots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            if (!isNaN(index)) {
+                clearInterval(lanzaroteIntervalId);
+                updateLanzaroteCarousel(index);
+                startLanzaroteAutoRotation();
+            }
+        });
+    });
+
+
+
+
+    function startLanzaroteAutoRotation() {
+        clearInterval(lanzaroteIntervalId); 
+        lanzaroteIntervalId = setInterval(() => {
+            const nextIndex = (lanzaroteCurrentIndex + 1) % lanzaroteImages.length;
+            updateLanzaroteCarousel(nextIndex);
+        }, 5000);
+    }
+
+
+
+
+
+    startLanzaroteAutoRotation();
+
+
+
+
+
+    const lanzaroteCarousel = document.querySelector('.lanzarote-carousel');
+    if (lanzaroteCarousel) {
+        lanzaroteCarousel.addEventListener('mouseenter', () => {
+            clearInterval(lanzaroteIntervalId);
+        });
+       
+        lanzaroteCarousel.addEventListener('mouseleave', () => {
+            startLanzaroteAutoRotation();
+        });
+    }
+});
+</script>
+
 
