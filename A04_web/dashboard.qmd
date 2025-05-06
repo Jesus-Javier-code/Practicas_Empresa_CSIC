@@ -893,7 +893,7 @@ HTML(f"""
   <div class="homepage-header">
     <div class="carousel-container">
       <!-- Slide 1 -->
-      <div class="carousel-slide active" style="background-image: url('B_images/volcano 3.webp');">
+      <div class="carousel-slide active" style="background-image: url('B_images/volcano3.jpeg');">
         <div class="photo-credits">
           © <a href="https://www.lagacetadesalamanca.es/nacional/las-espeluznantes-imagenes-de-la-lava-del-volcan-de-la-palma-a-la-puerta-de-las-casas-CF9034325" target="_blank">La Gaceta</a>
         </div>
@@ -925,7 +925,7 @@ HTML(f"""
     <h2>About the Project</h2>
     <p class="homepage-text">
       This research project, developed by the CSIC, focuses on the monitoring and analysis of volcanic activity in the Canary Islands. 
-      The project particularly investigates the Tajogaite volcano eruption in La Palma in 2021, the fumarole activity of Timanfaya in Lanzarote, as well as continuous monitoring of the Teide volcano in Tenerife.
+      The project particularly investigates the Tajogaite volcano eruption in La Palma in 2021, the fumarole activity of Timanfaya in Lanzarote, as well as continuous monitoring of the Teide volcano in Tenerife and the study of the correlation between earthquakes and the beginning of volcanic eruptive processes.
     </p>
     <p class="homepage-text">
       <strong>We are physics students from the University of La Laguna</strong>, currently undertaking our <strong>company internship program</strong>. 
