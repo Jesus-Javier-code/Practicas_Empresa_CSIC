@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 # === CONFIGURATION ===
 # Get the script path and locate the root project directory
 script_path = Path(__file__).resolve()
-project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC-1")
+project_dir = next(p for p in script_path.parents if p.name == "Practicas_Empresa_CSIC")
 
 # Define paths to input and output directories
 bt_dir = project_dir / "A00_data" / "B_processed" / "La_Palma" / "BT_daily_pixels"
