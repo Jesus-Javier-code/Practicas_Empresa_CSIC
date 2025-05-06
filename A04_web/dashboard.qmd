@@ -4632,67 +4632,67 @@ HTML('''
       <div class="compact-timeline">
         <!-- Event 1 -->
         <div class="timeline-event">
-          <div class="event-date">Sep 19, 2021</div>
+          <div class="event-date">10 million years ago</div>
           <div class="event-dot"></div>
           <div class="event-content">
-            <h4>Submarine Stage (10 million years ago)</h4>
+            <h4>Submarine Stage</h4>
             <p>Tenerife began as underwater volcanic eruptions along oceanic fractures, building up layers of pillow lava that eventually emerged from the Atlantic.</p>
           </div>
         </div>
        
         <!-- Event 2 -->
         <div class="timeline-event">
-          <div class="event-date">Sep 28, 2021</div>
+          <div class="event-date">Miocene-Pliocene era</div>
           <div class="event-dot"></div>
           <div class="event-content">
-            <h4>Ancient Shield Volcanoes (Miocene-Pliocene)</h4>
+            <h4>Ancient Shield Volcanoes</h4>
             <p>Three massive shield volcanoes—Anaga, Teno, and Adeje—dominated the island, flooding the terrain with fluid basaltic lava flows.</p>
           </div>
         </div>
        
         <!-- Event 3 -->
         <div class="timeline-event">
-          <div class="event-date">Oct 15, 2021</div>
+          <div class="event-date">~3 million years ago</div>
           <div class="event-dot"></div>
           <div class="event-content">
-            <h4>Erosive Pause (~3 million years ago)</h4>
+            <h4>Erosive Pause</h4>
             <p>A million-year pause in volcanic activity allowed wind, rain, and erosion to carve deep ravines and valleys into the landscape.</p>
           </div>
         </div>
        
         <!-- Event 4 -->
         <div class="timeline-event">
-          <div class="event-date">Dec 13, 2021</div>
+          <div class="event-date">Early Pleistocene</div>
           <div class="event-dot"></div>
           <div class="event-content">
-            <h4>Las Cañadas Edifice (Early Pleistocene)</h4>
+            <h4>Las Cañadas Edifice</h4>
             <p>A new central volcano grew, reaching ~4,500m before collapsing in a massive landslide, forming the Las Cañadas caldera.</p>
           </div>
         </div>
 
         <!-- Event 5 -->
         <div class="timeline-event">
-          <div class="event-date">Oct 15, 2021</div>
+          <div class="event-date">150,000 years ago</div>
           <div class="event-dot"></div>
           <div class="event-content">
-            <h4>Teide-Pico Viejo Birth (150,000 years ago)</h4>
+            <h4>Teide-Pico Viejo Birth</h4>
             <p>After a catastrophic eruption emptied the magma chamber, the current stratovolcano began forming inside the caldera, with alternating explosive and effusive eruptions.</p>
           </div>
         </div>
 
         <!-- Event 6 -->
         <div class="timeline-event">
-          <div class="event-date">Dec 13, 2021</div>
+          <div class="event-date">Last 800,000 years</div>
           <div class="event-dot"></div>
           <div class="event-content">
-            <h4>Recent Activity (Last 800,000 years)</h4>
+            <h4>Recent Activity</h4>
             <p>Giant landslides shaped the Orotava and Güímar valleys, while rift zone eruptions (like Chinyero in 1909) continued modifying the island.</p>
           </div>
         </div>
 
         <!-- Event 7 -->
         <div class="timeline-event">
-          <div class="event-date">Dec 13, 2021</div>
+          <div class="event-date">Present</div>
           <div class="event-dot"></div>
           <div class="event-content">
             <h4>Present-Day (Hydrothermal System)</h4>
